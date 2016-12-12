@@ -1,4 +1,21 @@
 /* Empty. Add your own CSS if you like */
+.frontPageCategoryDiv {
+    display:inline-block;
+    color:#441;
+    border:1px solid #CCC;
+    background:#DD5;
+    box-shadow: 0 0 5px -1px rgba(0,0,0,0.2);
+    cursor:pointer;
+    vertical-align:middle;
+    max-width: 100px;
+    padding: 5px;
+    text-align: center;
+    width: 100%;
+}
+.frontPageCategoryDiv:active {
+    color:red;
+    box-shadow: 0 0 5px -1px rgba(0,0,0,0.6);
+}
 .categoryDiv {
     display:inline-block;
     color:#444;

@@ -1,0 +1,15 @@
+<ion-view view-title="{{name}}">
+    <ion-content class="padding">
+        <div ng-controller="CategoriesCtrl">
+            <hr>
+            <div ng-repeat="cat in getCategoryValues()">
+                <a ng-href="#/{{cat.url | lowercase}}"/>
+                    <div class="categoryDiv">  
+                        {{cat.name}} Category
+                    </div>
+                </a>
+                <hr>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

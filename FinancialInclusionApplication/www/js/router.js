@@ -4,10 +4,10 @@ fIApp.config(function($stateProvider, $urlRouterProvider){
     templateUrl: 'templates/home.html',
     controller: 'HomeCtrl'
   })
-  .state('test', {
-    url:'/test',
-    templateUrl: 'templates/test.html',
-    controller: 'HomeCtrl'
+  .state('categories', {
+    url:'/categories',
+    templateUrl: 'templates/categories.html',
+    controller: 'CategoryCtrl'
   })
   .state('banking', {
     url:'/banking',

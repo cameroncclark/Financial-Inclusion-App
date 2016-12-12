@@ -1,16 +1,11 @@
 <ion-view view-title="{{name}}">
     <ion-content class="padding">
         <div ng-controller="CategoriesCtrl">
-            <!--<a href="#/test">Test Page</a>-->
-            <hr>
-            <div ng-repeat="cat in getCategoryValues()">
-                <a ng-href="#/{{cat.url | lowercase}}"/>
-                    <div class="categoryDiv">  
-                        {{cat.name}} Category
-                    </div>
-                </a>
-                <hr>
-            </div>
+            <a href="#/categories">
+                <div class="frontPageCategoryDiv">  
+                    Category Page
+                </div>
+            </a>
         </div>
     </ion-content>
 </ion-view>
