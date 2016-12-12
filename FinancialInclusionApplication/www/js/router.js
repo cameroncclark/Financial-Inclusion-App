@@ -8,6 +8,26 @@ fIApp.config(function($stateProvider, $urlRouterProvider){
     url:'/test',
     templateUrl: 'templates/test.html',
     controller: 'HomeCtrl'
+  })
+  .state('banking', {
+    url:'/banking',
+    templateUrl: 'templates/banking.html',
+    controller: 'BankingCtrl'
+  })
+  .state('tax', {
+    url:'/tax',
+    templateUrl: 'templates/tax.html',
+    controller: 'TaxCtrl'
+  })
+  .state('savings', {
+    url:'/savings',
+    templateUrl: 'templates/savings.html',
+    controller: 'SavingsCtrl'
+  })
+  .state('current_account', {
+    url:'/current_account',
+    templateUrl: 'templates/current_account.html',
+    controller: 'CurrentAccountCtrl'
   });
   $urlRouterProvider.otherwise('/');
 });

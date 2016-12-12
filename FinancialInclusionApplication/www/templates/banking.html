@@ -1,12 +1,11 @@
 <ion-view view-title="{{name}}">
     <ion-content class="padding">
+        {{content}}
         <div ng-controller="CategoriesCtrl">
-            <!--<a href="#/test">Test Page</a>-->
-            <hr>
-            <div ng-repeat="cat in getCategoryValues()">
+            <div ng-repeat="cat in getSubCategoryValues()">
                 <a ng-href="#/{{cat.url | lowercase}}"/>
                     <div class="categoryDiv">  
-                        {{cat.name}} Category
+                        {{cat.name}}
                     </div>
                 </a>
                 <hr>
