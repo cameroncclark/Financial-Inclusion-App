@@ -1,0 +1,49 @@
+.homePageHeaderBar {
+     height: 15vh;
+     background:cadetblue;
+     color: #FFF;
+}
+
+.homePageIcon {
+    font-size: 5rem;
+    color: #FFF;
+}
+
+.homePageTiles {
+    background:#472169;
+    vertical-align:middle;
+    text-align: center;
+    border: 4px solid #472169;
+    height: 25vh;
+    padding-top: 10%;
+    border-radius: 10px;
+    margin: auto;
+}
+
+.homePageContentDiv {
+    width: 98%;
+}
+
+.homePageCalcDiv {
+    border-right: 2px solid #472169;
+}
+
+.homePageInfoDiv {
+    border-left: 2px solid #472169;
+
+}
+
+.homePageTips {
+    height: 30vh;
+}
+
+.homePageHeaderPicture {
+    border-radius:50%;
+    max-width: 25vw;
+    max-height: 14vh;
+    border: 2px solid ghostwhite;
+}
+
+.homePageHeaderContents {
+    margin: auto;
+}
