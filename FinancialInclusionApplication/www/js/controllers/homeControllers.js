@@ -1,3 +1,3 @@
 fIApp.controller('HomeCtrl', function($scope){
-    $scope.name = 'Category Name';
+    $scope.name = 'Home Page';
 });

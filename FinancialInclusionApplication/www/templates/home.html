@@ -1,8 +1,11 @@
-<ion-view view-title="F I App">
+<ion-view view-title="{{name}}">
     <ion-content class="padding">
-        <div ng-controller="HomeCtrl">
-            {{name}}
-            <br><a href="#/test">Test Page</a>
+        <div ng-controller="CategoriesCtrl">
+            <a href="#/categories">
+                <div class="frontPageCategoryDiv">  
+                    Category Page
+                </div>
+            </a>
         </div>
     </ion-content>
 </ion-view>
