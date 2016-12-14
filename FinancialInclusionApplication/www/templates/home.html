@@ -1,33 +1,14 @@
-<ion-view hide-nav-bar="true" view-title="{{name}}">
+<ion-view hide-nav-bar="true">
     <ion-content>
         <header-bar></header-bar>
-        <div class="row">
-            <a href="#/categories">
-                <div class="homePageTiles homePageContentDiv">  
-                    <i class="icon icon ion-university homePageIcon"></i><br>
-                    Content
-                </div>
-            </a>
-        </div>
-        <div class="homePageTips row">
-            <tip-component></tip-component>
-        </div>
+        <content-tile></content-tile>
+        <tip-component></tip-component>
         <div class="row">
             <div class="col">
-                <a href="#/categories">
-                    <div class="homePageTiles homePageCalcDiv">  
-                        <i class="icon icon ion-calculator homePageIcon"></i><br>
-                        Calculator
-                    </div>
-                </a>
+                <calculator-tile></calculator-tile>
             </div>
             <div class="col">
-                <a href="#/categories">
-                    <div class="homePageTiles homePageInfoDiv">  
-                        <i class="icon icon ion-information-circled homePageIcon"></i><br>
-                        Information
-                    </div>
-                </a>
+                <information-tile></information-tile>
             </div>
         </div>
     </ion-content>
