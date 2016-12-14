@@ -9,6 +9,11 @@
     color: #FFF;
 }
 
+.contentTile{
+    width: 100%;
+    margin-top: 5px !important;
+}
+
 .homePageTiles {
     background:#472169;
     vertical-align:middle;
@@ -35,6 +40,10 @@
 
 .homePageTips {
     height: 30vh;
+    border: 4px solid lightgrey;
+    margin: 1%;
+    padding: 2%;
+
 }
 
 .homePageHeaderPicture {
@@ -46,4 +55,27 @@
 
 .homePageHeaderContents {
     margin: auto;
+}
+
+.tileFonts{
+    color:white; 
+    font-size: 20px; 
+    text-decoration:none;
+}
+
+.tipFont{
+color:white; 
+    font-size: 20px;
+    text-align: center;
+}
+
+.tipContent{
+color:black; 
+    font-size: 16px;
+    
+}
+
+.tipBox{
+    background:cadetblue;
+    
 }

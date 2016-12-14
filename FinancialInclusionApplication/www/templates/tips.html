@@ -1,8 +1,8 @@
 <div class="card" on-swipe-left="swipeLeft()" on-swipe-right="swipeRight()">
-    <div class="item item-divider">
-        {{tips[index].header}}
+    <div class="item item-divider tipBox">
+        <a class="tipFont">{{tips[index].header}}</a>
     </div>
-    <div class="item item-text-wrap">
-        {{tips[index].tip}}
+    <div class="item item-text-wrap" style="margin-bottom: 15%;">
+       <a class="tipContent"> {{tips[index].tip}}</a>
     </div>
 </div>
