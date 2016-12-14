@@ -1,5 +1,5 @@
 fIApp.component("tipComponent",{
-    templateUrl:"/templates/tips.html",
+    templateUrl:"templates/tips.html",
     controller: function testController($scope){
         $scope.tips = [
             {
