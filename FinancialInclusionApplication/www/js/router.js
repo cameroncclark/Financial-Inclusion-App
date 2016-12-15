@@ -28,6 +28,27 @@ fIApp.config(function($stateProvider, $urlRouterProvider){
     url:'/current_account',
     templateUrl: 'templates/current_account.html',
     controller: 'CurrentAccountCtrl'
+  })
+  .state('information',{
+    url:'/information',
+    templateUrl: 'templates/information.html',
+    controller: 'InformationCtrl'
+  })
+  .state('externalLinks',{
+    url:'/externalLinks',
+    templateUrl: 'templates/information.externalLinks.html',
+    controller: 'ExternalLinksCtrl'
+  })
+  .state('usefulNumbers',{
+    url:'/usefulNumbers',
+    templateUrl: 'templates/information.usefulNumbers.html',
+    controller: 'UsefulNumbersCtrl'
+  })
+  .state('help',{
+    url:'/help',
+    templateUrl: 'templates/information.help.html',
+    controller: 'HelpCtrl'
   });
+
   $urlRouterProvider.otherwise('/');
 });
