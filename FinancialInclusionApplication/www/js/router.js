@@ -19,6 +19,11 @@ fIApp.config(function($stateProvider, $urlRouterProvider){
     templateUrl: 'templates/tax.html',
     controller: 'TaxCtrl'
   })
+  .state('calculator', {
+    url:'/calculator',
+    templateUrl: 'templates/calculator.html',
+    controller: 'CalculatorCtrl'
+  })
   .state('savings', {
     url:'/savings',
     templateUrl: 'templates/savings.html',
