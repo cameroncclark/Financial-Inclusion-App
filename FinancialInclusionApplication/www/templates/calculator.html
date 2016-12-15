@@ -1,0 +1,21 @@
+<ion-view view-title="{{name}}">
+    <ion-nav-buttons side="right">
+      <button class="button" style="border: 0px !important;">
+        <b class = "icon icon ion-calculator"></b>
+      </button>
+    </ion-nav-buttons>
+    <ion-content class="padding">
+        Select a Calculator:
+             
+    <div class = "row" style="margin-bottom:5vh;">
+        <button ng-click="makeActive('savings')" ng-class="{true: 'col calculatorButtons2', false: 'col calculatorButtons'}[isActive]"><a   ng-class="{true: 'calculatorButtonsText2', false: 'calculatorButtonsText'}[isActive]">Savings</a></button>
+        <div class = "col calculatorButtons"><a class="calculatorButtonsText">Interest</a></div>
+        <div class = "col calculatorButtons"><a class="calculatorButtonsText">Mortgage</a></div>
+    </div>
+
+    <savings-calculator ng-show="savings"></savings-calculator>
+        
+
+    </ion-content>
+
+</ion-view>

@@ -1,0 +1,73 @@
+.buttonsWrapper{
+    border: 0.2vh solid lightsteelblue;
+    width: 100%;
+    height: 5vh;
+}
+
+.calculatorButtons{
+    background-color: white;
+    color: blue;
+    border: 0.2vh solid blue;
+    text-align: center;
+}
+
+.calculatorButtonsText{
+    cursor: pointer;
+    text-decoration: none;
+    color: blue;
+    
+}
+
+.calculatorButtonsText2{
+    cursor: pointer;
+    text-decoration: none;
+    color:white;
+    
+}
+
+.calculatorButtons2{
+   background-color: blue;
+    color: white !important;
+    border: 0.2vh solid blue; 
+}
+
+.headingText{
+    font-size: 1.5rem;
+    color: black;
+}
+
+.calcBodyText{
+    font-size: 1rem;
+    color: black;
+}
+
+.savingsSlider{
+    margin-bottom:5vh; 
+    padding:2vh;
+}
+
+.savingsCalcWrapper{
+    margin: 2vh;
+    padding: 2vh 2vh;
+    border: 0.1rem solid black;
+    background: #e6ffff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    height: 70vh;
+}
+
+.headerLine{
+    border-bottom: 0.5vh solid white; 
+    margin: 0 3vh 5vh 3vh;
+}
+
+.calculateButton{
+    padding: 1vh 1vh;
+    border: 0.1rem solid black;
+    width: 16vh;
+    height: 6vh;
+    background: white;
+    text-align: center;
+    color: blueviolet;
+    font-size: 1.3rem;
+    margin:auto;
+}
