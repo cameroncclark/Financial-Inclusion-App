@@ -1,18 +1,36 @@
 fIApp.component("headerBar",{
     templateUrl:"templates/homepage.header.html",
-    controller: function homePageHeaderCtrl($scope, $ionicModal, $ionicPopup){
+    controller: function homePageHeaderCtrl($scope, $ionicModal, $ionicPopup, $timeout){
+
+        $scope.userProfile = {name:"Stuart Cuthbertson", location: "Glasgow"};
+        $scope.userProfileUpdate = {};
+        
         $ionicModal.fromTemplateUrl('templates/homePageHeaderTrophy.html', {
             scope: $scope
         }).then(function(modal) {
-            $scope.modal = modal;
+            $scope.modalTrophy = modal;
+        });
+
+        $ionicModal.fromTemplateUrl('templates/homePageHeaderProfile.html', {
+            scope: $scope
+        }).then(function(modal) {
+            $scope.modalProfile = modal;
         });
 
         $scope.closeTrophy = function() {
-            $scope.modal.hide();
+            $scope.modalTrophy.hide();
         };
 
         $scope.openTrophy = function() {
-            $scope.modal.show();
+            $scope.modalTrophy.show();
+        };
+
+        $scope.closeProfile = function() {
+            $scope.modalProfile.hide();
+        };
+
+        $scope.openProfile = function() {
+            $scope.modalProfile.show();
         };
 
         //$scope.trophiesf = [{name: "calculator"},{name: "university"},{name: "calculator"},{name: "trophy"},{name: "calculator"} ]
@@ -33,6 +51,18 @@ fIApp.component("headerBar",{
                     template: iconObject.info
                 });
             }
+        };
+
+        $scope.updateUserProfile = function() {       
+            $scope.userProfile.name = $scope.userProfileUpdate.name;
+            $scope.userProfile.location = $scope.userProfileUpdate.location;
+
+            $scope.userProfileUpdate = {};
+
+
+            $timeout(function() {
+                $scope.closeProfile();
+            }, 1000);
         };
     }
 });

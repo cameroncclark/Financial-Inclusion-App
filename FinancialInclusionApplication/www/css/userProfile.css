@@ -1,0 +1,16 @@
+.userProfileContainer {
+    width: 80vw; 
+    top: 20vh; 
+    left: 10vw; 
+    bottom: 20vh;
+    min-height: 0% !important;
+    box-shadow: 0 0 100px 10px rgba(0,0,0,0.9);
+}
+
+.userProfileHeading {
+    background: #DAA520;
+}
+
+.userProfileIcon {
+    font-size: xx-large;
+}
