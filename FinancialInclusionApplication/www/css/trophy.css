@@ -1,0 +1,25 @@
+.trophyContainer {
+    width: 80vw; 
+    top: 10vh; 
+    left: 10vw; 
+    bottom: 10vh;
+    min-height: 0% !important;
+}
+
+.trophyHeading {
+    background: #DAA520;
+}
+
+.trophyIcon {
+    font-size: xx-large;
+}
+
+.trophyTable {
+    width: 100%;
+    margin: auto;
+    text-align: center;
+}
+
+.trophyTableIcons {
+    padding: 2vh;
+}
