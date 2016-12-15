@@ -1,9 +1,9 @@
 <div class="homePageHeaderBar row">
-    <div class="col-20 homePageHeaderContents">
+    <div class="col-20 homePageHeaderContents" ng-click="openProfile()">
         <img src="img/Stuart.jpg" class="homePageHeaderPicture">
     </div>
     <div class="col-50 homePageHeaderContents">
-        <b>Stuart Cuthbertson</b> <br> Glasgow
+        <b>{{userProfile.name}}</b> <br> {{userProfile.location}}
     </div>
     <div class="col-30 homePageHeaderContents homePageHeaderTrophy" ng-click="openTrophy()">
         <i class="icon icon ion-trophy"></i>

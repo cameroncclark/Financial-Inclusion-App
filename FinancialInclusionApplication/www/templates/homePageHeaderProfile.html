@@ -1,0 +1,33 @@
+<ion-modal-view class="userProfileContainer">
+    <ion-header-bar class="userProfileHeading">
+        <h1 class="title">User Profile</h1>
+        <div class="buttons">
+            <button class="button" ng-click="closeProfile()">Close</button>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+        <div class="padding">
+            <form ng-submit="updateUserProfile()">
+                <div style="text-align: center;">
+                    <img src="img/Stuart.jpg" class="homePageHeaderPicture">
+                </div>
+                <div class="list">
+                    <label class="item item-input item-floating-label">
+                    <span class="input-label">Username</span>
+                    <input type="text" ng-model="userProfileUpdate.name" placeholder="Username">
+                    </label>
+                        <label class="item item-input item-floating-label">
+                    <span class="input-label">Location</span>
+                    <input type="text" ng-model="userProfileUpdate.location" placeholder="Location">
+                    </label>
+                        <label class="item">
+                    <button class="button button-block button-positive" type="submit">Update User Profile</button>
+                    </label>
+                </div>
+                <div style="text-align: center;">
+                    <i class="icon icon ion-gear-a userProfileIcon"></i>
+                </div>
+            </form>
+        </div>
+    </ion-content>
+</ion-modal-view>
