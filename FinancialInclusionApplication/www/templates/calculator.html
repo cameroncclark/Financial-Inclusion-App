@@ -8,7 +8,7 @@
         Select a Calculator:
              
     <div class = "row" style="margin-bottom:5vh;">
-        <button ng-class="{true: 'col calculatorButtons2', false: 'col calculatorButtons'}[isActive]"><a  ng-click="makeActive('savings')" ng-class="{true: 'calculatorButtonsText2', false: 'calculatorButtonsText'}[isActive]">Savings</a></button>
+        <button ng-click="makeActive('savings')" ng-class="{true: 'col calculatorButtons2', false: 'col calculatorButtons'}[isActive]"><a   ng-class="{true: 'calculatorButtonsText2', false: 'calculatorButtonsText'}[isActive]">Savings</a></button>
         <div class = "col calculatorButtons"><a class="calculatorButtonsText">Interest</a></div>
         <div class = "col calculatorButtons"><a class="calculatorButtonsText">Mortgage</a></div>
     </div>
