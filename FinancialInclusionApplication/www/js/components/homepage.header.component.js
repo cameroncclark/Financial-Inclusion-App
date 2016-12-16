@@ -1,6 +1,7 @@
 fIApp.component("headerBar",{
     templateUrl:"templates/homepage.header.html",
     controller: function homePageHeaderCtrl($scope, $ionicModal, $ionicPopup, $timeout){
+        $scope.updateProfile = true;
 
         $scope.userProfile = {name:"Stuart Cuthbertson", location: "Glasgow"};
         $scope.userProfileUpdate = {};
@@ -27,6 +28,7 @@ fIApp.component("headerBar",{
 
         $scope.closeProfile = function() {
             $scope.modalProfile.hide();
+            $scope.updateProfile = true;
         };
 
         $scope.openProfile = function() {
@@ -53,16 +55,21 @@ fIApp.component("headerBar",{
             }
         };
 
-        $scope.updateUserProfile = function() {       
-            $scope.userProfile.name = $scope.userProfileUpdate.name;
+        $scope.updateUserProfile = function() {
+            if($scope.userProfileUpdate.name){       
+                $scope.userProfile.name = $scope.userProfileUpdate.name;
+            }
+            if($scope.userProfileUpdate.location){
             $scope.userProfile.location = $scope.userProfileUpdate.location;
+            }
 
             $scope.userProfileUpdate = {};
-
-
-            $timeout(function() {
-                $scope.closeProfile();
-            }, 1000);
+            $scope.closeProfile();
+           
         };
+
+        $scope.switchMode = function(){
+            $scope.updateProfile = !$scope.updateProfile;
+        }
     }
 });
