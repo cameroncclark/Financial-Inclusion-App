@@ -42,7 +42,7 @@
 }
 
 .savingsSlider{
-    margin-bottom:5vh; 
+    margin-bottom:2vh; 
     padding:2vh;
 }
 
@@ -57,7 +57,7 @@
 
 .headerLine{
     border-bottom: 0.5vh solid white; 
-    margin: 0 3vh 5vh 3vh;
+    margin: 0 3vh 2vh 3vh;
 }
 
 .calculateButton{
@@ -66,8 +66,13 @@
     width: 16vh;
     height: 6vh;
     background: white;
+    background: -webkit-linear-gradient(white, beige); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(white, beige); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(white, beige); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(white, beige); /* Standard syntax */
     text-align: center;
     color: blueviolet;
     font-size: 1.3rem;
     margin:auto;
+    border-radius: 2vh;
 }

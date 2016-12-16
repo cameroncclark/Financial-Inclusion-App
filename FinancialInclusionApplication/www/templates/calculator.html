@@ -8,12 +8,13 @@
         Select a Calculator:
              
     <div class = "row" style="margin-bottom:5vh;">
-        <button ng-click="makeActive('savings')" ng-class="{true: 'col calculatorButtons2', false: 'col calculatorButtons'}[isActive]"><a   ng-class="{true: 'calculatorButtonsText2', false: 'calculatorButtonsText'}[isActive]">Savings</a></button>
-        <div class = "col calculatorButtons"><a class="calculatorButtonsText">Interest</a></div>
-        <div class = "col calculatorButtons"><a class="calculatorButtonsText">Mortgage</a></div>
+        <button ng-click="makeActive('savings')" ng-class="{true: 'col calculatorButtons2', false: 'col calculatorButtons'}[isActiveSavings]"><a   ng-class="{true: 'calculatorButtonsText2', false: 'calculatorButtonsText'}[isActiveSavings]">Savings</a></button>
+        <button ng-click="makeActive('interest')" ng-class="{true: 'col calculatorButtons2', false: 'col calculatorButtons'}[isActiveInterest]"><a   ng-class="{true: 'calculatorButtonsText2', false: 'calculatorButtonsText'}[isActiveInterest]">Interest</a></button>
+        <div class = "col calculatorButtons" id="button3"><a class="calculatorButtonsText">Mortgage</a></div>
     </div>
 
     <savings-calculator ng-show="savings"></savings-calculator>
+    <interest-calculator ng-show="interest"></interest-calculator>
         
 
     </ion-content>
