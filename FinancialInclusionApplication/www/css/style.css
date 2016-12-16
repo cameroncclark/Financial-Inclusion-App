@@ -16,3 +16,12 @@
     color:red;
     box-shadow: 0 0 5px -1px rgba(0,0,0,0.6);
 }
+
+.modalCloseButton{
+    color:darkred;
+    font-size:3vh;
+}
+
+.centered{
+    text-align: center;
+}
