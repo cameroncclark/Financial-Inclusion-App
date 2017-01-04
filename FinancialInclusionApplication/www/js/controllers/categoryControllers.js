@@ -1,16 +1,17 @@
-fIApp.controller('CategoryCtrl', function ($scope, $ionicModal) {
+fIApp.controller('CategoryCtrl', function ($scope, $ionicModal, $http) {
+
+ /**
+  * Initialisation function, this retrieves the external list of categories
+  */
+  $scope.init = function () {
+    $http.get('content/categories.json')
+      .then(function (response) {
+        $scope.categories = response.data;
+      });
+  }
+
   $scope.name = 'Categories Page';
   $scope.modalSubCategories = [];
-
-  $scope.categories = [{
-    "categoryName": "Banking",
-    "subCategories": ["Saving money", "APR", "Interest rates"],
-    "progress": 50
-  }, {
-    "categoryName": "Finance",
-    "subCategories": ["Managing money", "Credit ratings"],
-    "progress": 70
-  }];
 
   $ionicModal.fromTemplateUrl('templates/subCategoriesModal.html', {
     scope: $scope
@@ -18,14 +19,14 @@ fIApp.controller('CategoryCtrl', function ($scope, $ionicModal) {
     $scope.subCategoriesModal = modal;
   });
 
-  $scope.launchCategory = function (category) {
-      $scope.modalSubCategories = category.subCategories;
-      $scope.subCategoriesModal.show();
+  $scope.launchCategory = function (categoryId) {
+    $scope.modalSubCategories = [];
+    $scope.subCategoriesModal.show();
   }
 
-  $scope.closeModal = function(){
-      $scope.modalSubCategories = [];
-      $scope.subCategoriesModal.hide();
+  $scope.closeModal = function () {
+    $scope.modalSubCategories = [];
+    $scope.subCategoriesModal.hide();
   }
 
   $scope.log = function (name) {
