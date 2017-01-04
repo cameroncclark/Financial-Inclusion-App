@@ -1,5 +1,17 @@
 <ion-view view-title="{{name}}">
+
+    <ion-nav-buttons side="right">
+        <button class="button" style="border: 0px !important;">
+            <b class = "icon ion-link"></b>
+        </button>
+    </ion-nav-buttons>
+
     <ion-content class="padding">
-        External links will be here
+            <div class="list">
+                <a ng-repeat="link in externalLinksList"class="item item-icon-right" ng-href="{{link.website}}">
+                    <i class="icon ion-ios-arrow-right"></i>
+                    {{link.name}}
+                </a>
+            </div>
     </ion-content>
 </ion-view>

@@ -1,5 +1,17 @@
 <ion-view view-title="{{name}}">
+
+    <ion-nav-buttons side="right">
+        <button class="button" style="border: 0px !important;">
+            <b class = "icon ion-ios-telephone"></b>
+        </button>
+    </ion-nav-buttons>
+
     <ion-content class="padding">
-        Useful Numbers will be here
+            <div class="list">
+                <a ng-repeat="num in numbersList"class="item item-icon-right" ng-href="tel:{{num.number}}">
+                    <i class="icon ion-ios-telephone"></i>
+                    {{num.name}}
+                </a>
+            </div>
     </ion-content>
 </ion-view>
