@@ -1,17 +1,19 @@
 <ion-view view-title="{{name}}">
+
     <ion-nav-buttons side="right">
-      <button class="button" style="border: 0px !important;">
-        <b class = "icon icon ion-information-circled"></b>
-      </button>
+        <button class="button" style="border: 0px !important;">
+            <b class = "icon icon ion-information-circled"></b>
+        </button>
     </ion-nav-buttons>
-         <ion-content class="padding">
+    
+    <ion-content class="padding">
             <div class="list">
                 <a ng-repeat="cat in infoCategories"class="item item-icon-left item-icon-right" href="#/{{cat.url}}">
                     <i class="icon ion-{{cat.icon}}"></i>
-                     {{cat.name}}
+                    {{cat.name}}
                     <i class="icon ion-ios-arrow-right"></i>
                 </a>
-            </div>
-            
+            </div>          
     </ion-content>
+
 </ion-view>
