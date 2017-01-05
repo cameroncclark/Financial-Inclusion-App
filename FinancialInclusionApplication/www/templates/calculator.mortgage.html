@@ -9,30 +9,28 @@
 <div></div>
 
 <div class="savingsSlider">
-    <a class="calcBodyText">What is your savings goal? <span style="color: lightgrey"> (in £)</span></a>
+    <a class="calcBodyText">Amount you want to recieve?<span style="color: lightgrey"> (in £)</span></a>
     <div class="list list-inset">
         <label class="item item-input">
-            <input type="text" placeholder="Savings Goal (in £)">
+            <input type="text" placeholder="Amount (in £)">
         </label>
     </div>
 </div>
 
 <div class="savingsSlider">
-    <a class="calcBodyText">How much can you save per month? <span style="color: lightgrey"> (in £)</span></a>
+    <a class="calcBodyText">Interest Rate<span style="color: lightgrey"> (in %)</span></a>
     <div class="list list-inset">
         <label class="item item-input">
-            <input type="text" placeholder="Savings Per Month (in £)">
+            <input type="text" placeholder="Interest Rate (in %)">
         </label>
     </div>
 </div>
 
 <div class="savingsSlider">
-    <a class="calcBodyText">How much have you already saved? <span style="color: lightgrey"> (in £)</span></a>
-    <div class="list list-inset">
-        <label class="item item-input">
-            <input type="text" placeholder="Already Saved (in £)">
-        </label>
-    </div>
+    <a class="calcBodyText">Time Period?<span style="color: lightgrey"> (in years)</span></a>
+    <rzslider rz-slider-model="slider2.minValue"
+        rz-slider-high="slider2.maxValue"
+        rz-slider-options="slider2.options"></rzslider>
 </div>
 
 <div class="calculateButton">

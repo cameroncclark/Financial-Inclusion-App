@@ -52,7 +52,8 @@
     border: 0.1rem solid black;
     background: #e6ffff;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    height: 70vh;
+    height: 80vh;
+    width: 95%;
 }
 
 .headerLine{
@@ -75,4 +76,23 @@
     font-size: 1.3rem;
     margin:auto;
     border-radius: 2vh;
+}
+
+.roundbtn {
+  display:block;
+  background: #0db9f0;
+  color: white;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  border: 1px solid red;
+  text-align: center;
+  float: center;
+  position: absolute;
+}
+
+.centerfloat{
+    text-align: center;
+  float: center;
+  position: absolute;
 }
