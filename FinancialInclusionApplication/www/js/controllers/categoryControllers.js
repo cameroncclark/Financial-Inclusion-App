@@ -20,7 +20,7 @@ fIApp.controller('CategoryCtrl', function ($scope, $ionicModal, $http, $rootScop
   });
 
   $scope.launchCategory = function (categoryId) {
-    $scope.modalSubCategories = $rootScope.topicMaps[categoryId].titles;
+    $scope.modalSubCategories = $rootScope.topicMaps[categoryId];
     $scope.subCategoriesModal.show();
   }
 

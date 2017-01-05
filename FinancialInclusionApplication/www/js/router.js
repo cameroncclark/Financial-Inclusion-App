@@ -9,6 +9,11 @@ fIApp.config(function($stateProvider, $urlRouterProvider){
     templateUrl: 'templates/categories.html',
     controller: 'CategoryCtrl'
   })
+  .state('content', {
+    url:'/content/:contentURL/:pageTitle',
+    templateUrl: 'templates/content.html',
+    controller: 'ContentCtrl'
+  })
   .state('banking', {
     url:'/banking',
     templateUrl: 'templates/banking.html',
