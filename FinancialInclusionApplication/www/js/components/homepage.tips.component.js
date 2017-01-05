@@ -1,7 +1,6 @@
 fIApp.service('randomHint', function(){
             var num = Math.floor(Math.random()*10);
             this.generate = function(){
-                console.log(num);
                 return num;
             };
         });

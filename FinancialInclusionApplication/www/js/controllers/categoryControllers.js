@@ -1,4 +1,4 @@
-fIApp.controller('CategoryCtrl', function ($scope, $ionicModal, $http) {
+fIApp.controller('CategoryCtrl', function ($scope, $ionicModal, $http, $rootScope) {
 
  /**
   * Initialisation function, this retrieves the external list of categories
@@ -20,7 +20,7 @@ fIApp.controller('CategoryCtrl', function ($scope, $ionicModal, $http) {
   });
 
   $scope.launchCategory = function (categoryId) {
-    $scope.modalSubCategories = [];
+    $scope.modalSubCategories = $rootScope.topicMaps[categoryId].titles;
     $scope.subCategoriesModal.show();
   }
 
