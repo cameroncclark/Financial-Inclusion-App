@@ -1,6 +1,20 @@
 fIApp.component("savingsCalculator",{
     templateUrl:"templates/calculator.savings.html",
-    controller: function savingsCalculatorCtrl($scope){
+    controller: function savingsCalculatorCtrl($scope, $ionicModal){
+
+        $ionicModal.fromTemplateUrl('templates/calculator.helpModal.html', {
+            scope: $scope
+        }).then(function(modal) {
+            $scope.modalHelp = modal;
+        });
+      
+        $scope.closeHelp = function() {
+            $scope.modalHelp.hide();
+        };
+
+        $scope.openHelp = function() {
+            $scope.modalHelp.show();
+        };
 
         $scope.test = "Savings calculator";
         $scope.slider1 = {
