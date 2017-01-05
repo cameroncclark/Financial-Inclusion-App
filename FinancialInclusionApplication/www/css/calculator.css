@@ -6,15 +6,15 @@
 
 .calculatorButtons{
     background-color: white;
-    color: blue;
-    border: 0.2vh solid blue;
+    color: #6fa8aa;
+    border: 0.2vh solid #6fa8aa;
     text-align: center;
 }
 
 .calculatorButtonsText{
     cursor: pointer;
     text-decoration: none;
-    color: blue;
+    color: #6fa8aa;
     
 }
 
@@ -26,9 +26,9 @@
 }
 
 .calculatorButtons2{
-   background-color: blue;
+    background-color: #6fa8aa;
     color: white !important;
-    border: 0.2vh solid blue; 
+    border: 0.2vh solid #6fa8aa; 
 }
 
 .headingText{
@@ -52,7 +52,7 @@
     border: 0.1rem solid black;
     background: #e6ffff;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    height: 80vh;
+    height: 100%;
     width: 95%;
 }
 
@@ -64,7 +64,7 @@
 .calculateButton{
     padding: 1vh 1vh;
     border: 0.1rem solid black;
-    width: 16vh;
+    width: 20vh;
     height: 6vh;
     background: white;
     background: -webkit-linear-gradient(white, beige); /* For Safari 5.1 to 6.0 */
@@ -92,7 +92,20 @@
 }
 
 .centerfloat{
-    text-align: center;
+  text-align: center;
   float: center;
   position: absolute;
+}
+
+#container{
+    width:300px;
+    height:100px;
+    border:1px solid red;
+    margin-right:10px;
+    float:center;
+}
+
+.helpButton{
+    float:right;
+    margin-right:10vw;
 }
