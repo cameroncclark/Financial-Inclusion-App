@@ -1,32 +1,46 @@
 <div class="savingsCalcWrapper">
+
 <div style="text-align:center; margin-bottom:2vh;">
-    
-<a class="headingText">{{test}}</a>
+    <a class="headingText">{{test}}</a>
 </div>
-<div class="headerLine">
-</div>
-<div>
 
+<div class="headerLine"></div>
 
-</div>
+<div></div>
+
 <div class="savingsSlider">
-    <a class="calcBodyText">Amount you want to save? <span style="color: lightgrey"> £</span></a>
-<rzslider rz-slider-model="slider3.minValue"
-          rz-slider-high="slider3.maxValue"
-          rz-slider-options="slider4.options"></rzslider>
-
-         
-
+    <a class="calcBodyText">How much have you currently saved? <span style="color: lightgrey"> (in £)</span></a>
+    <div class="list list-inset">
+        <label class="item item-input">
+            <input type="text" placeholder="Current Savings (in £)">
+        </label>
+    </div>
 </div>
+
 <div class="savingsSlider">
- <a class="calcBodyText">For how long? <span style="color: lightgrey"> years</span></a>
-<rzslider rz-slider-model="slider4.minValue"
-          rz-slider-high="slider4.maxValue"
-          rz-slider-options="slider4.options"></rzslider>
+    <a class="calcBodyText">What is your annual interest rate? <span style="color: lightgrey"> (in %)</span></a>
+    <div class="list list-inset">
+        <label class="item item-input">
+            <input type="text" placeholder="Annual Interest Rate (in %)">
+        </label>
+    </div>
+</div>
+
+<div class="savingsSlider">
+    <a class="calcBodyText">Calculation Period? <span style="color: lightgrey"> (in years)</span></a>
+    <rzslider rz-slider-model="slider2.minValue"
+          rz-slider-high="slider2.maxValue"
+          rz-slider-options="slider2.options"></rzslider>
 </div>
 
 <div class="calculateButton">
     Calculate
+</div>
+
+<div class="centerFloat">
+    <button class="roundbtn" style="border: 0px !important;">
+        <b class = "icon icon ion-help"></b>
+    </button>
 </div>
 
 </div>

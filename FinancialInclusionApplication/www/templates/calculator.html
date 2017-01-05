@@ -1,4 +1,4 @@
-<ion-view view-title="{{name}}">
+<ion-view view-title="{{name}}" ng-init="makeActive('welcome')">
     <ion-nav-buttons side="right">
       <button class="button" style="border: 0px !important;">
         <b class = "icon icon ion-calculator"></b>
@@ -8,13 +8,22 @@
         Select a Calculator:
              
     <div class = "row" style="margin-bottom:5vh;">
-        <button ng-click="makeActive('savings')" ng-class="{true: 'col calculatorButtons2', false: 'col calculatorButtons'}[isActiveSavings]"><a   ng-class="{true: 'calculatorButtonsText2', false: 'calculatorButtonsText'}[isActiveSavings]">Savings</a></button>
-        <button ng-click="makeActive('interest')" ng-class="{true: 'col calculatorButtons2', false: 'col calculatorButtons'}[isActiveInterest]"><a   ng-class="{true: 'calculatorButtonsText2', false: 'calculatorButtonsText'}[isActiveInterest]">Interest</a></button>
-        <div class = "col calculatorButtons" id="button3"><a class="calculatorButtonsText">Mortgage</a></div>
+
+        <button ng-click="makeActive('savings')" ng-class="{true: 'col calculatorButtons2', false: 'col calculatorButtons'}[isActiveSavings]">
+            <a   ng-class="{true: 'calculatorButtonsText2', false: 'calculatorButtonsText'}[isActiveSavings]">Savings</a></button>
+        
+        <button ng-click="makeActive('interest')" ng-class="{true: 'col calculatorButtons2', false: 'col calculatorButtons'}[isActiveInterest]">
+            <a   ng-class="{true: 'calculatorButtonsText2', false: 'calculatorButtonsText'}[isActiveInterest]">Interest</a></button>
+        
+        <button ng-click="makeActive('mortgage')" ng-class="{true: 'col calculatorButtons2', false: 'col calculatorButtons'}[isActiveMortgage]">
+            <a   ng-class="{true: 'calculatorButtonsText2', false: 'calculatorButtonsText'}[isActiveMortgage]">Mortgage</a></button>
+    
     </div>
 
+    <welcome-calculator ng-show="welcome"></welcome-calculator>
     <savings-calculator ng-show="savings"></savings-calculator>
     <interest-calculator ng-show="interest"></interest-calculator>
+    <mortgage-calculator ng-show="mortgage"></mortgage-calculator>
         
 
     </ion-content>

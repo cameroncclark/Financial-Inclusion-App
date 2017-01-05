@@ -1,8 +1,8 @@
-fIApp.component("mortgageCalculator",{
-    templateUrl:"templates/calculator.mortgage.html",
-    controller: function mortgageCalculatorCtrl($scope){
+fIApp.component("welcomeCalculator",{
+    templateUrl:"templates/calculator.welcome.html",
+    controller: function welcomeCalculatorCtrl($scope){
 
-        $scope.test = "Mortgage calculator";
+        $scope.test = "Welcome calculator";
         $scope.slider1 = {
             value: 10,
             options: {
