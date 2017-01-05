@@ -1,21 +1,17 @@
-<ion-view view-title="{{name}}">
-    <ion-nav-buttons side="right">
-      <button class="button" style="border: 0px !important;">
+<ion-view view-title="{{name}}" ng-init="init()">
+  <ion-nav-buttons side="right">
+    <button class="button" style="border: 0px !important;">
         <b class = "icon icon ion-university"></b>
       </button>
-    </ion-nav-buttons>
-    <ion-content class="padding">
-        <div ng-controller="CategoriesCtrl">
-            <hr>
-            <div ng-repeat="cat in getCategoryValues()">
-                <a ng-href="#/{{cat.url | lowercase}}"/>
-                    <div class="categoryDiv">  
-                        {{cat.name}} Category<br>
-                        <progress max="100" value={{cat.progress}}></progress>
-                    </div>
-                </a>
-                <hr>
-            </div>
-        </div>
-    </ion-content>
+  </ion-nav-buttons>
+  <ion-content class="padding">
+    
+    <div class="card" ng-repeat="category in categories" ng-click="launchCategory(category.ID)">
+      <div class="item item-text-wrap">
+        <h1 class="centered">{{category.name}}</h1>
+        <progress max="100" value={{category.progress}} />
+      </div>
+    </div>
+
+  </ion-content>
 </ion-view>

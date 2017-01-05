@@ -5,9 +5,9 @@
 // the 2nd parameter is an array of 'requires'
 var fIApp = angular.module('financialInclusionApp', ['ionic', 'rzModule']);
 
-fIApp.run(function($ionicPlatform) {
-  $ionicPlatform.ready(function() {
-    if(window.cordova && window.cordova.plugins.Keyboard) {
+fIApp.run(function ($ionicPlatform, $http, $rootScope) {
+  $ionicPlatform.ready(function () {
+    if (window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -17,8 +17,62 @@ fIApp.run(function($ionicPlatform) {
       // a much nicer keyboard experience.
       cordova.plugins.Keyboard.disableScroll(true);
     }
-    if(window.StatusBar) {
+
+    if (window.StatusBar) {
       StatusBar.styleDefault();
     }
+
+    //This is going to be a map that links category ID to both the titles under that category and the urls
+    //This map looks like: {1: {titles: [], urls: []}, 2: {titles: [], urls: []}, 3: {titles: [], urls: []}}
+    //WHERE: "1" is the Category ID. "titles" is the list of titles associated with that category, "urls" is the url for the file. 
+    $rootScope.topicMaps = {};
+    
+    //All category codes that are available in the system
+    var allCategoryCodes = [];
+
+    //Getting all the categories 
+    $http.get('content/categories.json')
+      .then(function (categories) {
+        //For each of the categories make an empty map
+        for (var i = 0; i < categories.data.length; i++) {
+          $rootScope.topicMaps[categories.data[i].ID] = {
+            "titles": [],
+            "urls": []
+          };
+          allCategoryCodes.push(categories.data[i].ID);
+        }
+
+        //This get request obtains all topic urls
+        $http.get('content/topics.json')
+          .then(function (topicURLS) {
+
+
+            //For each of the URLS
+            for (var i = 0; i < topicURLS.data.length; i++) {
+              //Make a call to get the relevant data and add it to the map
+              makeCallToData(topicURLS.data[i]);
+            }
+
+
+          });
+      });
+
+    /**
+     * This function takes in currentTopic, which is a PATH to the content.
+     * Using this path, the content is extracted and added to the map under the correct category.
+     */
+    var makeCallToData = function (currentTopic) {
+      $http.get('content/topics/' + currentTopic)
+        .then(function (topics) {
+          for (var j = 0; j < allCategoryCodes.length; j++) {
+            if (allCategoryCodes[j] === topics.data.reference) {
+              $rootScope.topicMaps[allCategoryCodes[j]].titles.push(topics.data.title);
+              $rootScope.topicMaps[allCategoryCodes[j]].urls.push(currentTopic);
+              // console.log($rootScope.topicMaps);
+            }
+          }
+        });
+    }
+
   });
 });
