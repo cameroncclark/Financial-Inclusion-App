@@ -21,9 +21,9 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope) {
     if (window.StatusBar) {
       StatusBar.styleDefault();
     }
-
+    
     //This is going to be a map that links category ID to both the titles under that category and the urls
-    //This map looks like: {1: {titles: [], urls: []}, 2: {titles: [], urls: []}, 3: {titles: [], urls: []}}
+    //This map looks like: {1: [titles: myTitle, url: myURL]}
     //WHERE: "1" is the Category ID. "titles" is the list of titles associated with that category, "urls" is the url for the file. 
     $rootScope.topicMaps = {};
     
@@ -35,10 +35,7 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope) {
       .then(function (categories) {
         //For each of the categories make an empty map
         for (var i = 0; i < categories.data.length; i++) {
-          $rootScope.topicMaps[categories.data[i].ID] = {
-            "titles": [],
-            "urls": []
-          };
+          $rootScope.topicMaps[categories.data[i].ID] = [];
           allCategoryCodes.push(categories.data[i].ID);
         }
 
@@ -66,8 +63,10 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope) {
         .then(function (topics) {
           for (var j = 0; j < allCategoryCodes.length; j++) {
             if (allCategoryCodes[j] === topics.data.reference) {
-              $rootScope.topicMaps[allCategoryCodes[j]].titles.push(topics.data.title);
-              $rootScope.topicMaps[allCategoryCodes[j]].urls.push(currentTopic);
+              var titleURLObject = {};
+              titleURLObject.title = topics.data.title;
+              titleURLObject.url = currentTopic;
+              $rootScope.topicMaps[allCategoryCodes[j]].push(titleURLObject);
               // console.log($rootScope.topicMaps);
             }
           }
