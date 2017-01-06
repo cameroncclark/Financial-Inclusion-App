@@ -11,11 +11,16 @@ fIApp.controller('ContentCtrl', function ($scope, $http, $stateParams, $sce) {
 
   $scope.parse = function (content) {
     var sections = [];
-    var openCounter = 0;
-    var closeCounter = 0;
+    var openCounter = null;
+    var closeCounter = null;
 
-    openCounter = content.match(new RegExp("<section>", "g")).length;
-    closeCounter = content.match(new RegExp("</section>", "g")).length;
+    try {
+      openCounter = content.match(new RegExp("<section>", "g") || []).length;
+      closeCounter = content.match(new RegExp("</section>", "g") || []).length;
+    } catch (error) {
+      content = "Invalid file representation."
+    }
+    
 
     if(openCounter == null){
       openCounter = 0;
