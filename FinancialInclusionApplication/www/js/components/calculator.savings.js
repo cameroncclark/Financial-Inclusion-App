@@ -7,7 +7,15 @@ fIApp.component("savingsCalculator",{
         }).then(function(modal) {
             $scope.modalHelp = modal;
         });
-      
+
+        $ionicModal.fromTemplateUrl('templates/calculator.savingsCalcModal.html', {
+            scope: $scope
+        }).then(function(modal) {
+            $scope.modalSavingAnswer = modal;
+        });
+
+
+
         $scope.closeHelp = function() {
             $scope.modalHelp.hide();
         };
@@ -15,6 +23,16 @@ fIApp.component("savingsCalculator",{
         $scope.openHelp = function() {
             $scope.modalHelp.show();
         };
+
+        $scope.closeSavingsCalc = function() {
+            $scope.modalSavingAnswer.hide();
+        };
+
+        $scope.openSavingsCalc = function() {
+            $scope.modalSavingAnswer.show();
+        };
+
+        
 
         $scope.test = "Savings calculator";
         $scope.slider1 = {

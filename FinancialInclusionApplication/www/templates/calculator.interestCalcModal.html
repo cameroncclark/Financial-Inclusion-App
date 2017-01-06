@@ -1,0 +1,16 @@
+<ion-modal-view class="trophyContainer">
+    <ion-header-bar class="trophyHeading">
+        <h1 class="title">Interest Result</h1>
+        <div class="buttons">
+            <i class = "icon icon ion-close-circled modalCloseButton" ng-click="closeInterestCalc()"></i>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+        <div class="padding">
+            Saved = £{{currentlySaved}}<br>
+            Interest rate = {{interestRate}}%<br>
+            Calculation period = {{slider1.value}} years<br>
+           Amount saved: £<label>{{ currentlySaved*(1+((interestRate/100)*slider1.value)) | number : 2}}</label>
+        </div>
+    </ion-content>
+</ion-modal-view>
