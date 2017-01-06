@@ -13,7 +13,7 @@ fIApp.controller('CategoryCtrl', function ($scope, $ionicModal, $http, $rootScop
   $scope.name = 'Categories Page';
   $scope.modalSubCategories = [];
 
-  $ionicModal.fromTemplateUrl('templates/subCategoriesModal.html', {
+  $ionicModal.fromTemplateUrl('templates/subcategoriesModal.html', {
     scope: $scope
   }).then(function (modal) {
     $scope.subCategoriesModal = modal;
