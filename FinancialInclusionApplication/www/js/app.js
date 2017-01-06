@@ -19,7 +19,8 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope) {
     }
 
     if (window.StatusBar) {
-      StatusBar.styleDefault();
+      //StatusBar.styleDefault();
+      StatusBar.hide();
     }
     
     //This is going to be a map that links category ID to both the titles under that category and the urls

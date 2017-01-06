@@ -7,11 +7,29 @@
     </ion-nav-buttons>
 
     <ion-content class="padding">
-            <div class="list">
-                <a ng-repeat="link in externalLinksList"class="item item-icon-right" ng-href="{{link.website}}">
+            <!--<div class="list">
+                <a ng-repeat="link in externalLinksList"class="item item-icon-right" ng-href="{{link.website}}" target="_blank">
                     <i class="icon ion-ios-arrow-right"></i>
                     {{link.name}}
                 </a>
             </div>
+            COULD BE CHANGED TO USE DYNAMIC ANGULARJS VARIABLES - http://stackoverflow.com/questions/34150840/inappbrowser-passing-a-callback-function
+
+            -->
+            <hr>
+            <div class="list">
+                <a class="item item-icon-right" onclick="window.open('http://www.facebook.com', '_system', 'location=yes'); return false;">
+                    <i class="icon ion-ios-arrow-right"></i>
+                    Facebook
+                </a>
+                <a class="item item-icon-right" onclick="window.open('http://www.youtube.com', '_system', 'location=yes'); return false;">
+                    <i class="icon ion-ios-arrow-right"></i>
+                    YouTube
+                </a>
+                <a class="item item-icon-right" onclick="window.open('http://www.twitter.com/', '_system', 'location=yes'); return false;">
+                    <i class="icon ion-ios-arrow-right"></i>
+                    Twitter
+                </a>
+            </div>             
     </ion-content>
 </ion-view>
