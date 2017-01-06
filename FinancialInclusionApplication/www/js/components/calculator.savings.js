@@ -56,6 +56,8 @@ fIApp.component("savingsCalculator",{
                 maxLimit: 20
             }
         };
+
+        $scope.help = "This is the help screen for the Savings Calculator";
     }
 
 });
