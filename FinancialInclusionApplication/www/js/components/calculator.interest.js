@@ -7,6 +7,12 @@ fIApp.component("interestCalculator",{
         }).then(function(modal) {
             $scope.modalHelp = modal;
         });
+
+        $ionicModal.fromTemplateUrl('templates/calculator.interestCalcModal.html', {
+            scope: $scope
+        }).then(function(modal) {
+            $scope.modalInterestAnswer = modal;
+        });
       
         $scope.closeHelp = function() {
             $scope.modalHelp.hide();
@@ -16,10 +22,19 @@ fIApp.component("interestCalculator",{
             $scope.modalHelp.show();
         };
 
+        $scope.closeInterestCalc = function() {
+            $scope.modalInterestAnswer.hide();
+        };
+
+        $scope.openInterestCalc = function() {
+            $scope.modalInterestAnswer.show();
+        };
+
         $scope.test = "Interest calculator";
         $scope.slider1 = {
-            value: 10,
+            value: 1,
             options: {
+                id: 'slider-id',
                 floor: 1,
                 ceil: 25,
                 step: 1,
