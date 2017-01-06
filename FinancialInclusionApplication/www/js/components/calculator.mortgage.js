@@ -38,6 +38,8 @@ fIApp.component("mortgageCalculator",{
                 maxLimit: 20
             }
         };
+
+        $scope.help = "This is the help screen for the Mortgage Calculator";
     }
 
 });

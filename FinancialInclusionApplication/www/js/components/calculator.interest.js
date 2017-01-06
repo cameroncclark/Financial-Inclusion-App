@@ -26,7 +26,9 @@ fIApp.component("interestCalculator",{
                 minLimit: 1,
                 maxLimit: 25
             }
-        };    
+        }; 
+
+        $scope.help = "This is the help screen for the Interest Calculator";   
     }
 
 });

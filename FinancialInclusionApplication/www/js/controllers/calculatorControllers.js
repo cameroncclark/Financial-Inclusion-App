@@ -55,4 +55,18 @@ fIApp.controller('CalculatorCtrl', function($scope){
             break;
         }
     };
+
+    $scope.getHelp=function(active){
+        switch(active){
+            case "savingsHelp":
+            $scope.content = "This is the help screen for the savings calculator";
+            break;
+            case "interestHelp":
+            $scope.content = "This is the help screen for the interest calculator";
+            break;
+            case "mortgageHelp":
+            $scope.content = "This is the help screen for the mortgage calcualtor";
+            break;
+        }
+    }
 });
