@@ -1,0 +1,16 @@
+<ion-modal-view class="trophyContainer">
+    <ion-header-bar class="trophyHeading">
+        <h1 class="title">Saving Result</h1>
+        <div class="buttons">
+            <i class = "icon icon ion-close-circled modalCloseButton" ng-click="closeSavingsCalc()"></i>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+        <div class="padding">
+            Goal = £{{savingsGoalValue}}<br>
+            Initial saved amount = £{{alreadySavedValue}}<br>
+            Amount set aside per month = £{{perMonthValue}}<br>
+           Time to reach goal: <label>{{ ((savingsGoalValue * 1) - (alreadySavedValue * 1))/perMonthValue }}</label> months
+        </div>
+    </ion-content>
+</ion-modal-view>

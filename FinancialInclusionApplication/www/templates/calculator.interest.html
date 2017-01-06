@@ -12,7 +12,7 @@
     <a class="calcBodyText">How much have you currently saved? <span style="color: lightgrey"> (in £)</span></a>
     <div class="list list-inset">
         <label class="item item-input">
-            <input type="text" placeholder="Current Savings (in £)">
+            <input type="number" placeholder="Current Savings (in £)" ng-model="currentlySaved" pattern="\d*">
         </label>
     </div>
 </div>
@@ -21,14 +21,14 @@
     <a class="calcBodyText">What is your annual interest rate? <span style="color: lightgrey"> (in %)</span></a>
     <div class="list list-inset">
         <label class="item item-input">
-            <input type="text" placeholder="Annual Interest Rate (in %)">
+            <input type="number" placeholder="Annual Interest Rate (in %)" ng-model="interestRate">
         </label>
     </div>
 </div>
 
 <div class="savingsSlider">
     <a class="calcBodyText">Calculation Period? <span style="color: lightgrey"> (in years)</span></a>
-    <rzslider rz-slider-model="slider1.minValue"
+    <rzslider rz-slider-model="slider1.value"
           rz-slider-high="slider1.maxValue"
           rz-slider-options="slider1.options"></rzslider>
 </div>
@@ -39,8 +39,9 @@
     </button>
 </div>
 
-<div class="calculateButton">
+<div class="buttonWrapper">
+<button class="calculateButton" ng-click="openInterestCalc()">
     Calculate
-</div>
+</button>
 
 </div>

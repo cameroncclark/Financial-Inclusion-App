@@ -1,0 +1,18 @@
+<ion-modal-view class="subCategoriesModal">
+  <ion-header-bar class="subCategoriesModalHeading">
+    <h1 class="title">Subcategories</h1>
+    <div class="buttons">
+      <i class="icon icon ion-close-circled modalCloseButton" ng-click="closeModal()"></i>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <ul class="list">
+      <a ng-href="#/content/{{subcategory.url}}/{{subcategory.title}}" ng-click="closeModal()"  ng-repeat="subcategory in modalSubCategories"> 
+      <li class="item item-icon-right">
+        <i class="icon ion-checkmark-round"></i>
+        {{subcategory.title}}
+      </li>
+      </a>
+    </ul>
+  </ion-content>
+</ion-modal-view>

@@ -1,0 +1,14 @@
+[
+    {
+    "name":"Banking",
+    "ID": 1
+    },
+    {
+    "name":"Travel",
+    "ID": 2    
+    },
+    {
+    "name":"Future Advise",
+    "ID": 3    
+    }
+]
