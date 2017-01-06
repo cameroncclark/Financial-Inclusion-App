@@ -7,12 +7,11 @@
 <div class="headerLine"></div>
 
 <div></div>
-
 <div class="savingsSlider">
     <a class="calcBodyText">What is your savings goal? <span style="color: lightgrey"> (in £)</span></a>
     <div class="list list-inset">
         <label class="item item-input">
-            <input type="text" placeholder="Savings Goal (in £)">
+            <input type="number" placeholder="Savings Goal (in £)" ng-model="savingsGoalValue" pattern="\d+(\.\d*)?">
         </label>
     </div>
 </div>
@@ -21,7 +20,7 @@
     <a class="calcBodyText">How much can you save per month? <span style="color: lightgrey"> (in £)</span></a>
     <div class="list list-inset">
         <label class="item item-input">
-            <input type="text" placeholder="Savings Per Month (in £)">
+            <input type="number" placeholder="Savings Per Month (in £)" ng-model="perMonthValue" pattern="\d*">
         </label>
     </div>
 </div>
@@ -30,7 +29,7 @@
     <a class="calcBodyText">How much have you already saved? <span style="color: lightgrey"> (in £)</span></a>
     <div class="list list-inset">
         <label class="item item-input">
-            <input type="text" placeholder="Already Saved (in £)">
+            <input type="number" placeholder="Already Saved (in £)" ng-model="alreadySavedValue" pattern="\d*">
         </label>
     </div>
 </div>
@@ -39,10 +38,14 @@
     <button class="roundbtn" style="border: 0px !important;"ng-click="openHelp()">
         <b class = "icon icon ion-help"></b>
     </button>
+    
 </div>
 
-<div class="calculateButton">
+<div class="buttonWrapper">
+<button class="calculateButton" ng-click="openSavingsCalc()">
     Calculate
+</button>
 </div>
+
 
 </div>
