@@ -2,5 +2,5 @@
 {
     "title": "Test Topic Banking",
     "reference": 2,
-    "content": "<section><title> section 1 </title> content</section><section><title> section 2 </title> content  <quiz> quizLocation.json </quiz> <title> section 2 </title> content  <quiz> quizLocation.json </quiz></section>"
+    "content": "<section><section-title>section 1</section-title>content</section><section><section-title>section 2</section-title>content<quiz>quizLocation.json</quiz></section>"
 }
