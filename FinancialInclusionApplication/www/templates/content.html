@@ -8,10 +8,10 @@
     
     <ion-slides options="options" slider="data.slider">
       <ion-slide-page ng-repeat="page in sections">
-        <div class="box blue">
+        <ion-content class="padding" direction="y">
           <h1>{{page.title}}</h1>
           <p>{{page.content}}</p>
-        </div>
+        </ion-content>
       </ion-slide-page>
     </ion-slides>
   
