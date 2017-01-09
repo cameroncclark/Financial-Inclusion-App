@@ -22,7 +22,9 @@
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
     "ionic-plugin-keyboard",
-    "cordova-plugin-file"
+    "cordova-plugin-file",
+    "cordova-plugin-camera@~2.3.1",
+    "cordova-plugin-file@~4.3.1"
   ],
   "cordovaPlatforms": []
 }
