@@ -7,6 +7,13 @@ fIApp.component("mortgageCalculator",{
         }).then(function(modal) {
             $scope.modalHelp = modal;
         });
+
+        $ionicModal.fromTemplateUrl('templates/calculator.mortgageCalcModal.html', {
+            scope: $scope
+        }).then(function(modal) {
+            $scope.modalMortgageAnswer = modal;
+        });
+
       
         $scope.closeHelp = function() {
             $scope.modalHelp.hide();
@@ -14,6 +21,14 @@ fIApp.component("mortgageCalculator",{
 
         $scope.openHelp = function() {
             $scope.modalHelp.show();
+        };
+
+         $scope.closeMortgageCalc = function() {
+            $scope.modalMortgageAnswer.hide();
+        };
+
+        $scope.openMortgageCalc = function() {
+            $scope.modalMortgageAnswer.show();
         };
 
         $scope.test = "Mortgage calculator";

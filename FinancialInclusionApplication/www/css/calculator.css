@@ -37,13 +37,13 @@
 }
 
 .calcBodyText{
-    font-size: 1rem;
+    font-size: 0.8rem;
     color: black;
 }
 
 .savingsSlider{
     margin-bottom:2vh; 
-    padding:2vh;
+    padding:0vh;
 }
 
 .savingsCalcWrapper{
@@ -52,8 +52,7 @@
     border: 0.1rem solid black;
     background: #e6ffff;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    height: 100%;
-    width: 95%;
+    height: 75vh;
 }
 
 .headerLine{
@@ -72,8 +71,8 @@
     background: -moz-linear-gradient(white, beige); /* For Firefox 3.6 to 15 */
     background: linear-gradient(white, beige); /* Standard syntax */
     text-align: center;
-    color: blueviolet;
-    font-size: 1.3rem;
+    color: black;
+    font-size: 1rem;
     margin: 0 auto;
     border-radius: 2vh;
     position: relative;
@@ -82,6 +81,7 @@
 
 .buttonWrapper{
     text-align: center;
+    padding-top: 1vh;
 }
 
 .roundbtn {
@@ -113,5 +113,29 @@
 
 .helpButton{
     float:right;
-    margin-right:10vw;
+    margin-right:10vh;
+}
+
+.calcInput{
+    font-size: 0.8em;
+}
+
+.savingsGoalWrapper{
+text-align: center;
+padding: 2vh;
+}
+
+.savingsGoalAmount{
+    font-size: 1.5em;
+    padding: 1vh;
+}
+
+.savingsTextWrapper{
+    margin: 1vh;
+}
+
+.savingsGoalTimeWrapper{
+    text-align: center;
+    font-size: 1.5em;
+    padding: 2vh;
 }
