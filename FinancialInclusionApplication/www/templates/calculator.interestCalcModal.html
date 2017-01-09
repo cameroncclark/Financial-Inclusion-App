@@ -7,10 +7,16 @@
     </ion-header-bar>
     <ion-content>
         <div class="padding">
-            Saved = £{{currentlySaved}}<br>
-            Interest rate = {{interestRate}}%<br>
-            Calculation period = {{slider1.value}} years<br>
-           Amount saved: £<label>{{ currentlySaved*(1+((interestRate/100)*slider1.value)) | number : 2}}</label>
+            <div class="savingsGoalWrapper">
+            Initial amount saved
+            <div class="savingsGoalAmount">£{{currentlySaved}}</div>
+            </div>
+            <div class="savingsTextWrapper">
+                After {{slider1.value}} years of saving with an interest rate of {{interestRate}}%,
+                you will have:
+            </div>
+            <div class="savingsGoalTimeWrapper">£{{currentlySaved*(1+((interestRate/100)*slider1.value)) | number : 2}}</div>
+           
         </div>
     </ion-content>
 </ion-modal-view>

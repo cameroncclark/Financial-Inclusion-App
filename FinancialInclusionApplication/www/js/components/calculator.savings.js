@@ -57,7 +57,7 @@ fIApp.component("savingsCalculator",{
             }
         };
 
-        $scope.help = "This is the help screen for the Savings Calculator";
+        $scope.help = "This is the help screen for the Mortgage Calculator";
     }
 
 });

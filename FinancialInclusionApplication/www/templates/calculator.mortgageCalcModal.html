@@ -1,0 +1,23 @@
+<ion-modal-view class="trophyContainer">
+    <ion-header-bar class="trophyHeading">
+        <h1 class="title">Mortgage Result</h1>
+        <div class="buttons">
+            <i class = "icon icon ion-close-circled modalCloseButton" ng-click="closeMortgageCalc()"></i>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+        <div class="padding">
+            <div class="savingsGoalWrapper">
+                Desired Amount
+            <div class="savingsGoalAmount">£{{desiredAmount}}</div>
+            </div>
+            <div class="savingsTextWrapper">
+                If you want a mortage for {{slider2.value}} years with an interest rate of {{interestRate}}%,
+                you will have to pay back £{{desiredAmount*(1+((interestRate/100)*slider2.value)) | number : 2}}, 
+                which is monthly payments of:
+            </div>
+            <div class="savingsGoalTimeWrapper">£{{desiredAmount*(1+((interestRate/100)*slider2.value))/(12*slider2.value) | number : 2}}</div>
+           
+        </div>
+    </ion-content>
+</ion-modal-view>
