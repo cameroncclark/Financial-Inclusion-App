@@ -7,10 +7,15 @@
     </ion-header-bar>
     <ion-content>
         <div class="padding">
-            Goal = £{{savingsGoalValue}}<br>
-            Initial saved amount = £{{alreadySavedValue}}<br>
-            Amount set aside per month = £{{perMonthValue}}<br>
-           Time to reach goal: <label>{{ ((savingsGoalValue * 1) - (alreadySavedValue * 1))/perMonthValue }}</label> months
+            <div class="savingsGoalWrapper">
+            Goal
+            <div class="savingsGoalAmount">£{{savingsGoalValue}}</div>
+            </div>
+            <div class="savingsTextWrapper">
+                If you have £{{alreadySavedValue}} already saved in your bank account,
+                and you set aside just £{{perMonthValue}} per month, you will reach your goal in:
+            </div>
+            <div class="savingsGoalTimeWrapper">{{ ((savingsGoalValue * 1) - (alreadySavedValue * 1))/perMonthValue }} months</div>
         </div>
     </ion-content>
 </ion-modal-view>

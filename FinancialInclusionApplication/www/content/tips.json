@@ -1,46 +1,34 @@
 [
     {
-        "header": "Tip header 1",
-        "tip": "This is tip 1."
+        "header": "Income",
+        "tip": "The term given to the money that we receive."
     },
     {
-        "header": "Tip header 2",
-        "tip": "This is tip 2."
+        "header": "Income Tax",
+        "tip": "A tax on earnings. Income tax is only payable on earnings above an individual’s personal allowance."
     },
     {
-        "header": "Tip header 3",
-        "tip": "This is tip 3."
+        "header": "Minimum Wage",
+        "tip": "The amount that must be paid by law to an individual for the work they do. The rate of pay depends on the employee’s age."
     },
     {
-        "header": "Tip header 4",
-        "tip": "This is tip 4."
+        "header": "National Insurance",
+        "tip": "A deduction from earnings, based on the level of weekly income. The contributions made build up entitlements to certain state benefits."
     },
     {
-        "header": "Tip header 5",
-        "tip": "This is tip 5."
+        "header": "PAYE",
+        "tip": "Pay As You Earn is the method by which employers take away deductions, such as income tax and national insurance, before you are paid."
     },
     {
-        "header": "Tip header 6",
-        "tip": "This is tip 6."
+        "header": "Personal Allowance",
+        "tip": "The amount of money you are able to earn before paying any income tax."
     },
     {
-        "header": "Tip header 7",
-        "tip": "This is tip 7."
+        "header": "Pension",
+        "tip": "A form of long term investment to be used in retirement."
     },
     {
-        "header": "Tip header 8",
-        "tip": "This is tip 8."
-    },
-    {
-        "header": "Tip header 9",
-        "tip": "This is tip 9."
-    },
-    {
-        "header": "Tip header 10",
-        "tip": "This is tip 10."
-    },
-    {
-        "header": "Tip header 11",
-        "tip": "This is tip 11."
+        "header": "Salary",
+        "tip": "A way of getting paid for a job. It is usually a set amount each month paid directly into your bank account."
     }
 ]
