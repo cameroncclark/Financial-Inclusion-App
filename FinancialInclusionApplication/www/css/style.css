@@ -26,6 +26,10 @@
     text-align: center;
 }
 
+.justified{
+    text-align: justify;
+}
+
 .video-container {
 position: relative;
 padding-bottom: 56.25%;
