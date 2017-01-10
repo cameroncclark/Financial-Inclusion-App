@@ -10,6 +10,7 @@
     <content src="index.html" />
 
     <access origin="*" />
+    <allow-navigation href="*" />
     <access origin="tel:*" launch-external="yes" /> <!-- This is to allow phonecalls to be made -->
     <access origin="mailto:*" launch-external="yes" />
 
