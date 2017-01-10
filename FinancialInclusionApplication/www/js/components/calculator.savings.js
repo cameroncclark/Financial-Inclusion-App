@@ -57,7 +57,8 @@ fIApp.component("savingsCalculator",{
             }
         };
 
-        $scope.help = "This is the help screen for the Mortgage Calculator";
+        $scope.help = "This is the help screen for the Savings Calculator.\n Adjust how much money "
+       + "you set aside each month to see how it effects the time to reach your goal.";
     }
 
 });
