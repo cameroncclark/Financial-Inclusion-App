@@ -6,7 +6,7 @@
 
 var db = null;
 
-var fIApp = angular.module('financialInclusionApp', ['ionic', 'ngCordova', 'rzModule']);
+var fIApp = angular.module('financialInclusionApp', ['ionic', 'ngCordova', 'rzModule', 'ngSanitize']);
 
 fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite) {
   $ionicPlatform.ready(function () {
