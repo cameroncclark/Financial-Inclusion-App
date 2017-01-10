@@ -30,6 +30,18 @@
     text-align: justify;
 }
 
+.content-Title{
+    color:darkred;
+}
+
+.content-Subtitle{
+    color:darkred;
+    text-align: center;
+}
+
+.content-Image{
+    text-align: center;
+}
 
 /*Source for embed CSS: https://avexdesigns.com/responsive-youtube-embed/*/
 .video-container {

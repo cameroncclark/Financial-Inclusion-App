@@ -3,6 +3,9 @@ fIApp.controller('ContentCtrl', function ($scope, $http, $stateParams, $sce) {
   $scope.content = "";
   $scope.sections = [];
 
+  var tagMapOpen = ["<video>","<image>","<title>","<subtitle>"];
+  var tagMapClose = ["</video>","</image>","</title>","</subtitle>"];
+
   $scope.options = {
     loop: false,
     effect: 'horizontal',
@@ -84,8 +87,74 @@ fIApp.controller('ContentCtrl', function ($scope, $http, $stateParams, $sce) {
   var parseEachSection = function(){
     //For each section
     for(var i = 0; i<$scope.sections.length; i++ ){
-      console.log($scope.sections[i]);
+      var tagsExist = true;
+      while (tagsExist) {
+        tagsExist = false;
+        for(var j=0; j<tagMapOpen.length;j++){
+          if($scope.sections[i].content.indexOf(tagMapOpen[j]) != -1){
+            tagsExist = true;
+            var startTagIndex = $scope.sections[i].content.indexOf(tagMapOpen[j]);
+            var endTagIndex = $scope.sections[i].content.indexOf(tagMapClose[j])+tagMapOpen[j].length+1;
+            
+            var newTag = switchOnTag(tagMapOpen[j],$scope.sections[i].content.substring(startTagIndex,endTagIndex));
+            $scope.sections[i].content = $scope.sections[i].content.replace($scope.sections[i].content.substring(startTagIndex,endTagIndex),newTag);
+          }
+        }
+      }
+      $scope.sections[i].content = $sce.trustAsHtml($scope.sections[i].content);
     }
   }
 
+  var switchOnTag = function(tag, content){
+    switch (tag) {
+      case "<video>":
+        return parseTagVideo(content);
+        break;
+      case "<image>":
+        return parseTagImage(content);
+        break;
+      case "<title>":
+        return parseTagTitle(content);
+        break;
+      case "<subtitle>":
+        return parseTagSubtitle(content);
+        break;
+    
+      default:
+        break;
+    }
+  }
+
+  var parseTagVideo = function(content){
+    var parseVideoURLStart = content.indexOf("=")+1;
+    var parseVideoURLEnd = content.indexOf("</video>");
+    var videoURL = content.substring(parseVideoURLStart,parseVideoURLEnd);
+    
+    //return "<iframe width=\"560\" height=\"315\" ng-src=\"https://www.youtube.com/embed/" + videoURL + "?rel=0&autohide=1&showinfo=0\" frameborder=\"0\" allowfullscreen></iframe>";
+    return "<div class=\"video-container\"><iframe width=\"560\" height=\"315\" ng-src=\"https://www.youtube.com/embed/" + videoURL + "?rel=0&autohide=1&showinfo=0\" frameborder=\"0\" allowfullscreen></iframe></div>";
+  }
+
+  var parseTagImage = function(content){
+    var parseImageURLStart = content.indexOf("<image>")+7;
+    var parseImageURLEnd = content.indexOf("</image>");
+    var imageURL = content.substring(parseImageURLStart,parseImageURLEnd);
+    
+    return "<div class=\"content-Image\"><img src=\"content/images/" + imageURL + "\" alt=\""+ imageURL + "\"></div>";
+  }
+
+  var parseTagTitle = function(content){
+    var parseTitleStart = content.indexOf("<title>")+7;
+    var parseTitleEnd = content.indexOf("</title>");
+    var title = content.substring(parseTitleStart,parseTitleEnd);
+    
+    return "<h2 class=\"content-Title\">" + title + "</h2>";
+  }
+
+  var parseTagSubtitle = function(content){
+    var parseTitleStart = content.indexOf("<subtitle>")+10;
+    var parseTitleEnd = content.indexOf("</subtitle>");
+    var title = content.substring(parseTitleStart,parseTitleEnd);
+    
+    return "<h3 class=\"content-Subtitle\">" + title + "</h3>";
+  }
 });
