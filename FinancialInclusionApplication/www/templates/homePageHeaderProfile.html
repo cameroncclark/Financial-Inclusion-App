@@ -10,7 +10,7 @@
     <div class="padding">
       <form ng-submit="updateUserProfile()">
         <div class="centered">
-          <img src="img/Stuart.jpg" class="homePageHeaderPicture" ng-click="addImage">
+          <img src="img/Stuart.jpg" class="homePageHeaderPicture">
         </div>
         <div class="list">
           <label class="item item-input item-floating-label">
@@ -22,7 +22,7 @@
                     <input type="text" ng-model="userProfileUpdate.location" placeholder="Location">
                     </label>
           <label class="item">
-                    <button class="button button-block button-positive" ng-click="addImage">Update User Profile</button>
+                    <button class="button button-block button-positive" type="submit">Update User Profile</button>
                     </label>
         </div>
         <div class="centered">
