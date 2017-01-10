@@ -9,9 +9,8 @@
     <ion-slides options="options" slider="data.slider">
       <ion-slide-page ng-repeat="page in sections">
         <ion-content class="padding justified" direction="y">
-          <h1>{{page.title}}</h1>
+          <h1 class="centered">{{page.title}}</h1>
           <p ng-bind-html="page.content"></p>
-          <!--<div class="video-container"><iframe width="560" height="315" ng-src="https://www.youtube.com/embed/SaMJ8oqiQI4?rel=0&autohide=1&showinfo=0" frameborder="0" allowfullscreen></iframe></div>-->
         </ion-content>
       </ion-slide-page>
     </ion-slides>

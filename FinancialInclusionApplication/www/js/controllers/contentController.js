@@ -3,8 +3,11 @@ fIApp.controller('ContentCtrl', function ($scope, $http, $stateParams, $sce) {
   $scope.content = "";
   $scope.sections = [];
 
-  var tagMapOpen = ["<video>","<image>","<title>","<subtitle>"];
-  var tagMapClose = ["</video>","</image>","</title>","</subtitle>"];
+  /** 
+   * The arrays below hold the cusomised tags the application can parse. 
+  */
+  var tagMapOpen = ["<video>","<image>","<title>","<subtitle>","<link>","<quiz>"];
+  var tagMapClose = ["</video>","</image>","</title>","</subtitle>","</link>", "</quiz>"];
 
   $scope.options = {
     loop: false,
@@ -14,14 +17,14 @@ fIApp.controller('ContentCtrl', function ($scope, $http, $stateParams, $sce) {
   }
 
   /**
-   * This controls the slider, this is the init function
+   * This controls the slider, this is the init function.
    */
   $scope.$on("$ionicSlides.sliderInitialized", function (event, data) {
     $scope.slider = data.slider;
   });
 
   /**
-   * This sets the active page and the 
+   * This sets the active page.
    */
   $scope.$on("$ionicSlides.slideChangeEnd", function (event, data) {
     $scope.activeIndex = data.slider.activeIndex;
@@ -46,10 +49,13 @@ fIApp.controller('ContentCtrl', function ($scope, $http, $stateParams, $sce) {
       openCounter = content.match(new RegExp("<section>", "g") || []).length;
       closeCounter = content.match(new RegExp("</section>", "g") || []).length;
     } catch (error) {
-      $scope.sections[0] =  "Invalid file representation.";
+      $scope.sections[0] =  "Invalid File Representation.";
     }
 
-
+    /**
+     * If either the openCounter of closeCounter are still set to null, then there are no section tags within the file
+     * which means it has an invalid file representation.
+     */
     if (openCounter == null) {
       openCounter = 0;
     }
@@ -58,6 +64,13 @@ fIApp.controller('ContentCtrl', function ($scope, $http, $stateParams, $sce) {
       closeCounter = 0;
     }
 
+    /**
+     * There is a check to ensure the file is a valid representation.  This is done by making sure all open tags have a corresponding
+     * close tags along with both openCounter and closeCounter being greater than 0.  
+     * 
+     * The for loop then splits the file into individual sections, saving the section title with the content.  It then goes and parses
+     * each section to change the custom tags to representation the application can understand.  
+     */
     if (openCounter === closeCounter && openCounter > 0 && closeCounter > 0) {
       for (var i = 0; i < openCounter; i++) {
         var sectionStartIndex = content.indexOf('<section>') + 9;
@@ -67,14 +80,16 @@ fIApp.controller('ContentCtrl', function ($scope, $http, $stateParams, $sce) {
         content = content.substring(sectionEndIndex + 10);
       }
 
-      //Parse the content within each of the sections 
       parseEachSection();
     } else {
-      $scope.sections[0] =  "Invalid file representation.";
+      $scope.sections[0] =  "Invalid File Representation.";
     }
 
   }
 
+  /**
+   * This function takes in the content of a section, creates and object with the title being the section title and returning it back to be parsed.
+   */
   var parseOutTitle = function(sectionContent){
     var contentObject = {};
     var sectionTitleStartIndex = sectionContent.indexOf('<section-title>') + 15;
@@ -84,8 +99,14 @@ fIApp.controller('ContentCtrl', function ($scope, $http, $stateParams, $sce) {
     return contentObject;
   }
 
+  /**
+   * This function goes through each section and parses out the cusomtised tags.
+   * 
+   * A while loop exists to check if any tags still exist to ensure no custom tags are being missed.
+   * 
+   * The $sce service is used to tell the application that the HTML we return out is safe for users to view and interact with.
+   */
   var parseEachSection = function(){
-    //For each section
     for(var i = 0; i<$scope.sections.length; i++ ){
       var tagsExist = true;
       while (tagsExist) {
@@ -105,6 +126,9 @@ fIApp.controller('ContentCtrl', function ($scope, $http, $stateParams, $sce) {
     }
   }
 
+  /**
+   * This function takes in the tag and the content, and passes the content to the correct function based on the customised tag.
+   */
   var switchOnTag = function(tag, content){
     switch (tag) {
       case "<video>":
@@ -119,19 +143,28 @@ fIApp.controller('ContentCtrl', function ($scope, $http, $stateParams, $sce) {
       case "<subtitle>":
         return parseTagSubtitle(content);
         break;
+      case "<link>":
+        return parseTagLink(content);
+        break;
+      case "<quiz>":
+        return parseTagQuiz(content);
+        break;
     
       default:
         break;
     }
   }
 
+  /**
+   * Below is the parse functions that turn the customised tags into the representation the application can understand.
+   */
+
   var parseTagVideo = function(content){
     var parseVideoURLStart = content.indexOf("=")+1;
     var parseVideoURLEnd = content.indexOf("</video>");
     var videoURL = content.substring(parseVideoURLStart,parseVideoURLEnd);
-    
-    //return "<iframe width=\"560\" height=\"315\" ng-src=\"https://www.youtube.com/embed/" + videoURL + "?rel=0&autohide=1&showinfo=0\" frameborder=\"0\" allowfullscreen></iframe>";
-    return "<div class=\"video-container\"><iframe width=\"560\" height=\"315\" ng-src=\"https://www.youtube.com/embed/" + videoURL + "?rel=0&autohide=1&showinfo=0\" frameborder=\"0\" allowfullscreen></iframe></div>";
+
+    return "<div class=\"video-container\"><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/" + videoURL + "?rel=0&autohide=1&showinfo=0\" frameborder=\"0\" allowfullscreen></iframe></div>";
   }
 
   var parseTagImage = function(content){
@@ -153,8 +186,30 @@ fIApp.controller('ContentCtrl', function ($scope, $http, $stateParams, $sce) {
   var parseTagSubtitle = function(content){
     var parseTitleStart = content.indexOf("<subtitle>")+10;
     var parseTitleEnd = content.indexOf("</subtitle>");
-    var title = content.substring(parseTitleStart,parseTitleEnd);
+    var subtitle = content.substring(parseTitleStart,parseTitleEnd);
     
-    return "<h3 class=\"content-Subtitle\">" + title + "</h3>";
+    return "<h3 class=\"content-Subtitle\">" + subtitle + "</h3>";
+  }
+
+  var parseTagLink = function(content){
+    var parseLinkStart = content.indexOf("<link>")+6;
+    var parseLinkEnd = content.indexOf(",");
+    var link = content.substring(parseLinkStart,parseLinkEnd);
+    var parseNameStart = content.indexOf(",")+1;
+    var parseNameEnd = content.indexOf("</link>");
+    var name = content.substring(parseNameStart,parseNameEnd);
+    
+    return "<a class=\"content-Link\" onclick=\"window.open('"+ link +"', '_system', 'location=yes'); return false;\">" + name + "</a> ";
+  }
+
+  var parseTagQuiz = function(content){
+    var parseQuizStart = content.indexOf("<quiz>")+6;
+    var parseQuizEnd = content.indexOf(",");
+    var link = content.substring(parseQuizStart,parseQuizEnd);
+    var parseNameStart = content.indexOf(",")+1;
+    var parseNameEnd = content.indexOf("</quiz>");
+    var name = content.substring(parseNameStart,parseNameEnd);
+    
+    return "<div><button class=\"content-Quiz\" type=\"button\" onclick=\"\" > " + name + " - Link will go to - " + link + "</button></div>";
   }
 });

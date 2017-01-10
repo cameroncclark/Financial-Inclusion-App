@@ -7,7 +7,7 @@
   </ion-header-bar>
   <ion-content>
     <ul class="list">
-      <a ng-href="#/content/{{subcategory.url}}/{{subcategory.title}}" ng-click="closeModal()"  ng-repeat="subcategory in modalSubCategories"> 
+      <a class="subcategoriesLink" ng-href="#/content/{{subcategory.url}}/{{subcategory.title}}" ng-click="closeModal()"  ng-repeat="subcategory in modalSubCategories"> 
       <li class="item item-icon-right">
         <i class="icon ion-checkmark-round"></i>
         {{subcategory.title}}
