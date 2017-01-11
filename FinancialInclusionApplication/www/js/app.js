@@ -83,6 +83,7 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite) {
 
 fIApp.controller("ExampleController", function($scope, $cordovaSQLite) {
  
+  
     $scope.insert = function(firstname, lastname) {
         var query = "INSERT INTO people (firstname, lastname) VALUES (?,?)";
         $cordovaSQLite.execute(db, query, [firstname, lastname]).then(function(res) {
@@ -106,3 +107,17 @@ fIApp.controller("ExampleController", function($scope, $cordovaSQLite) {
     }
  
 }); 
+
+fIApp.controller('imageController', function($scope, $cordovaCamera, $cordovaFile) {
+  $scope.image = 'img/stuart.png';
+
+  $scope.imageUpdate = {};
+    $scope.stuartImage = 'img/stuart.png';
+    $scope.liamImage = 'img/liam.png';
+    $scope.angusImage = 'img/angus.png';
+    $scope.cammyImage = 'img/cammy.png';
+
+    $scope.updateImage = function(imageChange){
+      $scope.image = imageChange;
+    }
+});

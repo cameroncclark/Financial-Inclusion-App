@@ -1,4 +1,4 @@
-<ion-modal-view class="userProfileContainer">
+<ion-modal-view class="userProfileContainer" ng-controller="imageController">
   <ion-header-bar class="userProfileHeading">
     <h1 ng-show="updateProfile" class="title">User Profile</h1>
     <h1 ng-show="!updateProfile" class="title">Application Settings</h1>
@@ -10,7 +10,7 @@
     <div class="padding">
       <form ng-submit="updateUserProfile()">
         <div class="centered">
-          <img src="img/Stuart.jpg" class="homePageHeaderPicture">
+          <img ng-src="{{image}}" class="homePageHeaderPicture" ng-click="openImageSelector">
         </div>
         <div class="list">
           <label class="item item-input item-floating-label">
@@ -25,6 +25,9 @@
                     <button class="button button-block button-positive" type="submit">Update User Profile</button>
                     </label>
         </div>
+        <button class="button button-energized" ng-click="updateImage('img/liam.png')">
+	  Add image
+  </button>
         <div class="centered">
           <i class="icon icon ion-gear-a userProfileIcon" ng-click="switchMode()"></i>
         </div>
