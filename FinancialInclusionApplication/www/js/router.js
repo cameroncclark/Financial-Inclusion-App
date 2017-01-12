@@ -14,6 +14,11 @@ fIApp.config(function($stateProvider, $urlRouterProvider){
     templateUrl: 'templates/content.html',
     controller: 'ContentCtrl'
   })
+  .state('quiz', {
+    url:'/quiz/:quizFile',
+    templateUrl: 'templates/quizDisplay.html',
+    controller: 'QuizCtrl'
+  })
   .state('banking', {
     url:'/banking',
     templateUrl: 'templates/banking.html',

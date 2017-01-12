@@ -210,6 +210,7 @@ fIApp.controller('ContentCtrl', function ($scope, $http, $stateParams, $sce) {
     var parseNameEnd = content.indexOf("</quiz>");
     var name = content.substring(parseNameStart,parseNameEnd);
     
-    return "<div><button class=\"content-Quiz\" type=\"button\" onclick=\"\" > " + name + " - Link will go to - " + link + "</button></div>";
+    return "<div class=\"centered padding\"><a href=\"#/quiz/"+link+"\" class=\"button icon-right ion-chevron-right button-calm\">" + name + "</a></div>"
   }
+
 });
