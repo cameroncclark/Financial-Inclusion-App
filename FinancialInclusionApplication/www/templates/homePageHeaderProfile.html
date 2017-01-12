@@ -10,7 +10,7 @@
     <div class="padding">
       <form ng-submit="updateUserProfile()">
         <div class="centered">
-          <img ng-src="{{image}}" class="homePageHeaderPicture" ng-click="openImageSelector">
+          <img ng-src="{{image}}" class="homePageHeaderPicture" ng-click="openChangePhoto()">
         </div>
         <div class="list">
           <label class="item item-input item-floating-label">
@@ -25,9 +25,6 @@
                     <button class="button button-block button-positive" type="submit">Update User Profile</button>
                     </label>
         </div>
-        <button class="button button-energized" ng-click="openChangePhoto()">
-	  Add image
-  </button>
         <div class="centered">
           <i class="icon icon ion-gear-a userProfileIcon" ng-click="switchMode()"></i>
         </div>

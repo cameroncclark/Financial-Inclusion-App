@@ -14,3 +14,20 @@
 .userProfileIcon {
     font-size: xx-large;
 }
+
+.userAvatars{
+    float: left;
+}
+
+.closeAvatarButton{
+    float: left;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.changeAvatarSize{
+    border-radius:50%;
+    max-width: 20vh;
+    max-height: 10vh;
+    border: 2px solid ghostwhite;
+}
