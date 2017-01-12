@@ -24,6 +24,12 @@ fIApp.component("headerBar",{
         }).then(function(modal) {
             $scope.modalProfile = modal;
         });
+                
+        $ionicModal.fromTemplateUrl('templates/homepage.header.changeImage.html', {
+            scope: $scope
+        }).then(function(modal) {
+            $scope.modalAvatar = modal;
+        });
 
         $scope.closeTrophy = function() {
             $scope.modalTrophy.hide();
@@ -40,6 +46,14 @@ fIApp.component("headerBar",{
 
         $scope.openProfile = function() {
             $scope.modalProfile.show();
+        };
+                
+        $scope.closeChangePhoto = function() {
+            $scope.modalAvatar.hide();
+        };
+                
+        $scope.openChangePhoto = function() {
+            $scope.modalAvatar.show();
         };
 
         //$scope.trophiesf = [{name: "calculator"},{name: "university"},{name: "calculator"},{name: "trophy"},{name: "calculator"} ]
