@@ -108,16 +108,3 @@ fIApp.controller("ExampleController", function($scope, $cordovaSQLite) {
  
 }); 
 
-fIApp.controller('imageController', function($scope, $cordovaCamera, $cordovaFile) {
-  $scope.image = 'img/stuart.png';
-
-  $scope.imageUpdate = {};
-    $scope.stuartImage = 'img/stuart.png';
-    $scope.liamImage = 'img/liam.png';
-    $scope.angusImage = 'img/angus.png';
-    $scope.cammyImage = 'img/cammy.png';
-
-    $scope.updateImage = function(imageChange){
-      $scope.image = imageChange;
-    }
-});

@@ -54,6 +54,18 @@ fIApp.component("headerBar",{
                 });
             }
         };
+                
+                $scope.image = 'img/stuart.png';
+                
+                $scope.imageUpdate = {};
+                $scope.stuartImage = 'img/stuart.png';
+                $scope.liamImage = 'img/liam.png';
+                $scope.angusImage = 'img/angus.png';
+                $scope.cammyImage = 'img/cammy.png';
+                
+                $scope.updateImage = function(imageChange){
+                $scope.image = imageChange;
+                }
 
         $scope.updateUserProfile = function() {
             if($scope.userProfileUpdate.name){       
