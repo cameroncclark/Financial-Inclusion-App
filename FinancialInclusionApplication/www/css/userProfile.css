@@ -14,3 +14,17 @@
 .userProfileIcon {
     font-size: xx-large;
 }
+
+.userAvatars{
+    float: left;
+    text-align: center;
+    padding-bottom: 2vh;
+}
+
+
+.changeAvatarSize{
+    border-radius:50vh;
+    max-width: 9vh;
+    max-height: 10vh;
+    border: 2px solid ghostwhite;
+}

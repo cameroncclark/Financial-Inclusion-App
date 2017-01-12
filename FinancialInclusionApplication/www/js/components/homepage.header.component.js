@@ -5,6 +5,13 @@ fIApp.component("headerBar",{
 
         $scope.userProfile = {name:"Stuart Cuthbertson", location: "Glasgow"};
         $scope.userProfileUpdate = {};
+        $scope.image = 'img/stuart.png';
+                
+        $scope.imageUpdate = {};
+        $scope.stuartImage = 'img/stuart.png';
+        $scope.liamImage = 'img/liam.png';
+        $scope.angusImage = 'img/angus.png';
+        $scope.cammyImage = 'img/cammy.png';
         
         $ionicModal.fromTemplateUrl('templates/homePageHeaderTrophy.html', {
             scope: $scope
@@ -16,6 +23,12 @@ fIApp.component("headerBar",{
             scope: $scope
         }).then(function(modal) {
             $scope.modalProfile = modal;
+        });
+                
+        $ionicModal.fromTemplateUrl('templates/homepage.header.changeImage.html', {
+            scope: $scope
+        }).then(function(modal) {
+            $scope.modalAvatar = modal;
         });
 
         $scope.closeTrophy = function() {
@@ -33,6 +46,14 @@ fIApp.component("headerBar",{
 
         $scope.openProfile = function() {
             $scope.modalProfile.show();
+        };
+                
+        $scope.closeChangePhoto = function() {
+            $scope.modalAvatar.hide();
+        };
+                
+        $scope.openChangePhoto = function() {
+            $scope.modalAvatar.show();
         };
 
         //$scope.trophiesf = [{name: "calculator"},{name: "university"},{name: "calculator"},{name: "trophy"},{name: "calculator"} ]
@@ -54,6 +75,12 @@ fIApp.component("headerBar",{
                 });
             }
         };
+                
+                
+                
+        $scope.updateImage = function(imageChange){
+            $scope.image = imageChange;
+        }
 
         $scope.updateUserProfile = function() {
             if($scope.userProfileUpdate.name){       

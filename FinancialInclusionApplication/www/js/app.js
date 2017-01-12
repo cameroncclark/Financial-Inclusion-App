@@ -83,6 +83,7 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite) {
 
 fIApp.controller("ExampleController", function($scope, $cordovaSQLite) {
  
+  
     $scope.insert = function(firstname, lastname) {
         var query = "INSERT INTO people (firstname, lastname) VALUES (?,?)";
         $cordovaSQLite.execute(db, query, [firstname, lastname]).then(function(res) {
@@ -106,3 +107,4 @@ fIApp.controller("ExampleController", function($scope, $cordovaSQLite) {
     }
  
 }); 
+
