@@ -5,6 +5,13 @@ fIApp.component("headerBar",{
 
         $scope.userProfile = {name:"Stuart Cuthbertson", location: "Glasgow"};
         $scope.userProfileUpdate = {};
+        $scope.image = 'img/stuart.png';
+                
+        $scope.imageUpdate = {};
+        $scope.stuartImage = 'img/stuart.png';
+        $scope.liamImage = 'img/liam.png';
+        $scope.angusImage = 'img/angus.png';
+        $scope.cammyImage = 'img/cammy.png';
         
         $ionicModal.fromTemplateUrl('templates/homePageHeaderTrophy.html', {
             scope: $scope
@@ -55,17 +62,11 @@ fIApp.component("headerBar",{
             }
         };
                 
-                $scope.image = 'img/stuart.png';
                 
-                $scope.imageUpdate = {};
-                $scope.stuartImage = 'img/stuart.png';
-                $scope.liamImage = 'img/liam.png';
-                $scope.angusImage = 'img/angus.png';
-                $scope.cammyImage = 'img/cammy.png';
                 
-                $scope.updateImage = function(imageChange){
-                $scope.image = imageChange;
-                }
+        $scope.updateImage = function(imageChange){
+            $scope.image = imageChange;
+        }
 
         $scope.updateUserProfile = function() {
             if($scope.userProfileUpdate.name){       
