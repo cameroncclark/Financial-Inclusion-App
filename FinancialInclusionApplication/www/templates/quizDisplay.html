@@ -22,8 +22,14 @@
           Back
       </button>
 
-      <button ng-disabled="userAnswers.currentAnswer==-1" ng-click="nextQuestion()" class="button button-dark">
+      
+      <button style="float:right" ng-if="questionIndex !=quizData.questions.length -1" ng-disabled="userAnswers.currentAnswer==-1" ng-click="nextQuestion()" class="button button-dark">
           Forward
       </button>
+
+      <button ng-click="navigateToAnswers()" ng-if="questionIndex==quizData.questions.length -1" ng-disabled="userAnswers.currentAnswer==-1"  class="button button-dark">
+           Complete Quiz
+      </button>
+
     </ion-footer-bar>
 </ion-view>

@@ -1,4 +1,4 @@
-fIApp.controller('QuizCtrl', function ($scope, $http, $stateParams, $sce) {
+fIApp.controller('QuizCtrl', function ($scope, $http, $stateParams,$state) {
     $scope.questionIndex = 0;
     $scope.userAnswers = {
         previousAnswers:[],
@@ -9,6 +9,7 @@ fIApp.controller('QuizCtrl', function ($scope, $http, $stateParams, $sce) {
   $http.get('content/quizzes/' + $stateParams.quizFile)
     .then(function (response) {
       $scope.quizData = response.data;
+      $scope.quizPath = $stateParams.quizFile;
       $scope.name = $scope.quizData.title;
       $scope.setQuestion();
     });
@@ -28,7 +29,6 @@ fIApp.controller('QuizCtrl', function ($scope, $http, $stateParams, $sce) {
 
     $scope.previousQuestion = function(){
         $scope.questionIndex--;
-        // $scope.userAnswers.currentAnswer = $scope.userAnswers.previousAnswers[$scope.questionIndex];
         $scope.setQuestion();
     }
 
@@ -49,7 +49,16 @@ fIApp.controller('QuizCtrl', function ($scope, $http, $stateParams, $sce) {
             $scope.userAnswers.previousAnswers.push($scope.userAnswers.currentAnswer);
         }
         $scope.userAnswers.currentAnswer = -1;
-        console.log($scope.userAnswers);
+    }
+
+    $scope.navigateToAnswers = function(){
+        $scope.determineAnswer();
+        
+        var answerObject = {};
+        answerObject.path = $scope.quizPath;
+        answerObject.data = $scope.userAnswers;
+        
+        $state.go('completeQuiz',{quizData:answerObject});
     }
 
 });

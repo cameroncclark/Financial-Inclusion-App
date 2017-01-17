@@ -6,28 +6,28 @@
            "questionText":"Here is a question about finance, this is a multiple choice question.",
            "answers":["Answer 1","Answer 2","Answer 3"],
            "answer":1,
-           "reason":"This is the reason this answer is wrong" 
+           "reason":["Reason Behind Answer 1","Reason Behind Answer 2","Reason Behind Answer 3"]
         },
         {
            "questionType":"multipleChoice",
            "questionText":"Here is a question about finance, this is a multiple choice question.",
            "answers":["Answer 1","Answer 2","Answer 3","Answer 4"],
            "answer":2,
-           "reason":"This is the reason this answer is wrong" 
+           "reason":["Reason Behind Answer 1","Reason Behind Answer 2","Reason Behind Answer 3","Reason Behind Answer 4"]
         },
         {
            "questionType":"multipleChoice",
            "questionText":"Here is a question about finance, this is a multiple choice question.",
            "answers":["Answer 1","Answer 2"],
            "answer":0,
-           "reason":"This is the reason this answer is wrong" 
+           "reason":["Reason Behind Answer 1","Reason Behind Answer 2"]
         },
         {
            "questionType":"multipleChoice",
            "questionText":"Here is a question about finance, this is a multiple choice question.",
            "answers":["Answer 1","Answer 2","Answer 3","Answer 4","Answer 5"],
            "answer":1,
-           "reason":"This is the reason this answer is wrong" 
+           "reason":["Reason Behind Answer 1","Reason Behind Answer 2","Reason Behind Answer 3","Reason Behind Answer 4","Reason Behind Answer 5"]
         }
 
     ]
