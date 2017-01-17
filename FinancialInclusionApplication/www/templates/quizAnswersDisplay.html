@@ -1,20 +1,28 @@
 <ion-view view-title="{{name}}">
-  <ion-nav-buttons side="right">
-    <button class="button" style="border: 0px !important;">
-        <b class = "icon icon ion-help"></b>
-      </button>
-  </ion-nav-buttons>
-  <ion-content class="padding has-footer">
-      {{data}}
-  </ion-content>
-  <ion-footer-bar class="bar-calm">
-      <button class="button button-dark">
+    <ion-nav-buttons side="right">
+        <button class="button" style="border: 0px !important;">
+<b class="icon icon ion-help"></b>
+</button>
+</ion-nav-buttons>
+<ion-content class="padding has-footer">
+    {{data}}
+    <h1 class="centered">
+        Score = {{correctDisplay}}!
+    </h1>
+    <ul class="list">
+        <li class="item" ng-repeat="questions in quizData.questions">
+            Question Number {{$index+1}} Correct-{{data.answerTracker[$index]}}
+        </li>
+    </ul>
+</ion-content>
+<ion-footer-bar class="bar-calm">
+    <button ng-disabled="correctPercentage==1" class="button button-dark">
           Retake Quiz
       </button>
 
-      <button class="button button-dark">
+    <button class="button button-dark">
            Back to categories
       </button>
 
-    </ion-footer-bar>
+</ion-footer-bar>
 </ion-view>

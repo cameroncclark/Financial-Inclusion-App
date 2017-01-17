@@ -8,8 +8,8 @@ fIApp.controller('AnswersCtrl', function ($scope, $http, $stateParams) {
       $scope.quizData = response.data;
       $scope.quizPath = $stateParams.quizFile;
       $scope.name = $scope.quizData.title;
-      //Number of correct
-      console.log("Correct: " +countCorrectAnswers() +"/"+$scope.data.answerTracker.length);
+      $scope.correctDisplay = countCorrectAnswers() +"/"+$scope.data.answerTracker.length;
+      $scope.correctPercentage = countCorrectAnswers()/$scope.data.answerTracker.length;
     });
 
     var countCorrectAnswers = function(){
@@ -19,13 +19,12 @@ fIApp.controller('AnswersCtrl', function ($scope, $http, $stateParams) {
                 correctAnswers++;
             }
         }
-
         return correctAnswers;
     }
 
 
     //Notes on what to do:
-    // Firstly I want to print out the score up the top
+    // Firstly I want to print out the score up the top - Done
     // Underneath I want something like a list that says Question 1
     //     These would be colour coded
     //     Click to expand? Says what the question was, your answer and the reason this answer is right/wrong?
