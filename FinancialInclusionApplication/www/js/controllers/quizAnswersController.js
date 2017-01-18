@@ -1,4 +1,4 @@
-fIApp.controller('AnswersCtrl', function ($scope, $http, $stateParams, $ionicPopup, $state) {
+fIApp.controller('AnswersCtrl', function ($scope, $http, $stateParams, $ionicPopup, $state, $location) {
     $scope.data = $stateParams.quizData.data;
     $scope.name = "Quiz Results";
 
@@ -9,6 +9,7 @@ fIApp.controller('AnswersCtrl', function ($scope, $http, $stateParams, $ionicPop
       $scope.name = $scope.quizData.title;
       $scope.correctDisplay = countCorrectAnswers() +"/"+$scope.data.answerTracker.length;
       $scope.correctPercentage = countCorrectAnswers()/$scope.data.answerTracker.length;
+      console.log($location.path());
     });
 
     var countCorrectAnswers = function(){
@@ -27,14 +28,6 @@ fIApp.controller('AnswersCtrl', function ($scope, $http, $stateParams, $ionicPop
             template: question.reason[index]
         });
     };
-
-    $scope.navigateToQuiz = function(){        
-        var answerObject = {};
-        answerObject.path = $scope.quizPath;
-        answerObject.data = $scope.userAnswers;
-        
-        $state.go('completeQuiz',{quizData:answerObject});
-    }
 
 
     //Notes on what to do:

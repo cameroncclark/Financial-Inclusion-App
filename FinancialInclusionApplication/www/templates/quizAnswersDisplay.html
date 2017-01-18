@@ -1,10 +1,11 @@
-<ion-view view-title="{{name}}">
+<ion-view>
+    <ion-nav-title>{{name}}</ion-nav-title>
     <ion-nav-buttons side="right">
         <button class="button" style="border: 0px !important;">
 <b class="icon icon ion-help"></b>
 </button>
 </ion-nav-buttons>
-<ion-content class="padding has-footer">
+<ion-content class="padding">
     <h1 class="centered">
         Score = {{correctDisplay}}!
     </h1>
@@ -13,19 +14,18 @@
             Question Number {{$index+1}}
         </li>
     </ul>
+    <div>
+        <a ng-href="#/quiz/{{quizPath}}">
+            <button style="float:left" ng-disabled="correctPercentage==1" class="button button-dark" >
+                Retake Quiz
+            </button>
+        </a>
+
+        <a ng-href="#/">
+            <button style="float:right" class="button button-dark">
+                Back To Homepage
+            </button>
+        </a>
+    </div>
 </ion-content>
-<ion-footer-bar class="bar-calm">
-    <a ng-href="#/quiz/{{quizPath}}" target="_self">
-        <button style="float:left" ng-disabled="correctPercentage==1" class="button button-dark" >
-            Retake Quiz
-        </button>
-    </a>
-
-    <a ng-href="#/quiz/{{quizPath}}">
-        <button style="float:right" class="button button-dark">
-            Back to categories
-        </button>
-    </a>
-
-</ion-footer-bar>
 </ion-view>
