@@ -81,6 +81,19 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite) {
   });
 });
 
+fIApp.controller("appCtrl", function($scope, $location, $ionicNavBarDelegate) {
+     $scope.$watch(function(){
+       return $location.path();
+     },
+     function(currentPath){
+       if (currentPath == '/quiz/answers'){
+         $ionicNavBarDelegate.showBackButton(false);
+       } else {
+          $ionicNavBarDelegate.showBackButton(true);
+       }   
+     })
+});
+
 fIApp.controller("ExampleController", function($scope, $cordovaSQLite) {
  
   

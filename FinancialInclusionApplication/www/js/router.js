@@ -19,6 +19,14 @@ fIApp.config(function($stateProvider, $urlRouterProvider){
     templateUrl: 'templates/quizDisplay.html',
     controller: 'QuizCtrl'
   })
+  .state('completeQuiz', {
+    url:'/quiz/answers',
+    templateUrl: 'templates/quizAnswersDisplay.html',
+    controller: 'AnswersCtrl',
+    params: {
+      quizData: null
+    }
+  })
   .state('banking', {
     url:'/banking',
     templateUrl: 'templates/banking.html',

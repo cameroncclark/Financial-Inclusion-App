@@ -1,0 +1,31 @@
+<ion-view>
+    <ion-nav-title>{{name}}</ion-nav-title>
+    <ion-nav-buttons side="right">
+        <button class="button" style="border: 0px !important;">
+<b class="icon icon ion-help"></b>
+</button>
+</ion-nav-buttons>
+<ion-content class="padding">
+    <h1 class="centered">
+        Score = {{correctDisplay}}!
+    </h1>
+    <ul class="list">
+        <li class="item" ng-class="data.answerTracker[$index] ? 'quiz-Answer-True' : 'quiz-Answer-False'" ng-repeat="questions in quizData.questions" ng-click="showQuestionAlert(questions,data.previousAnswers[$index])">
+            Question Number {{$index+1}}
+        </li>
+    </ul>
+    <div>
+        <a ng-href="#/quiz/{{quizPath}}">
+            <button style="float:left" ng-disabled="correctPercentage==1" class="button button-dark" >
+                Retake Quiz
+            </button>
+        </a>
+
+        <a ng-href="#/">
+            <button style="float:right" class="button button-dark">
+                Back To Homepage
+            </button>
+        </a>
+    </div>
+</ion-content>
+</ion-view>
