@@ -1,4 +1,4 @@
-fIApp.controller('QuizCtrl', function ($scope, $http, $stateParams,$state) {
+fIApp.controller('QuizCtrl', function ($scope, $http, $stateParams, $state) {
     $scope.questionIndex = 0;
     $scope.userAnswers = {
         previousAnswers:[],

@@ -5,24 +5,27 @@
 </button>
 </ion-nav-buttons>
 <ion-content class="padding has-footer">
-    {{data}}
     <h1 class="centered">
         Score = {{correctDisplay}}!
     </h1>
     <ul class="list">
-        <li class="item" ng-repeat="questions in quizData.questions">
-            Question Number {{$index+1}} Correct-{{data.answerTracker[$index]}}
+        <li class="item" ng-class="data.answerTracker[$index] ? 'quiz-Answer-True' : 'quiz-Answer-False'" ng-repeat="questions in quizData.questions" ng-click="showQuestionAlert(questions,data.previousAnswers[$index])">
+            Question Number {{$index+1}}
         </li>
     </ul>
 </ion-content>
 <ion-footer-bar class="bar-calm">
-    <button ng-disabled="correctPercentage==1" class="button button-dark">
-          Retake Quiz
-      </button>
+    <a ng-href="#/quiz/{{quizPath}}" target="_self">
+        <button style="float:left" ng-disabled="correctPercentage==1" class="button button-dark" >
+            Retake Quiz
+        </button>
+    </a>
 
-    <button class="button button-dark">
-           Back to categories
-      </button>
+    <a ng-href="#/quiz/{{quizPath}}">
+        <button style="float:right" class="button button-dark">
+            Back to categories
+        </button>
+    </a>
 
 </ion-footer-bar>
 </ion-view>

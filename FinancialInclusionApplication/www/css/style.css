@@ -57,6 +57,15 @@
 	text-shadow:0px 1px 0px #2f6627;
 }
 
+.quiz-Answer-True{
+    background: green;
+    color: whitesmoke;
+}
+
+.quiz-Answer-False{
+    background: #DD4B39;
+    color: whitesmoke;
+}
 /*Source for embed CSS: https://avexdesigns.com/responsive-youtube-embed/*/
 .video-container {
 position: relative;
