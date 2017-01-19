@@ -15,7 +15,11 @@
         </ion-list>
     </div>
     <div ng-if="activeQuestion.questionType == 'choosePicture'">
-        Woo pictures
+        <h1 class="centered">Question: {{questionIndex + 1}}</h1>
+        <h2 class="justified">{{activeQuestion.questionText}}</h2>
+        <ion-list>
+            <ion-radio ng-repeat="answer in activeQuestion.answers" ng-model="userAnswers.currentAnswer" ng-value="$index"><div class="centered"><img class="homePageHeaderPicture" ng-src="img/{{answer}}"></div></ion-radio>
+        </ion-list>
     </div>
   </ion-content>
   <ion-footer-bar class="bar-calm">

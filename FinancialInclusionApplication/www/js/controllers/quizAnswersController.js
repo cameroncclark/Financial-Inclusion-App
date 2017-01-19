@@ -28,15 +28,4 @@ fIApp.controller('AnswersCtrl', function ($scope, $http, $stateParams, $ionicPop
             template: question.reason[index]
         });
     };
-
-
-    //Notes on what to do:
-    // Firstly I want to print out the score up the top - Done
-    // Underneath I want something like a list that says Question 1
-    //     These would be colour coded
-    //     Click to expand? Says what the question was, your answer and the reason this answer is right/wrong?
-    // ?Correct answer was?
-
-    // Down the bottom Retake quiz -blurred if 100%-, back to categories button. 
-
 });
