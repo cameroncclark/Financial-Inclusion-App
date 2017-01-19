@@ -10,8 +10,23 @@
         Score = {{correctDisplay}}!
     </h1>
     <ul class="list">
-        <li class="item" ng-class="data.answerTracker[$index] ? 'quiz-Answer-True' : 'quiz-Answer-False'" ng-repeat="questions in quizData.questions" ng-click="showQuestionAlert(questions,data.previousAnswers[$index])">
-            Question Number {{$index+1}}
+        <li class="item quiz-Answer-Display-Text" ng-class="data.answerTracker[$index] ? 'quiz-Answer-True' : 'quiz-Answer-False'" ng-repeat="questions in quizData.questions" ng-click="showDetails = ! showDetails">
+            <h2 class="quiz-Answer-Display-Text">Question Number {{$index+1}}</h2>
+            <div class="quiz-Answer-Display" ng-class="{'hidden':!showDetails}">
+                <hr>
+                <p>
+                     <h2>Question:</h2> 
+                     {{questions.questionText}}
+                </p>
+                <p>
+                    <h2>You Answered:</h2>
+                    {{questions.answers[data.previousAnswers[$index]]}}
+                </p>
+                <p>
+                    <h2>Reason Behind:</h2>
+                     {{questions.reason[data.previousAnswers[$index]]}}
+                </p>                
+            </div>
         </li>
     </ul>
     <div>
