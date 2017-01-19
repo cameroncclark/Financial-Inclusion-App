@@ -1,6 +1,6 @@
 fIApp.component("headerBar",{
     templateUrl:"templates/homepage.header.html",
-    controller: function homePageHeaderCtrl($scope, $ionicModal, $ionicPopup, $timeout){
+    controller: function homePageHeaderCtrl($scope, $ionicModal, $ionicPopup, $timeout,dbAccessor){
         $scope.updateProfile = true;
 
         $scope.userProfile = {name:"Stuart Cuthbertson", location: "Glasgow"};
@@ -85,6 +85,9 @@ fIApp.component("headerBar",{
         $scope.updateUserProfile = function() {
             if($scope.userProfileUpdate.name){       
                 $scope.userProfile.name = $scope.userProfileUpdate.name;
+                dbAccessor.insertName($scope.userProfile.name, 'L');
+                dbAccessor.selectName('L');
+                
             }
             if($scope.userProfileUpdate.location){
             $scope.userProfile.location = $scope.userProfileUpdate.location;

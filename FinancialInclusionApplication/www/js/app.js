@@ -8,9 +8,10 @@ var db = null;
 
 var fIApp = angular.module('financialInclusionApp', ['ionic', 'ngCordova', 'rzModule', 'ngSanitize']);
 
-fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite) {
+fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccessor) {
+          
   $ionicPlatform.ready(function () {
-    if (window.cordova && window.cordova.plugins.Keyboard) {
+                          if (window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -21,6 +22,8 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite) {
       cordova.plugins.Keyboard.disableScroll(true);
     }
 
+                       var isAndroid = ionic.Platform.isAndroid();
+                       var isIOS = ionic.Platform.isIOS();
     if (window.StatusBar) {
       //StatusBar.styleDefault();
       StatusBar.hide();
@@ -76,8 +79,21 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite) {
           }
         });
     }
-    db = $cordovaSQLite.openDB("my.db");
-            $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS people (id integer primary key, firstname text, lastname text)");
+                       
+                       // Initialisation of databases fbror Android and iOS
+                       if (isAndroid || isIOS) {
+                       console.log("entered if");
+                       db = $cordovaSQLite.openDB({name: 'my.db', location: 'default'});
+                       $cordovaSQLite.execute(db,"CREATE TABLE IF NOT EXISTS people (id integer primary key, firstname text, lastname text)");
+                       console.log("You're a phone");
+                       } else{
+                       console.log("not a phone");
+                        }
+                       
+             
+                       //dbAccessor.insertName('Liam', 'O');
+//                       dbAccessor.selectName('L');
+
   });
 });
 
@@ -93,31 +109,4 @@ fIApp.controller("appCtrl", function($scope, $location, $ionicNavBarDelegate) {
        }   
      })
 });
-
-fIApp.controller("ExampleController", function($scope, $cordovaSQLite) {
- 
-  
-    $scope.insert = function(firstname, lastname) {
-        var query = "INSERT INTO people (firstname, lastname) VALUES (?,?)";
-        $cordovaSQLite.execute(db, query, [firstname, lastname]).then(function(res) {
-            console.log("INSERT ID -> " + res.insertId);
-        }, function (err) {
-            console.error(err);
-        });
-    }
- 
-    $scope.select = function(lastname) {
-        var query = "SELECT firstname, lastname FROM people WHERE lastname = ?";
-        $cordovaSQLite.execute(db, query, [lastname]).then(function(res) {
-            if(res.rows.length > 0) {
-                console.log("SELECTED -> " + res.rows.item(0).firstname + " " + res.rows.item(0).lastname);
-            } else {
-                console.log("No results found");
-            }
-        }, function (err) {
-            console.error(err);
-        });
-    }
- 
-}); 
 
