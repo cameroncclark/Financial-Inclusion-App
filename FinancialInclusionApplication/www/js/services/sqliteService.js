@@ -17,7 +17,7 @@ fIApp.service("dbAccessor", function($cordovaSQLite){
               return "Testing the return method";
               }
               
-              this.insertName = function(firstName, lastName){
+              this.insertName = function(firstname, lastname){
               console.log("in the insert function");
               var query = "INSERT INTO people (firstname, lastname) VALUES (?,?)";
               console.log("made query");
