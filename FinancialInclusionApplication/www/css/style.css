@@ -34,6 +34,10 @@
     text-align: justify;
 }
 
+.italic{
+    font-style: italic;
+}
+
 .content-Title{
     color:darkred;
 }
@@ -58,7 +62,8 @@
 }
 
 .quiz-Answer-Display-Text{
-    color: whitesmoke !important;
+    color: white !important;
+    font-size: 1.1em;
 }
 
 .quiz-Answer-Display{
@@ -72,13 +77,14 @@
     max-height: 0;
 }
 
-.quiz-Answer-True{
-    background: green;
+.quiz-Answer-True-Container{
+    background: #66b266;
 }
 
-.quiz-Answer-False{
-    background: #DD4B39;
+.quiz-Answer-False-Container{
+    background: #ea9388;
 }
+
 /*Source for embed CSS: https://avexdesigns.com/responsive-youtube-embed/*/
 .video-container {
 position: relative;
