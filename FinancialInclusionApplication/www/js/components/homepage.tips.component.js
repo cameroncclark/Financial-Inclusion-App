@@ -1,7 +1,6 @@
 fIApp.service('randomHint', function(){
-            var num = Math.floor(Math.random()*10);
-            this.generate = function(){
-                return num;
+            this.generate = function(range){
+                return Math.floor(Math.random()*range);
             };
         });
 
@@ -13,9 +12,8 @@ fIApp.component("tipComponent",{
         $http.get('content/tips.json')
         .then(function (tips) {
             $scope.tips = tips.data;
+            $scope.index = randomHint.generate($scope.tips.length);
         });
-
-        $scope.index = randomHint.generate();
 
         $scope.swipeLeft = function(){
             if ($scope.index == $scope.tips.length -1) {
