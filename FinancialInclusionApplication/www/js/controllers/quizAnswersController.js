@@ -7,7 +7,8 @@ fIApp.controller('AnswersCtrl', function ($scope, $http, $stateParams, $ionicPop
       $scope.quizData = response.data;
       $scope.quizPath = $stateParams.quizData.path;
       $scope.name = $scope.quizData.title;
-      $scope.correctDisplay = countCorrectAnswers() +"/"+$scope.data.answerTracker.length;
+    //   $scope.correctDisplay = countCorrectAnswers() +"/"+$scope.data.answerTracker.length;
+    $scope.correctDisplay = countCorrectAnswers()/$scope.data.answerTracker.length * 100;
       $scope.correctPercentage = countCorrectAnswers()/$scope.data.answerTracker.length;
       console.log($location.path());
     });
