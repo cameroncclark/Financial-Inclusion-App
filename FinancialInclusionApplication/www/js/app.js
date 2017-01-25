@@ -90,6 +90,18 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
       }, function (error) {
         console.error(error);
       });
+
+      var searchQuery = "SELECT name, location FROM userData WHERE location = ?";
+      $cordovaSQLite.execute(db, query, ["Your Location Here"]).then(function (result) {
+        if (result.rows.length > 0) {
+          console.log("SELECTED -> " + result.rows.item(0).name + " " + result.rows.item(0).location);
+        } else {
+          console.log("NO ROWS EXIST");
+        }
+      }, function (error) {
+        console.error(error);
+      });
+
     }
 
     // Initialisation of databases for Android and iOS
