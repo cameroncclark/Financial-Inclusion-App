@@ -94,11 +94,12 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
       $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS progress (objective NVARCHAR(50) PRIMARY KEY, counter INTEGER, valueChanged TINYINT");
       $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS settings ()");
 
-      var query = "SELECT count(id) AS c FROM userData";
+      var query = "SELECT count(id) FROM userData";
       $cordovaSQLite.execute(db, query, []).then(function (result) {
-        console.log("Number of rows in table " + result.rows[0].c);
+        console.log("Number of rows in table " + result.rows[0]);
       }, function (error) {
         console.log(error)
+        console.log("Select function hasnt worked");
       });
 
       console.log("You're a phone");
