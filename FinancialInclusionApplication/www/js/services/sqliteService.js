@@ -54,6 +54,7 @@ fIApp.service("dbAccessor", function ($cordovaSQLite) {
         var query = "SELECT name, location FROM userData";
         $cordovaSQLite.execute(db, query).then(function (result) {
             if (result.rows.length > 0) {
+                console.log(result.rows.item(0));
                 response.name = result.rows.item(0).name;
                 response.location = result.rows.item(0).location;
                 console.log(response);
