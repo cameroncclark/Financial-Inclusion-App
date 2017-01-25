@@ -9,9 +9,9 @@ var db = null;
 var fIApp = angular.module('financialInclusionApp', ['ionic', 'ngCordova', 'rzModule', 'ngSanitize']);
 
 fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccessor) {
-          
+
   $ionicPlatform.ready(function () {
-                          if (window.cordova && window.cordova.plugins.Keyboard) {
+    if (window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -22,18 +22,18 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
       cordova.plugins.Keyboard.disableScroll(true);
     }
 
-                       var isAndroid = ionic.Platform.isAndroid();
-                       var isIOS = ionic.Platform.isIOS();
+    var isAndroid = ionic.Platform.isAndroid();
+    var isIOS = ionic.Platform.isIOS();
     if (window.StatusBar) {
       //StatusBar.styleDefault();
       StatusBar.hide();
     }
-    
+
     //This is going to be a map that links category ID to both the titles under that category and the urls
     //This map looks like: {1: [titles: myTitle, url: myURL]}
     //WHERE: "1" is the Category ID. "titles" is the list of titles associated with that category, "urls" is the url for the file. 
     $rootScope.topicMaps = {};
-    
+
     //All category codes that are available in the system
     var allCategoryCodes = [];
 
@@ -79,34 +79,47 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
           }
         });
     }
-                       
-                       // Initialisation of databases fbror Android and iOS
-                       if (isAndroid || isIOS) {
-                       console.log("entered if");
-                       db = $cordovaSQLite.openDB({name: 'my.db', location: 'default'});
-                       $cordovaSQLite.execute(db,"CREATE TABLE IF NOT EXISTS people (id integer primary key, firstname text, lastname text)");
-                       console.log("You're a phone");
-                       } else{
-                       console.log("not a phone");
-                        }
-                       
-             
-                       //dbAccessor.insertName('Liam', 'O');
-//                       dbAccessor.selectName('L');
+
+    // Initialisation of databases for Android and iOS
+    if (isAndroid || isIOS) {
+      console.log("entered if");
+      db = $cordovaSQLite.openDB({ name: 'my.db', location: 'default' });
+
+      // Initialise all tables
+      $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS people (id INTEGER PRIMARY KEY, firstname TEXT, lastname TEXT)");
+      $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS userData (id INTEGER PRIMARY KEY, name TEXT, location TEXT)");
+      $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS trophies (id INTEGER PRIMARY KEY, title TEXT, image TEXT, description TEXT, hint TEXT, acquired TINYINT)");
+      $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS categories (id INTEGER PRIMARY KEY, name NVARCHAR(50), percentageComplete INTEGER)");
+      $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS subcategories (url NVARCHAR(50) PRIMARY KEY, name NVARCHAR(50), percentageComplete INTEGER, categoryID INTEGER, FOREIGN KEY(categoryID) REFERENCES categories(id)");
+      $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS progress (objective NVARCHAR(50) PRIMARY KEY, counter INTEGER, valueChanged TINYINT");
+      $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS settings ()");
+
+      var query = "SELECT count(id) AS c FROM userData";
+      $cordovaSQLite.execute(db, query, []).then(function (result) {
+        console.log("Number of rows in table " + result.rows[0].c);
+      }, function (error) {
+        console.log(error)
+      });
+
+      console.log("You're a phone");
+    } else {
+      console.log("not a phone");
+    }
+
 
   });
 });
 
-fIApp.controller("appCtrl", function($scope, $location, $ionicNavBarDelegate) {
-     $scope.$watch(function(){
-       return $location.path();
-     },
-     function(currentPath){
-       if (currentPath == '/quiz/answers'){
-         $ionicNavBarDelegate.showBackButton(false);
-       } else {
-          $ionicNavBarDelegate.showBackButton(true);
-       }   
-     })
+fIApp.controller("appCtrl", function ($scope, $location, $ionicNavBarDelegate) {
+  $scope.$watch(function () {
+    return $location.path();
+  },
+    function (currentPath) {
+      if (currentPath == '/quiz/answers') {
+        $ionicNavBarDelegate.showBackButton(false);
+      } else {
+        $ionicNavBarDelegate.showBackButton(true);
+      }
+    })
 });
 
