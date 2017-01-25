@@ -3,7 +3,7 @@ fIApp.component("headerBar",{
     controller: function homePageHeaderCtrl($scope, $ionicModal, $ionicPopup, $timeout,dbAccessor){
         $scope.updateProfile = true;
 
-        $scope.userProfile = {name:"Stuart Cuthbertson", location: "Glasgow"};
+        $scope.userProfile = databaseAccessor.selectUserDetails();
         $scope.userProfileUpdate = {};
         $scope.image = 'img/stuart.png';
                 
@@ -85,7 +85,7 @@ fIApp.component("headerBar",{
         $scope.updateUserProfile = function() {
             if($scope.userProfileUpdate.name){       
                 $scope.userProfile.name = $scope.userProfileUpdate.name;
-                dbAccessor.insertName($scope.userProfile.name, 'L');
+                dbAccessor.updateName($scope.userProfile.name, 'L');
                 dbAccessor.selectName('L');
                 
             }

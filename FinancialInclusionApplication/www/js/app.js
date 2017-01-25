@@ -91,8 +91,9 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
             console.error(error);
         });
 
-        var searchQuery = "SELECT name, location FROM userData WHERE location = ?";
-        $cordovaSQLite.execute(db, query, ["Your Location Here"]).then(function (result) {
+        // Check if data has been added correctly
+        var searchQuery = "SELECT * FROM userData";
+        $cordovaSQLite.execute(db, searchQuery, []).then(function (result) {
             if (result.rows.length > 0) {
                 console.log("SELECTED -> " + result.rows.item(0).name + " " + result.rows.item(0).location);
             } else {
