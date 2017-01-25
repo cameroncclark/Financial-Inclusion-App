@@ -80,30 +80,6 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
         });
     }
 
-    // For when the user first launches the app
-    var fillTables = function () {
-
-      // User Data
-      var query = "INSERT INTO userData (name, location) VALUES (?,?)";
-      $cordovaSQLite.execute(db, query, ["Your Name Here", "Your Location Here"]).then(function (result) {
-        console.log("INSERT ID -> " + result.insertId);
-      }, function (error) {
-        console.error(error);
-      });
-
-      var searchQuery = "SELECT name, location FROM userData WHERE location = ?";
-      $cordovaSQLite.execute(db, query, ["Your Location Here"]).then(function (result) {
-        if (result.rows.length > 0) {
-          console.log("SELECTED -> " + result.rows.item(0).name + " " + result.rows.item(0).location);
-        } else {
-          console.log("NO ROWS EXIST");
-        }
-      }, function (error) {
-        console.error(error);
-      });
-
-    }
-
     // Initialisation of databases for Android and iOS
     if (isAndroid || isIOS) {
       console.log("entered if");
@@ -116,7 +92,7 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
       $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS categories (id INTEGER PRIMARY KEY, name NVARCHAR(50), percentageComplete INTEGER)");
       $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS subcategories (url NVARCHAR(50) PRIMARY KEY, name NVARCHAR(50), percentageComplete INTEGER, categoryID INTEGER, FOREIGN KEY(categoryID) REFERENCES categories(id)");
       $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS progress (objective NVARCHAR(50) PRIMARY KEY, counter INTEGER, valueChanged TINYINT");
-      $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS settings ()");
+      //$cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS settings ()");
 
       var query = "SELECT id FROM userData";
       $cordovaSQLite.execute(db, query, []).then(function (result) {
