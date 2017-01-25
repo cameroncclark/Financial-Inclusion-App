@@ -80,6 +80,18 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
         });
     }
 
+    // For when the user first launches the app
+    var fillTables = function () {
+
+      // User Data
+      var query = "INSERT INTO userData (name, location) VALUES (?,?)";
+      $cordovaSQLite.execute(db, query, ["Your Name Here", "Your Location Here"]).then(function (result) {
+        console.log("INSERT ID -> " + result.insertId);
+      }, function (error) {
+        console.error(error);
+      });
+    }
+
     // Initialisation of databases for Android and iOS
     if (isAndroid || isIOS) {
       console.log("entered if");
@@ -94,9 +106,12 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
       $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS progress (objective NVARCHAR(50) PRIMARY KEY, counter INTEGER, valueChanged TINYINT");
       $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS settings ()");
 
-      var query = "SELECT count(id) FROM userData";
+      var query = "SELECT id FROM userData";
       $cordovaSQLite.execute(db, query, []).then(function (result) {
-        console.log("Number of rows in table " + result.rows[0]);
+        console.log("Number of rows in table " + result.rows.length);
+        if (result.rows.length == 0) {
+          fillTables();
+        }
       }, function (error) {
         console.log(error)
         console.log("Select function hasnt worked");
