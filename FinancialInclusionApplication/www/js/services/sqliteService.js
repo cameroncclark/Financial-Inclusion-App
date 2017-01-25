@@ -1,30 +1,6 @@
 fIApp.service("dbAccessor", function ($cordovaSQLite) {
     var name = "";
 
-    // For when the user first launches the app
-    this.fillTables = function () {
-
-        // User Data
-        var query = "INSERT INTO userData (name, location) VALUES (?,?)";
-        $cordovaSQLite.execute(db, query, ["Your Name Here", "Your Location Here"]).then(function (result) {
-            console.log("INSERT ID -> " + result.insertId);
-        }, function (error) {
-            console.error(error);
-        });
-
-        var searchQuery = "SELECT name, location FROM userData WHERE location = ?";
-        $cordovaSQLite.execute(db, query, ["Your Location Here"]).then(function (result) {
-            if (result.rows.length > 0) {
-                console.log("SELECTED -> " + result.rows.item(0).name + " " + result.rows.item(0).location);
-            } else {
-                console.log("NO ROWS EXIST");
-            }
-        }, function (error) {
-            console.error(error);
-        });
-
-    }
-
     this.setName = function (fullname) {
         name = fullname;
     }
