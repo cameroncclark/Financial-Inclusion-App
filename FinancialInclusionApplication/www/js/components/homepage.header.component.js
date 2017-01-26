@@ -3,7 +3,7 @@ fIApp.component("headerBar",{
     controller: function homePageHeaderCtrl($scope, $ionicModal, $ionicPopup, $timeout,dbAccessor){
         $scope.updateProfile = true;
 
-        $scope.userProfile = {name: "Your Name Here", location: "Your Location Here"};
+        $scope.userProfile = {name: "Cammy", location: "Clark"};
         $scope.userProfileUpdate = {};
         $scope.image = 'img/stuart.png';
                 
@@ -14,6 +14,7 @@ fIApp.component("headerBar",{
         $scope.cammyImage = 'img/cammy.png';
 
         $scope.initialise = function(){
+            console.log("Entered Initialise Funciton");
             $scope.userProfile = dbAccessor.selectUserDetails();
         }
         

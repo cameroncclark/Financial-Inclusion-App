@@ -49,21 +49,25 @@ fIApp.service("dbAccessor", function ($cordovaSQLite) {
 
     };
 
+    // Check if data has been added correctly
     this.selectUserDetails = function () {
+        console.log("Entered selectUserDetails");
         var response = {}; 
-        var query = "SELECT name, location FROM userData";
-        $cordovaSQLite.execute(db, query).then(function (result) {
+        var searchQuery = "SELECT * FROM userData";
+        $cordovaSQLite.execute(db, searchQuery, []).then(function (result) {
             if (result.rows.length > 0) {
-                console.log(result.rows.item(0));
+                console.log("SELECTED THE RIGHT THING -> " + result.rows.item(0).name + " " + result.rows.item(0).location);
                 response.name = result.rows.item(0).name;
                 response.location = result.rows.item(0).location;
                 console.log(response);
+                return response;
             } else {
                 console.log("NO ROWS EXIST");
             }
         }, function (error) {
             console.error(error);
         });
+
     };
 
 

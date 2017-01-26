@@ -85,23 +85,23 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
 
         // User Data
         var query = "INSERT INTO userData (name, location) VALUES (?,?)";
-        $cordovaSQLite.execute(db, query, ["Your Name Here", "Your Location Here"]).then(function (result) {
+        $cordovaSQLite.execute(db, query, ["Liam O Dee", "Celtic Park"]).then(function (result) {
             console.log("INSERT ID -> " + result.insertId);
         }, function (error) {
             console.error(error);
         });
 
-        // Check if data has been added correctly
-        var searchQuery = "SELECT * FROM userData";
-        $cordovaSQLite.execute(db, searchQuery, []).then(function (result) {
-            if (result.rows.length > 0) {
-                console.log("SELECTED -> " + result.rows.item(0).name + " " + result.rows.item(0).location);
-            } else {
-                console.log("NO ROWS EXIST");
-            }
-        }, function (error) {
-            console.error(error);
-        });
+        // // Check if data has been added correctly
+        // var searchQuery = "SELECT * FROM userData";
+        // $cordovaSQLite.execute(db, searchQuery, []).then(function (result) {
+        //     if (result.rows.length > 0) {
+        //         console.log("SELECTED -> " + result.rows.item(0).name + " " + result.rows.item(0).location);
+        //     } else {
+        //         console.log("NO ROWS EXIST");
+        //     }
+        // }, function (error) {
+        //     console.error(error);
+        // });
 
     }
 
