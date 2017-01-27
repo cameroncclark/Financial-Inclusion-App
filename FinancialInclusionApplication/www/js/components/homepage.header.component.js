@@ -4,13 +4,6 @@ fIApp.component("headerBar", {
         $scope.updateProfile = true;
         $scope.userProfileUpdate = {};
 
-        $scope.imageUpdate = {};
-        $scope.stuartImage = 'img/stuart.png';
-        $scope.liamImage = 'img/liam.png';
-        $scope.angusImage = 'img/angus.png';
-        $scope.cammyImage = 'img/cammy.png';
-
-
         $ionicModal.fromTemplateUrl('templates/homePageHeaderTrophy.html', {
             scope: $scope
         }).then(function (modal) {
