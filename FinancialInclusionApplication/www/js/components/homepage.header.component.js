@@ -10,8 +10,6 @@ fIApp.component("headerBar", {
         $scope.angusImage = 'img/angus.png';
         $scope.cammyImage = 'img/cammy.png';
 
-        console.log($rootScope.userName.avatar);
-
         $ionicModal.fromTemplateUrl('templates/homePageHeaderTrophy.html', {
             scope: $scope
         }).then(function (modal) {
