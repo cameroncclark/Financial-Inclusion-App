@@ -117,7 +117,7 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
       console.log("entered if");
       db = $cordovaSQLite.openDB({ name: 'my.db', location: 'default' });
 
-      $cordovaSQLite.execute(db, "DROP TABLE userData");
+      //$cordovaSQLite.execute(db, "DROP TABLE userData");
 
       // Initialise all tables
       $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS people (id INTEGER PRIMARY KEY, firstname TEXT, lastname TEXT)");

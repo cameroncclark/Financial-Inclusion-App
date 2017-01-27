@@ -31,34 +31,23 @@ fIApp.service("dbAccessor", function ($cordovaSQLite) {
         console.log("Entered the Update Name function: "+ newName);
         var query = "UPDATE userData SET name = ? WHERE name = ?";
         $cordovaSQLite.execute(db, query,[newName, previousName]).then(function(result){
-            this.selectUserDetails();
+            console.log("In the then part");
         }, function (error){
             console.error(error);
         });
     };
     
     // This will be a function to update the users location
-    this.updateLocation = function (location){
-        console.log("Entered the Update Location function: " + location);
-        var query = "UPDATE userData SET location = ?";
-        $cordovaSQLite.execute(db, query,[location]).then(function(result){
+    this.updateLocation = function (previousLocation, newLocation){
+        console.log("Entered the Update Location function: " + newLocation);
+        var query = "UPDATE userData SET location = ? WHERE location = ?";
+        $cordovaSQLite.execute(db, query,[newLocation, previousLocation]).then(function(result){
             console.log(result.rows.item(0));
         }, function (error){
             console.error(error);
         });
     };
 
-    this.insertName = function (name) {
-        console.log("in the insert function");
-        var query = "INSERT INTO userData (firstname, lastname) VALUES (?,?)";
-        console.log("made query");
-        $cordovaSQLite.execute(db, query, [firstname, lastname]).then(function (result) {
-            console.log("INSERT ID -> " + result.insertId);
-        }, function (error) {
-            console.error(error);
-        });
-
-    };
 
     // Check if data has been added correctly
     this.selectUserDetails = function () {

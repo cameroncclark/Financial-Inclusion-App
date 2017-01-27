@@ -93,10 +93,10 @@ fIApp.component("headerBar",{
                 
             }
             if($scope.userProfileUpdate.location){
-            console.log("location changed: " + $scope.userProfileUpdate.location );
+            previousValue = $rootScope.userName.location;
                 $rootScope.userName.location = $scope.userProfileUpdate.location;
                 parameter = $scope.userProfileUpdate.location;
-                dbAccessor.updateLocation(parameter);
+                dbAccessor.updateLocation(previousValue, parameter);
             }
 
             $scope.userProfileUpdate = {};
