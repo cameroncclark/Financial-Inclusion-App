@@ -3,7 +3,6 @@ fIApp.component("headerBar", {
     controller: function homePageHeaderCtrl($scope, $ionicModal, $ionicPopup, $timeout, $rootScope, dbAccessor) {
         $scope.updateProfile = true;
         $scope.userProfileUpdate = {};
-        $scope.image = 'img/stuart.png';
 
         $scope.imageUpdate = {};
         $scope.stuartImage = 'img/stuart.png';
@@ -79,7 +78,10 @@ fIApp.component("headerBar", {
 
 
         $scope.updateImage = function (imageChange) {
-            $scope.image = imageChange;
+            var previousValue = "";
+            previousValue = $rootScope.userName.avatar;
+            $rootScope.userName.avatar = imageChange;
+            dbAccessor.updateAvatar(previousValue, imageChange);
         }
 
         $scope.updateUserProfile = function () {
@@ -99,13 +101,7 @@ fIApp.component("headerBar", {
                 dbAccessor.updateLocation(previousValue, parameter);
             }
 
-            if ($scope.userProfileUpdate.avatar) {
-                previousValue = $rootScope.userName.avatar;
-                $rootScope.userName.avatar = $scope.userProfileUpdate.avatar;
-                parameter = $scope.userProfileUpdate.avatar;
-                dbAccessor.updateAvatar(previousValue, parameter);
-                //$scope.image = imageChange;
-            }
+            
 
             $scope.userProfileUpdate = {};
             $scope.closeProfile();
