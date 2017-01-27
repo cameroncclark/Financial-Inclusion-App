@@ -4,13 +4,12 @@ fIApp.controller('AnswersCtrl', function ($scope, $http, $stateParams, $ionicPop
 
     $http.get('content/quizzes/' + $stateParams.quizData.path)
     .then(function (response) {
-      $scope.quizData = response.data;
-      $scope.quizPath = $stateParams.quizData.path;
-      $scope.name = $scope.quizData.title;
-    //   $scope.correctDisplay = countCorrectAnswers() +"/"+$scope.data.answerTracker.length;
-    $scope.correctDisplay = countCorrectAnswers()/$scope.data.answerTracker.length * 100;
-      $scope.correctPercentage = countCorrectAnswers()/$scope.data.answerTracker.length;
-      console.log($location.path());
+        $scope.quizData = response.data;
+        $scope.quizPath = $stateParams.quizData.path;
+        $scope.name = $scope.quizData.title;
+        $scope.correctDisplay = countCorrectAnswers()/$scope.data.answerTracker.length * 100;
+        $scope.correctPercentage = countCorrectAnswers()/$scope.data.answerTracker.length;
+        //   console.log($location.path());
     });
 
     var countCorrectAnswers = function(){
@@ -22,11 +21,4 @@ fIApp.controller('AnswersCtrl', function ($scope, $http, $stateParams, $ionicPop
         }
         return correctAnswers;
     }
-
-    $scope.showQuestionAlert = function(question, index) {
-        var alertPopup = $ionicPopup.alert({
-            title: question.questionText,
-            template: question.reason[index]
-        });
-    };
 });

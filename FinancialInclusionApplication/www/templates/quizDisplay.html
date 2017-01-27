@@ -6,7 +6,7 @@
       </button>
   </ion-nav-buttons>
   <ion-content class="padding has-footer">
-    <!--Display multiple choice questions-->
+    <!--Display multiple choice text questions-->
     <div class = "padding" ng-if="activeQuestion.questionType == 'multipleChoice'">
         <h1 class="centered">Question: {{questionIndex + 1}}</h1>
         <h2 class="justified">{{activeQuestion.questionText}}</h2>
@@ -14,6 +14,7 @@
             <ion-radio class="item-text-wrap" ng-repeat="answer in activeQuestion.answers" ng-model="userAnswers.currentAnswer" ng-value="$index">{{answer}}</ion-radio>
         </ion-list>
     </div>
+    <!--Display multiple choice picture questions-->
     <div ng-if="activeQuestion.questionType == 'choosePicture'">
         <h1 class="centered">Question: {{questionIndex + 1}}</h1>
         <h2 class="justified">{{activeQuestion.questionText}}</h2>

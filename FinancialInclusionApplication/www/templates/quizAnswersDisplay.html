@@ -44,11 +44,17 @@
                      {{questions.questionText}}
                 </p>
                 <br>
-                <p>
+                <span ng-if= "quizData.questions[$index].questionType == 'multipleChoice'">
                     <h2>You Answered:</h2>
                     {{questions.answers[data.previousAnswers[$index]]}}<br>
                     <span class="italic">{{questions.reason[data.previousAnswers[$index]]}}</span>
-                </p>               
+                </span>
+                <span ng-show= "quizData.questions[$index].questionType == 'choosePicture'">
+                    <h2>You Answered:</h2>
+                    <div class=""><img class="quiz-Image" ng-src="img/{{questions.answers[data.previousAnswers[$index]]}}"></div>
+                    <br>
+                    <span class="italic">{{questions.reason[data.previousAnswers[$index]]}}</span>
+                </span>               
             </div>
         </li>
     </ul>
