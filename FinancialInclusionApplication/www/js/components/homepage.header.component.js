@@ -1,9 +1,7 @@
 fIApp.component("headerBar",{
     templateUrl:"templates/homepage.header.html",
-    controller: function homePageHeaderCtrl($scope, $ionicModal, $ionicPopup, $timeout,dbAccessor){
+    controller: function homePageHeaderCtrl($scope, $ionicModal, $ionicPopup, $timeout, $rootScope, dbAccessor){
         $scope.updateProfile = true;
-
-        $scope.userProfile = {name: "Cammy", location: "Clark"};
         $scope.userProfileUpdate = {};
         $scope.image = 'img/stuart.png';
                 
@@ -13,10 +11,6 @@ fIApp.component("headerBar",{
         $scope.angusImage = 'img/angus.png';
         $scope.cammyImage = 'img/cammy.png';
 
-        $scope.initialise = function(){
-            console.log("Entered Initialise Funciton");
-            $scope.userProfile = dbAccessor.selectUserDetails();
-        }
         
         $ionicModal.fromTemplateUrl('templates/homePageHeaderTrophy.html', {
             scope: $scope
@@ -42,6 +36,7 @@ fIApp.component("headerBar",{
 
         $scope.openTrophy = function() {
             $scope.modalTrophy.show();
+            console.log("Trophy opened");
         };
 
         $scope.closeProfile = function() {
@@ -88,14 +83,20 @@ fIApp.component("headerBar",{
         }
 
         $scope.updateUserProfile = function() {
-            if($scope.userProfileUpdate.name){       
-                $scope.userProfile.name = $scope.userProfileUpdate.name;
-                dbAccessor.updateName($scope.userProfile.name, 'L');
-                dbAccessor.selectName('L');
+        var parameter = "";
+        var previousValue = "";
+            if($scope.userProfileUpdate.name){
+            previousValue = $rootScope.userName.name;
+                $rootScope.userName.name = $scope.userProfileUpdate.name;
+                parameter = $scope.userProfileUpdate.name;
+                dbAccessor.updateName(previousValue, parameter);
                 
             }
             if($scope.userProfileUpdate.location){
-            $scope.userProfile.location = $scope.userProfileUpdate.location;
+            console.log("location changed: " + $scope.userProfileUpdate.location );
+                $rootScope.userName.location = $scope.userProfileUpdate.location;
+                parameter = $scope.userProfileUpdate.location;
+                dbAccessor.updateLocation(parameter);
             }
 
             $scope.userProfileUpdate = {};
