@@ -48,7 +48,7 @@
 }
 
 .content-Image{
-    text-align: center;
+    tezxt-align: center;
 }
 
 .content-Link{
@@ -83,6 +83,15 @@
 
 .quiz-Answer-False-Container{
     background: #ea9388;
+}
+
+.quiz-Image {
+    /*max-width: 75vw;*/
+    max-width: 100%;
+    height: auto;
+    width: auto;
+    border: 1px solid black;
+    text-align: center;
 }
 
 /*Source for embed CSS: https://avexdesigns.com/responsive-youtube-embed/*/
