@@ -1,6 +1,7 @@
 fIApp.service("dbAccessor", function ($cordovaSQLite) {
     var name = "";
     var location = "";
+    var avatar = "";
 
     this.setName = function (userName) {
         name = userName;
@@ -18,6 +19,14 @@ fIApp.service("dbAccessor", function ($cordovaSQLite) {
         return location;
     }
 
+    this.setAvatar = function (userAvatar){
+        avatar = userAvatar;
+    }
+
+    this.getAvatar = function(){
+        return avatar;
+    }
+
     this.testPrint = function () {
         console.log("Testing print method");
     }
@@ -31,7 +40,7 @@ fIApp.service("dbAccessor", function ($cordovaSQLite) {
         console.log("Entered the Update Name function: "+ newName);
         var query = "UPDATE userData SET name = ? WHERE name = ?";
         $cordovaSQLite.execute(db, query,[newName, previousName]).then(function(result){
-            console.log("In the then part");
+            this.selectUserDetails();
         }, function (error){
             console.error(error);
         });
@@ -42,12 +51,22 @@ fIApp.service("dbAccessor", function ($cordovaSQLite) {
         console.log("Entered the Update Location function: " + newLocation);
         var query = "UPDATE userData SET location = ? WHERE location = ?";
         $cordovaSQLite.execute(db, query,[newLocation, previousLocation]).then(function(result){
-            console.log(result.rows.item(0));
+            this.selectUserDetails();
         }, function (error){
             console.error(error);
         });
     };
 
+    // This will be a function to update the users avatar
+    this.updateAvatar = function (previousAvatar, newAvatar) {
+        console.log("Entered the Update Avatar Function: " + newAvatar);
+        var query = "UPDATE userData SET avatar = ? WHERE avatar = ?";
+        $cordovaSQLite.execute(db, query, [previousAvatar, newAvatar]).then(function(result){
+            this.selectUserDetails();
+        }, function (error) {
+            console.error(error);
+        });
+    };
 
     // Check if data has been added correctly
     this.selectUserDetails = function () {
@@ -56,9 +75,10 @@ fIApp.service("dbAccessor", function ($cordovaSQLite) {
         var searchQuery = "SELECT * FROM userData";
         $cordovaSQLite.execute(db, searchQuery, []).then(function (result) {
             if (result.rows.length > 0) {
-                console.log("SELECTED THE RIGHT THING -> " + result.rows.item(0).name + " " + result.rows.item(0).location);
+                console.log("SELECTED THE RIGHT THING -> " + result.rows.item(0).name + " " + result.rows.item(0).location + " " + result.rows.item(0).avatar);
                 response.name = result.rows.item(0).name;
                 response.location = result.rows.item(0).location;
+                response.avatar = result.rows.item(0).avatar;
                 console.log(response);
                 return response;
             } else {

@@ -84,8 +84,8 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
     var fillTables = function () {
 
         // User Data
-        var query = "INSERT INTO userData (name, location) VALUES (?,?)";
-        $cordovaSQLite.execute(db, query, ["Your name here", "Your location here"]).then(function (result) {
+        var query = "INSERT INTO userData (name, location, avatar) VALUES (?,?,?)";
+        $cordovaSQLite.execute(db, query, ["Your name here", "Your location here", "img/liam2.png"]).then(function (result) {
             console.log("INSERT ID -> " + result.insertId);
         }, function (error) {
             console.error(error);
@@ -100,7 +100,8 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
              if (result.rows.length > 0) {
                 userName.name = result.rows.item(0).name;
                 userName.location = result.rows.item(0).location;
-                 console.log("SELECTED -> " + result.rows.item(0).name + " " + result.rows.item(0).location);
+                userName.avatar = result.rows.item(0).avatar;
+                 console.log("SELECTED -> " + result.rows.item(0).name + " " + result.rows.item(0).location + " " + results.rows.item(0).avatar);
                  $rootScope.userName = userName;
                  console.log("Initial username: " + $rootScope.userName);
              } else {
@@ -117,15 +118,14 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
       console.log("entered if");
       db = $cordovaSQLite.openDB({ name: 'my.db', location: 'default' });
 
-      //$cordovaSQLite.execute(db, "DROP TABLE userData");
-
       // Initialise all tables
-      $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS people (id INTEGER PRIMARY KEY, firstname TEXT, lastname TEXT)");
-      $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS userData (id INTEGER PRIMARY KEY, name TEXT, location TEXT)");
+      $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS userData (id INTEGER PRIMARY KEY, name TEXT, location TEXT, avatar TEXT)");
       $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS trophies (id INTEGER PRIMARY KEY, title TEXT, image TEXT, description TEXT, hint TEXT, acquired TINYINT)");
       $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS categories (id INTEGER PRIMARY KEY, name NVARCHAR(50), percentageComplete INTEGER)");
       $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS subcategories (url NVARCHAR(50) PRIMARY KEY, name NVARCHAR(50), percentageComplete INTEGER, categoryID INTEGER, FOREIGN KEY(categoryID) REFERENCES categories(id)");
       $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS progress (objective NVARCHAR(50) PRIMARY KEY, counter INTEGER, valueChanged TINYINT");
+      
+      //TO DO (CREATE A NEW TABLE FOR SETTINGS)
       //$cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS settings ()");
 
       var query = "SELECT id FROM userData";
