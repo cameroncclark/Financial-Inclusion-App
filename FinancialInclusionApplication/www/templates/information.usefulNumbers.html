@@ -1,17 +1,17 @@
 <ion-view view-title="{{name}}">
-
-    <ion-nav-buttons side="right">
-        <button class="button" style="border: 0px !important;">
+  <ion-nav-buttons side="right">
+    <button class="button" style="border: 0px !important;">
             <b class = "icon ion-ios-telephone"></b>
         </button>
-    </ion-nav-buttons>
-
-    <ion-content class="padding">
-            <div class="list">
-                <a ng-repeat="num in numbersList"class="item item-icon-right" ng-href="tel:{{num.number}}">
-                    <i class="icon ion-ios-telephone"></i>
-                    {{num.name}}
-                </a>
-            </div>
-    </ion-content>
+  </ion-nav-buttons>
+  <ion-content class="padding">
+    <div class="list">
+      <div ng-repeat="num in numbersList" class="item item-icon-right" ng-click="showDetails = ! showDetails">
+        <a ng-href="tel:{{num.number}}"><i class="icon ion-ios-telephone"></i></a> {{num.name}}
+        <div class="quiz-Answer-Display" ng-class="{'hidden':!showDetails}">
+          <hr> {{num.blurb}}
+        </div>
+      </div>
+    </div>
+  </ion-content>
 </ion-view>
