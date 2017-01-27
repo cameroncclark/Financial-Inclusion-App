@@ -7,8 +7,20 @@
 </ion-nav-buttons>
 <ion-content class="padding">
     <h1 class="centered">
-        Score = {{correctDisplay}}!
+        Quiz Results
     </h1>
+    <h2 class="centered">
+        You got {{correctDisplay}}% 
+    </h2>
+    <h4 ng-if="correctDisplay<70" class="centered">
+        Better Luck Next Time! 
+    </h4>
+    <h4 ng-if="correctDisplay>69 && correctDisplay<100" class="centered">
+        Well Done! So Close To 100%
+    </h4>
+    <h4 ng-if="correctDisplay==100" class="centered">
+        Amazing! Well Done!
+    </h4>
     <ul class="list">
         <li class="item quiz-Answer-Display-Text justified" ng-class="data.answerTracker[$index] ? 'quiz-Answer-True-Container' : 'quiz-Answer-False-Container'" ng-repeat="questions in quizData.questions" ng-click="showDetails = ! showDetails">
             <div class="row">
@@ -32,11 +44,17 @@
                      {{questions.questionText}}
                 </p>
                 <br>
-                <p>
+                <span ng-if= "quizData.questions[$index].questionType == 'multipleChoice'">
                     <h2>You Answered:</h2>
                     {{questions.answers[data.previousAnswers[$index]]}}<br>
                     <span class="italic">{{questions.reason[data.previousAnswers[$index]]}}</span>
-                </p>               
+                </span>
+                <span ng-show= "quizData.questions[$index].questionType == 'choosePicture'">
+                    <h2>You Answered:</h2>
+                    <div class=""><img class="quiz-Image" ng-src="img/{{questions.answers[data.previousAnswers[$index]]}}"></div>
+                    <br>
+                    <span class="italic">{{questions.reason[data.previousAnswers[$index]]}}</span>
+                </span>               
             </div>
         </li>
     </ul>
