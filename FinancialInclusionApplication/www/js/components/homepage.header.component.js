@@ -75,8 +75,6 @@ fIApp.component("headerBar", {
             }
         };
 
-
-
         $scope.updateImage = function (imageChange) {
             var previousValue = "";
             previousValue = $rootScope.userName.avatar;
@@ -101,7 +99,7 @@ fIApp.component("headerBar", {
                 dbAccessor.updateLocation(previousValue, parameter);
             }
 
-            
+         
 
             $scope.userProfileUpdate = {};
             $scope.closeProfile();

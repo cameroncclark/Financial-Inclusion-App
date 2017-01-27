@@ -85,7 +85,7 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
 
         // User Data
         var query = "INSERT INTO userData (name, location, avatar) VALUES (?,?,?)";
-        $cordovaSQLite.execute(db, query, ["Your name here", "Your location here", "img/liam2.png"]).then(function (result) {
+        $cordovaSQLite.execute(db, query, ["Your name here", "Your location here", "img/liam.png"]).then(function (result) {
             console.log("INSERT ID -> " + result.insertId);
         }, function (error) {
             console.error(error);
