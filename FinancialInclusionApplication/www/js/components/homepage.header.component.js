@@ -100,11 +100,11 @@ fIApp.component("headerBar", {
             }
 
             if ($scope.userProfileUpdate.avatar) {
-                previousValue - $rootScope.userName.avatar;
+                previousValue = $rootScope.userName.avatar;
                 $rootScope.userName.avatar = $scope.userProfileUpdate.avatar;
                 parameter = $scope.userProfileUpdate.avatar;
                 dbAccessor.updateAvatar(previousValue, parameter);
-                $scope.image = imageChange;
+                //$scope.image = imageChange;
             }
 
             $scope.userProfileUpdate = {};

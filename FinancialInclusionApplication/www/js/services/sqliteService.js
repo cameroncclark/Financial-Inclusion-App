@@ -61,7 +61,7 @@ fIApp.service("dbAccessor", function ($cordovaSQLite) {
     this.updateAvatar = function (previousAvatar, newAvatar) {
         console.log("Entered the Update Avatar Function: " + newAvatar);
         var query = "UPDATE userData SET avatar = ? WHERE avatar = ?";
-        $cordovaSQLite.execute(db, query, [previousAvatar, newAvatar]).then(function(result){
+        $cordovaSQLite.execute(db, query, [newAvatar, previousAvatar]).then(function(result){
             this.selectUserDetails();
         }, function (error) {
             console.error(error);
