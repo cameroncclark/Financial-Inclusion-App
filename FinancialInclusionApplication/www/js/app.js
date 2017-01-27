@@ -94,16 +94,20 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
     
     var setGlobalName = function () {
     // Check if data has been added correctly
+    console.log("entered setGlobalName()");
          var searchQuery = "SELECT * FROM userData";
          var userName = {}
          $cordovaSQLite.execute(db, searchQuery, []).then(function (result) {
              if (result.rows.length > 0) {
+               console.log("rows > 0");
                 userName.name = result.rows.item(0).name;
                 userName.location = result.rows.item(0).location;
                 userName.avatar = result.rows.item(0).avatar;
-                 console.log("SELECTED -> " + result.rows.item(0).name + " " + result.rows.item(0).location + " " + results.rows.item(0).avatar);
+                console.log("About to print everything");
+                console.log("SELECTED -> " + result.rows.item(0).name + " " + result.rows.item(0).location + " " + result.rows.item(0).avatar);
+                console.log(result.rows.item(0).avatar);
                  $rootScope.userName = userName;
-                 console.log("Initial username: " + $rootScope.userName);
+                 console.log("Initial username: " + $rootScope.userName.avatar);
              } else {
                  console.log("NO ROWS EXIST");
              }
