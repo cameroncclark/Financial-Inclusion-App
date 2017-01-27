@@ -19,18 +19,30 @@
             <hr>
             -->
             <div class="list">
-                <a class="item item-icon-right" onclick="window.open('http://www.facebook.com', '_system', 'location=yes'); return false;">
-                    <i class="icon ion-ios-arrow-right"></i>
-                    Facebook
-                </a>
-                <a class="item item-icon-right" onclick="window.open('http://www.youtube.com', '_system', 'location=yes'); return false;">
-                    <i class="icon ion-ios-arrow-right"></i>
-                    YouTube
-                </a>
-                <a class="item item-icon-right" onclick="window.open('http://www.twitter.com/', '_system', 'location=yes'); return false;">
-                    <i class="icon ion-ios-arrow-right"></i>
-                    Twitter
-                </a>
+                <div ng-click="showDetails = ! showDetails" class="item item-icon-right">
+                    Facebook <i class="icon ion-ios-arrow-right"></i>
+                    <div class="quiz-Answer-Display" ng-class="{'hidden':!showDetails}">
+                        <hr>
+                        This is our offical Facebook page. 
+                        <br><br><h3 class="centered" onclick="window.open('http://www.facebook.com', '_system', 'location=yes'); return false;" >CLICK HERE FOR FACEBOOK</h3>
+                    </div>
+                </div>
+                <div ng-click="showDetails1 = ! showDetails1" class="item item-icon-right">
+                    YouTube <i class="icon ion-ios-arrow-right"></i>
+                    <div class="quiz-Answer-Display" ng-class="{'hidden':!showDetails1}">
+                        <hr>
+                        This is our offical YouTube page. 
+                        <br><br><h3 class="centered" onclick="window.open('http://www.youtube.com', '_system', 'location=yes'); return false;" >CLICK HERE FOR YOUTUBE</h3>
+                    </div>
+                </div>
+                <div ng-click="showDetails2 = ! showDetails2" class="item item-icon-right">
+                    Twitter <i class="icon ion-ios-arrow-right"></i>
+                    <div class="quiz-Answer-Display" ng-class="{'hidden':!showDetails2}">
+                        <hr>
+                        This is our offical Twitter page. 
+                        <br><br><h3 class="centered" onclick="window.open('http://www.twitter.com', '_system', 'location=yes'); return false;" >CLICK HERE FOR TWITTER</h3>
+                    </div>
+                </div>
             </div>             
     </ion-content>
 </ion-view>
