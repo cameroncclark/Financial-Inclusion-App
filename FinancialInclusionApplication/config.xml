@@ -12,7 +12,6 @@
   <access origin="tel:*" launch-external="yes"/>
   <access origin="mailto:*" launch-external="yes"/>
   <allow-navigation href="*"/>
-  <allow-navigation href="http://192.168.1.18:8100"/>
   <allow-navigation href="http://130.159.227.85:8100"/>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>

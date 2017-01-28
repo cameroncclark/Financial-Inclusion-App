@@ -8,7 +8,8 @@ var db = null;
 
 var fIApp = angular.module('financialInclusionApp', ['ionic', 'ngCordova', 'rzModule', 'ngSanitize']);
 
-fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite) {
+fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccessor) {
+
   $ionicPlatform.ready(function () {
     if (window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -21,16 +22,18 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite) {
       cordova.plugins.Keyboard.disableScroll(true);
     }
 
+    var isAndroid = ionic.Platform.isAndroid();
+    var isIOS = ionic.Platform.isIOS();
     if (window.StatusBar) {
       //StatusBar.styleDefault();
       StatusBar.hide();
     }
-    
+
     //This is going to be a map that links category ID to both the titles under that category and the urls
     //This map looks like: {1: [titles: myTitle, url: myURL]}
     //WHERE: "1" is the Category ID. "titles" is the list of titles associated with that category, "urls" is the url for the file. 
     $rootScope.topicMaps = {};
-    
+
     //All category codes that are available in the system
     var allCategoryCodes = [];
 
@@ -76,48 +79,93 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite) {
           }
         });
     }
-    db = $cordovaSQLite.openDB("my.db");
-            $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS people (id integer primary key, firstname text, lastname text)");
+
+    // For when the user first launches the app
+    var fillTables = function () {
+
+        // User Data
+        var query = "INSERT INTO userData (name, location, avatar) VALUES (?,?,?)";
+        $cordovaSQLite.execute(db, query, ["Your name here", "Your location here", "img/liam.png"]).then(function (result) {
+            console.log("INSERT ID -> " + result.insertId);
+        }, function (error) {
+            console.error(error);
+        });
+    }
+    
+    var setGlobalName = function () {
+    // Check if data has been added correctly
+         var searchQuery = "SELECT * FROM userData";
+         var userName = {name:"",location:"",avatar:"img/liam.png"}
+         $cordovaSQLite.execute(db, searchQuery, []).then(function (result) {
+             if (result.rows.length > 0) {
+                userName.name = result.rows.item(0).name;
+                userName.location = result.rows.item(0).location;
+                userName.avatar = result.rows.item(0).avatar;
+                console.log("About to print everything");
+                console.log("SELECTED -> " + result.rows.item(0).name + " " + result.rows.item(0).location + " " + result.rows.item(0).avatar);
+                console.log(result.rows.item(0).avatar);
+                 $rootScope.userName = userName;
+                 console.log("Initial username: " + $rootScope.userName.avatar);
+             } else {
+                 console.log("NO ROWS EXIST");
+             }
+         }, function (error) {
+             console.error(error);
+         });
+    }
+
+
+    // Initialisation of databases for Android and iOS
+    if (isAndroid || isIOS) {
+      console.log("entered if");
+      db = $cordovaSQLite.openDB({ name: 'my.db', location: 'default' });
+
+      //$cordovaSQLite.execute(db, "DROP TABLE userData");
+
+      // Initialise all tables
+      $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS userData (id INTEGER PRIMARY KEY, name TEXT, location TEXT, avatar TEXT)");
+      $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS trophies (id INTEGER PRIMARY KEY, title TEXT, image TEXT, description TEXT, hint TEXT, acquired TINYINT)");
+      $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS categories (id INTEGER PRIMARY KEY, name NVARCHAR(50), percentageComplete INTEGER)");
+      $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS subcategories (url NVARCHAR(50) PRIMARY KEY, name NVARCHAR(50), percentageComplete INTEGER, categoryID INTEGER, FOREIGN KEY(categoryID) REFERENCES categories(id)");
+      $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS progress (objective NVARCHAR(50) PRIMARY KEY, counter INTEGER, valueChanged TINYINT");
+      
+      //TO DO (CREATE A NEW TABLE FOR SETTINGS)
+      //$cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS settings ()");
+
+      var query = "SELECT id FROM userData";
+      $cordovaSQLite.execute(db, query, []).then(function (result) {
+        console.log("Number of rows in table " + result.rows.length);
+        if (result.rows.length == 0) {
+          fillTables();
+          setGlobalName();
+        }else{
+            setGlobalName();
+        }
+      }, function (error) {
+        console.log(error)
+        console.log("Select function hasnt worked");
+      });
+    
+       
+      console.log("You're a phone");
+    } else {
+      console.log("not a phone");
+    }
+    
+
   });
 });
 
-fIApp.controller("appCtrl", function($scope, $location, $ionicNavBarDelegate) {
-     $scope.$watch(function(){
-       return $location.path();
-     },
-     function(currentPath){
-       if (currentPath == '/quiz/answers'){
-         $ionicNavBarDelegate.showBackButton(false);
-       } else {
-          $ionicNavBarDelegate.showBackButton(true);
-       }   
-     })
+fIApp.controller("appCtrl", function ($scope, $location, $ionicNavBarDelegate) {
+  $scope.$watch(function () {
+    return $location.path();
+  },
+    function (currentPath) {
+      if (currentPath == '/quiz/answers') {
+        $ionicNavBarDelegate.showBackButton(false);
+      } else {
+        $ionicNavBarDelegate.showBackButton(true);
+      }
+    })
 });
-
-fIApp.controller("ExampleController", function($scope, $cordovaSQLite) {
- 
-  
-    $scope.insert = function(firstname, lastname) {
-        var query = "INSERT INTO people (firstname, lastname) VALUES (?,?)";
-        $cordovaSQLite.execute(db, query, [firstname, lastname]).then(function(res) {
-            console.log("INSERT ID -> " + res.insertId);
-        }, function (err) {
-            console.error(err);
-        });
-    }
- 
-    $scope.select = function(lastname) {
-        var query = "SELECT firstname, lastname FROM people WHERE lastname = ?";
-        $cordovaSQLite.execute(db, query, [lastname]).then(function(res) {
-            if(res.rows.length > 0) {
-                console.log("SELECTED -> " + res.rows.item(0).firstname + " " + res.rows.item(0).lastname);
-            } else {
-                console.log("No results found");
-            }
-        }, function (err) {
-            console.error(err);
-        });
-    }
- 
-}); 
 
