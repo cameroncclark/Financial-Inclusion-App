@@ -1,38 +1,38 @@
-fIApp.component("savingsCalculator",{
-    templateUrl:"templates/calculator.savings.html",
-    controller: function savingsCalculatorCtrl($scope, $ionicModal){
+fIApp.component("savingsCalculator", {
+    templateUrl: "templates/calculator.savings.html",
+    controller: function savingsCalculatorCtrl($scope, $ionicModal) {
 
         $ionicModal.fromTemplateUrl('templates/calculator.helpModal.html', {
             scope: $scope
-        }).then(function(modal) {
+        }).then(function (modal) {
             $scope.modalHelp = modal;
         });
 
         $ionicModal.fromTemplateUrl('templates/calculator.savingsCalcModal.html', {
             scope: $scope
-        }).then(function(modal) {
+        }).then(function (modal) {
             $scope.modalSavingAnswer = modal;
         });
 
 
 
-        $scope.closeHelp = function() {
+        $scope.closeHelp = function () {
             $scope.modalHelp.hide();
         };
 
-        $scope.openHelp = function() {
+        $scope.openHelp = function () {
             $scope.modalHelp.show();
         };
 
-        $scope.closeSavingsCalc = function() {
+        $scope.closeSavingsCalc = function () {
             $scope.modalSavingAnswer.hide();
         };
 
-        $scope.openSavingsCalc = function() {
+        $scope.openSavingsCalc = function () {
             $scope.modalSavingAnswer.show();
         };
 
-        
+
 
         $scope.test = "Savings calculator";
         $scope.slider1 = {
@@ -57,8 +57,14 @@ fIApp.component("savingsCalculator",{
             }
         };
 
-        $scope.help = "This is the help screen for the Savings Calculator.\n Adjust how much money "
-       + "you set aside each month to see how it effects the time to reach your goal.";
+        $scope.helpHeader = "Savings Calcualtor";
+        
+        $scope.helpIntro = "This calcualtor is used to calculate the amount of money you can save over a certain period of time. It does this by taking in your target goal, how much money you have saved per month as well as how much you have saved already.";
+
+        $scope.helpContent = "Within the first text box, enter how much money you want to save. In the second, enter how much money you can afford to save per month. Finally, enter how much money you have already saved in the final text box then press the calcualte button to retrieve your answer!"
+
+        $scope.helpHint = "Handy hint: Take a screenshot of your result so that you can review it later!"
+
     }
 
 });
