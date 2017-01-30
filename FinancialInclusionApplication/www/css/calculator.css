@@ -55,6 +55,15 @@
     height: 75vh;
 }
 
+.welcomeScreenWrapper{
+    margin: 2vh;
+    padding: 2vh 2vh;
+    border: 0.1rem solid black;
+    background: #e6ffff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    height: 100%;
+}
+
 .headerLine{
     border-bottom: 0.5vh solid white; 
     margin: 0 3vh 2vh 3vh;
