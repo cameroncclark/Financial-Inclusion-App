@@ -12,7 +12,7 @@
     <a class="calcBodyText">How much have you currently saved? <span style="color: lightgrey"> (in £)</span></a>
     <div class="list list-inset">
         <label class="item item-input">
-            <input type="number" placeholder="Current Savings (in £)" ng-model="currentlySaved" pattern="\d*">
+            <input type="number" placeholder="Current Savings (in £)" ng-model="currentlySaved" pattern="\d*" min="1">
         </label>
     </div>
 </div>
@@ -21,7 +21,7 @@
     <a class="calcBodyText">What is your annual interest rate? <span style="color: lightgrey"> (in %)</span></a>
     <div class="list list-inset">
         <label class="item item-input">
-            <input type="number" placeholder="Annual Interest Rate (in %)" ng-model="interestRate">
+            <input type="number" placeholder="Annual Interest Rate (in %)" ng-model="interestRate" min="0.01">
         </label>
     </div>
 </div>
