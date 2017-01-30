@@ -5,6 +5,7 @@
     bottom: 10vh;
     min-height: 0% !important;
     box-shadow: 0 0 100px 10px rgba(0,0,0,0.9);
+    border-radius: 1vh;
 }
 
 .trophyHeading {

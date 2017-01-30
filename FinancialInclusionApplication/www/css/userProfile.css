@@ -3,8 +3,10 @@
     top: 20vh; 
     left: 10vw; 
     bottom: 20vh;
+    height: 62vh;
     min-height: 0% !important;
     box-shadow: 0 0 100px 10px rgba(0,0,0,0.9);
+    border-radius: 1vh;
 }
 
 .userProfileHeading {
@@ -27,4 +29,32 @@
     max-width: 9vh;
     max-height: 10vh;
     border: 2px solid ghostwhite;
+}
+
+.userInput{
+    padding: 0vw 5vw 0vw 5vw;
+    margin-bottom: 3vh;
+}
+
+.userInputBox{
+    border: 1px solid #C2C2C2;;
+    margin-bottom: 1vh;
+    padding: 0vw 3vw 0vw 3vw;
+    border-radius: 1vh;
+    box-shadow: 1px 1px 4px #EBEBEB;
+    -moz-box-shadow: 1px 1px 4px #EBEBEB;
+    -webkit-box-shadow: 1px 1px 4px #EBEBEB;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+}
+
+.closeButton{
+    font-size: 2em;
+    right: 3vw;
+    position: absolute;
+}
+
+.settingsMargin{
+    margin-bottom: 2vh;
 }
