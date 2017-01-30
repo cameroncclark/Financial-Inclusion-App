@@ -81,7 +81,7 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
     }
 
     // For when the user first launches the app
-    var fillTables = function () {
+    var fillTables = function () {git
 
         // User Data
         var query = "INSERT INTO userData (name, location, avatar) VALUES (?,?,?)";
