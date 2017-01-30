@@ -1,13 +1,14 @@
 <ion-modal-view class="trophyContainer">
     <ion-header-bar class="trophyHeading">
-        <h1 class="title">Help</h1>
+        <h1 class="title">{{helpHeader}}</h1>
         <div class="buttons">
             <i class = "icon icon ion-close-circled modalCloseButton" ng-click="closeHelp()"></i>
         </div>
     </ion-header-bar>
     <ion-content>
-        <div class="padding">
-           <a>{{help}}</a>
+        <div class="padding ">
+            <div class="helpHeader"><b>Help</b><br></div>
+           <a class="helpContent">{{helpIntro}} <br><br> {{helpContent}} <br><br> <i>{{helpHint}}</i></a>
         </div>
     </ion-content>
 </ion-modal-view>

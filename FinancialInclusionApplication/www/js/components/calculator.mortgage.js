@@ -54,7 +54,14 @@ fIApp.component("mortgageCalculator",{
             }
         };
 
-        $scope.help = "This is the help screen for the Mortgage Calculator";
+        $scope.helpHeader = "Mortgage Calculator";
+        
+        $scope.helpIntro = "This calculator is usde to calculate mortgage repayments. It does this by taking in the amount of money you want to recieve in a mortgage, the interest rate of the mortgage and how many years you want to take in order to pay it off.";
+
+        $scope.helpContent = "Within the first text box enter the amount of money that you wish to take out on a mortgage and within the second text box enter the interest rate for the mortgage that you have taken out. Use the slider to input the number of years that you wish to take to repay the morgage and then press the calcuate button to retrieve your result."
+
+        $scope.helpHint = "Handy hint: Take a screenshot of your result so that you can review it later!"
+
     }
 
 });

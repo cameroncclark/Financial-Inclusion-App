@@ -2,7 +2,7 @@ fIApp.component("welcomeCalculator",{
     templateUrl:"templates/calculator.welcome.html",
     controller: function welcomeCalculatorCtrl($scope){
 
-        $scope.test = "Welcome calculator";
+        $scope.test = "Welcome";
         $scope.slider1 = {
             value: 10,
             options: {
