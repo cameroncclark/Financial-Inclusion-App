@@ -2,51 +2,50 @@
 
 <div style="text-align:center; margin-bottom:2vh;">
     <a class="headingText">{{test}}</a>
+    <div class="helpButton">
+    <button class="roundbtn" style="border: 0px !important;"ng-click="openHelp()">
+        <b class = "icon icon ion-help"></b>
+    </button>
+    
+</div>
 </div>
 
 <div class="headerLine"></div>
 
 <div></div>
 <div class="savingsSlider">
-    <a class="calcBodyText">What is your savings goal? <span style="color: lightgrey"> (in £)</span></a>
-    <div class="list list-inset">
-        <label class="item item-input">
-            <input type="number" style = "font-size: 0.8em" placeholder="Savings Goal (in £)" ng-model="savingsGoalValue" pattern="\d*">
-        </label>
+    <div class="calcTextAbove">
+    <a class="calcBodyText">What is your savings goal?</a>
     </div>
+ <div class="calcInput">
+            <input type="number" style = "font-size: 0.8em" placeholder="£" ng-model="savingsGoalValue" pattern="\d*">
+ </div>
 </div>
 
 <div class="savingsSlider">
-    <a class="calcBodyText">How much can you save per month? <span style="color: lightgrey"> (in £)</span></a>
-    <div class="list list-inset">
-        <label class="item item-input">
-            <input type="number" style = "font-size: 0.8em" placeholder="Savings Per Month (in £)" ng-model="perMonthValue" pattern="\d*">
-        </label>
+    <div class="calcTextAbove">
+    <a class="calcBodyText">How much can you save per month?</a>
     </div>
+    <div class="calcInput">
+            <input type="number" style = "font-size: 0.8em" placeholder="£" ng-model="perMonthValue" pattern="\d*">
+       </div>
 </div>
 
 <div class="savingsSlider">
-    <a class="calcBodyText">How much have you already saved? <span style="color: lightgrey"> (in £)</span></a>
-    <div class="list list-inset">
-        <label class="item item-input">
-            <input type="number" style = "font-size: 0.8em" placeholder="Already Saved (in £)" ng-model="alreadySavedValue" pattern="\d*">
-        </label>
+    <div class="calcTextAbove">
+    <a class="calcBodyText">How much have you already saved?</a>
+    </div>
+ <div class="calcInput">
+            <input type="number" style = "font-size: 0.8em" placeholder="£" ng-model="alreadySavedValue" pattern="\d*">
     </div>
 </div>
 
-<div class="buttonWrapper">
-<div class="helpButton">
-    <button class="roundbtn" style="border: 0px !important;"ng-click="openHelp()">
-        <b class = "icon icon ion-help"></b>
-    </button>
-    
-</div>
 
 
-<button class="calculateButton" ng-click="openSavingsCalc()">
-    CALCULATE
-</button>
-</div>
+
+
+<button class="button button-block button-positive" type="submit">Calculate</button>
+
 
 
 </div>

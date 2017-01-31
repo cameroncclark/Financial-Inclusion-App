@@ -2,6 +2,12 @@
 
 <div style="text-align:center; margin-bottom:2vh;">
     <a class="headingText">{{test}}</a>
+    <div class="helpButton">
+    <button class="roundbtn" style="border: 0px !important;"ng-click="openHelp()">
+        <b class = "icon icon ion-help"></b>
+    </button>
+    
+</div>
 </div>
 
 <div class="headerLine"></div>
@@ -9,40 +15,31 @@
 <div></div>
 
 <div class="savingsSlider">
-    <a class="calcBodyText">Amount you want to recieve?<span style="color: lightgrey"> (in £)</span></a>
-    <div class="list list-inset">
-        <label class="item item-input">
-            <input type="text" placeholder="Amount (in £)" ng-model="desiredAmount" pattern="\d*">
-        </label>
+    <div class="calcTextAbove">
+    <a class="calcBodyText">Amount you want to recieve?</a>
+    </div>
+    <div class="calcInput">
+            <input type="text" placeholder="£" ng-model="desiredAmount" pattern="\d*">
     </div>
 </div>
 
 <div class="savingsSlider">
-    <a class="calcBodyText">Interest rate<span style="color: lightgrey"> (in %)</span></a>
-    <div class="list list-inset">
-        <label class="item item-input">
-            <input type="text" placeholder="Interest Rate (in %)" ng-model="interestRate">
-        </label>
+    <div class="calcTextAbove">
+    <a class="calcBodyText">Interest rate</a>
+    </div>
+    <div class="calcInput">
+            <input type="text" placeholder="%" ng-model="interestRate">
+     
     </div>
 </div>
 
 <div class="savingsSlider">
+    <div class="calcTextAbove">
     <a class="calcBodyText">Mortgage period?<span style="color: lightgrey"> (in years)</span></a>
+    </div>
     <rzslider rz-slider-model="slider2.value"
         rz-slider-high="slider2.maxValue"
         rz-slider-options="slider2.options"></rzslider>
 </div>
 
-<div class="buttonWrapper">
-<div class="helpButton">
-    <button class="roundbtn" style="border: 0px !important;" ng-click="openHelp()">
-        <b class = "icon icon ion-help"></b>
-    </button>
-</div>
-
-
-<button class="calculateButton" ng-click="openMortgageCalc()">
-    CALCULATE
-</button>
-
-</div>
+<button class="button button-block button-positive" type="submit">Calculate</button>

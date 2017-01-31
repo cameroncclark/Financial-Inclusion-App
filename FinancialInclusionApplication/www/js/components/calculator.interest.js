@@ -30,7 +30,7 @@ fIApp.component("interestCalculator",{
             $scope.modalInterestAnswer.show();
         };
 
-        $scope.test = "Interest calculator";
+        $scope.test = "Interest Calculator";
         $scope.slider1 = {
             value: 1,
             options: {

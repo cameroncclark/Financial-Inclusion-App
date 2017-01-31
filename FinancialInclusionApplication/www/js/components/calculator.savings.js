@@ -34,7 +34,7 @@ fIApp.component("savingsCalculator", {
 
 
 
-        $scope.test = "Savings calculator";
+        $scope.test = "Savings Calculator";
         $scope.slider1 = {
             value: 10,
             options: {

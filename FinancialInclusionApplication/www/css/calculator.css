@@ -33,13 +33,14 @@
 }
 
 .headingText{
-    font-size: 1.5rem;
+    font-size: 1rem;
     color: black;
+    font-weight: bold;
 }
 
 .calcBodyText{
     font-size: 0.8rem;
-    color: black;
+    color: #696969;
 }
 
 .savingsSlider{
@@ -50,7 +51,7 @@
 .savingsCalcWrapper{
     margin: 2vh;
     padding: 2vh 2vh;
-    border: 0.1rem solid black;
+    border: 0.1rem solid #90b4d2;
     background: #e6ffff;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     height: 75vh;
@@ -68,7 +69,7 @@
 }
 
 .headerLine{
-    border-bottom: 0.5vh solid white; 
+    border-bottom: 0.3vh solid #DCDCDC; 
     margin: 0 3vh 2vh 3vh;
 }
 
@@ -98,15 +99,15 @@
 
 .roundbtn {
   display:block;
-  background: #0db9f0;
+  background: #90b4d2;
   color: white;
-  height: 30px;
-  width: 30px;
+  height: 4vh;
+  width: 6.5vw;
   border-radius: 50%;
-  border: 1px solid red;
   text-align: center;
   float: center;
   position: absolute;
+  margin-left: 8vw;
 }
 
 .centerfloat{
@@ -164,4 +165,23 @@ padding: 2vh;
     color: black;
     font-size: 15px;
     font-family: 'Signika', sans-serif; 
+}
+
+.calcInput{
+    border: 1px solid #C2C2C2;;
+    margin-bottom: 4vh;
+    padding: 1vw 3vw 1vw 5vw;
+    border-radius: 1vh;
+    box-shadow: 1px 1px 4px #EBEBEB;
+    -moz-box-shadow: 1px 1px 4px #EBEBEB;
+    -webkit-box-shadow: 1px 1px 4px #EBEBEB;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    background: white;
+    font-size: 1.2em;
+}
+
+.calcTextAbove{
+    margin-bottom: 2vh;
 }
