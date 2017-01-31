@@ -37,7 +37,7 @@
     },
     {
         "header": "Annual Equivalent Rate (AER)",
-        "tip": "Interest that is calculated under the assumption that any interest paid is combined with the original balance.  This means that interest can be compounded several times in a year depending on the number of times that interest payments are made."
+        "tip": "Calculated under the assumption that any interest paid is combined with the original balance.  It can be compounded several times a year depending on the number of times interest payments are made."
     },
     {
         "header": "Annual Percentage Rate (APR)",
@@ -89,7 +89,7 @@
     },
     {
         "header": "Bankruptcy",
-        "tip": "Bankruptcy is a court order that you can apply for if you are in debt. Once you have been made bankrupt, an official called an 'official receiver' takes control of your money and property and deals with your creditors. "
+        "tip": "Bankruptcy is a court order that you can apply for if you are in debt. Once you have been made bankrupt, an 'official receiver' takes control of your assets and deals with your creditors."
     },
     {
         "header": "Re-Financing",
@@ -109,7 +109,7 @@
     },
     {
         "header": "16-25 Railcard",
-        "tip": "Despite its name though, there's a great loophole which lets you keep on using it even after you've turned 26. Buy a three-year Railcard the day before your 24th birthday (or a one-year Railcard before your 26th) to get the discount almost until you turn 27."
+        "tip": "There's a great loophole which lets you use it after you've turned 25. Buy a 3-year Railcard the day before your 24th birthday or a 1-year Railcard before your 26th to get the discount until you turn 27."
     },
     {
         "header": "2 For 1 Cinema Tickets",
