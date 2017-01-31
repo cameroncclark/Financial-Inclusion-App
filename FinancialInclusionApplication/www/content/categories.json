@@ -1,6 +1,6 @@
 [
     {
-    "name":"Banking",
+    "name":"Test Category",
     "ID": 1
     },
     {
@@ -10,9 +10,5 @@
     {
     "name":"Student Finance",
     "ID": 3
-    },
-    {
-    "name":"Future Advise",
-    "ID": 4    
     }
 ]
