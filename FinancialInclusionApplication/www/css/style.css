@@ -48,7 +48,8 @@
 }
 
 .content-Image{
-    tezxt-align: center;
+    text-align: center;
+    margin: 10px 0px;
 }
 
 .content-Link{
