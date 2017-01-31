@@ -51,6 +51,7 @@ fIApp.component("savingsCalculator", {
         $scope.perMonthValue;
 
         $scope.result;
+        $scope.numYears;
         $scope.numMonths;
         $scope.numDays;
 
@@ -62,7 +63,8 @@ fIApp.component("savingsCalculator", {
                     Math.floor($scope.result),
                     $scope.result % 1
                 ];
-            $scope.numMonths = splitNumber[0];
+            $scope.numYears = Math.floor(splitNumber[0]/12);
+            $scope.numMonths = Math.floor(splitNumber[0]%12);
             $scope.numDays = Math.ceil(splitNumber[1] * 30);
         }
     }

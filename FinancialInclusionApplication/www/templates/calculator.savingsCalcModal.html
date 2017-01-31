@@ -15,7 +15,8 @@
                 If you have £{{alreadySavedValue}} already saved in your bank account,
                 and you set aside just £{{perMonthValue}} per month, you will reach your goal in:
             </div>
-            <div class="savingsGoalTimeWrapper">{{numMonths}} Months and {{numDays}} Days.</div>
+            <div ng-if="numYears > 0" class="savingsGoalTimeWrapper">{{numYears}} Years,<br>{{numMonths}} Months,<br>{{numDays}} Days.</div>
+            <div ng-if="numYears < 1" class="savingsGoalTimeWrapper">{{numMonths}} Months,<br>{{numDays}} Days.</div>
         </div>
     </ion-content>
 </ion-modal-view>
