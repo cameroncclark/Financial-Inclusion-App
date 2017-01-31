@@ -9,7 +9,7 @@
     <!--Display multiple choice text questions-->
     <div class = "padding" ng-if="activeQuestion.questionType == 'multipleChoice'">
         <h1 class="centered">Question: {{questionIndex + 1}}</h1>
-        <h2 class="justified">{{activeQuestion.questionText}}</h2>
+        <h2>{{activeQuestion.questionText}}</h2>
         <ion-list>
             <ion-radio class="item-text-wrap" ng-repeat="answer in activeQuestion.answers" ng-model="userAnswers.currentAnswer" ng-value="$index">{{answer}}</ion-radio>
         </ion-list>
@@ -17,7 +17,7 @@
     <!--Display multiple choice picture questions-->
     <div ng-if="activeQuestion.questionType == 'choosePicture'">
         <h1 class="centered">Question: {{questionIndex + 1}}</h1>
-        <h2 class="justified">{{activeQuestion.questionText}}</h2>
+        <h2>{{activeQuestion.questionText}}</h2>
         <ion-list>
             <ion-radio ng-repeat="answer in activeQuestion.answers" ng-model="userAnswers.currentAnswer" ng-value="$index"><div class=""><img class="quiz-Image" ng-src="img/{{answer}}"></div></ion-radio>
         </ion-list>

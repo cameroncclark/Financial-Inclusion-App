@@ -38,13 +38,19 @@
     font-style: italic;
 }
 
+.content-Box-Shadow{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
 .content-Title{
-    color:darkred;
+    color:#0274a5;
+    text-align: left;
 }
 
 .content-Subtitle{
     color:darkred;
     text-align: center;
+    font-weight: bolder;
 }
 
 .content-Image{
@@ -53,7 +59,14 @@
 }
 
 .content-Link{
-    color:darkred;
+    color: #DC0000;
+    font-weight: 500;
+
+}
+
+.content-Quiz-Button{
+    background: #387ef5;
+    color: white;
 }
 
 .content-Quiz{
@@ -100,6 +113,7 @@
 position: relative;
 padding-bottom: 56.25%;
 padding-top: 30px; height: 0; overflow: hidden;
+margin: 10px 0px;
 }
  
 .video-container iframe,
