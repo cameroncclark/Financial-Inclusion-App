@@ -15,7 +15,7 @@
                 If you have £{{alreadySavedValue}} already saved in your bank account,
                 and you set aside just £{{perMonthValue}} per month, you will reach your goal in:
             </div>
-            <div class="savingsGoalTimeWrapper">{{ (((savingsGoalValue * 1) - (alreadySavedValue * 1))/perMonthValue).toFixed(2) }} months</div>
+            <div class="savingsGoalTimeWrapper">{{numMonths}} Months and {{numDays}} Days.</div>
         </div>
     </ion-content>
 </ion-modal-view>
