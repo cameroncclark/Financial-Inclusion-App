@@ -8,16 +8,18 @@
   <ion-content class="padding has-footer">
     <!--Display multiple choice text questions-->
     <div class = "padding" ng-if="activeQuestion.questionType == 'multipleChoice'">
-        <h1 class="centered">Question: {{questionIndex + 1}}</h1>
-        <h2>{{activeQuestion.questionText}}</h2>
+        <h4 style="color:#387ef5;font-weight:bolder">Question {{questionIndex + 1}}</h4>
+        <hr style="border: 0.5px solid #387ef5">
+        <h3 style="color:#696969">{{activeQuestion.questionText}}</h3>
         <ion-list>
             <ion-radio class="item-text-wrap" ng-repeat="answer in activeQuestion.answers" ng-model="userAnswers.currentAnswer" ng-value="$index">{{answer}}</ion-radio>
         </ion-list>
     </div>
     <!--Display multiple choice picture questions-->
     <div ng-if="activeQuestion.questionType == 'choosePicture'">
-        <h1 class="centered">Question: {{questionIndex + 1}}</h1>
-        <h2>{{activeQuestion.questionText}}</h2>
+        <h4 style="color:#387ef5;font-weight:bolder">Question {{questionIndex + 1}}</h4>
+        <hr style="border: 0.5px solid #387ef5">
+        <h3 style="color:#696969">{{activeQuestion.questionText}}</h3>
         <ion-list>
             <ion-radio ng-repeat="answer in activeQuestion.answers" ng-model="userAnswers.currentAnswer" ng-value="$index"><div class=""><img class="quiz-Image" ng-src="img/{{answer}}"></div></ion-radio>
         </ion-list>
