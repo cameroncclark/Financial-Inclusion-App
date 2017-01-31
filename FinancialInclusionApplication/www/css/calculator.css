@@ -2,12 +2,13 @@
     border: 0.2vh solid lightsteelblue;
     width: 100%;
     height: 5vh;
+    border-radius: 1vh;
 }
 
 .calculatorButtons{
     background-color: white;
-    color: #6fa8aa;
-    border: 0.2vh solid #6fa8aa;
+    color: #90b4d2;
+    border: 0.2vh solid #90b4d2;
     text-align: center;
 }
 
@@ -26,9 +27,9 @@
 }
 
 .calculatorButtons2{
-    background-color: #6fa8aa;
+    background-color: #90b4d2;
     color: white !important;
-    border: 0.2vh solid #6fa8aa; 
+    border: 0.2vh solid #90b4d2;
 }
 
 .headingText{
@@ -53,6 +54,7 @@
     background: #e6ffff;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     height: 75vh;
+    border-radius: 2vh;
 }
 
 .welcomeScreenWrapper{
@@ -62,6 +64,7 @@
     background: #e6ffff;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     height: 100%;
+    border-radius: 2vh;
 }
 
 .headerLine{
