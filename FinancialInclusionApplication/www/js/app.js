@@ -8,6 +8,10 @@ var db = null;
 
 var fIApp = angular.module('financialInclusionApp', ['ionic', 'ngCordova', 'rzModule', 'ngSanitize']);
 
+fIApp.config(function($ionicConfigProvider){
+  $ionicConfigProvider.views.swipeBackEnabled(false);
+});
+
 fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccessor) {
 
   $ionicPlatform.ready(function () {
@@ -120,6 +124,7 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
       console.log("entered if");
       db = $cordovaSQLite.openDB({ name: 'my.db', location: 'default' });
 
+      // Drop Tables
       //$cordovaSQLite.execute(db, "DROP TABLE userData");
 
       // Initialise all tables
