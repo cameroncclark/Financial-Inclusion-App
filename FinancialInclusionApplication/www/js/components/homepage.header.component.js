@@ -56,19 +56,53 @@ fIApp.component("headerBar", {
 
         //$scope.trophiesf = [{name: "calculator"},{name: "university"},{name: "calculator"},{name: "trophy"},{name: "calculator"} ]
         $scope.trophies = [
-            [{ name: "card", colour: { "color": "#000" }, info: "Where you got this from" }, { name: "university", colour: { "color": "#000" }, info: "Where you got this from" }, { name: "planet", colour: { "color": "#000" }, info: "Where you got this from" }],
-            [{ name: "heart", colour: { "color": "#000" }, info: "Where you got this from" }, { name: "scissors", colour: { "color": "#000" }, info: "Where you got this from" }, { name: "paper-airplane", colour: { "color": "#000" }, info: "Where you got this from" }],
-            [{ name: "bug", colour: { "color": "#000" }, info: "Where you got this from" }, { name: "headphone", colour: { "color": "#000" }, info: "Where you got this from" }, { name: "fireball", colour: { "color": "#000" }, info: "Where you got this from" }],
-            [{ name: "locked", colour: { "color": "#a6a6a6" }, info: "Where you got this from" }, { name: "locked", colour: { "color": "#a6a6a6" }, info: "Where you got this from" }, { name: "locked", colour: { "color": "#a6a6a6" }, info: "Where you got this from" }],
-            [{ name: "locked", colour: { "color": "#a6a6a6" }, info: "Where you got this from" }, { name: "locked", colour: { "color": "#a6a6a6" }, info: "Where you got this from" }, { name: "locked", colour: { "color": "#a6a6a6" }, info: "Where you got this from" }],
-            [{ name: "locked", colour: { "color": "#a6a6a6" }, info: "Where you got this from" }, { name: "locked", colour: { "color": "#a6a6a6" }, info: "Where you got this from" }, { name: "locked", colour: { "color": "#a6a6a6" }, info: "Where you got this from" }],
-            [{ name: "locked", colour: { "color": "#a6a6a6" }, info: "Where you got this from" }, { name: "locked", colour: { "color": "#a6a6a6" }, info: "Where you got this from" }, { name: "locked", colour: { "color": "#a6a6a6" }, info: "Where you got this from" }]
+            
+            // Row 1
+            [{ name: "Updated Your Name", icon: "edit", state: "unlocked", colour: { "color": "#000" }, info: "You have successfully updated your name." }, 
+            { name: "Updated Your Location", icon: "compass", state: "unlocked", colour: { "color": "#000" }, info: "You have successfully updated your location." }, 
+            { name: "Updated Your Avatar", icon: "person", state: "unlocked", colour: { "color": "#000" }, info: "You have successfully chosen an avatar." }],
+            
+            // Row 2
+            [{ name: "Flicked Through 20 Hints", icon: "arrow-swap", state: "unlocked", colour: { "color": "#000" }, info: "You have swiped through 20 hints." }, 
+            { name: "Flicked Through 50 Hints", icon: "locked", state: "locked", colour: { "color": "#a6a6a6" }, info: "Try swiping through more helpful hints." }, 
+            { name: "Flicked Through 100 Hints", icon: "locked", state: "locked", colour: { "color": "#a6a6a6" }, info: "Try swiping through more helpful hints." }],
+            
+            // Row 3
+            [{ name: "Performed a Calculation", icon: "calculator", state: "unlocked", colour: { "color": "#000" }, info: "You perfomed a calcualtion on one of the calculators." }, 
+            { name: "Used All Calculators", icon: "locked", state: "locked", colour: { "color": "#a6a6a6" }, info: "Try using all of the calculators." }, 
+            { name: "Visited A Website", icon: "wifi", state: "unlocked", colour: { "color": "#000" }, info: "You visited an external website." }],
+            
+            // Row 4
+            [{ name: "Visited 5 Websites", icon: "locked", state: "locked", colour: { "color": "#a6a6a6" }, info: "Try visiting more websites." }, 
+            { name: "Called A Number", icon: "iphone", state: "unlocked", colour: { "color": "#000" }, info: "You called a help line." }, 
+            { name: "25% Completion", icon: "checkmark", state: "unlocked", colour: { "color": "#000" }, info: "You have completed 25% of the app." }],
+            
+            // Row 5
+            [{ name: "50% Completion", icon: "locked", state: "locked", colour: { "color": "#a6a6a6" }, info: "Try making your way through more of the content." }, 
+            { name: "75% Completion", icon: "locked", state: "locked", colour: { "color": "#a6a6a6" }, info: "Try making your way through more of the content." }, 
+            { name: "100% Completion", icon: "locked", state: "locked", colour: { "color": "#a6a6a6" }, info: "Try making your way through more of the content." }],
+            
+            // Row 6
+            [{ name: "1 Quiz Complete", icon: "clipboard", state: "unlocked", colour: { "color": "#000" }, info: "You have completed a quiz." }, 
+            { name: "5 Quizzes Complete", icon: "locked", state: "locked", colour: { "color": "#a6a6a6" }, info: "Try completing more quizzes." }, 
+            { name: "All Quizzes Complete", icon: "locked", state: "locked", colour: { "color": "#a6a6a6" }, info: "Try completing more quizzes." }],
+            
+            // Row 7
+            [{ name: "100% In A Quiz", icon: "locked", state: "locked", colour: { "color": "#a6a6a6" }, info: "Try getting full marks in a quiz." }, 
+            { name: "100% in 3 Quizzes", icon: "locked", state: "locked", colour: { "color": "#a6a6a6" }, info: "Try getting full marks in several quizzes." }, 
+            { name: "The Final Trophie", icon: "locked", state: "locked", colour: { "color": "#a6a6a6" }, info: "This trophie requires every other trophie to be unlocked" }]
         ];
 
         $scope.showTrophyAlert = function (iconObject) {
-            if (iconObject.name != "locked") {
+            if (iconObject.state == "unlocked") {
                 var alertPopup = $ionicPopup.alert({
-                    title: 'Trophy',
+                    title: iconObject.name,
+                    template: iconObject.info
+                });
+            }
+            else if(iconObject.state == "locked"){
+                var alertPopup = $ionicPopup.alert({
+                    title: "Locked",
                     template: iconObject.info
                 });
             }
