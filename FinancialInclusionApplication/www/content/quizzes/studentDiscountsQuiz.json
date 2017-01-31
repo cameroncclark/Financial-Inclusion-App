@@ -1,0 +1,34 @@
+{
+    "title": "Student Discounts Quiz",
+    "questions": [
+        {
+           "questionType":"multipleChoice",
+           "questionText":"How long does a student card last?",
+           "answers":["5 years.","4 years.","For the duration of fulltime education.","It has to be renewed year year."],
+           "answer":2,
+           "reason":["Though some courses may last 5 years, this does not mean that all student cards are active for 5 years, sadly!","Though many courses are 4 year courses, not every student card lasts for this duration!","You betch ya, your student card will remain valid until you graduate!","Nope, all student cards are activated once and remain active for the duration of University!"]
+        },
+        {
+           "questionType":"choosePicture",
+           "questionText":"What company does not offer student discounts?",
+           "answers":["asos_logo.png","carpetright.jpg","topman_logo.png","McDonalds.png"],
+           "answer":1,
+           "reason":["Nope! Asos offer students 10% on all clothes!","Exactly! Student's dont need carpets!","Nope! Topman offers discounts to students which range between 10 to 20 % off!","Nope! Show your student card when buying a meal in McDonalds and you will recieve a free cheeseburger or McFlurry!"]
+        },
+        {
+           "questionType":"multipleChoice",
+           "questionText":"True or false: Only people aged 16-25 are elidgable for Student Railcards?",
+           "answers":["True","False"],
+           "answer":1,
+           "reason":["Nope! There's one more thing that qualifies you for a STUDENT railcard...","Exactly! Both people aged 16-25 and full time mature students can apply for a railcard!"]
+        },
+        {
+           "questionType":"multipleChoice",
+           "questionText":"How much does a yearly student railcard cost?",
+           "answers":["£15","£30","£50","£70"],
+           "answer":1,
+           "reason":["Nope! It's a little more than that!","Exactly! And a 3 year card costs £70!","Believe it or not it's less than this! Bargain!","Of course not! For this price you could have the same railcard for 3 years!"]
+        }
+
+    ]
+}
