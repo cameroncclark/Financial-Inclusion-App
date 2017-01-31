@@ -45,7 +45,7 @@ fIApp.component("mortgageCalculator",{
 
 
         $scope.slider2 = {
-            value: 11,
+            value: 1,
             options: {
                 floor: 1,
                 ceil: 20,
