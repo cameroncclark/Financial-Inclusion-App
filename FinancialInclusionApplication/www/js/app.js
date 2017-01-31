@@ -81,11 +81,11 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
     }
 
     // For when the user first launches the app
-    var fillTables = function () {git
+    var fillTables = function () {
 
         // User Data
         var query = "INSERT INTO userData (name, location, avatar) VALUES (?,?,?)";
-        $cordovaSQLite.execute(db, query, ["Your name here", "Your location here", "img/liam.png"]).then(function (result) {
+        $cordovaSQLite.execute(db, query, ["Your name here", "Your location here", "img/startImage.png"]).then(function (result) {
             console.log("INSERT ID -> " + result.insertId);
         }, function (error) {
             console.error(error);
@@ -95,7 +95,7 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
     var setGlobalName = function () {
     // Check if data has been added correctly
          var searchQuery = "SELECT * FROM userData";
-         var userName = {name:"",location:"",avatar:"img/liam.png"}
+         var userName = {name:"",location:"",avatar:"img/startImage.png"}
          $cordovaSQLite.execute(db, searchQuery, []).then(function (result) {
              if (result.rows.length > 0) {
                 userName.name = result.rows.item(0).name;
@@ -120,7 +120,7 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
       console.log("entered if");
       db = $cordovaSQLite.openDB({ name: 'my.db', location: 'default' });
 
-      //$cordovaSQLite.execute(db, "DROP TABLE userData");
+      $cordovaSQLite.execute(db, "DROP TABLE userData");
 
       // Initialise all tables
       $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS userData (id INTEGER PRIMARY KEY, name TEXT, location TEXT, avatar TEXT)");
@@ -139,7 +139,7 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
           fillTables();
           setGlobalName();
         }else{
-            setGlobalName();
+          setGlobalName();
         }
       }, function (error) {
         console.log(error)
