@@ -4,7 +4,7 @@
         {
            "questionType":"multipleChoice",
            "questionText":"How long does a student card last?",
-           "answers":["5 years.","4 years.","For the duration of fulltime education.","It has to be renewed year year."],
+           "answers":["5 years.","4 years.","For the duration of fulltime education.","It has to be renewed year on year."],
            "answer":2,
            "reason":["Though some courses may last 5 years, this does not mean that all student cards are active for 5 years, sadly!","Though many courses are 4 year courses, not every student card lasts for this duration!","You betch ya, your student card will remain valid until you graduate!","Nope, all student cards are activated once and remain active for the duration of University!"]
         },
