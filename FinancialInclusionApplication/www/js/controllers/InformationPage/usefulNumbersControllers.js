@@ -1,15 +1,22 @@
-fIApp.controller('UsefulNumbersCtrl', function($scope){
+fIApp.controller('UsefulNumbersCtrl', function ($scope) {
     $scope.name = 'Useful Numbers';
     $scope.content = 'Useful Numbers will be stored here';
-    
-    $scope.numbersList = [
-            {name:'A Useful Company', blurb:'This company is really useful. Here are it\'s credentials!' , number:'+441411234567'},
-            {name:'Another Useful Company', blurb:'This company is also really useful. Here are it\'s credentials!', number:'+441411234568'},
-            {name:'Stuart Cuthbertson', blurb:'He\'s so sound, look, press the phone button to call.', number:'+447766624002'},
-            {name:'Angus Arnold', blurb:'Angus has a sore ear, don\'t call him, he wont be able to hear you', number:'+447545616173'},
-            {name:'Cameron Clark', blurb:'Cammy gets called 20 times a day, his phone will probably be busy.', number:'+447788464196'}];
 
-    $scope.getInfoCategoryValues = function(){
+    $scope.numbersList = [{
+        name: 'Samaritans',
+        blurb: 'Samaritans offer a confidential service to those whom need a kind ear. Their service is available 24/7, and allows you to converse with staff without fear of repercussions. Everyone is elidgible for this service, there are no waiting lists and no assessments. To talk to a member of the Samaritans for free, please call 116 123 or press the blue call button now.',
+        number: '116 123'
+    }, {
+        name: 'Breathing Space',
+        blurb: 'Breathing space is a confidential service for anyone in Scotland suffering from depression, anxiety or an ill mood. They offer a safe and supportive environment to convey your problems, and offer advice on how best to solve them. To talk to a member of Breathing Space for free, please call 0800 838587 or press the blue call button now.',
+        number: '0800 838587'
+    }, {
+        name: 'NHS 24',
+        blurb: 'NHS 24 is a service which provides comprehensive health information to callers throughout Scotland. This number should be called in the case that you are unwell and your doctor\'s office is closed. To obtain advice on a medical issue from a prefessional, please call 111 or press the blue call button now. ',
+        number: '111'
+    }];
+
+    $scope.getInfoCategoryValues = function () {
         return $scope.numbersList;
     };
 });

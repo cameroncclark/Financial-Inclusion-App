@@ -30,6 +30,7 @@ fIApp.component("interestCalculator",{
             $scope.modalInterestAnswer.show();
         };
 
+
         $scope.test = "Interest Calculator";
         $scope.slider1 = {
             value: 1,
@@ -49,7 +50,6 @@ fIApp.component("interestCalculator",{
 
         $scope.helpContent = "Within the first text box enter how much money you currently have that you wish to gain interest on. Within the second text box enter your annual interest rate that is offered by your bank. Finally use the slider to input the number of years that you plan to leave the money in your account. Press the calculate button to retrieve your result.";
 
-        $scope.helpHint = "Handy hint: Take a screenshot of your result so that you can review it later!"
+        $scope.helpHint = "Handy hint: Take a screenshot of your result so that you can review it later!";
     }
-
 });

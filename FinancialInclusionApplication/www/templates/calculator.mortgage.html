@@ -8,6 +8,7 @@
     </button>
     
 </div>
+
 </div>
 
 <div class="headerLine"></div>
@@ -19,7 +20,8 @@
     <a class="calcBodyText">Amount you want to recieve?</a>
     </div>
     <div class="calcInput">
-            <input type="text" placeholder="£" ng-model="desiredAmount" pattern="\d*">
+            <input type="text" placeholder="£" ng-model="desiredAmount" pattern="\d*" min="1">
+
     </div>
 </div>
 
@@ -28,8 +30,8 @@
     <a class="calcBodyText">Interest rate</a>
     </div>
     <div class="calcInput">
-            <input type="text" placeholder="%" ng-model="interestRate">
-     
+            <input type="text" placeholder="%" ng-model="interestRate" min="0.01">
+
     </div>
 </div>
 

@@ -8,6 +8,7 @@
     </button>
     
 </div>
+
 </div>
 
 <div class="headerLine"></div>
@@ -23,11 +24,12 @@
 </div>
 
 <div class="savingsSlider">
+
     <div class="calcTextAbove">
     <a class="calcBodyText">How much can you save per month?</a>
     </div>
     <div class="calcInput">
-            <input type="number" style = "font-size: 0.8em" placeholder="£" ng-model="perMonthValue" pattern="\d*">
+            <input type="number" style = "font-size: 0.8em" placeholder="£" ng-model="perMonthValue" pattern="\d*" min="1">
        </div>
 </div>
 
@@ -36,7 +38,8 @@
     <a class="calcBodyText">How much have you already saved?</a>
     </div>
  <div class="calcInput">
-            <input type="number" style = "font-size: 0.8em" placeholder="£" ng-model="alreadySavedValue" pattern="\d*">
+            <input type="number" style = "font-size: 0.8em" placeholder="£" ng-model="alreadySavedValue" pattern="\d*" min="0">
+
     </div>
 </div>
 

@@ -7,7 +7,7 @@
         <div class="padding">
             <table class="trophyTable">
                 <tr data-ng-repeat="row in trophies">
-                    <td class="trophyTableIcons" data-ng-repeat="column in row"><i class = "icon icon ion-{{column.name}} trophyIcon" ng-style="{{column.colour}}" ng-click="showTrophyAlert(column)"></i></td>
+                    <td class="trophyTableIcons" data-ng-repeat="column in row"><i class = "icon icon ion-{{column.icon}} trophyIcon" ng-style="{{column.colour}}" ng-click="showTrophyAlert(column)"></i></td>
                 </tr>
             </table>
         </div>
