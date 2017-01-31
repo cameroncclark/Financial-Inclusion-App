@@ -164,7 +164,7 @@ fIApp.controller('ContentCtrl', function ($scope, $http, $stateParams, $sce) {
     var parseVideoURLEnd = content.indexOf("</video>");
     var videoURL = content.substring(parseVideoURLStart,parseVideoURLEnd);
 
-    return "<div class=\"video-container\"><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/" + videoURL + "?rel=0&autohide=1&showinfo=0\" frameborder=\"0\" allowfullscreen></iframe></div>";
+    return "<div class=\"video-container content-Box-Shadow\"><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/" + videoURL + "?rel=0&autohide=1&showinfo=0\" frameborder=\"0\" allowfullscreen></iframe></div>";
   }
 
   var parseTagImage = function(content){
@@ -172,7 +172,7 @@ fIApp.controller('ContentCtrl', function ($scope, $http, $stateParams, $sce) {
     var parseImageURLEnd = content.indexOf("</image>");
     var imageURL = content.substring(parseImageURLStart,parseImageURLEnd);
     
-    return "<div class=\"content-Image\"><img src=\"content/images/" + imageURL + "\" alt=\""+ imageURL + "\"></div>";
+    return "<div class=\"content-Image content-Box-Shadow\"><img src=\"content/images/" + imageURL + "\" alt=\""+ imageURL + "\"></div>";
   }
 
   var parseTagTitle = function(content){
@@ -180,7 +180,7 @@ fIApp.controller('ContentCtrl', function ($scope, $http, $stateParams, $sce) {
     var parseTitleEnd = content.indexOf("</title>");
     var title = content.substring(parseTitleStart,parseTitleEnd);
     
-    return "<h2 class=\"content-Title\">" + title + "</h2>";
+    return "<h4 class=\"content-Title\">" + title + "</h4><hr>";
   }
 
   var parseTagSubtitle = function(content){
@@ -188,7 +188,7 @@ fIApp.controller('ContentCtrl', function ($scope, $http, $stateParams, $sce) {
     var parseTitleEnd = content.indexOf("</subtitle>");
     var subtitle = content.substring(parseTitleStart,parseTitleEnd);
     
-    return "<h3 class=\"content-Subtitle\">" + subtitle + "</h3>";
+    return "<h5 class=\"content-Subtitle\">" + subtitle + "</h5>";
   }
 
   var parseTagLink = function(content){
@@ -210,7 +210,7 @@ fIApp.controller('ContentCtrl', function ($scope, $http, $stateParams, $sce) {
     var parseNameEnd = content.indexOf("</quiz>");
     var name = content.substring(parseNameStart,parseNameEnd);
     
-    return "<div class=\"centered padding\"><a href=\"#/quiz/"+link+"\" class=\"button icon-right ion-chevron-right button-calm\">" + name + "</a></div>"
+    return "<div class=\"centered padding\"><a href=\"#/quiz/"+link+"\" class=\"button content-Quiz-Button\">" + name + "</a></div>"
   }
 
 });
