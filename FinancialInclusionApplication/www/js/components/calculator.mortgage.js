@@ -33,7 +33,7 @@ fIApp.component("mortgageCalculator",{
 
         $scope.test = "Mortgage Calculator";
         $scope.slider1 = {
-            value: 10,
+            value: 1,
             options: {
                 floor: 0,
                 ceil: 250,
@@ -45,7 +45,7 @@ fIApp.component("mortgageCalculator",{
 
 
         $scope.slider2 = {
-            value: 10,
+            value: 11,
             options: {
                 floor: 1,
                 ceil: 20,
