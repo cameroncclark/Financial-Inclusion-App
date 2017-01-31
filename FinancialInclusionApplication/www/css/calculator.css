@@ -99,10 +99,9 @@
 
 .roundbtn {
   display:block;
-  background: #90b4d2;
   color: white;
   height: 4vh;
-  width: 6.5vw;
+  width: 2vw;
   border-radius: 50%;
   text-align: center;
   float: center;
