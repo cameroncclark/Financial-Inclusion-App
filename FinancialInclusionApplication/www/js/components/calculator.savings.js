@@ -35,9 +35,33 @@ fIApp.component("savingsCalculator", {
 
 
 
-        $scope.header = "Savings Calculator";
-        
+
+        $scope.test = "Savings Calculator";
+        $scope.slider1 = {
+            value: 10,
+            options: {
+                floor: 0,
+                ceil: 250,
+                step: 1,
+                minLimit: 10,
+                maxLimit: 250
+            }
+        };
+
+        $scope.slider2 = {
+            value: 10,
+            options: {
+                floor: 0,
+                ceil: 20,
+                step: 1,
+                minLimit: 1,
+                maxLimit: 20
+            }
+        };
+
         $scope.helpHeader = "Savings Calcualtor";
+
+        
 
         $scope.helpIntro = "This calcualtor is used to calculate the amount of money you can save over a certain period of time. It does this by taking in your target goal, how much money you have saved per month as well as how much you have saved already.";
 

@@ -1,7 +1,14 @@
 <div class="savingsCalcWrapper">
 
 <div style="text-align:center; margin-bottom:2vh;">
-    <a class="headingText">{{header}}</a>
+    <a class="headingText">{{test}}</a>
+    <div class="helpButton">
+    <button class="roundbtn" style="border: 0px !important;"ng-click="openHelp()">
+        <b class = "icon icon ion-help"></b>
+    </button>
+    
+</div>
+
 </div>
 
 <div class="headerLine"></div>
@@ -9,19 +16,23 @@
 <div></div>
 
 <div class="savingsSlider">
-    <a class="calcBodyText">How much have you currently saved? <span style="color: lightgrey"> (in £)</span></a>
-    <div class="list list-inset">
-        <label class="item item-input">
-            <input type="number" placeholder="Current Savings (in £)" ng-model="currentlySaved" pattern="\d*" min="1">
-        </label>
+
+    <div class="calcTextAbove">
+    <a class="calcBodyText">How much have you currently saved?</a>
+
     </div>
+        <div class="calcInput">
+            <input type="number" placeholder="£" ng-model="currentlySaved" pattern="\d*" min="1">
+        </div>
 </div>
 
 <div class="savingsSlider">
-    <a class="calcBodyText">What is your annual interest rate? <span style="color: lightgrey"> (in %)</span></a>
+    <div class="calcTextAbove">
+    <a class="calcBodyText">What is your annual interest rate?</a>
+    </div>
     <div class="list list-inset">
         <label class="item item-input">
-            <input type="number" placeholder="Annual Interest Rate (in %)" ng-model="interestRate" min="0.01">
+            <input type="number" placeholder="%" ng-model="interestRate" min="0.01">
         </label>
     </div>
 </div>
@@ -33,18 +44,10 @@
           rz-slider-options="slider1.options"></rzslider>
 </div>
 
-<div class="buttonWrapper">
-<div class="helpButton">
-    <button class="roundbtn" style="border: 0px !important;" ng-click="openHelp()">
-        <b class = "icon icon ion-help"></b>
-    </button>
-</div>
 
 
-<button class="calculateButton" ng-click="openInterestCalc()">
-    CALCULATE
-</button>
 
-</div>
+<button class="button button-block button-positive" type="submit">Calculate</button>
+
 
 </div>

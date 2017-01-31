@@ -31,8 +31,19 @@ fIApp.component("mortgageCalculator",{
             $scope.modalMortgageAnswer.show();
         };
 
-        $scope.header = "Mortgage Calculator";
-        
+        $scope.test = "Mortgage Calculator";
+        $scope.slider1 = {
+            value: 10,
+            options: {
+                floor: 0,
+                ceil: 250,
+                step: 1,
+                minLimit: 10,
+                maxLimit: 250
+            }
+        };
+
+
         $scope.slider2 = {
             value: 1,
             options: {
