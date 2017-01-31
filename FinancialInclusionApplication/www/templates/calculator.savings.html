@@ -1,7 +1,7 @@
 <div class="savingsCalcWrapper">
 
 <div style="text-align:center; margin-bottom:2vh;">
-    <a class="headingText">{{test}}</a>
+    <a class="headingText">{{header}}</a>
 </div>
 
 <div class="headerLine"></div>
@@ -11,7 +11,7 @@
     <a class="calcBodyText">What is your savings goal? <span style="color: lightgrey"> (in £)</span></a>
     <div class="list list-inset">
         <label class="item item-input">
-            <input type="number" style = "font-size: 0.8em" placeholder="Savings Goal (in £)" ng-model="savingsGoalValue" pattern="\d*">
+            <input type="number" style = "font-size: 0.8em" placeholder="Savings Goal (in £)" ng-model="savingsGoalValue" pattern="\d*" min="1">
         </label>
     </div>
 </div>
@@ -20,7 +20,7 @@
     <a class="calcBodyText">How much can you save per month? <span style="color: lightgrey"> (in £)</span></a>
     <div class="list list-inset">
         <label class="item item-input">
-            <input type="number" style = "font-size: 0.8em" placeholder="Savings Per Month (in £)" ng-model="perMonthValue" pattern="\d*">
+            <input type="number" style = "font-size: 0.8em" placeholder="Savings Per Month (in £)" ng-model="perMonthValue" pattern="\d*" min="1">
         </label>
     </div>
 </div>
@@ -29,7 +29,7 @@
     <a class="calcBodyText">How much have you already saved? <span style="color: lightgrey"> (in £)</span></a>
     <div class="list list-inset">
         <label class="item item-input">
-            <input type="number" style = "font-size: 0.8em" placeholder="Already Saved (in £)" ng-model="alreadySavedValue" pattern="\d*">
+            <input type="number" style = "font-size: 0.8em" placeholder="Already Saved (in £)" ng-model="alreadySavedValue" pattern="\d*" min="0">
         </label>
     </div>
 </div>

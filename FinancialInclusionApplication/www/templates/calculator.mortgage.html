@@ -1,7 +1,7 @@
 <div class="savingsCalcWrapper">
 
 <div style="text-align:center; margin-bottom:2vh;">
-    <a class="headingText">{{test}}</a>
+    <a class="headingText">{{header}}</a>
 </div>
 
 <div class="headerLine"></div>
@@ -12,7 +12,7 @@
     <a class="calcBodyText">Amount you want to recieve?<span style="color: lightgrey"> (in £)</span></a>
     <div class="list list-inset">
         <label class="item item-input">
-            <input type="text" placeholder="Amount (in £)" ng-model="desiredAmount" pattern="\d*">
+            <input type="number" placeholder="Amount (in £)" ng-model="desiredAmount" pattern="\d*" min="1">
         </label>
     </div>
 </div>
@@ -21,7 +21,7 @@
     <a class="calcBodyText">Interest rate<span style="color: lightgrey"> (in %)</span></a>
     <div class="list list-inset">
         <label class="item item-input">
-            <input type="text" placeholder="Interest Rate (in %)" ng-model="interestRate">
+            <input type="number" placeholder="Interest Rate (in %)" ng-model="interestRate" min="0.01">
         </label>
     </div>
 </div>
