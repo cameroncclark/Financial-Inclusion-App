@@ -33,7 +33,7 @@ fIApp.component("interestCalculator",{
 
         $scope.test = "Interest Calculator";
         $scope.slider1 = {
-            value: 1,
+            value: 12,
             options: {
                 id: 'slider-id',
                 floor: 1,

@@ -6,11 +6,11 @@
   </ion-nav-buttons>
   <ion-content class="padding">
     
-    <div class="card" ng-repeat="category in categories" ng-click="launchCategory(category.ID)">
-      <div class="item item-text-wrap">
-        <h1 class="centered">{{category.name}}</h1>
-        <progress max="100" value={{category.progress}} />
-      </div>
+    <div ng-repeat="category in categories" ng-click="launchCategory(category.ID)">
+      <div class ="categoryTitle"> 
+        {{category.name}}
+        <progress max="100" value="80"></progress>
+        <div>
     </div>
 
   </ion-content>
