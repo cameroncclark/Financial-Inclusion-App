@@ -17,7 +17,7 @@
         },
         {
            "questionType":"multipleChoice",
-           "questionText":"True or false: Only people aged 16-25 are elidgable for Student Railcards?",
+           "questionText":"True or false: Only people aged 16-25 are eligible for Student Railcards?",
            "answers":["True","False"],
            "answer":1,
            "reason":["Nope! There's one more thing that qualifies you for a STUDENT railcard...","Exactly! Both people aged 16-25 and full time mature students can apply for a railcard!"]
