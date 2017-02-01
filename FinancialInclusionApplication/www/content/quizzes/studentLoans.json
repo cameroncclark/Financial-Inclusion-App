@@ -1,12 +1,12 @@
 {
-    "title": "Student Discounts Quiz",
+    "title": "Loans Quiz",
     "questions": [
         {
            "questionType":"multipleChoice",
            "questionText":"How many years of education will SAAS provide funding for tuition fees?",
            "answers":["4 years.","3 years.","5 years.","No limit."],
            "answer":2,
-           "reason":["No, more than this!","No, more than this!","Exactly, SAAS usually pay for the equivilent of a Master's degree which is 5 years."]
+           "reason":["No, more than this!","No, more than this!","Exactly, SAAS usually pay for the equivalent of a Master's degree which is 5 years.","Sadly, there is a limit to the number of years SAAS pays for."]
         },
         {
            "questionType":"multipleChoice",
@@ -17,7 +17,7 @@
         },
         {
            "questionType":"multipleChoice",
-           "questionText":"True or false: You don’t have to start paying SAAS loan repayments until after 6th April the year after you graduate.",
+           "questionText":"True or False: You don’t have to start paying SAAS loan repayments until after 6th April the year after you graduate.",
            "answers":["True","False"],
            "answer":0,
            "reason":["Exactly! SAAS are very helpful in the fact there is a waiting period before returning your loan!","No, remember SAAS don't require the loan to be paid back immediately!"]

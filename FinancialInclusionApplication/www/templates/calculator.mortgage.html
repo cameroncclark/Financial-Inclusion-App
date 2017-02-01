@@ -44,4 +44,4 @@
         rz-slider-options="slider2.options"></rzslider>
 </div>
 
-<button class="button button-block button-positive" ng-click="openMortgageCalc()">Calculate</button>
+<button class="button button-block button-positive" ng-click="openMortgageCalc()" ng-disabled="!interestRate || !desiredAmount">Calculate</button>
