@@ -90,7 +90,15 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
         // User Data
         var query = "INSERT INTO userData (name, location, avatar) VALUES (?,?,?)";
         $cordovaSQLite.execute(db, query, ["Your Name Here", "Your Location Here", "img/startImage.png"]).then(function (result) {
-            console.log("INSERT ID -> " + result.insertId);
+            console.log("INSERT USER ID -> " + result.insertId);
+        }, function (error) {
+            console.error(error);
+        });
+
+        // Trophies
+        var query = "INSERT INTO trophies (title, image, description, hint, acquired) VALUES (?,?,?,?,?)";
+        $cordovaSQLite.execute(db, query, ["Updated Your Name","edit","You have successfully updated your name.","Try updating your name.",0]).then(function (result) {
+            console.log("INSERT TROPHIE ID -> " + result.insertId);
         }, function (error) {
             console.error(error);
         });
@@ -105,11 +113,26 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
                 userName.name = result.rows.item(0).name;
                 userName.location = result.rows.item(0).location;
                 userName.avatar = result.rows.item(0).avatar;
-                console.log("About to print everything");
-                console.log("SELECTED -> " + result.rows.item(0).name + " " + result.rows.item(0).location + " " + result.rows.item(0).avatar);
-                console.log(result.rows.item(0).avatar);
+                console.log("USER DATA TABLE -> " + result.rows.item(0).name + " " + result.rows.item(0).location + " " + result.rows.item(0).avatar);
                  $rootScope.userName = userName;
                  console.log("Initial username: " + $rootScope.userName.avatar);
+             } else {
+                 console.log("NO ROWS EXIST");
+             }
+         }, function (error) {
+             console.error(error);
+         });
+
+         var searchQuery = "SELECT * FROM trophies";
+         var trophieCheck = {title:"", image:"", description:"", hint:"", acquired:""}
+         $cordovaSQLite.execute(db, searchQuery, []).then(function (result) {
+             if (result.rows.length > 0) {
+                trophieCheck.title = result.rows.item(0).title;
+                trophieCheck.image = result.rows.item(0).image;
+                trophieCheck.description = result.rows.item(0).description;
+                trophieCheck.hint = result.rows.item(0).hint;
+                trophieCheck.acquired = result.rows.item(0).acquired;
+                console.log("TROPHIES TABLE -> " + result.rows.item(0).title + " " + result.rows.item(0).image + " " + result.rows.item(0).description + " " + result.rows.item(0).hint + " " + result.rows.item(0).acquired);
              } else {
                  console.log("NO ROWS EXIST");
              }
