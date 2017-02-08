@@ -34,7 +34,15 @@ fIApp.component("headerBar", {
 
         $scope.openTrophy = function () {
             $scope.modalTrophy.show();
-            console.log("Trophy opened");
+            console.log("openTrophies");
+            if(!$scope.newTrophies){
+                var promise = dbAccessor.loadTrophyTable(); //PROMISE OBJECT WHICH WILL RETURN DATA WHEN READY
+                promise.then(function(response){
+                    //WHEN THE RESPONSE IS READY, SET IT TO SCOPE
+                    $scope.newTrophies = response;
+                    console.log("Hello " + JSON.stringify($scope.newTrophies));
+                });
+            }
         };
 
         $scope.closeProfile = function () {
@@ -54,9 +62,11 @@ fIApp.component("headerBar", {
             $scope.modalAvatar.show();
         };
 
+        
         //$scope.trophiesf = [{name: "calculator"},{name: "university"},{name: "calculator"},{name: "trophy"},{name: "calculator"} ]
+        
+        
         $scope.trophies = [
-            
             // Row 1
             [{ name: "Updated Your Name", icon: "edit", state: "unlocked", colour: { "color": "#000" }, info: "You have successfully updated your name." }, 
             { name: "Updated Your Location", icon: "compass", state: "unlocked", colour: { "color": "#000" }, info: "You have successfully updated your location." }, 
