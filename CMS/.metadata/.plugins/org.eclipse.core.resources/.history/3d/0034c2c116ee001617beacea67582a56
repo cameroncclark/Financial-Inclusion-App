@@ -1,0 +1,29 @@
+package Model;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.util.Observable;
+
+public class Model extends Observable {
+	
+	public void testModel(){
+		System.out.println("I've been pressed");
+	}
+	
+	public void selectCategories(){
+		File file = new File("../FinancialInclusionApplication/www/content/categories.json");
+		FileInputStream fis = null;
+		
+		try{
+			fis = new FileInputStream(file);
+			
+			System.out.println(fis.available());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	public void addCategory(){
+		
+	}
+}

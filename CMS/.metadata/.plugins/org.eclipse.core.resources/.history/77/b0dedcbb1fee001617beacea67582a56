@@ -1,0 +1,10 @@
+package ContentObjects;
+
+import java.util.ArrayList;
+
+public class Categories {
+	ArrayList<Category> categories;
+	
+	
+	
+}

@@ -1,0 +1,11 @@
+package View;
+
+import javax.swing.JComponent;
+
+public class PanelCreator {
+	
+	public JComponent makeTextPanel(String text){
+		
+	}
+
+}

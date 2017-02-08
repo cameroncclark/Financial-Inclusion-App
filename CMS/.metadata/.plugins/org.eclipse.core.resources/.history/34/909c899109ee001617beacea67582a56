@@ -1,0 +1,21 @@
+package View;
+
+import java.awt.Dimension;
+
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class PanelCreator {
+	
+	public JComponent makeTextPanel(String text){
+		JPanel panel = new JPanel();
+		panel.setVisible(true);
+		panel.setLayout(null);
+		JLabel label = new JLabel(text);
+		panel.add(label);
+		panel.setSize(new Dimension(200,200));
+		return panel;
+	}
+
+}

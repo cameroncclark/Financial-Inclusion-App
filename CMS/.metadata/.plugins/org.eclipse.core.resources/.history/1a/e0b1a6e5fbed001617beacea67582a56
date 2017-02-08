@@ -1,0 +1,14 @@
+package View;
+
+import javax.swing.JFrame;
+
+import Model.Model;
+
+public class MainContainer {
+	private Model model;
+	private JFrame jframe;
+	
+	public MainContainer(Model model){
+		this.model = model;
+	}
+}

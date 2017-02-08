@@ -1,0 +1,29 @@
+package View;
+
+import java.awt.BorderLayout;
+
+import javax.swing.JFrame;
+import javax.swing.JMenuBar;
+
+import Model.Model;
+
+public class MainContainer {
+	private Model model;
+	private JFrame jFrame;
+	private JMenuBar jMenuBar;
+	
+	public MainContainer(Model model){
+		this.model = model;
+		createJFrame();
+	}
+	
+	private void createJFrame(){
+		jFrame = new JFrame();
+		jFrame.setFocusable(true);
+		jFrame.requestFocusInWindow();
+		jFrame.setVisible(true);
+		jFrame.getContentPane().setLayout(new BorderLayout());
+		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		jFrame.setSize(700, 700);
+	}
+}

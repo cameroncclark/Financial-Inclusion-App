@@ -1,0 +1,18 @@
+package Model;
+
+import java.util.Observable;
+
+public class Model extends Observable {
+	
+	public void testModel(){
+		System.out.println("I've been pressed");
+	}
+	
+	public void selectCategories(){
+		File file = new File();
+	}
+	
+	public void addCategory(){
+		
+	}
+}

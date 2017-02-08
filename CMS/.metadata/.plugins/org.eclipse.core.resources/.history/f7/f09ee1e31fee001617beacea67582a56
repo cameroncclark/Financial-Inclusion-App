@@ -1,0 +1,8 @@
+package ContentObjects;
+
+public class Category {
+	String name;
+	int id;
+	
+
+}
