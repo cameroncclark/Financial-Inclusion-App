@@ -103,6 +103,43 @@ fIApp.component("headerBar", {
             { name: "The Final Trophie", icon: "locked", state: "locked", colour: { "color": "#a6a6a6" }, info: "This trophie requires every other trophie to be unlocked" }]
         ];
 
+        $scope.trophiesHandover = [
+            // Row 1
+            [{ title: "Updated Your Name", image: "edit", description: "A Description", hint: "A Hint", acquired: "unlocked" }, 
+            { title: "Updated Your Location", image: "compass", description: "A Description", hint: "A Hint", acquired: "unlocked" }, 
+            { title: "Updated Your Avatar", image: "person", description: "A Description", hint: "A Hint", acquired: "unlocked"}],
+            
+            // Row 2
+            [{ title: "Flicked Through 20 Hints", image: "arrow-swap", description: "A Description", hint: "A Hint", acquired: "unlocked"}, 
+            { title: "Flicked Through 50 Hints", image: "locked", description: "A Description", hint: "A Hint", acquired: "locked"}, 
+            { title: "Flicked Through 100 Hints", image: "locked", description: "A Description", hint: "A Hint", acquired: "locked"}],
+            
+            // Row 3
+            [{ title: "Performed a Calculation", image: "calculator", description: "A Description", hint: "A Hint", acquired: "unlocked"}, 
+            { title: "Used All Calculators", image: "locked", description: "A Description", hint: "A Hint", acquired: "locked"}, 
+            { title: "Visited A Website", image: "wifi", description: "A Description", hint: "A Hint", acquired: "unlocked"}],
+            
+            // Row 4
+            [{ title: "Visited 5 Websites", image: "locked", description: "A Description", hint: "A Hint", acquired: "locked"}, 
+            { title: "Called A Number", image: "iphone", description: "A Description", hint: "A Hint", acquired: "unlocked"}, 
+            { title: "25% Completion", image: "checkmark", description: "A Description", hint: "A Hint", acquired: "unlocked"}],
+            
+            // Row 5
+            [{ title: "50% Completion", image: "locked", description: "A Description", hint: "A Hint", acquired: "locked"}, 
+            { title: "75% Completion", image: "locked", description: "A Description", hint: "A Hint", acquired: "locked"}, 
+            { title: "100% Completion", image: "locked", description: "A Description", hint: "A Hint", acquired: "locked"}],
+            
+            // Row 6
+            [{ title: "1 Quiz Complete", image: "clipboard", description: "A Description", hint: "A Hint", acquired: "unlocked"}, 
+            { title: "5 Quizzes Complete", image: "locked", description: "A Description", hint: "A Hint", acquired: "locked"}, 
+            { title: "All Quizzes Complete", image: "locked", description: "A Description", hint: "A Hint", acquired: "locked"}],
+            
+            // Row 7
+            [{ title: "100% In A Quiz", image: "locked", description: "A Description", hint: "A Hint", acquired: "locked"}, 
+            { title: "100% in 3 Quizzes", image: "locked", description: "A Description", hint: "A Hint", acquired: "locked"}, 
+            { title: "The Final Trophie", image: "locked", description: "A Description", hint: "A Hint", acquired: "locked"}]
+        ];
+
         $scope.showTrophyAlert = function (iconObject) {
             if (iconObject.state == "unlocked") {
                 var alertPopup = $ionicPopup.alert({
