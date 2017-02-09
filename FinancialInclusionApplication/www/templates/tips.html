@@ -1,8 +1,14 @@
 <div class="homePageTips" on-swipe-left="swipeLeft()" on-swipe-right="swipeRight()">
-    <div class="tipTitle"> 
+    <div class="tipTitle" ng-show="hideTip">
         {{tips[index].header}}
     </div>
     <div class="tipInfo">
+        <div iv ng-show="hideTip">
         {{tips[index].tip}}
-    </div>
+        </div>
+        </div>
+        <div class="swipeMe" ng-show="swipeMe">
+           &#8678; &nbsp; &nbsp; Swipe for tips &nbsp; &nbsp; &#8680;
+        </div>
+    
 </div>
