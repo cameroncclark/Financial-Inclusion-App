@@ -80,3 +80,10 @@
 .tipInfo{
     padding: 0vw 4vw;
 }
+
+.swipeMe{
+    font-size: 1.6rem;
+    color: #696969;
+    padding-top: 12vh; 
+    font-family: 'Caveat Brush', cursive;
+}

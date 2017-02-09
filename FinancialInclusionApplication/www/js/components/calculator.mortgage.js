@@ -48,10 +48,10 @@ fIApp.component("mortgageCalculator",{
             value: 1,
             options: {
                 floor: 1,
-                ceil: 20,
+                ceil: 40,
                 step: 1,
                 minLimit: 1,
-                maxLimit: 20
+                maxLimit: 40
             }
         };
 
