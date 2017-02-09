@@ -124,7 +124,6 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q) {
     };
 
     this.loadTrophyTable = function () {
-        console.log("Entered loadTrophyTable");
         var q = $q.defer(); //THIS IS NEEDED TO RESPOND WHEN RESOLVE IS READY
         var table = [];
         var row = [];
@@ -132,10 +131,10 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q) {
         var searchQuery = "SELECT * FROM trophies";
         $cordovaSQLite.execute(db, searchQuery, []).then(function (result) {
             if (result.rows.length > 0) {
-                console.log("Entered if");
                 trophyID = 0;
                 for (i = 0; i < 7; i++) {
                     for (j = 0; j < 3; j++) {
+                        trophyObject.id = result.rows.item(trophyID).id;
                         trophyObject.title = result.rows.item(trophyID).title;
                         trophyObject.image = result.rows.item(trophyID).image;
                         trophyObject.description = result.rows.item(trophyID).description;
@@ -143,6 +142,7 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q) {
                         trophyObject.acquired = result.rows.item(trophyID).acquired;
                         row[j] = trophyObject;
                         trophyID++;
+                        trophyObject= {};
                     }
                     table[i] = row;
                     row = [];
@@ -150,7 +150,7 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q) {
                 q.resolve(table); //ONCE DATA IS READY TO BE RETURNED, THIS WILL CALL THE .then FUNCTION ON THE CALL 
                 
             } else {
-                console.log("NO ROWS EXIST");
+                console.log("NO ROWS EXIST IN trophies");
             }
         }, function (error) {
             console.error(error);

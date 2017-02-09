@@ -6,8 +6,9 @@
     <ion-content>
         <div class="padding">
             <table class="trophyTable">
-                <tr data-ng-repeat="row in trophies">
-                    <td class="trophyTableIcons" data-ng-repeat="column in row"><i class = "icon icon ion-{{column.icon}} trophyIcon" ng-style="{{column.colour}}" ng-click="showTrophyAlert(column)"></i></td>
+                <tr data-ng-repeat="row in newTrophies">
+                    <td ng-if="column.acquired == 0" style="color:#A6A6A6" class="trophyTableIcons" data-ng-repeat="column in row"><i class = "icon icon ion-locked trophyIcon" ng-click="showTrophyAlert(column)"></i></td>
+                    <td ng-if="column.acquired == 1" style="color:#000" class="trophyTableIcons" data-ng-repeat="column in row"><i class = "icon icon ion-{{column.image}} trophyIcon" ng-click="showTrophyAlert(column)"></i></td>
                 </tr>
             </table>
         </div>

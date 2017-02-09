@@ -40,7 +40,6 @@ fIApp.component("headerBar", {
                 promise.then(function(response){
                     //WHEN THE RESPONSE IS READY, SET IT TO SCOPE
                     $scope.newTrophies = response;
-                    console.log("Hello " + JSON.stringify($scope.newTrophies));
                 });
             }
         };
@@ -60,11 +59,7 @@ fIApp.component("headerBar", {
 
         $scope.openChangePhoto = function () {
             $scope.modalAvatar.show();
-        };
-
-        
-        //$scope.trophiesf = [{name: "calculator"},{name: "university"},{name: "calculator"},{name: "trophy"},{name: "calculator"} ]
-        
+        };   
         
         $scope.trophies = [
             // Row 1
@@ -105,52 +100,52 @@ fIApp.component("headerBar", {
 
         $scope.trophiesHandover = [
             // Row 1
-            [{ title: "Updated Your Name", image: "edit", description: "A Description", hint: "A Hint", acquired: "unlocked" }, 
-            { title: "Updated Your Location", image: "compass", description: "A Description", hint: "A Hint", acquired: "unlocked" }, 
-            { title: "Updated Your Avatar", image: "person", description: "A Description", hint: "A Hint", acquired: "unlocked"}],
+            [{ title: "Updated Your Name", image: "edit", description: "A Description", hint: "A Hint", acquired: "0" }, 
+            { title: "Updated Your Location", image: "compass", description: "A Description", hint: "A Hint", acquired: "0" }, 
+            { title: "Updated Your Avatar", image: "person", description: "A Description", hint: "A Hint", acquired: "0"}],
             
             // Row 2
-            [{ title: "Flicked Through 20 Hints", image: "arrow-swap", description: "A Description", hint: "A Hint", acquired: "unlocked"}, 
-            { title: "Flicked Through 50 Hints", image: "locked", description: "A Description", hint: "A Hint", acquired: "locked"}, 
-            { title: "Flicked Through 100 Hints", image: "locked", description: "A Description", hint: "A Hint", acquired: "locked"}],
+            [{ title: "Flicked Through 20 Hints", image: "arrow-swap", description: "A Description", hint: "A Hint", acquired: "0"}, 
+            { title: "Flicked Through 50 Hints", image: "locked", description: "A Description", hint: "A Hint", acquired: "0"}, 
+            { title: "Flicked Through 100 Hints", image: "locked", description: "A Description", hint: "A Hint", acquired: "0"}],
             
             // Row 3
-            [{ title: "Performed a Calculation", image: "calculator", description: "A Description", hint: "A Hint", acquired: "unlocked"}, 
-            { title: "Used All Calculators", image: "locked", description: "A Description", hint: "A Hint", acquired: "locked"}, 
-            { title: "Visited A Website", image: "wifi", description: "A Description", hint: "A Hint", acquired: "unlocked"}],
+            [{ title: "Performed a Calculation", image: "calculator", description: "A Description", hint: "A Hint", acquired: "0"}, 
+            { title: "Used All Calculators", image: "locked", description: "A Description", hint: "A Hint", acquired: "0"}, 
+            { title: "Visited A Website", image: "wifi", description: "A Description", hint: "A Hint", acquired: "0"}],
             
             // Row 4
-            [{ title: "Visited 5 Websites", image: "locked", description: "A Description", hint: "A Hint", acquired: "locked"}, 
-            { title: "Called A Number", image: "iphone", description: "A Description", hint: "A Hint", acquired: "unlocked"}, 
-            { title: "25% Completion", image: "checkmark", description: "A Description", hint: "A Hint", acquired: "unlocked"}],
+            [{ title: "Visited 5 Websites", image: "locked", description: "A Description", hint: "A Hint", acquired: "0"}, 
+            { title: "Called A Number", image: "iphone", description: "A Description", hint: "A Hint", acquired: "0"}, 
+            { title: "25% Completion", image: "checkmark", description: "A Description", hint: "A Hint", acquired: "0"}],
             
             // Row 5
-            [{ title: "50% Completion", image: "locked", description: "A Description", hint: "A Hint", acquired: "locked"}, 
-            { title: "75% Completion", image: "locked", description: "A Description", hint: "A Hint", acquired: "locked"}, 
-            { title: "100% Completion", image: "locked", description: "A Description", hint: "A Hint", acquired: "locked"}],
+            [{ title: "50% Completion", image: "locked", description: "A Description", hint: "A Hint", acquired: "0"}, 
+            { title: "75% Completion", image: "locked", description: "A Description", hint: "A Hint", acquired: "0"}, 
+            { title: "100% Completion", image: "locked", description: "A Description", hint: "A Hint", acquired: "0"}],
             
             // Row 6
-            [{ title: "1 Quiz Complete", image: "clipboard", description: "A Description", hint: "A Hint", acquired: "unlocked"}, 
-            { title: "5 Quizzes Complete", image: "locked", description: "A Description", hint: "A Hint", acquired: "locked"}, 
-            { title: "All Quizzes Complete", image: "locked", description: "A Description", hint: "A Hint", acquired: "locked"}],
+            [{ title: "1 Quiz Complete", image: "clipboard", description: "A Description", hint: "A Hint", acquired: "0"}, 
+            { title: "5 Quizzes Complete", image: "locked", description: "A Description", hint: "A Hint", acquired: "0"}, 
+            { title: "All Quizzes Complete", image: "locked", description: "A Description", hint: "A Hint", acquired: "0"}],
             
             // Row 7
-            [{ title: "100% In A Quiz", image: "locked", description: "A Description", hint: "A Hint", acquired: "locked"}, 
-            { title: "100% in 3 Quizzes", image: "locked", description: "A Description", hint: "A Hint", acquired: "locked"}, 
-            { title: "The Final Trophie", image: "locked", description: "A Description", hint: "A Hint", acquired: "locked"}]
+            [{ title: "100% In A Quiz", image: "locked", description: "A Description", hint: "A Hint", acquired: "0"}, 
+            { title: "100% in 3 Quizzes", image: "locked", description: "A Description", hint: "A Hint", acquired: "0"}, 
+            { title: "The Final Trophie", image: "locked", description: "A Description", hint: "A Hint", acquired: "0"}]
         ];
 
         $scope.showTrophyAlert = function (iconObject) {
-            if (iconObject.state == "unlocked") {
+            if (iconObject.acquired == "1") {
                 var alertPopup = $ionicPopup.alert({
-                    title: iconObject.name,
-                    template: iconObject.info
+                    title: iconObject.title,
+                    template: iconObject.description
                 });
             }
-            else if(iconObject.state == "locked"){
+            else if(iconObject.acquired == "0"){
                 var alertPopup = $ionicPopup.alert({
                     title: "Locked",
-                    template: iconObject.info
+                    template: iconObject.hint
                 });
             }
         };
