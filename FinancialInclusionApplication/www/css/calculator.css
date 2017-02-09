@@ -36,16 +36,21 @@
     font-size: 1rem;
     color: black;
     font-weight: bold;
+
+    font-family: 'Helvetica', cursive;
+
 }
 
 .calcBodyText{
     font-size: 0.8rem;
     color: #696969;
+
 }
 
 .savingsSlider{
     margin-bottom:2vh; 
     padding:0vh;
+    text-align: justify;
 }
 
 .savingsCalcWrapper{
@@ -183,4 +188,29 @@ padding: 2vh;
 
 .calcTextAbove{
     margin-bottom: 2vh;
+}
+
+.calcIconWrapper{
+    padding: 2vh;
+    float:left;
+    width: 80vw;
+}
+
+.calcIcon{
+    float: left;
+    margin-right: 5vw;
+}
+
+.calcText{
+    margin: auto;
+    padding-top: 5vh;
+    font-size: 0.8rem;
+
+}
+
+.calcText2{
+    margin: auto;
+    padding-top: 3vh;
+    font-size: 0.8rem;
+
 }
