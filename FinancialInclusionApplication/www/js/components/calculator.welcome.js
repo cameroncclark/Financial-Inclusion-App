@@ -3,7 +3,7 @@ fIApp.component("welcomeCalculator",{
     controller: function welcomeCalculatorCtrl($scope, $ionicModal){
 
 
-        $ionicModal.fromTemplateUrl('templates/calculator.helpModal.html', {
+        $ionicModal.fromTemplateUrl('templates/calculator.welcomeHelpModal.html', {
             scope: $scope
         }).then(function (modal) {
             $scope.modalHelp = modal;
