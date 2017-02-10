@@ -191,26 +191,40 @@ padding: 2vh;
 }
 
 .calcIconWrapper{
-    padding: 2vh;
+    padding: 1vh;
     float:left;
-    width: 80vw;
+    width: 26vw;
+    padding-bottom: 3vh;
 }
 
 .calcIcon{
-    float: left;
-    margin-right: 5vw;
+    text-align: center;
+        display: block;
+    border: solid 1px #696969;
+    max-width: 30vw;
+    margin: auto;
+    height: 13vh;
+    /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+    border-radius: 50%;
+    background: white;
 }
 
 .calcText{
     margin: auto;
-    padding-top: 5vh;
+    padding-top: 1vh;
     font-size: 0.8rem;
+    text-align: center;
 
 }
 
 .calcText2{
     margin: auto;
-    padding-top: 3vh;
+    padding-top: 1vh;
     font-size: 0.8rem;
+    text-align: center;
 
+}
+
+.welcomeText{
+    padding: 2vh;
 }
