@@ -1,0 +1,77 @@
+package View;
+
+import java.awt.BorderLayout;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import Controller.ActionController;
+
+public class PanelCreator {
+	String[] categories;
+	
+	public JComponent makeTextPanel(String text){
+		JPanel panel = new JPanel();
+		panel.setVisible(true);
+		panel.setLayout(new BorderLayout());
+		JLabel label = new JLabel(text);
+		panel.add(label);
+	
+		return panel;
+	}
+	
+	public JComponent makeCategoriesPanel(ActionController actionListener){
+		categories = actionListener.initaliseCategoriesTab();
+		
+		JPanel panel = new JPanel();
+		panel.setVisible(true);
+		panel.setLayout(null);
+		
+		//Add Category Functionality******************
+		JLabel addCategoryLbl = new JLabel("Add Category:");
+		addCategoryLbl.setBounds(2,2,200,20);
+		
+		JTextField addCTF = new JTextField();
+		addCTF.setBounds(2, 50, 150, 20);
+		
+		JButton addCategoryBtn = new JButton("This is a test");
+		addCategoryBtn.setBounds(500, 2, 20, 70);
+		addCategoryBtn.setActionCommand("addCategory");
+		addCategoryBtn.addActionListener(actionListener);
+		
+		panel.add(addCategoryLbl);
+		panel.add(addCTF);
+		panel.add(addCategoryBtn);
+		
+		//Edit Category Functionality*********************
+		JLabel editCategoryLbl = new JLabel("Edit Category:");
+		editCategoryLbl.setBounds(2,102,200,20);
+		JLabel deleteCategoryLbl = new JLabel("Delete Category:");
+		deleteCategoryLbl.setBounds(2,202,200,20);
+		
+		
+		
+		
+		
+		
+		JComboBox list = new JComboBox(categories);
+		list.setSelectedIndex(0);
+		list.addActionListener(actionListener);
+		list.setBounds(2, 100, 500, 100);
+		
+		
+		panel.add(editCategoryLbl);
+		panel.add(deleteCategoryLbl);
+		
+		
+		panel.add(list);
+		
+		return panel;
+	}
+
+}

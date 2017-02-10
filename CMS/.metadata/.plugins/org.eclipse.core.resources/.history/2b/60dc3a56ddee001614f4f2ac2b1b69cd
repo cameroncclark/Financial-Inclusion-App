@@ -1,0 +1,15 @@
+package Controller;
+
+import Model.Model;
+import View.MainContainer;
+
+public class EditCategoryDropDownCtrl {
+	Model model;
+	MainContainer view;
+	
+	public EditCategoryDropDownCtrl(Model model, MainContainer view) {
+		this.model = model;
+		this.view = view;
+	}
+
+}

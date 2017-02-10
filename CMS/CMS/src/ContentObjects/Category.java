@@ -2,11 +2,11 @@ package ContentObjects;
 
 public class Category {
 	String name;
-	int id;
+	int ID;
 	
 	public Category(String name, int ID) {
 		this.name = name;
-		this.id = ID;
+		this.ID = ID;
 	}
 	
 	public Category() {
@@ -19,10 +19,10 @@ public class Category {
 		this.name = name;
 	}
 	public int getId() {
-		return id;
+		return ID;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setId(int ID) {
+		this.ID = ID;
 	}
 
 }

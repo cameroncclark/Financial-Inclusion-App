@@ -66,7 +66,7 @@ public class MainContainer {
 	private void createTabbedPane(){
 		tabbedPane = new JTabbedPane();
 		
-		JComponent categoriesPanel = panelCreator.makeCategoriesPanel((ActionController)actionListener);
+		JComponent categoriesPanel = panelCreator.makeCategoriesPanel(model,(ActionController)actionListener);
 		tabbedPane.addTab("Categories", categoriesPanel);
 		
 		JComponent contentPanel = panelCreator.makeTextPanel("Panel #2");
@@ -76,5 +76,9 @@ public class MainContainer {
 		tabbedPane.addTab("Tips", tipsPanel);
 		
 		jFrame.add(tabbedPane);
+	}
+	
+	public Panel getActivePanel(){
+		return panelCreator.getActivePanel(tabbedPane.getSelectedIndex());
 	}
 }

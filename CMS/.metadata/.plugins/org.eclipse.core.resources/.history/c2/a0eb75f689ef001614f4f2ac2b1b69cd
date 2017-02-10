@@ -1,0 +1,14 @@
+package Controller;
+
+import Model.Model;
+import View.CategoriesPanel;
+import View.MainContainer;
+
+public class AddCategoryCtrl {
+	
+	public AddCategoryCtrl(Model model, MainContainer view) {
+		CategoriesPanel panel = (CategoriesPanel) view.getActivePanel();
+		System.out.println(panel.getAddCategoryText());
+		model.addCategory(panel.getAddCategoryText());
+	}
+}

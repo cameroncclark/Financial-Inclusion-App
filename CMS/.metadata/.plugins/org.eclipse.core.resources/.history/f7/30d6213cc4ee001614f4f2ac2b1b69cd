@@ -1,0 +1,33 @@
+package View;
+
+import java.awt.BorderLayout;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import Controller.ActionController;
+
+public class PanelCreator {
+	String[] categories;
+	
+	public JComponent makeTextPanel(String text){
+		JPanel panel = new JPanel();
+		panel.setVisible(true);
+		panel.setLayout(new BorderLayout());
+		JLabel label = new JLabel(text);
+		panel.add(label);
+	
+		return panel;
+	}
+	
+	public JComponent makeCategoriesPanel(ActionController actionListener){
+		CategoriesPanel catPanel = new CategoriesPanel(actionListener);
+		return catPanel.getPanel();
+	}
+
+}

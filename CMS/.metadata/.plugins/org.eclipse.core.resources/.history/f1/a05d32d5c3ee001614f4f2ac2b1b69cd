@@ -1,0 +1,26 @@
+package View;
+
+import java.io.Serializable;
+
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+
+public class CategoriesPanel implements Serializable {
+	JPanel panel;
+	String[] categories;
+	
+	public CategoriesPanel(String[] categories) {
+		this.categories = categories;
+		createCategoriesPanel(categories);
+	}
+	
+	public void createCategoriesPanel(String[] categories){
+		
+	}
+	
+	public JComponent getPanel(){
+		return panel;
+	}
+	
+	
+}

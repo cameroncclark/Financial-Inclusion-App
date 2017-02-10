@@ -1,0 +1,16 @@
+package View;
+
+import java.io.Serializable;
+
+import javax.swing.JComponent;
+
+public class CategoriesPanel implements Serializable {
+	public CategoriesPanel() {
+		// TODO Auto-generated constructor stub
+		//call setup methods
+	}
+	
+	public JComponent getPanel(){
+		return null;
+	}
+}

@@ -14,6 +14,8 @@ public class Driver {
 		ActionController actionController = new ActionController(model);
 		//Create MainContainer
 		MainContainer mainContainer = new MainContainer(model,actionController);
+		//Setting view to controller
+		actionController.setMainContainer(mainContainer);
 	}
 
 }
