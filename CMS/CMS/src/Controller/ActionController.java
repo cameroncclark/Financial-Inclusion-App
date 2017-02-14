@@ -25,9 +25,6 @@ public class ActionController implements ActionListener {
 		case "addCategory":
 			AddCategoryCtrl addCategoryCtrl = new AddCategoryCtrl(model, view);
 			break;
-		case "editCategorySelect":
-			EditCategoryDropDownCtrl editCatDDCtrl = new EditCategoryDropDownCtrl(model,view);
-			break;
 		case "editCategory":
 			EditCategoryCtrl editCatCrtl = new EditCategoryCtrl(model, view);
 			break;

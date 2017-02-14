@@ -1,0 +1,15 @@
+package ContentObjects;
+
+public class Tip {
+	protected String header;
+	protected String tip;
+	
+	public Tip() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Tip(String header, String tip){
+		this.header = header;
+		this.tip = tip;
+	}
+}

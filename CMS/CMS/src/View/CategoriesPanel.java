@@ -135,9 +135,6 @@ public class CategoriesPanel implements Panel, Observer {
 	@Override
 	public void update(Observable o, Object arg) {
 		categories = actionListener.initaliseCategoriesTab();
-		for(String cat:categories){
-			System.out.println(cat);
-		}
 		refreshComboBoxes();
 		panel.repaint();
 		panel.revalidate();

@@ -1,0 +1,9 @@
+package ContentObjects;
+
+public class Number {
+	protected String name;
+	protected String blurb;
+	protected String number;
+	
+	
+}

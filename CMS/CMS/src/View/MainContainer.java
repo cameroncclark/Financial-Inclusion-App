@@ -75,6 +75,12 @@ public class MainContainer {
 		JComponent tipsPanel = panelCreator.makeTextPanel("Panel #3");
 		tabbedPane.addTab("Tips", tipsPanel);
 		
+		JComponent numbersPanel = panelCreator.makeCategoriesPanel(model,(ActionController)actionListener);;
+		tabbedPane.addTab("External numbers", numbersPanel);
+		
+		JComponent externalLinksPanel = panelCreator.makeCategoriesPanel(model,(ActionController)actionListener);;
+		tabbedPane.addTab("External links", externalLinksPanel);
+		
 		jFrame.add(tabbedPane);
 	}
 	

@@ -1,0 +1,47 @@
+package Model;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Random;
+
+import com.google.gson.Gson;
+
+import ContentObjects.Category;
+
+public class CategoriesModel {
+	final String _PATH = "../../FinancialInclusionApplication/www/content/";
+	Gson gson;
+	ArrayList<Category> categories;
+	Model model; 
+	Random random;
+	
+	public CategoriesModel(Model model) {
+		this.model = model;
+		gson = new Gson();
+		random = new Random();
+		selectCategories();
+	}
+	
+	public String[] selectCategories() {
+		try {
+			String fileText = getJSONString("categories.JSON");
+
+			Category[] categoryArray = gson.fromJson(fileText, Category[].class);
+			categories = new ArrayList<Category>(Arrays.asList(categoryArray));
+
+			String[] categoryNames = new String[categoryArray.length];
+			int count = 0;
+			for (Category category : categoryArray) {
+				categoryNames[count] = category.getName();
+				count++;
+			}
+			System.out.println(gson.toJson(categories));
+			return categoryNames;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return new String[] {};
+	}
+
+}

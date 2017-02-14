@@ -20,97 +20,71 @@ import com.google.gson.GsonBuilder;
 import ContentObjects.Category;
 
 public class Model extends Observable {
-
-	// TODO: Change path when packaged
 	final String _PATH = "../../FinancialInclusionApplication/www/content/";
-	Gson gson;
-	ArrayList<Category> categories;
-	Random random;
+	CategoriesModel catModel;
+	NumbersModel numbersModel;
+	LinksModel linksModel;
 
 	public Model() {
-		gson = new Gson();
-		random = new Random();
-	}
-
-	public void testModel() {
-		System.out.println("I've been pressed");
+		catModel = new CategoriesModel(this);
+		numbersModel = new NumbersModel(this);
+		linksModel = new LinksModel(this);
+		
 	}
 
 	public String[] selectCategories() {
-		try {
-			String fileText = getJSONString("categories.JSON");
-
-			Category[] categoryArray = gson.fromJson(fileText, Category[].class);
-			categories = new ArrayList<Category>(Arrays.asList(categoryArray));
-
-			String[] categoryNames = new String[categoryArray.length];
-			int count = 0;
-			for (Category category : categoryArray) {
-				categoryNames[count] = category.getName();
-				count++;
-			}
-			System.out.println(gson.toJson(categories));
-			return categoryNames;
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return new String[] {};
+		return catModel.selectCategories();
+	}
+	
+	public String[] selectNumbers(){
+		return numbersModel.selectNumbers();
+	}
+	
+	public String[] selectLinks(){
+		return linksModel.selectLinks();
 	}
 
-	private Boolean duplicateName(String name) {
-		for (Category c : categories) {
-			if (c.getName().equals(name)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	// Need check to see if category name is in there
 	public void addCategory(String categoryName) {
-		System.out.println("Add category called");
-		if (!duplicateName(categoryName)) {
-			System.out.println("Not duplicate");
-			int newCatId = random.nextInt(500) + 1;
-			while (getCategoryIDs().contains(newCatId)) {
-				newCatId = random.nextInt(500) + 1;
-			}
-			categories.add(new Category(categoryName, newCatId));
-			rewriteCategoriesFile();
-		}
-		System.out.println("Add categories: " +gson.toJson(categories));
+		catModel.addCategory(categoryName);
+	}
+	
+	public void addNumber(String name, String blurb, String number){
+		numbersModel.addUsefulNumber(name, blurb, number);
+	}
+	
+	public void addLink(String name, String blurb, String website){
+		linksModel.addLink(name, blurb, website);
 	}
 
 	public void editCategory(String oldCat, String newCat) {
-		if (!duplicateName(newCat)) {
-			System.out.println("Method called");
-			System.out.println(oldCat);
-			for (Category c : categories) {
-				if (c.getName().equals(oldCat)) {
-					c.setName(newCat);
-					break;
-				}
-			}
-			rewriteCategoriesFile();
-		}
+		catModel.editCategory(oldCat, newCat);
+	}
+	
+	public void editNumber(String oldName, String newName, String newBlurb, String newNumber){
+		numbersModel.editUsefulNumnber(oldName, newName, newBlurb, newNumber);
+	}
+	
+	public void editLink(String oldName, String newName, String newBlurb, String newWebsite){
+		linksModel.editLink(oldName, newName, newBlurb, newWebsite);
 	}
 
 	public void deleteCategory(String selectedCat) {
-		System.out.println("Delete category called");
-		Category toBeRemoved = new Category();
-
-		for (Category c : categories) {
-			if (c.getName().equals(selectedCat)) {
-				toBeRemoved = c;
-				break;
-			}
-		}
-
-		categories.remove(toBeRemoved);
-		rewriteCategoriesFile();
+		catModel.deleteCategory(selectedCat);
+	}
+	
+	public void deleteNumber(String name){
+		numbersModel.deleteUsefulNumber(name);
+	}
+	
+	public void deleteLink(String name){
+		linksModel.deleteLink(name);
 	}
 
+	public void setModelObserver(Observer o) {
+		this.addObserver(o);
+	}
+	
+	
 	/**
 	 * This returns the JSON file as a string.
 	 * 
@@ -118,7 +92,7 @@ public class Model extends Observable {
 	 * @return {@link String}
 	 * @throws IOException
 	 */
-	private String getJSONString(String filePath) throws IOException {
+	public String getJSONString(String filePath) throws IOException {
 		File file = new File(_PATH + filePath);
 		FileInputStream fis = null;
 
@@ -134,26 +108,9 @@ public class Model extends Observable {
 
 		return builder.toString();
 	}
-
-	public ArrayList<Integer> getCategoryIDs() {
-		ArrayList<Integer> categoryIDs = new ArrayList<Integer>();
-		for (Category c : categories) {
-			categoryIDs.add(c.getId());
-		}
-		return categoryIDs;
-	}
-
-	public void rewriteCategoriesFile() {
-		try {
-			Files.write(Paths.get(_PATH + "categories.json"), gson.toJson(categories).getBytes());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	
+	public void changed(){
 		setChanged();
 		notifyObservers();
-	}
-
-	public void setModelObserver(Observer o) {
-		this.addObserver(o);
 	}
 }

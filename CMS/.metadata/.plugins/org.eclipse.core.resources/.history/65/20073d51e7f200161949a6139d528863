@@ -1,0 +1,19 @@
+package Model;
+
+import java.util.ArrayList;
+
+import com.google.gson.Gson;
+
+import ContentObjects.Number;
+
+public class LinksModel {
+	final String _PATH = "../../FinancialInclusionApplication/www/content/";
+	Model model;
+	Gson gson;
+	ArrayList<Number> numbers;
+
+	public LinksModel(Model model) {
+		this.model = model;
+		selectLinks();
+	}
+}

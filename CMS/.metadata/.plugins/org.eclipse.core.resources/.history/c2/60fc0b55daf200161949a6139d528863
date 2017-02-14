@@ -1,0 +1,19 @@
+package View;
+
+import javax.swing.JComponent;
+
+public class ExternalLinksPanel implements Panel,Observer{
+
+	@Override
+	public JComponent getPanel() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void createPanel() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}
