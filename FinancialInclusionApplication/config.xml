@@ -1,27 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id="com.ionicframework.financialinclusionapplication365221" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>Financial Inclusion Application</name>
-  <description>&#xD;&#xD;&#xD;
-        An Ionic Framework and Cordova project.&#xD;&#xD;&#xD;
+  <description>
+        An Ionic Framework and Cordova project.
     </description>
-  <author email="you@example.com" href="http://example.com/">&#xD;&#xD;&#xD;
-      Your Name Here&#xD;&#xD;&#xD;
+  <author email="you@example.com" href="http://example.com/">
+      Your Name Here
     </author>
   <content src="index.html"/>
   <access origin="*"/>
   <access origin="tel:*" launch-external="yes"/>
   <access origin="mailto:*" launch-external="yes"/>
   <allow-navigation href="*"/>
-  <allow-navigation href="http://130.159.227.85:8100"/>
-  <allow-navigation href="http://130.159.227.177:8100"/>
-  <allow-navigation href="http://130.159.33.185:8100"/>
-  <allow-navigation href="http://192.168.0.23:8100"/>
-  <allow-navigation href="http://130.159.226.118:8100"/>
-  <allow-navigation href="http://130.159.226.207:8100"/>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
-  <preference name="SplashScreenDelay" value="3000"/>
+  <preference name="SplashScreenDelay" value="3001"/>
   <preference name="FadeSplashScreenDuration" value="2000"/>
   <preference name="android-minSdkVersion" value="16"/>
   <preference name="BackupWebStorage" value="none"/>
