@@ -1,0 +1,59 @@
+package View;
+
+import java.util.Observable;
+import java.util.Observer;
+
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+
+import Controller.ActionController;
+
+public class NumbersPanel implements Panel, Observer {
+	JPanel panel;
+	ActionController actionListener;
+	
+	public NumbersPanel(ActionController actionListener) {
+		this.actionListener = actionListener;
+		createPanel();
+	}
+	
+	@Override
+	public void createPanel() {
+		panel = new JPanel();
+		panel.setVisible(true);
+		panel.setLayout(null);
+		
+	}
+	
+	public void addSection(){
+		JButton addNumberBtn = new JButton("Test add");
+		addNumberBtn.setBounds(500, 70, 125, 20);
+		addNumberBtn.setActionCommand("addCategory");
+		addNumberBtn.addActionListener(actionListener);
+		
+		JButton editNumberBtn = new JButton("Test edit");
+		editNumberBtn.setBounds(500, 70, 125, 20);
+		editNumberBtn.setActionCommand("addCategory");
+		editNumberBtn.addActionListener(actionListener);
+		
+		JButton deleteNumberBtn = new JButton("Test delete");
+		deleteNumberBtn.setBounds(500, 70, 125, 20);
+		deleteNumberBtn.setActionCommand("addCategory");
+		deleteNumberBtn.addActionListener(actionListener);
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public JComponent getPanel() {
+		return panel;
+	}
+
+	
+
+}

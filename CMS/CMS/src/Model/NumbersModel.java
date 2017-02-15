@@ -69,7 +69,7 @@ public class NumbersModel {
 		Number toBeRemoved = new Number();
 		for(Number n: numbers){
 			if(n.getName().equals(name)){
-				n = toBeRemoved;
+				toBeRemoved = n;
 				break;
 			}
 		}

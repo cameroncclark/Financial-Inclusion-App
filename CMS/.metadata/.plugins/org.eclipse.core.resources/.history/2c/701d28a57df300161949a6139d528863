@@ -1,0 +1,7 @@
+package View;
+
+import java.util.Observer;
+
+public class LinksPanel implements Panel, Observer {
+
+}

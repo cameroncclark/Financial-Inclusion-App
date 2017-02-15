@@ -69,16 +69,16 @@ public class MainContainer {
 		JComponent categoriesPanel = panelCreator.makeCategoriesPanel(model,(ActionController)actionListener);
 		tabbedPane.addTab("Categories", categoriesPanel);
 		
-		JComponent contentPanel = panelCreator.makeTextPanel("Panel #2");
+		JComponent contentPanel = panelCreator.makeContentPanel(model,(ActionController)actionListener);
 		tabbedPane.addTab("Content", contentPanel);
 		
-		JComponent tipsPanel = panelCreator.makeTextPanel("Panel #3");
+		JComponent tipsPanel = panelCreator.makeTipsPanel(model,(ActionController) actionListener);
 		tabbedPane.addTab("Tips", tipsPanel);
 		
-		JComponent numbersPanel = panelCreator.makeCategoriesPanel(model,(ActionController)actionListener);;
+		JComponent numbersPanel = panelCreator.makeNumbersPanel(model, (ActionController) actionListener); 
 		tabbedPane.addTab("External numbers", numbersPanel);
 		
-		JComponent externalLinksPanel = panelCreator.makeCategoriesPanel(model,(ActionController)actionListener);;
+		JComponent externalLinksPanel = panelCreator.makeLinksPanel(model, (ActionController) actionListener);
 		tabbedPane.addTab("External links", externalLinksPanel);
 		
 		jFrame.add(tabbedPane);
