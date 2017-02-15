@@ -21,11 +21,11 @@ public class TipsModel {
 		selectTips();
 	}
 
-	public String[] selectTips() {
+	private String[] selectTips() {
 		return new String[] {};
 	}
 
-	
+	// Limit tips to 200 characters
 
 	public void addTip(String header, String tip) {
 		if (!duplicateName(header)) {

@@ -31,24 +31,7 @@ public class ActionController implements ActionListener {
 		case "deleteCategory":
 			DeleteCategoryCtrl dltCatCtrl = new DeleteCategoryCtrl(model, view);
 			break;
-		case "addNumber":
-			break;
-		case "editNumber":
-			break;
-		case "deleteNumber":
-			break;
-		case "addLink":
-			break;
-		case "editLink":
-			break;
-		case "deleteLink":
-			break;
-		case "addTip":
-			break;
-		case "editTip":
-			break;
-		case "deleteTip":
-			break;	
+			
 		}
 		
 	}

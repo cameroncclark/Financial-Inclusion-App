@@ -24,13 +24,11 @@ public class Model extends Observable {
 	CategoriesModel catModel;
 	NumbersModel numbersModel;
 	LinksModel linksModel;
-	TipsModel tipsModel;
 
 	public Model() {
 		catModel = new CategoriesModel(this);
 		numbersModel = new NumbersModel(this);
 		linksModel = new LinksModel(this);
-		tipsModel = new TipsModel(this);
 		
 	}
 
@@ -45,10 +43,6 @@ public class Model extends Observable {
 	public String[] selectLinks(){
 		return linksModel.selectLinks();
 	}
-	
-	public String[] selectTips(){
-		return tipsModel.selectTips();
-	}
 
 	public void addCategory(String categoryName) {
 		catModel.addCategory(categoryName);
@@ -60,10 +54,6 @@ public class Model extends Observable {
 	
 	public void addLink(String name, String blurb, String website){
 		linksModel.addLink(name, blurb, website);
-	}
-	
-	public void addTip(String header, String tip){
-		tipsModel.addTip(header, tip);
 	}
 
 	public void editCategory(String oldCat, String newCat) {
@@ -77,10 +67,6 @@ public class Model extends Observable {
 	public void editLink(String oldName, String newName, String newBlurb, String newWebsite){
 		linksModel.editLink(oldName, newName, newBlurb, newWebsite);
 	}
-	
-	public void editTip(String oldHeader, String newHeader, String newTip){
-		tipsModel.editTip(oldHeader, newHeader, newTip);
-	}
 
 	public void deleteCategory(String selectedCat) {
 		catModel.deleteCategory(selectedCat);
@@ -92,10 +78,6 @@ public class Model extends Observable {
 	
 	public void deleteLink(String name){
 		linksModel.deleteLink(name);
-	}
-	
-	public void deleteTip(String header){
-		tipsModel.deleteTip(header);
 	}
 
 	public void setModelObserver(Observer o) {

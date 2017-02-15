@@ -21,7 +21,7 @@ public class TipsModel {
 		selectTips();
 	}
 
-	public String[] selectTips() {
+	private String[] selectTips() {
 		return new String[] {};
 	}
 

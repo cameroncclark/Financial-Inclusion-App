@@ -15,55 +15,35 @@ public class TipsModel {
 	Model model;
 	Gson gson;
 	ArrayList<Tip> tips;
-
+	
 	public TipsModel(Model model) {
 		this.model = model;
 		selectTips();
 	}
-
-	public String[] selectTips() {
-		return new String[] {};
-	}
-
 	
-
-	public void addTip(String header, String tip) {
-		if (!duplicateName(header)) {
-			if (tip.length() < 199) {
+	private String[] selectTips(){
+		return new String[]{};
+	}
+	
+	//Limit tips to 200 characters
+	
+	public void addTip(String header, String tip){
+		if(!duplicateName(header)){
+			if(tip.length() < 199){
 				tips.add(new Tip(header, tip));
 				rewriteTipsFile();
 			}
 		}
 	}
-
-	public void editTip(String oldHeader, String newHeader, String newTip) {
-		if (!duplicateName(newHeader)) {
-			if (newTip.length() < 199) {
-				for (Tip t : tips) {
-					if (t.getHeader().equals(oldHeader)) {
-						t.setHeader(newHeader);
-						t.setTip(newTip);
-						break;
-					}
-				}
-			}
-			rewriteTipsFile();
-		}
+	
+	public void editTip(String oldHeader, String newHeader, String newTip){
+		
 	}
-
-	public void deleteTip(String header) {
-		Tip toBeRemoved = new Tip();
-		for (Tip t : tips) {
-			if (t.getHeader().equals(header)) {
-				toBeRemoved = t;
-				break;
-			}
-		}
-		tips.remove(toBeRemoved);
-		rewriteTipsFile();
-
+	
+	public void deleteTip(String header){
+		
 	}
-
+	
 	/**
 	 * Method to check to see if a number name already exists
 	 * 
@@ -78,7 +58,7 @@ public class TipsModel {
 		}
 		return false;
 	}
-
+	
 	/**
 	 * Method to rewrite the json files and tell the model to notify observers
 	 */

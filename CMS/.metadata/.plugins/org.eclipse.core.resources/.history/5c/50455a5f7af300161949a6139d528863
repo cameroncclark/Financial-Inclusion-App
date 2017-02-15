@@ -1,0 +1,9 @@
+package Controller;
+
+import View.CategoriesPanel;
+
+public class EditNumberCtrl {
+public EditNumberCtrl(Model model, MainContainer view) {
+	NumbersPanel panel = (NumbersPanel) view.getActivePanel();
+}
+}
