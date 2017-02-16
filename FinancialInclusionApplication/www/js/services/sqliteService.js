@@ -142,11 +142,11 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q) {
                         trophyObject.acquired = result.rows.item(trophyID).acquired;
                         row[j] = trophyObject;
                         trophyID++;
-                        trophyObject= {};
+                        trophyObject = {};
                     }
                     table[i] = row;
                     row = [];
-                }  
+                }
                 q.resolve(table); //ONCE DATA IS READY TO BE RETURNED, THIS WILL CALL THE .then FUNCTION ON THE CALL    
             } else {
                 console.log("NO ROWS EXIST IN trophies");
@@ -161,10 +161,9 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q) {
         var q = $q.defer();
         var returnCategory = [];
         var query = "SELECT name, percentageComplete FROM categories";
-        console.log(query);
         $cordovaSQLite.execute(db, query, []).then(function (result) {
             if (result.rows.length > 0) {
-                for(var i = 0; i < result.rows.length; i++){
+                for (var i = 0; i < result.rows.length; i++) {
                     var temp = {};
                     temp.name = result.rows.item(i).name;
                     temp.progress = result.rows.item(i).percentageComplete;
@@ -178,6 +177,28 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q) {
             console.error(error);
         });
         return q.promise;
-    }
+    };
+
+    this.getSubcatProgress = function (name) {
+        var q = $q.defer();
+        var returnSubCategory = [];
+        var query = "SELECT name, percentageComplete FROM subcategories";
+        $cordovaSQLite.execute(db, query, []).then(function (result) {
+            if (result.rows.length > 0) {
+                for (var i = 0; i < result.rows.length; i++) {
+                    var temp = {};
+                    temp.name = result.rows.item(i).name;
+                    temp.progress = result.rows.item(i).percentageComplete;
+                    returnSubCategory.push(temp);
+                }
+                q.resolve(returnSubCategory);
+            } else {
+                console.error("NO ROWS EXIST IN subcategories");
+            }
+        }, function (error) {
+            console.error(error);
+        });
+        return q.promise;
+    };
 
 });

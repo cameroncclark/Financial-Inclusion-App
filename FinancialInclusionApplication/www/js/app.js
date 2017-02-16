@@ -150,7 +150,7 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
                           SCcatID = result.rows.item(0).id;
                           SCname = subcategory.data.title;
 
-                          $cordovaSQLite.execute(db, subCatQuery, [SCname, 0, SCcatID]).then(function (result) {
+                          $cordovaSQLite.execute(db, subCatQuery, [SCname, 100, SCcatID]).then(function (result) {
                             console.log("INSERT SUB CAT ID -> " + result.insertId);
                           }, function (error) {
                             console.error(JSON.stringify(error));
