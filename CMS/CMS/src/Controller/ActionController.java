@@ -9,19 +9,18 @@ import View.MainContainer;
 public class ActionController implements ActionListener {
 	Model model;
 	MainContainer view;
-	
-	
-	public ActionController(Model model){
+
+	public ActionController(Model model) {
 		this.model = model;
 	}
-	
-	public void setMainContainer(MainContainer view){
+
+	public void setMainContainer(MainContainer view) {
 		this.view = view;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		switch(e.getActionCommand()){
+		switch (e.getActionCommand()) {
 		case "addCategory":
 			AddCategoryCtrl addCategoryCtrl = new AddCategoryCtrl(model, view);
 			break;
@@ -57,16 +56,21 @@ public class ActionController implements ActionListener {
 			break;
 		case "deleteTip":
 			DeleteTipCtrl deleteTipCtrl = new DeleteTipCtrl(model, view);
-			break;	
+			break;
+		case "editTipSelect":
+			EditTipSelect editTipSelect = new EditTipSelect(model, view);
+			break;
+			
 		}
-		
+
 	}
-	
-	public String[] initaliseCategoriesTab(){
-		String[] categories = model.selectCategories();
-		return categories;
+
+	public String[] initaliseCategoriesTab() {
+		return model.selectCategories();
 	}
-	
-	
+
+	public String[] initaliseTipsTab() {
+		return model.selectTips();
+	}
 
 }

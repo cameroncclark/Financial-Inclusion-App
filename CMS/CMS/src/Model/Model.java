@@ -2,22 +2,11 @@ package Model;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.Random;
 
-import javax.swing.plaf.synth.SynthScrollBarUI;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-import ContentObjects.Category;
+import ContentObjects.Tip;
 
 public class Model extends Observable {
 	final String _PATH = "../../FinancialInclusionApplication/www/content/";
@@ -100,6 +89,10 @@ public class Model extends Observable {
 
 	public void setModelObserver(Observer o) {
 		this.addObserver(o);
+	}
+	
+	public Tip selectTip(String header){
+		return tipsModel.selectTip(header);
 	}
 	
 	

@@ -2,8 +2,6 @@ package View;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.Serializable;
-import java.util.Calendar;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -12,6 +10,7 @@ import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
 import Controller.ActionController;
@@ -42,29 +41,37 @@ public class CategoriesPanel implements Panel, Observer {
 	
 	private void createAddCategoriesComponents(){
 		JLabel addCategoryLbl = new JLabel("Add Category:");
-		addCategoryLbl.setBounds(2, 2, 200, 20);
+		addCategoryLbl.setBounds(10, 10, 200, 20);
 
+		JLabel addCategoryTF = new JLabel("New Category:");
+		addCategoryTF.setBounds(200,50,150,20);
+		
 		addCTF = new JTextField();
-		addCTF.setBounds(2, 50, 150, 20);
+		addCTF.setBounds(300, 50, 150, 20);
 
 		JButton addCategoryBtn = new JButton("Add Category");
-		addCategoryBtn.setBounds(500, 70, 125, 20);
+		addCategoryBtn.setBounds(525, 120, 125, 20);
 		addCategoryBtn.setActionCommand("addCategory");
 		addCategoryBtn.addActionListener(actionListener);
+		
+		JSeparator separator = new JSeparator(JSeparator.HORIZONTAL);
+		separator.setBounds(2, 145, 675, 10);
 
 		panel.add(addCategoryLbl);
+		panel.add(addCategoryTF);
 		panel.add(addCTF);
 		panel.add(addCategoryBtn);
+		panel.add(separator);
 	}
 	
 	private void createEditCategoriesComponents(){
 		JLabel editCategoryLbl = new JLabel("Edit Category:");
-		editCategoryLbl.setBounds(2, 102, 200, 20);
+		editCategoryLbl.setBounds(10, 160, 200, 20);
 
 		editCatList = new JComboBox(categories);
 		editCatList.addActionListener(actionListener);
 		editCatList.setActionCommand("editCategorySelect");
-		editCatList.setBounds(2, 120, 250, 25);
+		editCatList.setBounds(460, 160, 200, 25);
 		editCatList.addActionListener(new ActionListener() {
 
 			@Override
@@ -73,39 +80,52 @@ public class CategoriesPanel implements Panel, Observer {
 			}
 		});
 
+		JLabel editCategoryTF = new JLabel("Edit Category:");
+		editCategoryTF.setBounds(200,210,150,20);
+		
 		editCTF = new JTextField();
-		editCTF.setBounds(2, 150, 150, 20);
+		editCTF.setBounds(300, 210, 150, 20);
 		editCTF.setText(editCatList.getSelectedItem().toString());
 
 		JButton editCategoryBtn = new JButton("Edit Category");
-		editCategoryBtn.setBounds(500, 120, 125, 20);
+		editCategoryBtn.setBounds(525, 280, 125, 20);
 		editCategoryBtn.setActionCommand("editCategory");
 		editCategoryBtn.addActionListener(actionListener);
-
+		
+		JSeparator separator = new JSeparator(JSeparator.HORIZONTAL);
+		separator.setBounds(2, 305, 675, 10);
+		
 		panel.add(editCategoryLbl);
-		panel.add(editCTF);
-		panel.add(editCategoryBtn);
 		panel.add(editCatList);
+		panel.add(editCTF);
+		panel.add(editCategoryTF);
+		panel.add(editCategoryBtn);
+		panel.add(separator);
+		
 	}
 	
 	private void createDeleteCategoriesComponents(){
 		JLabel deleteCategoryLbl = new JLabel("Delete Category:");
-		deleteCategoryLbl.setBounds(2, 202, 200, 20);
+		deleteCategoryLbl.setBounds(10, 320, 200, 20);
 		
 		deleteCatList = new JComboBox(categories);
 		deleteCatList.setSelectedIndex(0);
 		deleteCatList.addActionListener(actionListener);
 		deleteCatList.setActionCommand("deleteCategorySelect");
-		deleteCatList.setBounds(2, 320, 250, 25);
+		deleteCatList.setBounds(460, 320, 200, 25);
 
 		JButton deleteCategoryBtn = new JButton("Delete Category");
-		deleteCategoryBtn.setBounds(500, 320, 125, 20);
+		deleteCategoryBtn.setBounds(525, 370, 125, 20);
 		deleteCategoryBtn.setActionCommand("deleteCategory");
 		deleteCategoryBtn.addActionListener(actionListener);
+		
+		JSeparator separator = new JSeparator(JSeparator.HORIZONTAL);
+		separator.setBounds(2, 395, 675, 10);
 		
 		panel.add(deleteCategoryLbl);
 		panel.add(deleteCatList);
 		panel.add(deleteCategoryBtn);
+		panel.add(separator);
 	}
 
 	public String getAddCategoryText() {

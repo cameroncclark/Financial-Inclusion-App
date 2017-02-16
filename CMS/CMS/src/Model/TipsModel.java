@@ -45,6 +45,16 @@ public class TipsModel {
 		return new String[] {};
 	}
 
+	public Tip selectTip(String header){
+		if(!header.equals("")){
+			for(Tip t: tips){
+				if(t.getHeader().equals(header)){
+					return t;
+				}
+			}
+		}
+		return new Tip();
+	}
 	
 
 	public void addTip(String header, String tip) {
