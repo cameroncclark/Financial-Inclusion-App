@@ -87,7 +87,7 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
     // For when the user first launches the app
     var fillTables = function () {
 
-      // User Data
+      // User Data Table
       var query = "INSERT INTO userData (name, location, avatar) VALUES (?,?,?)";
       $cordovaSQLite.execute(db, query, ["Your Name Here", "Your Location Here", "img/startImage.png"]).then(function (result) {
         console.log("INSERT USER ID -> " + result.insertId);
@@ -95,7 +95,7 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
         console.error(error);
       });
 
-      // Trophies
+      // Trophies Table
       var query = "INSERT INTO trophies (title, image, description, hint, acquired) VALUES (?,?,?,?,?)";
       $cordovaSQLite.execute(db, query, ["Updated Your Name", "edit", "You have successfully updated your name.", "Try updating your name.", 0]);
       $cordovaSQLite.execute(db, query, ["Updated Your Location", "edit", "You have successfully updated your location.", "Try updating your location.", 0]);
@@ -119,15 +119,26 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
       $cordovaSQLite.execute(db, query, ["Get 100% in 3 quizzes", "edit", "You have achieved 100% in 3 quizzes.", "Try getting full marks in multiple quizzes.", 0]);
       $cordovaSQLite.execute(db, query, ["Unlock all the trophies", "edit", "You have unlocked every trophy, Congratulations!", "Try getting more trophies.", 1]);
 
-      //Categorys
-
+      // Categorys Table
       var query = "INSERT INTO categories (name, percentageComplete) VALUES (?,?)";
       $http.get('content/categories.json')
         .then(function (categories) {
           for (var i = 0; i < categories.data.length; i++) {
-            $cordovaSQLite.execute(db, query, [categories.data[i].name, Math.ceil(Math.random(1)*20)]);
+            $cordovaSQLite.execute(db, query, [categories.data[i].name, Math.ceil(Math.random(1) * 20)]);
           }
         });
+
+      // Subcategories Table
+      var query = "INSERT INTO subcategories (url, name, percentageComplete, categoryID)"
+      $http.get('content/topics.json')
+        .then(function (subcategories) {
+          for (var i = 0; i < subcategories.data.length; i++) {
+
+            //$cordovaSQLite.execute(db, query, ["content/topics/" + subcategories.data[i], 0, ])
+          }
+          console.log("MAPPING OF CATEGORIES: " + $rootScope.topicMaps[allCategoryCodes]);
+        });
+
     }
 
     var setGlobalName = function () {
@@ -172,6 +183,7 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
       $cordovaSQLite.execute(db, "DROP TABLE userData");
       $cordovaSQLite.execute(db, "DROP TABLE trophies");
       $cordovaSQLite.execute(db, "DROP TABLE categories");
+      $cordovaSQLite.execute(db, "DROP TABLE subcategories");
 
       // Initialise all tables
       $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS userData (id INTEGER PRIMARY KEY, name TEXT, location TEXT, avatar TEXT)");
