@@ -1,6 +1,8 @@
-fIApp.component("savingsCalculator", {
-    templateUrl: "templates/calculator.savings.html",
-    controller: function savingsCalculatorCtrl($scope, $ionicModal) {
+fIApp.component("creditcardCalculator", {
+    templateUrl: "templates/calculator.creditCard.html",
+    controller: function creditCardCalculatorCtrl($scope, $ionicModal) {
+
+        var vm = this;
 
         $ionicModal.fromTemplateUrl('templates/calculator.helpModal.html', {
             scope: $scope
@@ -8,10 +10,10 @@ fIApp.component("savingsCalculator", {
             $scope.modalHelp = modal;
         });
 
-        $ionicModal.fromTemplateUrl('templates/calculator.savingsCalcModal.html', {
+        $ionicModal.fromTemplateUrl('templates/calculator.creditCardCalcModal.html', {
             scope: $scope
         }).then(function (modal) {
-            $scope.modalSavingAnswer = modal;
+            $scope.modalCreditCardAnswer = modal;
         });
 
         $scope.closeHelp = function() {
@@ -22,29 +24,26 @@ fIApp.component("savingsCalculator", {
             $scope.modalHelp.show();
         };
 
-
-
-        $scope.closeSavingsCalc = function () {
-            $scope.modalSavingAnswer.hide();
+         $scope.closeCreditCardCalc= function() {
+            $scope.modalCreditCardAnswer.hide();
         };
 
-        $scope.openSavingsCalc = function () {
+        $scope.openCreditCardCalc = function() {
             workOutResult();
-            $scope.modalSavingAnswer.show();
+            $scope.modalCreditCardAnswer.show();
         };
 
 
 
-
-        $scope.test = "Savings Calculator";
-        $scope.slider1 = {
-            value: 10,
+        $scope.test = "Credit Card Calculator";
+        $scope.creditSlider = {
+            value: 1,
             options: {
                 floor: 0,
-                ceil: 250,
+                ceil: 500,
                 step: 1,
-                minLimit: 10,
-                maxLimit: 250
+                minLimit: 1,
+                maxLimit: 500
             }
         };
 
@@ -59,9 +58,9 @@ fIApp.component("savingsCalculator", {
             }
         };
 
-        $scope.helpHeader = "Savings Calcualtor";
+        $scope.helpHeader = "Credit Card Calcualtor";
 
-        
+        $scope.visible = false;
 
         $scope.helpIntro = "This calcualtor is used to calculate the amount of money you can save over a certain period of time. It does this by taking in your target goal, how much money you have saved per month as well as how much you have saved already.";
 
@@ -70,17 +69,23 @@ fIApp.component("savingsCalculator", {
         $scope.helpHint = "Handy hint: Take a screenshot of your result so that you can review it later!"
 
 
-        $scope.savingsGoalValue;
-        $scope.alreadySavedValue;
-        $scope.perMonthValue;
+        $scope.oustandingBalance;
+        $scope.APR;
+        var rValue = 0;
 
         $scope.result;
         $scope.numYears;
         $scope.numMonths;
         $scope.numDays;
+        //$scope.result =  $scope.outstandingBalance * ((rValue * (1 + rValue)^$scope.creditSlider)/(((1 + rValue)^$scope.creditSlider)-1));
+
 
         var workOutResult = function () {
-            $scope.result = (($scope.savingsGoalValue * 1) - ($scope.alreadySavedValue * 1)) / $scope.perMonthValue;
+             rValue = ($scope.APR/12);
+            $scope.result = $scope.oustandingBalance * ((rValue * (Math.pow((1 + rValue), $scope.creditSlider.value))) / (Math.pow((1 + rValue), $scope.creditSlider.value) - 1));
+            //$scope.result = Math.pow(2,2);
+            //$scope.result =  $scope.outstandingBalance * (1 + rValue)^$scope.creditSlider.value;
+            //$scope.result =  rValue*(1 + rValue);
 
             var splitNumber =
                 [
@@ -91,5 +96,8 @@ fIApp.component("savingsCalculator", {
             $scope.numMonths = Math.floor(splitNumber[0]%12);
             $scope.numDays = Math.ceil(splitNumber[1] * 30);
         }
+        
+    
+        
     }
 });
