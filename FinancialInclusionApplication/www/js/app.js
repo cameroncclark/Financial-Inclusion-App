@@ -12,7 +12,7 @@ fIApp.config(function ($ionicConfigProvider) {
   $ionicConfigProvider.views.swipeBackEnabled(false);
 });
 
-fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccessor) {
+fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccessor, $q) {
 
   $ionicPlatform.ready(function () {
     if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -120,103 +120,131 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
       $cordovaSQLite.execute(db, query, ["Unlock all the trophies", "edit", "You have unlocked every trophy, Congratulations!", "Try getting more trophies.", 1]);
 
       // Categorys Table
-      var query = "INSERT INTO categories (name, percentageComplete) VALUES (?,?)";
+      var catQuery = "INSERT INTO categories (name, percentageComplete) VALUES (?,?)";
       $http.get('content/categories.json')
         .then(function (categories) {
           for (var i = 0; i < categories.data.length; i++) {
-            $cordovaSQLite.execute(db, query, [categories.data[i].name, Math.ceil(Math.random(1) * 20)]);
+            $cordovaSQLite.execute(db, catQuery, [categories.data[i].name, Math.ceil(Math.random(1) * 20)]);
           }
         });
 
       // Subcategories Table
-      var query = "INSERT INTO subcategories (url, name, percentageComplete, categoryID)"
+      var subCatQuery = "INSERT INTO subcategories (name, percentageComplete, categoryID) VALUES (?,?,?)";
       $http.get('content/topics.json')
         .then(function (subcategories) {
           for (var i = 0; i < subcategories.data.length; i++) {
+            var SCname;
+            var SCcatID;
 
-            //$cordovaSQLite.execute(db, query, ["content/topics/" + subcategories.data[i], 0, ])
+            $http.get("content/topics/" + subcategories.data[i])
+              .then(function (subcategory) {
+                var ref = subcategory.data.reference;
+
+                $http.get('content/categories.json')
+                  .then(function (category) {
+                    for (var j = 0; j < category.data.length; j++) {
+                      if (category.data[j].ID === ref) {
+                        var getNameQuery = "SELECT id FROM categories WHERE name LIKE '" + category.data[j].name + "'";
+
+                        $cordovaSQLite.execute(db, getNameQuery, []).then(function (result) {
+                          SCcatID = result.rows.item(0).id;
+                          SCname = subcategory.data.title;
+
+                          $cordovaSQLite.execute(db, subCatQuery, [SCname, 0, SCcatID]).then(function (result) {
+                            console.log("INSERT SUB CAT ID -> " + result.insertId);
+                          }, function (error) {
+                            console.error(JSON.stringify(error));
+                          });
+                        }, function (error) {
+                          console.error(error);
+                        });
+                      }
+                    }
+                  });
+              });
           }
-          console.log("MAPPING OF CATEGORIES: " + $rootScope.topicMaps[allCategoryCodes]);
+        });
+    }
+
+      var setGlobalName = function () {
+        // Check if data has been added correctly
+        var searchQuery = "SELECT * FROM userData";
+        var userName = { name: "", location: "", avatar: "img/startImage.png" }
+        $cordovaSQLite.execute(db, searchQuery, []).then(function (result) {
+          if (result.rows.length > 0) {
+            userName.name = result.rows.item(0).name;
+            userName.location = result.rows.item(0).location;
+            userName.avatar = result.rows.item(0).avatar;
+            console.log("USER DATA TABLE -> " + result.rows.item(0).name + " " + result.rows.item(0).location + " " + result.rows.item(0).avatar);
+            $rootScope.userName = userName;
+            console.log("Initial username: " + $rootScope.userName.avatar);
+          } else {
+            console.log("NO ROWS EXIST");
+          }
+        }, function (error) {
+          console.error(error);
         });
 
-    }
+        var searchQuery = "SELECT * FROM trophies";
+        var trophieCheck = { title: "", image: "", description: "", hint: "", acquired: "" };
+        $cordovaSQLite.execute(db, searchQuery, []).then(function (result) {
+          if (result.rows.length > 0) {
+            //console.log("TROPHIES TABLE -> " + result.rows.item(0).title + " " + result.rows.item(0).image + " " + result.rows.item(0).description + " " + result.rows.item(0).hint + " " + result.rows.item(0).acquired);
+          } else {
+            console.log("NO ROWS EXIST");
+          }
+        }, function (error) {
+          console.error(error);
+        });
 
-    var setGlobalName = function () {
-      // Check if data has been added correctly
-      var searchQuery = "SELECT * FROM userData";
-      var userName = { name: "", location: "", avatar: "img/startImage.png" }
-      $cordovaSQLite.execute(db, searchQuery, []).then(function (result) {
-        if (result.rows.length > 0) {
-          userName.name = result.rows.item(0).name;
-          userName.location = result.rows.item(0).location;
-          userName.avatar = result.rows.item(0).avatar;
-          console.log("USER DATA TABLE -> " + result.rows.item(0).name + " " + result.rows.item(0).location + " " + result.rows.item(0).avatar);
-          $rootScope.userName = userName;
-          console.log("Initial username: " + $rootScope.userName.avatar);
-        } else {
-          console.log("NO ROWS EXIST");
-        }
-      }, function (error) {
-        console.error(error);
-      });
+        
 
-      var searchQuery = "SELECT * FROM trophies";
-      var trophieCheck = { title: "", image: "", description: "", hint: "", acquired: "" };
-      $cordovaSQLite.execute(db, searchQuery, []).then(function (result) {
-        if (result.rows.length > 0) {
-          //console.log("TROPHIES TABLE -> " + result.rows.item(0).title + " " + result.rows.item(0).image + " " + result.rows.item(0).description + " " + result.rows.item(0).hint + " " + result.rows.item(0).acquired);
-        } else {
-          console.log("NO ROWS EXIST");
-        }
-      }, function (error) {
-        console.error(error);
-      });
-    }
+      }
 
 
-    // Initialisation of databases for Android and iOS
-    if (isAndroid || isIOS) {
-      console.log("entered if");
-      db = $cordovaSQLite.openDB({ name: 'my.db', location: 'default' });
+      // Initialisation of databases for Android and iOS
+      if (isAndroid || isIOS) {
+        console.log("entered if");
+        db = $cordovaSQLite.openDB({ name: 'my.db', location: 'default' });
 
-      // Drop Tables
-      $cordovaSQLite.execute(db, "DROP TABLE userData");
-      $cordovaSQLite.execute(db, "DROP TABLE trophies");
-      $cordovaSQLite.execute(db, "DROP TABLE categories");
-      $cordovaSQLite.execute(db, "DROP TABLE subcategories");
+        // Drop Tables
+        $cordovaSQLite.execute(db, "DROP TABLE userData");
+        $cordovaSQLite.execute(db, "DROP TABLE trophies");
+        $cordovaSQLite.execute(db, "DROP TABLE categories");
+        $cordovaSQLite.execute(db, "DROP TABLE subcategories");
 
-      // Initialise all tables
-      $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS userData (id INTEGER PRIMARY KEY, name TEXT, location TEXT, avatar TEXT)");
-      $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS trophies (id INTEGER PRIMARY KEY, title TEXT, image TEXT, description TEXT, hint TEXT, acquired TINYINT)");
-      $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS categories (id INTEGER PRIMARY KEY, name NVARCHAR(50), percentageComplete INTEGER)");
-      $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS subcategories (url NVARCHAR(50) PRIMARY KEY, name NVARCHAR(50), percentageComplete INTEGER, categoryID INTEGER, FOREIGN KEY(categoryID) REFERENCES categories(id)");
-      $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS progress (objective NVARCHAR(50) PRIMARY KEY, counter INTEGER, valueChanged TINYINT");
+        // Initialise all tables
+        $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS userData (id INTEGER PRIMARY KEY, name TEXT, location TEXT, avatar TEXT)");
+        $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS trophies (id INTEGER PRIMARY KEY, title TEXT, image TEXT, description TEXT, hint TEXT, acquired TINYINT)");
+        $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS categories (id INTEGER PRIMARY KEY, name NVARCHAR(50), percentageComplete INTEGER)");
+        $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS subcategories (id INTEGER PRIMARY KEY, name NVARCHAR(50), percentageComplete INTEGER, categoryID INTEGER, FOREIGN KEY(categoryID) REFERENCES categories(id))");
+        $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS progress (objective NVARCHAR(50) PRIMARY KEY, counter INTEGER, valueChanged TINYINT)");
 
-      //TO DO (CREATE A NEW TABLE FOR SETTINGS)
-      //$cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS settings ()");
+        //TO DO (CREATE A NEW TABLE FOR SETTINGS)
+        //$cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS settings ()");
 
-      var query = "SELECT id FROM userData";
-      $cordovaSQLite.execute(db, query, []).then(function (result) {
-        console.log("Number of rows in table " + result.rows.length);
-        if (result.rows.length == 0) {
-          fillTables();
-          setGlobalName();
-        } else {
-          setGlobalName();
-        }
-      }, function (error) {
-        console.log(error)
-        console.log("Select function hasnt worked");
-      });
-
-
-      console.log("You're a phone");
-    } else {
-      console.log("not a phone");
-    }
+        var query = "SELECT id FROM userData";
+        $cordovaSQLite.execute(db, query, []).then(function (result) {
+          console.log("Number of rows in table " + result.rows.length);
+          if (result.rows.length == 0) {
+            fillTables();
+            setGlobalName();
+          } else {
+            setGlobalName();
+          }
+        }, function (error) {
+          console.log(error)
+          console.log("Select function hasnt worked");
+        });
 
 
-  });
+        console.log("You're a phone");
+      } else {
+        console.log("not a phone");
+      }
+
+
+    });
 });
 
 fIApp.controller("appCtrl", function ($scope, $location, $ionicNavBarDelegate) {
