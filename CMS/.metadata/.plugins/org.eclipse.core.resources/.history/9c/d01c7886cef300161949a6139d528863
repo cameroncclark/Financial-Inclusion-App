@@ -9,11 +9,11 @@ import javax.swing.JPanel;
 
 import Controller.ActionController;
 
-public class LinksPanel implements Panel, Observer {
-	JPanel panel;
+public class TipsPanel implements Panel,Observer{
 	ActionController actionListener;
+	JPanel panel;
 	
-	public LinksPanel(ActionController actionListener) {
+	public TipsPanel(ActionController actionListener) {
 		this.actionListener = actionListener;
 		createPanel();
 	}
@@ -29,17 +29,17 @@ public class LinksPanel implements Panel, Observer {
 	public void addSection(){
 		JButton addLinkBtn = new JButton("Test add");
 		addLinkBtn.setBounds(2, 2, 125, 20);
-		addLinkBtn.setActionCommand("addLink");
+		addLinkBtn.setActionCommand("addTip");
 		addLinkBtn.addActionListener(actionListener);
 		
 		JButton editLinkBtn = new JButton("Test edit");
 		editLinkBtn.setBounds(200, 2, 125, 20);
-		editLinkBtn.setActionCommand("editLink");
+		editLinkBtn.setActionCommand("editTip");
 		editLinkBtn.addActionListener(actionListener);
 		
 		JButton deleteLinkBtn = new JButton("Test delete");
 		deleteLinkBtn.setBounds(400, 2, 125, 20);
-		deleteLinkBtn.setActionCommand("deleteLink");
+		deleteLinkBtn.setActionCommand("deleteTip");
 		deleteLinkBtn.addActionListener(actionListener);
 		
 		panel.add(addLinkBtn);
@@ -56,5 +56,7 @@ public class LinksPanel implements Panel, Observer {
 	public JComponent getPanel() {
 		return panel;
 	}
+
+	
 
 }

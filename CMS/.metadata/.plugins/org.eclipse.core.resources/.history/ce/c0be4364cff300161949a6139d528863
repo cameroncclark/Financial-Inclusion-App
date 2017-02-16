@@ -4,11 +4,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import com.google.gson.Gson;
 
-import ContentObjects.Link;
 import ContentObjects.Number;
 import ContentObjects.Tip;
 
@@ -20,28 +18,10 @@ public class TipsModel {
 
 	public TipsModel(Model model) {
 		this.model = model;
-		gson = new Gson();
 		selectTips();
 	}
 
 	public String[] selectTips() {
-		try {
-			String fileText = model.getJSONString("tips.JSON");
-
-			Tip[] tipsArray = gson.fromJson(fileText, Tip[].class);
-			tips = new ArrayList<Tip>(Arrays.asList(tipsArray));
-
-			String[] tipNames = new String[tipsArray.length];
-			int count = 0;
-			for (Tip tip : tipsArray) {
-				tipNames[count] = tip.getHeader();
-				count++;
-			}
-			return tipNames;
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		return new String[] {};
 	}
 

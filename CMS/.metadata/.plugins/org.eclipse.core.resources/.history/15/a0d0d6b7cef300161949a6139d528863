@@ -7,6 +7,6 @@ import View.TipsPanel;
 public class DeleteTipCtrl {
 	public DeleteTipCtrl(Model model, MainContainer view) {
 		TipsPanel panel = (TipsPanel) view.getActivePanel();
-		model.deleteTip("Changed Tip");
+		model.editTip("New Tip", "Changed Tip", "Hello");
 	}
 }

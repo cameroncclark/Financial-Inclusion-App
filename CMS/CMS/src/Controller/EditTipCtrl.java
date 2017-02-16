@@ -7,5 +7,6 @@ import View.TipsPanel;
 public class EditTipCtrl {
 	public EditTipCtrl(Model model, MainContainer view) {
 		TipsPanel panel = (TipsPanel) view.getActivePanel();
+		model.editTip("New Tip", "Changed Tip", "Hello");
 	}
 }

@@ -50,13 +50,10 @@ public class ActionController implements ActionListener {
 			DeleteLinkCtrl deleteLinkCtrl = new DeleteLinkCtrl(model, view);
 			break;
 		case "addTip":
-			AddTipCtrl addTipCtrl = new AddTipCtrl(model, view);
 			break;
 		case "editTip":
-			EditTipCtrl editTipCtrl = new EditTipCtrl(model, view);
 			break;
 		case "deleteTip":
-			DeleteTipCtrl deleteTipCtrl = new DeleteTipCtrl(model, view);
 			break;	
 		}
 		

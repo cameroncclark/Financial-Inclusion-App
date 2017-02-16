@@ -20,7 +20,6 @@ public class TipsModel {
 
 	public TipsModel(Model model) {
 		this.model = model;
-		gson = new Gson();
 		selectTips();
 	}
 
@@ -31,13 +30,13 @@ public class TipsModel {
 			Tip[] tipsArray = gson.fromJson(fileText, Tip[].class);
 			tips = new ArrayList<Tip>(Arrays.asList(tipsArray));
 
-			String[] tipNames = new String[tipsArray.length];
+			String[] linkNames = new String[linkArray.length];
 			int count = 0;
-			for (Tip tip : tipsArray) {
-				tipNames[count] = tip.getHeader();
+			for (Link link : linkArray) {
+				linkNames[count] = link.getName();
 				count++;
 			}
-			return tipNames;
+			return linkNames;
 
 		} catch (Exception e) {
 			e.printStackTrace();
