@@ -30,6 +30,7 @@ fIApp.component("headerBar", {
 
         $scope.closeTrophy = function () {
             $scope.modalTrophy.hide();
+            $scope.newTrophies = null;
         };
 
         $scope.openTrophy = function () {

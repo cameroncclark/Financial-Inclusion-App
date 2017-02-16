@@ -39,16 +39,15 @@ fIApp.controller('CategoryCtrl', function ($scope, $ionicModal, $http, $rootScop
       for (var i = 0; i < $scope.modalSubCategories.length; i++) {
         for (var j = 0; j < progressData.length; j++) {
           if ($scope.modalSubCategories[i].title === progressData[j].name) {
-            console.log("I GET HERE");
-            console.log("PROGRESS:" + progressData[j].progress);
             $scope.modalSubCategories[i].progress = progressData[j].progress;
-            console.log("SUBCAT:" + JSON.stringify($scope.modalSubCategories));
             break;
           }
         }
       }
+      console.log("SUBCAT:" + JSON.stringify($scope.modalSubCategories));
     });
     $scope.subCategoriesModal.show();
+    dbAccessor.updateTrophies();
   }
 
   $scope.closeModal = function () {
@@ -58,23 +57,5 @@ fIApp.controller('CategoryCtrl', function ($scope, $ionicModal, $http, $rootScop
 
   $scope.log = function (name) {
     console.log(name);
-  }
-
-  $scope.checkCategoryProgress = function (name) {
-    var promise = dbAccessor.getCategoryProgress(name);
-    promise.then(function (response) {
-      var progress = response;
-      console.log("Cat progress=" + progress);
-      return progress;
-    });
-  }
-
-  $scope.checkSubCategoryProgress = function (name) {
-    var promise = dbAccessor.getSubCategoryProgress(name);
-    promise.then(function (response) {
-      var progress = response;
-      console.log("Sub Cat progress=" + progress);
-      return progress;
-    });
   }
 });

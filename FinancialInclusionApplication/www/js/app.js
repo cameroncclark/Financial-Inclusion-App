@@ -164,6 +164,32 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
               });
           }
         });
+
+        //Progress Table
+        var progressQuery = "INSERT INTO progress (objective, counter, valueChanged) VALUES (?,?,?)";
+        $cordovaSQLite.execute(db, progressQuery, ["Update Name", null, "false"]);
+        $cordovaSQLite.execute(db, progressQuery, ["Update Location", null, "false"]);
+        $cordovaSQLite.execute(db, progressQuery, ["Update Picture", null, "false"]);
+        $cordovaSQLite.execute(db, progressQuery, ["20 Hints", 0, null]);
+        $cordovaSQLite.execute(db, progressQuery, ["50 Hints", 0, null]);
+        $cordovaSQLite.execute(db, progressQuery, ["100 Hints", 0, null]);
+        $cordovaSQLite.execute(db, progressQuery, ["Perform calc 1", null, "false"]);
+        $cordovaSQLite.execute(db, progressQuery, ["Perform calc 2", null, "false"]);
+        $cordovaSQLite.execute(db, progressQuery, ["Perform calc 3", null, "false"]);
+        $cordovaSQLite.execute(db, progressQuery, ["Perform all calc", null, ""]);
+        $cordovaSQLite.execute(db, progressQuery, ["Visit a webpage", null, "false"]);
+        $cordovaSQLite.execute(db, progressQuery, ["Visit 5 websites", 0, null]);
+        $cordovaSQLite.execute(db, progressQuery, ["Call number", null, "false"]);
+        $cordovaSQLite.execute(db, progressQuery, ["Completion 25", 0, null]);
+        $cordovaSQLite.execute(db, progressQuery, ["Completion 50", 0, null]);
+        $cordovaSQLite.execute(db, progressQuery, ["Completion 75", 0, null]);
+        $cordovaSQLite.execute(db, progressQuery, ["Completion 100", 0, null]);
+        $cordovaSQLite.execute(db, progressQuery, ["Do a quiz", null, "false"]);
+        $cordovaSQLite.execute(db, progressQuery, ["5 quizzes", 0, null]);
+        $cordovaSQLite.execute(db, progressQuery, ["All quizzes", 0, null]);
+        $cordovaSQLite.execute(db, progressQuery, ["Get 100% in quizzes", 0, null]);
+        $cordovaSQLite.execute(db, progressQuery, ["Unlock all trophies", null, "false"]);
+         
     }
 
       var setGlobalName = function () {

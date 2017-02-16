@@ -201,4 +201,18 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q) {
         return q.promise;
     };
 
+    this.updateTrophy = function(trophy){
+        var query = "UPDATE trophies SET acquired = 1 WHERE title LIKE '" + trophy + "'";
+        console.log(query);
+        $cordovaSQLite.execute(db, query, []).then(function (result) {
+            console.log("Done");
+        }, function (error) {
+            console.error(error);
+        });
+    };
+
+    this.updateTrophies = function(){
+        this.updateTrophy("Updated Your Name");
+    };
+
 });
