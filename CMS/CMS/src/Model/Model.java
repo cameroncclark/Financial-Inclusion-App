@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
+import ContentObjects.Link;
+import ContentObjects.Number;
 import ContentObjects.Tip;
 
 public class Model extends Observable {
@@ -91,8 +93,16 @@ public class Model extends Observable {
 		this.addObserver(o);
 	}
 	
+	public Link selectLink(String name){
+		return linksModel.selectLink(name);
+	}
+	
 	public Tip selectTip(String header){
 		return tipsModel.selectTip(header);
+	}
+	
+	public Number selectNumber(String name){
+		return numbersModel.selectNumber(name);
 	}
 	
 	

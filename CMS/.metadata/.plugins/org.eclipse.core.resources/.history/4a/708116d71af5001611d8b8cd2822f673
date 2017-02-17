@@ -1,0 +1,126 @@
+package View;
+
+import java.util.Observable;
+import java.util.Observer;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+import Controller.ActionController;
+
+public class NumbersPanel implements Panel, Observer {
+	JPanel panel;
+	ActionController actionListener;
+	String[] links;
+	JTextField addNumberTitle;
+	JTextArea addLinkBlurb;
+	JTextField addLinkWebsite;
+	JComboBox editLinkList;
+	JComboBox deleteLinkList;
+	JTextField editLinkTitle;
+	JTextArea editLinkBlurb;
+	JTextField editLinkWebsite;
+	
+	public NumbersPanel(ActionController actionListener) {
+		this.actionListener = actionListener;
+		createPanel();
+	}
+	
+	@Override
+	public void createPanel() {
+		panel = new JPanel();
+		panel.setVisible(true);
+		panel.setLayout(null);
+		createAddNumbersComponents();
+//		creatEditNumbersComponents();
+//		creatDeleteNumbersComponents();
+//		addSection();
+	}
+	
+	public void createAddNumbersComponents() {
+		JLabel headerLbl = new JLabel("Add Link:");
+		headerLbl.setBounds(10, 10, 200, 20);
+
+		JLabel addLinkTitleTF = new JLabel("Link Title:");
+		addLinkTitleTF.setBounds(30, 50, 200, 20);
+
+		addNumberTitle = new JTextField();
+		addNumberTitle.setBounds(130, 50, 200, 20);
+
+		JLabel addLinkBlurbTF = new JLabel("Link Blurb:");
+		addLinkBlurbTF.setBounds(30, 70, 200, 20);
+
+		addLinkBlurb = new JTextArea();
+		addLinkBlurb.setLineWrap(true);
+		addLinkBlurb.setWrapStyleWord(true);
+		addLinkBlurb.setBounds(134, 72, 396, 96);
+		JScrollPane scrollTextArea = new JScrollPane(addLinkBlurb);
+		scrollTextArea.setBounds(134, 72, 396, 96);
+
+		JLabel addLinkWebsiteTF = new JLabel("Link Website:");
+		addLinkWebsiteTF.setBounds(30, 170, 200, 20);
+
+		addLinkWebsite = new JTextField();
+		addLinkWebsite.setBounds(130, 170, 200, 20);
+
+		JButton addLinkBtn = new JButton("Add Website");
+		addLinkBtn.setBounds(525, 180, 125, 20);
+		addLinkBtn.setActionCommand("addLink");
+		addLinkBtn.addActionListener(actionListener);
+
+		JSeparator separator = new JSeparator(JSeparator.HORIZONTAL);
+		separator.setBounds(2, 205, 675, 10);
+
+		panel.add(headerLbl);
+		panel.add(addLinkTitleTF);
+		panel.add(addNumberTitle);
+		panel.add(addLinkBlurbTF);
+		panel.add(scrollTextArea);
+		panel.add(addLinkWebsiteTF);
+		panel.add(addLinkWebsite);
+		panel.add(addLinkBtn);
+		panel.add(separator);
+	}
+	
+	public void addSection(){
+		JButton addNumberBtn = new JButton("Test add");
+		addNumberBtn.setBounds(2, 2, 125, 20);
+		addNumberBtn.setActionCommand("addNumber");
+		addNumberBtn.addActionListener(actionListener);
+		
+		JButton editNumberBtn = new JButton("Test edit");
+		editNumberBtn.setBounds(200, 2, 125, 20);
+		editNumberBtn.setActionCommand("editNumber");
+		editNumberBtn.addActionListener(actionListener);
+		
+		JButton deleteNumberBtn = new JButton("Test delete");
+		deleteNumberBtn.setBounds(400, 2, 125, 20);
+		deleteNumberBtn.setActionCommand("deleteNumber");
+		deleteNumberBtn.addActionListener(actionListener);
+		
+		panel.add(addNumberBtn);
+		panel.add(editNumberBtn);
+		panel.add(deleteNumberBtn);
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public JComponent getPanel() {
+		return panel;
+	}
+
+	
+
+}

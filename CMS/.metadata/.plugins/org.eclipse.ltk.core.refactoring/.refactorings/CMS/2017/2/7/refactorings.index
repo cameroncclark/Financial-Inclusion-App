@@ -1,2 +1,14 @@
 1487089800385	Delete element
 1487090674243	Delete element
+1487340603477	Rename field 'addLinkTitle'
+1487340630796	Rename field 'addLinkBlurb'
+1487340643031	Rename field 'addLinkWebsite'
+1487340663291	Rename local variable 'addLinkTitleTF'
+1487340712290	Rename local variable 'addLinkWebsiteTF'
+1487340740856	Rename field 'addNumberWebsite'
+1487340775193	Rename local variable 'addLinkBtn'
+1487341729275	Rename field 'editLinkList'
+1487342186863	Rename field 'editLinkTitle'
+1487342198203	Rename field 'editLinkBlurb'
+1487342210528	Rename field 'editLinkWebsite'
+1487343247455	Rename local variable 'deleteLinkBtn'

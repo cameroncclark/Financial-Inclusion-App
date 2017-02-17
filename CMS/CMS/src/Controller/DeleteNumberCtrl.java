@@ -7,6 +7,6 @@ import View.NumbersPanel;
 public class DeleteNumberCtrl {
 	public DeleteNumberCtrl(Model model, MainContainer view) {
 		NumbersPanel panel = (NumbersPanel) view.getActivePanel();
-		model.deleteNumber("New Number");
+		model.deleteNumber(panel.getSelectedDelete());
 	}
 }

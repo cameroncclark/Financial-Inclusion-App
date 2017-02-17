@@ -1,9 +1,0 @@
-package ContentObjects;
-
-public class Category {
-	
-	public Category (){
-		
-	}
-
-}

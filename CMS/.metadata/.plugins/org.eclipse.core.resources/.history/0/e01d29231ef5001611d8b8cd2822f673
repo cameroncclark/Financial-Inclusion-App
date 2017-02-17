@@ -1,0 +1,222 @@
+package View;
+
+import java.util.Observable;
+import java.util.Observer;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+import Controller.ActionController;
+
+public class NumbersPanel implements Panel, Observer {
+	JPanel panel;
+	ActionController actionListener;
+	String[] links;
+	JTextField addNumberTitle;
+	JTextArea addNumberBlurb;
+	JTextField addNumber;
+	JComboBox editNumbersList;
+	JComboBox deleteLinkList;
+	JTextField editLinkTitle;
+	JTextArea editLinkBlurb;
+	JTextField editLinkWebsite;
+	
+	public NumbersPanel(ActionController actionListener) {
+		this.actionListener = actionListener;
+		createPanel();
+	}
+	
+	@Override
+	public void createPanel() {
+		panel = new JPanel();
+		panel.setVisible(true);
+		panel.setLayout(null);
+		createAddNumbersComponents();
+		creatEditNumbersComponents();
+//		creatDeleteNumbersComponents();
+//		addSection();
+	}
+	
+	public void createAddNumbersComponents() {
+		JLabel headerLbl = new JLabel("Add Number:");
+		headerLbl.setBounds(10, 10, 200, 20);
+
+		JLabel addNumberTitleTF = new JLabel("Number Title:");
+		addNumberTitleTF.setBounds(30, 50, 200, 20);
+
+		addNumberTitle = new JTextField();
+		addNumberTitle.setBounds(130, 50, 200, 20);
+
+		JLabel addLinkBlurbTF = new JLabel("Number Blurb:");
+		addLinkBlurbTF.setBounds(30, 70, 200, 20);
+
+		addNumberBlurb = new JTextArea();
+		addNumberBlurb.setLineWrap(true);
+		addNumberBlurb.setWrapStyleWord(true);
+		addNumberBlurb.setBounds(134, 72, 396, 96);
+		JScrollPane scrollTextArea = new JScrollPane(addNumberBlurb);
+		scrollTextArea.setBounds(134, 72, 396, 96);
+
+		JLabel addNumberTF = new JLabel("Phone Number:");
+		addNumberTF.setBounds(30, 170, 200, 20);
+
+		addNumber = new JTextField();
+		addNumber.setBounds(130, 170, 200, 20);
+
+		JButton addNumberBtn = new JButton("Add Number");
+		addNumberBtn.setBounds(525, 180, 125, 20);
+		addNumberBtn.setActionCommand("addNumber");
+		addNumberBtn.addActionListener(actionListener);
+
+		JSeparator separator = new JSeparator(JSeparator.HORIZONTAL);
+		separator.setBounds(2, 205, 675, 10);
+
+		panel.add(headerLbl);
+		panel.add(addNumberTitleTF);
+		panel.add(addNumberTitle);
+		panel.add(addLinkBlurbTF);
+		panel.add(scrollTextArea);
+		panel.add(addNumberTF);
+		panel.add(addNumber);
+		panel.add(addNumberBtn);
+		panel.add(separator);
+	}
+	
+	public void creatEditNumbersComponents() {
+		JLabel headerLbl = new JLabel("Edit Number:");
+		headerLbl.setBounds(10, 220, 200, 20);
+
+		editNumbersList = new JComboBox(links);
+		editNumbersList.addActionListener(actionListener);
+		editNumbersList.setActionCommand("editLinkSelect");
+		editNumbersList.setBounds(460, 220, 200, 25);
+
+		JLabel editLinkTitleTF = new JLabel("Number Title:");
+		editLinkTitleTF.setBounds(30, 260, 200, 20);
+
+		editLinkTitle = new JTextField();
+		editLinkTitle.setBounds(130, 260, 200, 20);
+
+		JLabel editLinkBlurbTF = new JLabel("Number Blurb:");
+		editLinkBlurbTF.setBounds(30, 280, 200, 20);
+
+		editLinkBlurb = new JTextArea();
+		editLinkBlurb.setLineWrap(true);
+		editLinkBlurb.setWrapStyleWord(true);
+		editLinkBlurb.setBounds(134, 282, 396, 96);
+		JScrollPane scrollTextArea = new JScrollPane(editLinkBlurb);
+		scrollTextArea.setBounds(134, 282, 396, 96);
+
+		JLabel editLinkWebsiteTF = new JLabel("Phone Number:");
+		editLinkWebsiteTF.setBounds(30, 380, 200, 20);
+
+		editLinkWebsite = new JTextField();
+		editLinkWebsite.setBounds(130, 380, 200, 20);
+
+		JButton editLinkBtn = new JButton("Edit Number");
+		editLinkBtn.setBounds(525, 390, 125, 20);
+		editLinkBtn.setActionCommand("editNumber");
+		editLinkBtn.addActionListener(actionListener);
+
+		JSeparator separator = new JSeparator(JSeparator.HORIZONTAL);
+		separator.setBounds(2, 415, 675, 10);
+
+		panel.add(headerLbl);
+		panel.add(editNumbersList);
+		panel.add(editLinkTitleTF);
+		panel.add(editLinkTitle);
+		panel.add(editLinkBlurbTF);
+		panel.add(scrollTextArea);
+		panel.add(editLinkWebsiteTF);
+		panel.add(editLinkWebsite);
+		panel.add(editLinkBtn);
+		panel.add(separator);
+	}
+	
+	
+	public void addSection(){
+		JButton addNumberBtn = new JButton("Test add");
+		addNumberBtn.setBounds(2, 2, 125, 20);
+		addNumberBtn.setActionCommand("addNumber");
+		addNumberBtn.addActionListener(actionListener);
+		
+		JButton editNumberBtn = new JButton("Test edit");
+		editNumberBtn.setBounds(200, 2, 125, 20);
+		editNumberBtn.setActionCommand("editNumber");
+		editNumberBtn.addActionListener(actionListener);
+		
+		JButton deleteNumberBtn = new JButton("Test delete");
+		deleteNumberBtn.setBounds(400, 2, 125, 20);
+		deleteNumberBtn.setActionCommand("deleteNumber");
+		deleteNumberBtn.addActionListener(actionListener);
+		
+		panel.add(addNumberBtn);
+		panel.add(editNumberBtn);
+		panel.add(deleteNumberBtn);
+	}
+	
+	public String getAddTitle() {
+		return addNumberTitle.getText().toString();
+	}
+
+	public void setAddTitle(String text) {
+		addNumberTitle.setText(text);
+	}
+
+	public String getAddBlurb() {
+		return addNumberBlurb.getText().toString();
+	}
+
+	public void setAddBlurb(String text) {
+		addNumberBlurb.setText(text);
+	}
+
+	public String getAddNumber() {
+		return addNumber.getText().toString();
+	}
+
+	public void setAddNumber(String text) {
+		addNumber.setText(text);
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		links = actionListener.initaliseLinksTab();
+		refreshComboBoxes();
+		panel.repaint();
+		panel.revalidate();
+	}
+
+	public void refreshComboBoxes() {
+		panel.remove(editNumbersList);
+		panel.remove(deleteLinkList);
+
+		editNumbersList = new JComboBox(links);
+		editNumbersList.addActionListener(actionListener);
+		editNumbersList.setActionCommand("editLinkSelect");
+		editNumbersList.setBounds(460, 220, 200, 25);
+
+		deleteLinkList = new JComboBox(links);
+		deleteLinkList.addActionListener(actionListener);
+		deleteLinkList.setBounds(460, 430, 200, 25);
+
+		panel.add(editNumbersList);
+		panel.add(deleteLinkList);
+	}
+	
+
+	@Override
+	public JComponent getPanel() {
+		return panel;
+	}
+
+	
+
+}

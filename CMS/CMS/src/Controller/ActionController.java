@@ -60,7 +60,13 @@ public class ActionController implements ActionListener {
 		case "editTipSelect":
 			EditTipSelect editTipSelect = new EditTipSelect(model, view);
 			break;
-			
+		case "editLinkSelect":
+			EditLinkSelect editLinkSelect = new EditLinkSelect(model, view);
+			break;
+		case "editNumberSelect":
+			EditNumberSelect editNumberSelect = new EditNumberSelect(model, view);
+			break;	
+
 		}
 
 	}
@@ -71,6 +77,14 @@ public class ActionController implements ActionListener {
 
 	public String[] initaliseTipsTab() {
 		return model.selectTips();
+	}
+
+	public String[] initaliseLinksTab() {
+		return model.selectLinks();
+	}
+	
+	public String[] initaliseNumbersTab() {
+		return model.selectNumbers();
 	}
 
 }

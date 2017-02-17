@@ -7,6 +7,12 @@ import View.NumbersPanel;
 public class AddNumberCtrl {
 	public AddNumberCtrl(Model model, MainContainer view) {
 		NumbersPanel panel = (NumbersPanel) view.getActivePanel();
-		model.addNumber("New Number", "Hello this is a number blurb", "0909039303");
+		if(!panel.getAddTitle().equals("") && !panel.getAddBlurb().equals("") && !panel.getAddNumber().equals("")){
+			model.addNumber(panel.getAddTitle(), panel.getAddBlurb(), panel.getAddNumber());
+			panel.setAddTitle("");
+			panel.setAddBlurb("");
+			panel.setAddNumber("");
+		}
+		
 	}
 }

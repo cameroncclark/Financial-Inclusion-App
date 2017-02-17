@@ -10,6 +10,7 @@ import com.google.gson.Gson;
 
 import ContentObjects.Category;
 import ContentObjects.Number;
+import ContentObjects.Tip;
 
 public class NumbersModel {
 	final String _PATH = "../../FinancialInclusionApplication/www/content/";
@@ -42,6 +43,17 @@ public class NumbersModel {
 			e.printStackTrace();
 		}
 		return new String[] {};
+	}
+	
+	public Number selectNumber(String name){
+		if(!name.equals("")){
+			for(Number n: numbers){
+				if(n.getName().equals(name)){
+					return n;
+				}
+			}
+		}
+		return new Number();
 	}
 	
 	public void addUsefulNumber(String name, String blurb, String number){

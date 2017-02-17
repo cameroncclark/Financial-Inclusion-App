@@ -10,6 +10,7 @@ import com.google.gson.Gson;
 
 import ContentObjects.Link;
 import ContentObjects.Number;
+import ContentObjects.Tip;
 
 public class LinksModel {
 	final String _PATH = "../../FinancialInclusionApplication/www/content/";
@@ -42,6 +43,17 @@ public class LinksModel {
 			e.printStackTrace();
 		}
 		return new String[] {};
+	}
+	
+	public Link selectLink(String name){
+		if(!name.equals("")){
+			for(Link l: links){
+				if(l.getName().equals(name)){
+					return l;
+				}
+			}
+		}
+		return new Link();
 	}
 	
 	public void addLink(String name, String blurb, String website){
