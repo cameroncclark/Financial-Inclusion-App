@@ -224,8 +224,46 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q) {
     this.checkAllTrophies = function () {
         var checkQuery = "SELECT acquired FROM trophies WHERE acquired = 1";
         $cordovaSQLite.execute(db, checkQuery, []).then(function (result) {
-            if(result.rows.length == 20){
+            if (result.rows.length == 20) {
                 dbService.updateTrophy("Unlock all the trophies");
+            }
+        }, function (error) {
+            console.error(error);
+        });
+    };
+
+    /**
+     * This is to update calculators
+     */
+    this.updateCalculators = function (ID) {
+        switch (ID) {
+            case 1:
+                dbService.updateTrophy("Performed a calculation on a calculator");
+                $cordovaSQLite.execute(db, "UPDATE progress SET valueChanged = 'True' WHERE objective LIKE 'Perform calc " + ID + "'", []);
+                dbService.checkAllCalculators();
+                break;
+            case 2:
+                dbService.updateTrophy("Performed a calculation on a calculator");
+                $cordovaSQLite.execute(db, "UPDATE progress SET valueChanged = 'True' WHERE objective LIKE 'Perform calc " + ID + "'", []);
+                dbService.checkAllCalculators();
+                break;
+            case 3:
+                dbService.updateTrophy("Performed a calculation on a calculator");
+                $cordovaSQLite.execute(db, "UPDATE progress SET valueChanged = 'True' WHERE objective LIKE 'Perform calc " + ID + "'", []);
+                dbService.checkAllCalculators();
+                break;
+        }
+    };
+
+    /**
+     * This is to check if all calculators have been used
+     */
+    this.checkAllCalculators = function () {
+        var checkQuery = "SELECT valueChanged FROM progress WHERE objective LIKE 'Perform calc%' AND valueChanged LIKE 'True'";
+        $cordovaSQLite.execute(db, checkQuery, []).then(function (result) {
+            console.log("COUNT = " + result.rows.length);
+            if (result.rows.length == 3) {
+                dbService.updateTrophy("Performed a calculation on all the calculators");
             }
         }, function (error) {
             console.error(error);

@@ -182,7 +182,7 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
         $cordovaSQLite.execute(db, progressQuery, ["Perform calc 1", null, "false"]);
         $cordovaSQLite.execute(db, progressQuery, ["Perform calc 2", null, "false"]);
         $cordovaSQLite.execute(db, progressQuery, ["Perform calc 3", null, "false"]);
-        $cordovaSQLite.execute(db, progressQuery, ["Perform all calc", null, ""]);
+        $cordovaSQLite.execute(db, progressQuery, ["Perform all calc", null, "false"]);
         $cordovaSQLite.execute(db, progressQuery, ["Visit a webpage", null, "false"]);
         $cordovaSQLite.execute(db, progressQuery, ["Visit 5 websites", 0, null]);
         $cordovaSQLite.execute(db, progressQuery, ["Call number", null, "false"]);
