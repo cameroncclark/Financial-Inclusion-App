@@ -36,7 +36,9 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q) {
         return "Testing the return method";
     }
 
-    // This will be a function to update the users name
+    /**
+     * This updates the users name
+     */
     this.updateName = function (previousName, newName) {
         console.log("Entered the Update Name function: " + newName);
         var query = "UPDATE userData SET name = ? WHERE name = ?";
@@ -48,7 +50,9 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q) {
         });
     };
 
-    // This will be a function to update the users location
+    /**
+     * This updates the users location
+     */
     this.updateLocation = function (previousLocation, newLocation) {
         console.log("Entered the Update Location function: " + newLocation);
         var query = "UPDATE userData SET location = ? WHERE location = ?";
@@ -60,7 +64,9 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q) {
         });
     };
 
-    // This will be a function to update the users avatar
+    /**
+     * This updates the users avatar
+     */
     this.updateAvatar = function (previousAvatar, newAvatar) {
         console.log("Entered the Update Avatar Function: " + newAvatar);
         var query = "UPDATE userData SET avatar = ? WHERE avatar = ?";
@@ -74,7 +80,6 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q) {
 
     // Check if data has been added correctly
     this.selectUserDetails = function () {
-        console.log("Entered selectUserDetails");
         var response = {};
         var searchQuery = "SELECT * FROM userData";
         $cordovaSQLite.execute(db, searchQuery, []).then(function (result) {
@@ -83,10 +88,9 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q) {
                 response.name = result.rows.item(0).name;
                 response.location = result.rows.item(0).location;
                 response.avatar = result.rows.item(0).avatar;
-                console.log(response);
                 return response;
             } else {
-                console.log("NO ROWS EXIST");
+                console.error("NO ROWS EXIST IN userData");
             }
         }, function (error) {
             console.error(error);
@@ -100,32 +104,11 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q) {
         return test;
     };
 
-    this.loadTrophyData = function () {
-        console.log("Entered loadTrophyData");
-        var responses = [];
-        var trophyObject = {};
-        var items;
-        var searchQuery = "SELECT * FROM trophies";
-        return $cordovaSQLite.execute(db, searchQuery).then(function (result) {
-            if (result.rows.length > 0) {
-                for (i = 0; i < 21; i++) {
-                    trophyObject.title = result.rows.item(i).title;
-                    trophyObject.image = result.rows.item(i).image;
-                    trophyObject.description = result.rows.item(i).description;
-                    trophyObject.hint = result.rows.item(i).hint;
-                    trophyObject.acquired = result.rows.item(i).acquired;
-                    responses[i] = trophyObject;
-                }
-
-                return responses;
-            } else {
-                console.log("NO ROWS EXIST");
-            }
-        }, function (error) {
-            console.error(error);
-        });
-    };
-
+    /**
+     * This loads in the trophy table. 
+     * 
+     * It uses 'promises' to ensure the data is correctly passed through.
+     */
     this.loadTrophyTable = function () {
         var q = $q.defer(); //THIS IS NEEDED TO RESPOND WHEN RESOLVE IS READY
         var table = [];
@@ -152,7 +135,7 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q) {
                 }
                 q.resolve(table); //ONCE DATA IS READY TO BE RETURNED, THIS WILL CALL THE .then FUNCTION ON THE CALL    
             } else {
-                console.log("NO ROWS EXIST IN trophies");
+                console.error("NO ROWS EXIST IN trophies");
             }
         }, function (error) {
             console.error(error);
@@ -294,7 +277,7 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q) {
                 $cordovaSQLite.execute(db, "UPDATE progress SET counter = " + tipCount + " WHERE objective LIKE 'Tip Counter'", []);
 
             } else {
-                console.log("ACCESSING PROGRESS FAILED AT incrementTipCount FUNCTION");
+                console.error("ACCESSING PROGRESS FAILED AT incrementTipCount FUNCTION");
             }
         }, function (error) {
             console.error(error);
