@@ -78,16 +78,19 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
               titleURLObject.title = topics.data.title;
               titleURLObject.url = currentTopic;
               $rootScope.topicMaps[allCategoryCodes[j]].push(titleURLObject);
-              // console.log($rootScope.topicMaps);
             }
           }
         });
     }
 
-    // For when the user first launches the app
+    /**
+     * For when the user first launches the app
+     */
     var fillTables = function () {
 
-      // User Data Table
+      /**
+       * User Data Table
+       */
       var query = "INSERT INTO userData (name, location, avatar) VALUES (?,?,?)";
       $cordovaSQLite.execute(db, query, ["Your Name Here", "Your Location Here", "img/startImage.png"]).then(function (result) {
         console.log("INSERT USER ID -> " + result.insertId);
@@ -95,31 +98,35 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
         console.error(error);
       });
 
-      // Trophies Table
+      /**
+       * Trophies Table
+       */
       var query = "INSERT INTO trophies (title, image, description, hint, acquired) VALUES (?,?,?,?,?)";
-      $cordovaSQLite.execute(db, query, ["Updated Your Name", "edit", "You have successfully updated your name.", "Try updating your name.", 0]);
-      $cordovaSQLite.execute(db, query, ["Updated Your Location", "edit", "You have successfully updated your location.", "Try updating your location.", 0]);
+      $cordovaSQLite.execute(db, query, ["Updated Your Name", "edit", "You have successfully updated your name.", "Try updating your name.", 1]);
+      $cordovaSQLite.execute(db, query, ["Updated Your Location", "edit", "You have successfully updated your location.", "Try updating your location.", 1]);
       $cordovaSQLite.execute(db, query, ["Updated Your Picture", "edit", "You have successfully updated your picture.", "Try updating your picture.", 0]);
-      $cordovaSQLite.execute(db, query, ["Flicked through 20 hints", "edit", "You have managed to flick through 20 hints.", "Try flicking through more hints.", 0]);
-      $cordovaSQLite.execute(db, query, ["Flicked through 50 hints", "edit", "You have managed to flick through 50 hints.", "Try flicking through more hints.", 0]);
-      $cordovaSQLite.execute(db, query, ["Flicked through 100 hints", "edit", "You have managed to flick through 100 hints.", "Try flicking through more hints.", 0]);
-      $cordovaSQLite.execute(db, query, ["Performed a calculation on a calculator", "edit", "You performed a calculation on a calculator.", "Try using a calculator.", 0]);
-      $cordovaSQLite.execute(db, query, ["Performed a calculation on all the calculators", "edit", "You performed a calculation on all the calculators.", "Try using all calculators.", 0]);
-      $cordovaSQLite.execute(db, query, ["Visit an external website", "edit", "You visited an external website.", "Try visiting a website.", 0]);
-      $cordovaSQLite.execute(db, query, ["Visit 5 external websites", "edit", "You visited 5 external websites.", "Try visiting more websites.", 0]);
-      $cordovaSQLite.execute(db, query, ["Call a phone number", "edit", "You called a phone number.", "Try visiting a website.", 0]);
-      $cordovaSQLite.execute(db, query, ["Achieve 25% completion", "edit", "You have completed 25% of a category.", "Try completing more of a category.", 0]);
-      $cordovaSQLite.execute(db, query, ["Achieve 50% completion", "edit", "You have completed 50% of a category.", "Try completing more of a category.", 0]);
-      $cordovaSQLite.execute(db, query, ["Achieve 75% completion", "edit", "You have completed 75% of a category.", "Try completing more of a category.", 0]);
-      $cordovaSQLite.execute(db, query, ["Achieve 100% completion", "edit", "You have completed 100% of a category.", "Try completing all of a category.", 0]);
-      $cordovaSQLite.execute(db, query, ["Attempt a quiz", "edit", "You have attempted a quiz.", "Try attempting a quiz.", 0]);
-      $cordovaSQLite.execute(db, query, ["Attempted 5 quizzes", "edit", "You have attempted 5 quizzes.", "Try attempting more quizzes.", 0]);
-      $cordovaSQLite.execute(db, query, ["Attempted all quizzes", "edit", "You have attempted all quizzes.", "Try attempting all the quizzes.", 0]);
-      $cordovaSQLite.execute(db, query, ["Get 100% in a quiz", "edit", "You have achieved 100% in a quiz.", "Try getting full marks in a quiz.", 0]);
-      $cordovaSQLite.execute(db, query, ["Get 100% in 3 quizzes", "edit", "You have achieved 100% in 3 quizzes.", "Try getting full marks in multiple quizzes.", 0]);
+      $cordovaSQLite.execute(db, query, ["Flicked through 20 hints", "edit", "You have managed to flick through 20 hints.", "Try flicking through more hints.", 1]);
+      $cordovaSQLite.execute(db, query, ["Flicked through 50 hints", "edit", "You have managed to flick through 50 hints.", "Try flicking through more hints.", 1]);
+      $cordovaSQLite.execute(db, query, ["Flicked through 100 hints", "edit", "You have managed to flick through 100 hints.", "Try flicking through more hints.", 1]);
+      $cordovaSQLite.execute(db, query, ["Performed a calculation on a calculator", "edit", "You performed a calculation on a calculator.", "Try using a calculator.", 1]);
+      $cordovaSQLite.execute(db, query, ["Performed a calculation on all the calculators", "edit", "You performed a calculation on all the calculators.", "Try using all calculators.", 1]);
+      $cordovaSQLite.execute(db, query, ["Visit an external website", "edit", "You visited an external website.", "Try visiting a website.", 1]);
+      $cordovaSQLite.execute(db, query, ["Visit 5 external websites", "edit", "You visited 5 external websites.", "Try visiting more websites.", 1]);
+      $cordovaSQLite.execute(db, query, ["Call a phone number", "edit", "You called a phone number.", "Try visiting a website.", 1]);
+      $cordovaSQLite.execute(db, query, ["Achieve 25% completion", "edit", "You have completed 25% of a category.", "Try completing more of a category.", 1]);
+      $cordovaSQLite.execute(db, query, ["Achieve 50% completion", "edit", "You have completed 50% of a category.", "Try completing more of a category.", 1]);
+      $cordovaSQLite.execute(db, query, ["Achieve 75% completion", "edit", "You have completed 75% of a category.", "Try completing more of a category.", 1]);
+      $cordovaSQLite.execute(db, query, ["Achieve 100% completion", "edit", "You have completed 100% of a category.", "Try completing all of a category.", 1]);
+      $cordovaSQLite.execute(db, query, ["Attempt a quiz", "edit", "You have attempted a quiz.", "Try attempting a quiz.", 1]);
+      $cordovaSQLite.execute(db, query, ["Attempted 5 quizzes", "edit", "You have attempted 5 quizzes.", "Try attempting more quizzes.", 1]);
+      $cordovaSQLite.execute(db, query, ["Attempted all quizzes", "edit", "You have attempted all quizzes.", "Try attempting all the quizzes.", 1]);
+      $cordovaSQLite.execute(db, query, ["Get 100% in a quiz", "edit", "You have achieved 100% in a quiz.", "Try getting full marks in a quiz.", 1]);
+      $cordovaSQLite.execute(db, query, ["Get 100% in 3 quizzes", "edit", "You have achieved 100% in 3 quizzes.", "Try getting full marks in multiple quizzes.", 1]);
       $cordovaSQLite.execute(db, query, ["Unlock all the trophies", "edit", "You have unlocked every trophy, Congratulations!", "Try getting more trophies.", 0]);
 
-      // Categorys Table
+      /**
+       * Categorys Table
+       */
       var catQuery = "INSERT INTO categories (name, percentageComplete) VALUES (?,?)";
       $http.get('content/categories.json')
         .then(function (categories) {
@@ -128,7 +135,9 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
           }
         });
 
-      // Subcategories Table
+      /**
+       * Subcategories Table
+       */
       var subCatQuery = "INSERT INTO subcategories (name, percentageComplete, categoryID) VALUES (?,?,?)";
       $http.get('content/topics.json')
         .then(function (subcategories) {
@@ -165,11 +174,10 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
           }
         });
 
-        //Progress Table
+        /**
+         * Progress Table
+         */
         var progressQuery = "INSERT INTO progress (objective, counter, valueChanged) VALUES (?,?,?)";
-        $cordovaSQLite.execute(db, progressQuery, ["Update Name", null, "false"]);
-        $cordovaSQLite.execute(db, progressQuery, ["Update Location", null, "false"]);
-        $cordovaSQLite.execute(db, progressQuery, ["Update Picture", null, "false"]);
         $cordovaSQLite.execute(db, progressQuery, ["Tip Counter", 18, null]);
         $cordovaSQLite.execute(db, progressQuery, ["Perform calc 1", null, "false"]);
         $cordovaSQLite.execute(db, progressQuery, ["Perform calc 2", null, "false"]);
@@ -185,9 +193,7 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
         $cordovaSQLite.execute(db, progressQuery, ["Do a quiz", null, "false"]);
         $cordovaSQLite.execute(db, progressQuery, ["5 quizzes", 0, null]);
         $cordovaSQLite.execute(db, progressQuery, ["All quizzes", 0, null]);
-        $cordovaSQLite.execute(db, progressQuery, ["Get 100% in quizzes", 0, null]);
-        $cordovaSQLite.execute(db, progressQuery, ["Unlock all trophies", null, "false"]);
-         
+        $cordovaSQLite.execute(db, progressQuery, ["Get 100% in quizzes", 0, null]);   
     }
 
       var setGlobalName = function () {
@@ -208,21 +214,6 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
         }, function (error) {
           console.error(error);
         });
-
-        var searchQuery = "SELECT * FROM trophies";
-        var trophieCheck = { title: "", image: "", description: "", hint: "", acquired: "" };
-        $cordovaSQLite.execute(db, searchQuery, []).then(function (result) {
-          if (result.rows.length > 0) {
-            //console.log("TROPHIES TABLE -> " + result.rows.item(0).title + " " + result.rows.item(0).image + " " + result.rows.item(0).description + " " + result.rows.item(0).hint + " " + result.rows.item(0).acquired);
-          } else {
-            console.log("NO ROWS EXIST");
-          }
-        }, function (error) {
-          console.error(error);
-        });
-
-        
-
       }
 
 

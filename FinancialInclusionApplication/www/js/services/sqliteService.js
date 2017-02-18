@@ -4,7 +4,6 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q) {
     var avatar = "";
     var dbService = this;
 
-
     this.setName = function (userName) {
         name = userName;
     }
@@ -42,7 +41,8 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q) {
         console.log("Entered the Update Name function: " + newName);
         var query = "UPDATE userData SET name = ? WHERE name = ?";
         $cordovaSQLite.execute(db, query, [newName, previousName]).then(function (result) {
-            this.selectUserDetails();
+            dbService.selectUserDetails();
+            dbService.updateTrophy("Updated Your Name");
         }, function (error) {
             console.error(error);
         });
@@ -53,7 +53,8 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q) {
         console.log("Entered the Update Location function: " + newLocation);
         var query = "UPDATE userData SET location = ? WHERE location = ?";
         $cordovaSQLite.execute(db, query, [newLocation, previousLocation]).then(function (result) {
-            this.selectUserDetails();
+            dbService.selectUserDetails();
+            dbService.updateTrophy("Updated Your Location");
         }, function (error) {
             console.error(error);
         });
@@ -64,7 +65,8 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q) {
         console.log("Entered the Update Avatar Function: " + newAvatar);
         var query = "UPDATE userData SET avatar = ? WHERE avatar = ?";
         $cordovaSQLite.execute(db, query, [newAvatar, previousAvatar]).then(function (result) {
-            this.selectUserDetails();
+            dbService.selectUserDetails();
+            dbService.updateTrophy("Updated Your Picture");
         }, function (error) {
             console.error(error);
         });
@@ -213,11 +215,21 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q) {
         }, function (error) {
             console.error(error);
         });
+        this.checkAllTrophies();
     };
 
-    //TESTING
-    this.updateTrophies = function () {
-        this.updateTrophy("Updated Your Name");
+    /**
+     * This is to check if all trophies have been aquired
+     */
+    this.checkAllTrophies = function () {
+        var checkQuery = "SELECT acquired FROM trophies WHERE acquired = 1";
+        $cordovaSQLite.execute(db, checkQuery, []).then(function (result) {
+            if(result.rows.length == 20){
+                dbService.updateTrophy("Unlock all the trophies");
+            }
+        }, function (error) {
+            console.error(error);
+        });
     };
 
     /**
@@ -225,32 +237,23 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q) {
      */
     this.incrementTipCount = function () {
         var tipCount = 0;
-        var query = "SELECT counter FROM progress WHERE objective LIKE 'Tip Counter'"
-        $cordovaSQLite.execute(db, query, []).then(function (result) {
+        $cordovaSQLite.execute(db, "SELECT counter FROM progress WHERE objective LIKE 'Tip Counter'", []).then(function (result) {
             if (result.rows.length > 0) {
-                tipCount = result.rows.item(0).counter
-                tipCount++;
+                tipCount = result.rows.item(0).counter + 1;
                 console.log("Tip Counter = " + tipCount);
-                // Unlock trophy when user reaches 20 hints
+
                 if (tipCount == 20) {
                     dbService.updateTrophy("Flicked through 20 hints");
-                }
-                // Unlock trophy when user reaches 50 hints
-                if (tipCount == 50) {
+                    // Unlock trophy when user reaches 20 hints
+                } else if (tipCount == 50) {
                     dbService.updateTrophy("Flicked through 50 hints");
-                }
-                // Unlock trophy when user reaches 100 hints
-                if (tipCount == 100) {
+                    // Unlock trophy when user reaches 50 hints
+                } else if (tipCount == 100) {
                     dbService.updateTrophy("Flicked through 100 hints");
+                    // Unlock trophy when user reaches 100 hints
                 }
 
-                var updateTipQuery = "UPDATE progress SET counter = " + tipCount + " WHERE objective LIKE 'Tip Counter'";
-                console.log(updateTipQuery);
-                $cordovaSQLite.execute(db, updateTipQuery, []).then(function (result) {
-                    console.log("Tip Counter Updated");
-                }, function (error) {
-                    console.error(error);
-                });
+                $cordovaSQLite.execute(db, "UPDATE progress SET counter = " + tipCount + " WHERE objective LIKE 'Tip Counter'", []);
 
             } else {
                 console.log("ACCESSING PROGRESS FAILED AT incrementTipCount FUNCTION");

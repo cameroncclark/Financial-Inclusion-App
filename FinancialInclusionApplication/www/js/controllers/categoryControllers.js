@@ -47,8 +47,6 @@ fIApp.controller('CategoryCtrl', function ($scope, $ionicModal, $http, $rootScop
       console.log("SUBCAT:" + JSON.stringify($scope.modalSubCategories));
     });
     $scope.subCategoriesModal.show();
-    dbAccessor.updateTrophies();
-    dbAccessor.incrementTipCount();
   }
 
   $scope.closeModal = function () {
