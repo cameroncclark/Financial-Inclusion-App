@@ -47,6 +47,9 @@ fIApp.controller('CategoryCtrl', function ($scope, $ionicModal, $http, $rootScop
       console.log("SUBCAT:" + JSON.stringify($scope.modalSubCategories));
     });
     $scope.subCategoriesModal.show();
+    //TESTING SPACE
+    dbAccessor.updateCategoryProgress();
+    //END TESTING SPACE
   }
 
   $scope.closeModal = function () {

@@ -143,7 +143,10 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q) {
         return q.promise; //RETURNING THE PROMISED DATA
     };
 
-    this.getCategoryProgress = function (name) {
+    /**
+     * This is to get the categories progress to display to the screen.
+     */
+    this.getCategoryProgress = function () {
         var q = $q.defer();
         var returnCategory = [];
         var query = "SELECT name, percentageComplete FROM categories";
@@ -165,6 +168,9 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q) {
         return q.promise;
     };
 
+    /**
+     * This is to get the subcategories progress to display to the screen.
+     */
     this.getSubcatProgress = function (name) {
         var q = $q.defer();
         var returnSubCategory = [];
@@ -278,6 +284,40 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q) {
 
             } else {
                 console.error("ACCESSING PROGRESS FAILED AT incrementTipCount FUNCTION");
+            }
+        }, function (error) {
+            console.error(error);
+        });
+    };
+
+    /**
+     * This is to update the categories progress
+     */
+    this.updateCategoryProgress = function () {
+        var categoryQuery = "SELECT id FROM categories";
+        $cordovaSQLite.execute(db, categoryQuery, []).then(function (result) {
+            if (result.rows.length > 0) {
+                for (var i = 0; i < result.rows.length; i++) {
+                    var subCategoryQuery = "SELECT percentageComplete, categoryID FROM subcategories WHERE categoryID = " + result.rows.item(i).id;
+                    $cordovaSQLite.execute(db, subCategoryQuery, []).then(function (subresult) {
+                        if (subresult.rows.length > 0) {
+                            var percentageCounter = 0;
+
+                            for (var j = 0; j < subresult.rows.length; j++) {
+                                percentageCounter += subresult.rows.item(j).percentageComplete;
+                            }
+
+                            percentageCounter = percentageCounter / subresult.rows.length;
+
+                            $cordovaSQLite.execute(db, "UPDATE categories SET percentageComplete = " + percentageCounter + " WHERE id = " + subresult.rows.item(0).categoryID, []);
+                            console.log("UPDATE categories SET percentageComplete = " + percentageCounter + " WHERE id = " + subresult.rows.item(0).categoryID);
+                        }
+                    }, function (error) {
+                        console.error(error);
+                    });
+                }
+            } else {
+                console.error("Error In categories table");
             }
         }, function (error) {
             console.error(error);
