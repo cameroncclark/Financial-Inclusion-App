@@ -48,6 +48,7 @@ fIApp.controller('CategoryCtrl', function ($scope, $ionicModal, $http, $rootScop
     });
     $scope.subCategoriesModal.show();
     dbAccessor.updateTrophies();
+    dbAccessor.incrementTipCount();
   }
 
   $scope.closeModal = function () {

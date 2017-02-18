@@ -2,6 +2,7 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q) {
     var name = "";
     var location = "";
     var avatar = "";
+    var dbService = this;
 
 
     this.setName = function (userName) {
@@ -201,18 +202,62 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q) {
         return q.promise;
     };
 
-    this.updateTrophy = function(trophy){
+    /**
+     * Whenever the user has reached the requirement of a new trophy, this function will unlock that trophy
+     */
+    this.updateTrophy = function (trophy) {
         var query = "UPDATE trophies SET acquired = 1 WHERE title LIKE '" + trophy + "'";
         console.log(query);
         $cordovaSQLite.execute(db, query, []).then(function (result) {
-            console.log("Done");
+            console.log("A Trophy Has Been Added - " + trophy);
         }, function (error) {
             console.error(error);
         });
     };
 
-    this.updateTrophies = function(){
+    //TESTING
+    this.updateTrophies = function () {
         this.updateTrophy("Updated Your Name");
+    };
+
+    /**
+     * Called everytime a user flicks through a tip
+     */
+    this.incrementTipCount = function () {
+        var tipCount = 0;
+        var query = "SELECT counter FROM progress WHERE objective LIKE 'Tip Counter'"
+        $cordovaSQLite.execute(db, query, []).then(function (result) {
+            if (result.rows.length > 0) {
+                tipCount = result.rows.item(0).counter
+                tipCount++;
+                console.log("Tip Counter = " + tipCount);
+                // Unlock trophy when user reaches 20 hints
+                if (tipCount == 20) {
+                    dbService.updateTrophy("Flicked through 20 hints");
+                }
+                // Unlock trophy when user reaches 50 hints
+                if (tipCount == 50) {
+                    dbService.updateTrophy("Flicked through 50 hints");
+                }
+                // Unlock trophy when user reaches 100 hints
+                if (tipCount == 100) {
+                    dbService.updateTrophy("Flicked through 100 hints");
+                }
+
+                var updateTipQuery = "UPDATE progress SET counter = " + tipCount + " WHERE objective LIKE 'Tip Counter'";
+                console.log(updateTipQuery);
+                $cordovaSQLite.execute(db, updateTipQuery, []).then(function (result) {
+                    console.log("Tip Counter Updated");
+                }, function (error) {
+                    console.error(error);
+                });
+
+            } else {
+                console.log("ACCESSING PROGRESS FAILED AT incrementTipCount FUNCTION");
+            }
+        }, function (error) {
+            console.error(error);
+        });
     };
 
 });
