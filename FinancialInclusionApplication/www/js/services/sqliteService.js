@@ -324,4 +324,40 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q) {
         });
     };
 
+    /**
+     * This is to find out the overall progress of the application
+     */
+    this.checkOverallProgress = function(){
+        var progressCount = 0;
+        $cordovaSQLite.execute(db, "SELECT percentageComplete FROM categories", []).then(function (result) {
+            if (result.rows.length > 0) {
+                for(var i = 0; i < result.rows.length; i++){
+                    progressCount += result.rows.item(i).percentageComplete;
+                }
+                progressCount = Math.floor(progressCount / result.rows.length);
+                
+                console.log("progress Count = " + progressCount);
+
+                if (progressCount >= 25) {
+                    dbService.updateTrophy("Achieve 25% completion");
+                    // Unlock trophy when user reaches 25% completion
+                } else if (progressCount >= 50) {
+                    dbService.updateTrophy("Achieve 50% completion");
+                    // Unlock trophy when user reaches 50% completion
+                } else if (progressCount >= 75) {
+                    dbService.updateTrophy("Achieve 75% completion");
+                    // Unlock trophy when user reaches 75% completion
+                } else if (progressCount == 100) {
+                    dbService.updateTrophy("Achieve 100% completion");
+                    // Unlock trophy when user reaches 100% completion
+                }
+
+            } else {
+                console.error("ACCESSING PROGRESS FAILED AT checkOverallProgress FUNCTION");
+            }
+        }, function (error) {
+            console.error(error);
+        });
+    }
+
 });

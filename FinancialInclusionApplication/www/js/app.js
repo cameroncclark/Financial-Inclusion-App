@@ -113,10 +113,10 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
       $cordovaSQLite.execute(db, query, ["Visit an external website", "edit", "You visited an external website.", "Try visiting a website.", 1]);
       $cordovaSQLite.execute(db, query, ["Visit 5 external websites", "edit", "You visited 5 external websites.", "Try visiting more websites.", 1]);
       $cordovaSQLite.execute(db, query, ["Call a phone number", "edit", "You called a phone number.", "Try visiting a website.", 1]);
-      $cordovaSQLite.execute(db, query, ["Achieve 25% completion", "edit", "You have completed 25% of a category.", "Try completing more of a category.", 1]);
-      $cordovaSQLite.execute(db, query, ["Achieve 50% completion", "edit", "You have completed 50% of a category.", "Try completing more of a category.", 1]);
-      $cordovaSQLite.execute(db, query, ["Achieve 75% completion", "edit", "You have completed 75% of a category.", "Try completing more of a category.", 1]);
-      $cordovaSQLite.execute(db, query, ["Achieve 100% completion", "edit", "You have completed 100% of a category.", "Try completing all of a category.", 1]);
+      $cordovaSQLite.execute(db, query, ["Achieve 25% completion", "trophy", "You have completed 25% of a category.", "Try completing more of a category.", 0]);
+      $cordovaSQLite.execute(db, query, ["Achieve 50% completion", "trophy", "You have completed 50% of a category.", "Try completing more of a category.", 0]);
+      $cordovaSQLite.execute(db, query, ["Achieve 75% completion", "trophy", "You have completed 75% of a category.", "Try completing more of a category.", 0]);
+      $cordovaSQLite.execute(db, query, ["Achieve 100% completion", "trophy", "You have completed 100% of a category.", "Try completing all of a category.", 0]);
       $cordovaSQLite.execute(db, query, ["Attempt a quiz", "edit", "You have attempted a quiz.", "Try attempting a quiz.", 1]);
       $cordovaSQLite.execute(db, query, ["Attempted 5 quizzes", "edit", "You have attempted 5 quizzes.", "Try attempting more quizzes.", 1]);
       $cordovaSQLite.execute(db, query, ["Attempted all quizzes", "edit", "You have attempted all quizzes.", "Try attempting all the quizzes.", 1]);
@@ -185,10 +185,6 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
       $cordovaSQLite.execute(db, progressQuery, ["Visit a webpage", null, "false"]);
       $cordovaSQLite.execute(db, progressQuery, ["Visit 5 websites", 0, null]);
       $cordovaSQLite.execute(db, progressQuery, ["Call number", null, "false"]);
-      $cordovaSQLite.execute(db, progressQuery, ["Completion 25", 0, null]);
-      $cordovaSQLite.execute(db, progressQuery, ["Completion 50", 0, null]);
-      $cordovaSQLite.execute(db, progressQuery, ["Completion 75", 0, null]);
-      $cordovaSQLite.execute(db, progressQuery, ["Completion 100", 0, null]);
       $cordovaSQLite.execute(db, progressQuery, ["Do a quiz", null, "false"]);
       $cordovaSQLite.execute(db, progressQuery, ["5 quizzes", 0, null]);
       $cordovaSQLite.execute(db, progressQuery, ["All quizzes", 0, null]);

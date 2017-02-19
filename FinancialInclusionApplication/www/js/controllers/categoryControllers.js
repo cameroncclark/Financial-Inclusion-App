@@ -49,6 +49,8 @@ fIApp.controller('CategoryCtrl', function ($scope, $ionicModal, $http, $rootScop
     $scope.subCategoriesModal.show();
     //TESTING SPACE
     dbAccessor.updateCategoryProgress();
+    dbAccessor.checkOverallProgress();
+        
     //END TESTING SPACE
   }
 
