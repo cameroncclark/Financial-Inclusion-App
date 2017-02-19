@@ -313,7 +313,7 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q) {
 
                             $cordovaSQLite.execute(db, "UPDATE categories SET percentageComplete = " + percentageCounter + " WHERE id = " + subresult.rows.item(0).categoryID, []).then(function (counter) {
                                 executeCounter++;
-                                if(executeCounter == (result.rows.length-1)){ //TODO: take -1 out. This is due to Travel not having subcategories
+                                if (executeCounter == (result.rows.length - 1)) {
                                     console.log("Resolve Here!");
                                     q.resolve(executeCounter);
                                 }
@@ -336,17 +336,43 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q) {
     };
 
     /**
+     * This is to update the subcategories progress
+     */
+    this.updateSubCategoryProgress = function () {
+        var q = $q.defer();
+        var executeCounter = 0;
+        var subCategoryQuery = "SELECT * FROM subcategories";
+        $cordovaSQLite.execute(db, subCategoryQuery, []).then(function (result) {
+            if (result.rows.length > 0) {
+                for (var i = 0; i < result.rows.length; i++) {
+                    console.log("subcategories -> " + result.rows.item(i).id + " - " + result.rows.item(i).name + " - " + result.rows.item(i).percentageComplete + " - " + result.rows.item(i).categoryID);
+                    if (executeCounter == result.rows.length-1) {
+                        console.log("Resolve Here!");
+                        q.resolve(executeCounter);
+                    }
+                    executeCounter++;
+                }
+            } else {
+                console.error("ACCESSING PROGRESS FAILED AT updateSubCategoryProgress FUNCTION");
+            }
+        }, function (error) {
+            console.error(error);
+        });
+        return q.promise;
+    };
+
+    /**
      * This is to find out the overall progress of the application
      */
-    this.checkOverallProgress = function(){
+    this.checkOverallProgress = function () {
         var progressCount = 0;
         $cordovaSQLite.execute(db, "SELECT percentageComplete FROM categories", []).then(function (result) {
             if (result.rows.length > 0) {
-                for(var i = 0; i < result.rows.length; i++){
+                for (var i = 0; i < result.rows.length; i++) {
                     progressCount += result.rows.item(i).percentageComplete;
                 }
                 progressCount = Math.floor(progressCount / result.rows.length);
-                
+
                 console.log("Overall Progress = " + progressCount);
 
                 if (progressCount >= 25 && progressCount < 50) {

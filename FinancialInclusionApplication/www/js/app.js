@@ -131,7 +131,7 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
       $http.get('content/categories.json')
         .then(function (categories) {
           for (var i = 0; i < categories.data.length; i++) {
-            $cordovaSQLite.execute(db, catQuery, [categories.data[i].name, Math.ceil(Math.random(1) * 20)]);
+            $cordovaSQLite.execute(db, catQuery, [categories.data[i].name, 0.5]);
           }
         });
 
