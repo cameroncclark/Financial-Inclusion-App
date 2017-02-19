@@ -222,6 +222,62 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q) {
     };
 
     /**
+     * This is to update the quizzes
+     */
+    this.updateQuiz = function (percentageInQuiz) {
+        dbService.updateTrophy("Attempt a quiz");
+
+        var quizCounter = 0;
+        $cordovaSQLite.execute(db, "SELECT counter FROM progress WHERE objective LIKE 'Quiz Counter'", []).then(function (result) {
+            if (result.rows.length > 0) {
+                quizCounter = result.rows.item(0).counter + 1;
+                console.log("Quiz Counter = " + quizCounter);
+
+                if (quizCounter == 5) {
+                    dbService.updateTrophy("Attempted 5 quizzes");
+                    // Unlock trophy when user attempts 5 quizzes
+                } else if (quizCounter == 50) { //TODO: Find value for this....
+                    dbService.updateTrophy("Attempted all quizzes");
+                    // Unlock trophy when user attempts all quizzes
+                }
+
+                if (percentageInQuiz == 100) {
+                    dbService.updateTrophy("Get 100% in a quiz");
+                    var percentageInQuizCounter = 0;
+                    $cordovaSQLite.execute(db, "SELECT counter FROM progress WHERE objective LIKE '100% Quiz Counter'", []).then(function (result) {
+                        if (result.rows.length > 0) {
+                            percentageInQuizCounter = result.rows.item(0).counter + 1;
+                            console.log("100% Quiz Counter = " + percentageInQuizCounter);
+
+                            if (percentageInQuizCounter == 3) {
+                                dbService.updateTrophy("Get 100% in 3 quizzes");
+                                // Unlock trophy when user gets 100% in 5 quizzes
+                            } 
+
+                            $cordovaSQLite.execute(db, "UPDATE progress SET counter = " + percentageInQuizCounter + " WHERE objective LIKE '100% Quiz Counter'", []);
+
+                        } else {
+                            console.error("ACCESSING PROGRESS FAILED AT updateQuiz FUNCTION");
+                        }
+                    }, function (error) {
+                        console.error(error);
+                    });
+
+                } else {
+                    $cordovaSQLite.execute(db, "UPDATE progress SET counter = 0 WHERE objective LIKE '100% Quiz Counter'", []);
+                }
+
+                $cordovaSQLite.execute(db, "UPDATE progress SET counter = " + quizCounter + " WHERE objective LIKE 'Quiz Counter'", []);
+
+            } else {
+                console.error("ACCESSING PROGRESS FAILED AT updateQuiz FUNCTION");
+            }
+        }, function (error) {
+            console.error(error);
+        });
+    };
+
+    /**
      * This is to update calculators
      */
     this.updateCalculators = function (ID) {
@@ -346,7 +402,7 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q) {
             if (result.rows.length > 0) {
                 for (var i = 0; i < result.rows.length; i++) {
                     console.log("subcategories -> " + result.rows.item(i).id + " - " + result.rows.item(i).name + " - " + result.rows.item(i).percentageComplete + " - " + result.rows.item(i).categoryID);
-                    if (executeCounter == result.rows.length-1) {
+                    if (executeCounter == result.rows.length - 1) {
                         console.log("Resolve Here!");
                         q.resolve(executeCounter);
                     }
