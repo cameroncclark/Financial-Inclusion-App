@@ -48,9 +48,28 @@ fIApp.controller('CategoryCtrl', function ($scope, $ionicModal, $http, $rootScop
     });
     $scope.subCategoriesModal.show();
     //TESTING SPACE
-    dbAccessor.updateCategoryProgress();
-    dbAccessor.checkOverallProgress();
-        
+
+    /**
+     * This Block Of Code Is For Updating Categories
+     */
+    var updateCategoryPromise = dbAccessor.updateCategoryProgress();
+    updateCategoryPromise.then(function (output) {
+      var categoryPromise = dbAccessor.getCategoryProgress();
+        categoryPromise.then(function (progressData) {
+          for (var i = 0; i < $scope.categories.length; i++) {
+            for (var j = 0; j < progressData.length; j++) {
+              if ($scope.categories[i].name === progressData[j].name) {
+                $scope.categories[i].progress = progressData[j].progress;
+                break;
+              }
+            }
+          }
+          console.log("Categories Being Updated Within Application");
+        });
+      dbAccessor.checkOverallProgress();
+    });
+    
+
     //END TESTING SPACE
   }
 

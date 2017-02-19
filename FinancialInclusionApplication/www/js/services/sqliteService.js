@@ -294,6 +294,8 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q) {
      * This is to update the categories progress
      */
     this.updateCategoryProgress = function () {
+        var q = $q.defer();
+        var executeCounter = 0;
         var categoryQuery = "SELECT id FROM categories";
         $cordovaSQLite.execute(db, categoryQuery, []).then(function (result) {
             if (result.rows.length > 0) {
@@ -309,7 +311,15 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q) {
 
                             percentageCounter = percentageCounter / subresult.rows.length;
 
-                            $cordovaSQLite.execute(db, "UPDATE categories SET percentageComplete = " + percentageCounter + " WHERE id = " + subresult.rows.item(0).categoryID, []);
+                            $cordovaSQLite.execute(db, "UPDATE categories SET percentageComplete = " + percentageCounter + " WHERE id = " + subresult.rows.item(0).categoryID, []).then(function (counter) {
+                                executeCounter++;
+                                if(executeCounter == (result.rows.length-1)){ //TODO: take -1 out. This is due to Travel not having subcategories
+                                    console.log("Resolve Here!");
+                                    q.resolve(executeCounter);
+                                }
+                            }, function (error) {
+                                console.error(error);
+                            });
                             console.log("UPDATE categories SET percentageComplete = " + percentageCounter + " WHERE id = " + subresult.rows.item(0).categoryID);
                         }
                     }, function (error) {
@@ -322,6 +332,7 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q) {
         }, function (error) {
             console.error(error);
         });
+        return q.promise;
     };
 
     /**
@@ -336,15 +347,15 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q) {
                 }
                 progressCount = Math.floor(progressCount / result.rows.length);
                 
-                console.log("progress Count = " + progressCount);
+                console.log("Overall Progress = " + progressCount);
 
-                if (progressCount >= 25) {
+                if (progressCount >= 25 && progressCount < 50) {
                     dbService.updateTrophy("Achieve 25% completion");
                     // Unlock trophy when user reaches 25% completion
-                } else if (progressCount >= 50) {
+                } else if (progressCount >= 50 && progressCount < 75) {
                     dbService.updateTrophy("Achieve 50% completion");
                     // Unlock trophy when user reaches 50% completion
-                } else if (progressCount >= 75) {
+                } else if (progressCount >= 75 && progressCount < 100) {
                     dbService.updateTrophy("Achieve 75% completion");
                     // Unlock trophy when user reaches 75% completion
                 } else if (progressCount == 100) {
