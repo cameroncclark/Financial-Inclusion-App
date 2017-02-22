@@ -7,7 +7,14 @@
     </ion-header-bar>
     <ion-content>
         <div class="padding">
-            {{result}}
+            <div class="savingsGoalWrapper">
+            Time to pay off credit card:
+            <div class="savingsGoalAmount">{{result}} months</div>
+            </div>
+            <div class="savingsGoalWrapper">
+            Total interest paid:
+            <div class="savingsGoalAmount">£{{totalAmount | number : 2}}</div>
+            </div>
             
            
         </div>

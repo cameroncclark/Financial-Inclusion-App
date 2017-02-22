@@ -81,11 +81,28 @@ fIApp.component("creditcardCalculator", {
 
 
         var workOutResult = function () {
+
+var mRate=($scope.APR/100)/12;
+            var remainingBalance=$scope.oustandingBalance;
+	var startBalance=$scope.oustandingBalance;
+	var minPayment=mRate*$scope.oustandingBalance;
+	var months=0;
+	var lastPayment;
              rValue = ($scope.APR/12);
-            $scope.result = $scope.oustandingBalance * ((rValue * (Math.pow((1 + rValue), $scope.creditSlider.value))) / (Math.pow((1 + rValue), $scope.creditSlider.value) - 1));
+             var interest=0;
+             while (remainingBalance>0)
+	{
+		months++;
+		interest += remainingBalance*mRate;
+		remainingBalance=remainingBalance*(1 + mRate)-$scope.creditSlider.value;
+	}
+
+            //$scope.result = $scope.oustandingBalance * ((rValue * (Math.pow((1 + rValue), $scope.creditSlider.value))) / (Math.pow((1 + rValue), $scope.creditSlider.value) - 1));
             //$scope.result = Math.pow(2,2);
             //$scope.result =  $scope.outstandingBalance * (1 + rValue)^$scope.creditSlider.value;
             //$scope.result =  rValue*(1 + rValue);
+            $scope.result = months;
+            $scope.totalAmount = interest;
 
             var splitNumber =
                 [
