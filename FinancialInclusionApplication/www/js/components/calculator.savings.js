@@ -66,7 +66,10 @@ fIApp.component("savingsCalculator", {
 
         $scope.helpHint = "Handy hint: Take a screenshot of your result so that you can review it later!"
 
+        var saved;
+
         $scope.savingsGoalValue;
+        
         $scope.alreadySavedValue;
         $scope.perMonthValue;
 
