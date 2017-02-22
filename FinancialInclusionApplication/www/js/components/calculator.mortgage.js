@@ -1,6 +1,6 @@
 fIApp.component("mortgageCalculator",{
     templateUrl:"templates/calculator.mortgage.html",
-    controller: function mortgageCalculatorCtrl($scope, $ionicModal){
+    controller: function mortgageCalculatorCtrl($scope, $ionicModal, dbAccessor){
 
         $ionicModal.fromTemplateUrl('templates/calculator.helpModal.html', {
             scope: $scope
@@ -29,6 +29,7 @@ fIApp.component("mortgageCalculator",{
 
         $scope.openMortgageCalc = function() {
             $scope.modalMortgageAnswer.show();
+            dbAccessor.updateCalculators(2);
         };
 
         $scope.test = "Mortgage Calculator";

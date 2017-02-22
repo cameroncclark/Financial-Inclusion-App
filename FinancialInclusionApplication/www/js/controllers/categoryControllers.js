@@ -8,18 +8,18 @@ fIApp.controller('CategoryCtrl', function ($scope, $ionicModal, $http, $rootScop
     $http.get('content/categories.json')
       .then(function (response) {
         $scope.categories = response.data;
-          var promise = dbAccessor.getCategoryProgress();
-           promise.then(function (progressData) {
-            for(var i = 0; i < $scope.categories.length; i++){
-              for(var j = 0; j < progressData.length; j++){
-                if($scope.categories[i].name === progressData[j].name){
-                  $scope.categories[i].progress = progressData[j].progress;
-                  break;
-                }
+        var promise = dbAccessor.getCategoryProgress();
+        promise.then(function (progressData) {
+          for (var i = 0; i < $scope.categories.length; i++) {
+            for (var j = 0; j < progressData.length; j++) {
+              if ($scope.categories[i].name === progressData[j].name) {
+                $scope.categories[i].progress = progressData[j].progress;
+                break;
               }
             }
-            console.log(JSON.stringify($scope.categories));
-          });
+          }
+          console.log("PRINT CAT" + JSON.stringify($scope.categories));
+        });
       });
   }
 
@@ -34,7 +34,40 @@ fIApp.controller('CategoryCtrl', function ($scope, $ionicModal, $http, $rootScop
 
   $scope.launchCategory = function (categoryId) {
     $scope.modalSubCategories = $rootScope.topicMaps[categoryId];
+    var promise = dbAccessor.getSubcatProgress();
+    promise.then(function (progressData) {
+      for (var i = 0; i < $scope.modalSubCategories.length; i++) {
+        for (var j = 0; j < progressData.length; j++) {
+          if ($scope.modalSubCategories[i].title === progressData[j].name) {
+            $scope.modalSubCategories[i].progress = progressData[j].progress;
+            break;
+          }
+        }
+      }
+      console.log("SUBCAT:" + JSON.stringify($scope.modalSubCategories));
+    });
     $scope.subCategoriesModal.show();
+    //TESTING SPACE
+
+    /**
+     * This Block Of Code Is For Updating Categories Within Application
+     * 
+     * TODO: Move this block to somewhere more acceptable. 
+     */
+    var categoryPromise = dbAccessor.getCategoryProgress();
+    categoryPromise.then(function (progressData) {
+      for (var i = 0; i < $scope.categories.length; i++) {
+        for (var j = 0; j < progressData.length; j++) {
+          if ($scope.categories[i].name === progressData[j].name) {
+            $scope.categories[i].progress = progressData[j].progress;
+            break;
+          }
+        }
+      }
+      console.log("Categories Being Updated Within Application");
+    });
+
+    //END TESTING SPACE
   }
 
   $scope.closeModal = function () {
@@ -44,14 +77,5 @@ fIApp.controller('CategoryCtrl', function ($scope, $ionicModal, $http, $rootScop
 
   $scope.log = function (name) {
     console.log(name);
-  }
-
-  $scope.checkCategoryProgress = function (name) {
-    var promise = dbAccessor.getCategoryProgress(name);
-    promise.then(function (response) {
-      var progress = response;
-      console.log("progress=" + progress);
-      return progress;
-    });
   }
 });

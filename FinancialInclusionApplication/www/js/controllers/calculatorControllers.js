@@ -1,3 +1,4 @@
+
 fIApp.controller('CalculatorCtrl', function($scope, $ionicModal){
     $scope.name = 'Calculator Page';
 
@@ -33,9 +34,11 @@ fIApp.controller('CalculatorCtrl', function($scope, $ionicModal){
 
      
 
-    $scope.makeActive = function(active){
-        switch(active){
+
+    $scope.makeActive = function (active) {
+        switch (active) {
             case "welcome":
+
             $scope.welcome = true;
             $scope.savings = false;
             $scope.interest = false;
@@ -100,23 +103,26 @@ fIApp.controller('CalculatorCtrl', function($scope, $ionicModal){
             $scope.isActiveCreditCard = true;
              $scope.modalSelector.hide();
             break;
+
         }
     };
 
-    $scope.getHelp=function(active){
-        switch(active){
+    $scope.getHelp = function (active) {
+        switch (active) {
             case "savingsHelp":
-            $scope.content = "This is the help screen for the savings calculator";
-            break;
+                $scope.content = "This is the help screen for the savings calculator";
+                break;
             case "interestHelp":
-            $scope.content = "This is the help screen for the interest calculator";
-            break;
+                $scope.content = "This is the help screen for the interest calculator";
+                break;
             case "mortgageHelp":
+
             $scope.content = "This is the help screen for the mortgage calcualtor";
             break;
             case "creditCardHelp":
             $scope.content = "This is the help screen for the credit card calcualtor";
             break;
+
         }
     }
 

@@ -1,6 +1,6 @@
 fIApp.component("interestCalculator",{
     templateUrl:"templates/calculator.interest.html",
-    controller: function interestCalculatorCtrl($scope, $ionicModal){
+    controller: function interestCalculatorCtrl($scope, $ionicModal, dbAccessor){
 
         $ionicModal.fromTemplateUrl('templates/calculator.helpModal.html', {
             scope: $scope
@@ -28,6 +28,7 @@ fIApp.component("interestCalculator",{
 
         $scope.openInterestCalc = function() {
             $scope.modalInterestAnswer.show();
+            dbAccessor.updateCalculators(3);
         };
 
 
