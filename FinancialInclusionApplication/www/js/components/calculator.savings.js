@@ -14,13 +14,17 @@ fIApp.component("savingsCalculator", {
             $scope.modalSavingAnswer = modal;
         });
 
-        $scope.closeHelp = function () {
+
+        $scope.closeHelp = function() {
+
             $scope.modalHelp.hide();
         };
 
-        $scope.openHelp = function () {
+        $scope.openHelp = function() {
             $scope.modalHelp.show();
         };
+
+
 
         $scope.closeSavingsCalc = function () {
             $scope.modalSavingAnswer.hide();

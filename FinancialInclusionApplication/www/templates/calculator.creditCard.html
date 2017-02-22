@@ -18,37 +18,37 @@
 <div class="savingsSlider">
 
     <div class="calcTextAbove">
-    <a class="calcBodyText">How much have you currently saved?</a>
+    <a class="calcBodyText">Enter outstanding balance</a>
 
     </div>
         <div class="calcInput">
-            <input type="number" placeholder="£" ng-model="currentlySaved" pattern="\d*" min="1">
+            <input type="number" placeholder="£" ng-model="oustandingBalance" pattern="\d*" min="1">
         </div>
 </div>
 
 <div class="savingsSlider">
     <div class="calcTextAbove">
-    <a class="calcBodyText">What is your annual interest rate?</a>
+    <a class="calcBodyText">Enter your APR</a>
     </div>
      <div class="calcInput">
-            <input type="number" placeholder="%" ng-model="interestRate" min="0.01">
+            <input type="number" placeholder="%" ng-model="APR" min="0.01">
       
     </div>
 </div>
 
 <div class="savingsSlider">
     <div class="calcTextAbove">
-    <a class="calcBodyText">Calculation period?<span style="color: lightgrey"> (in years)</span></a>
+    <a class="calcBodyText">Repayments per month <span style="color: lightgrey"> (£)</span></a>
     </div>
-    <rzslider rz-slider-model="slider1.value"
-          rz-slider-high="slider1.maxValue"
-          rz-slider-options="slider1.options"></rzslider>
+    <rzslider rz-slider-model="creditSlider.value"
+          rz-slider-high="creditSlider.maxValue"
+          rz-slider-options="creditSlider.options"></rzslider>
 </div>
 
 
 
 
-<button class="button button-block button-positive" ng-click="openInterestCalc()" ng-disabled="!interestRate || !currentlySaved">Calculate</button>
+<button class="button button-block button-positive" ng-click="openCreditCardCalc()" ng-disabled="!oustandingBalance || !APR">Calculate</button>
 
 
 </div>
