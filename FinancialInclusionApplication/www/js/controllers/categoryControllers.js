@@ -39,16 +39,35 @@ fIApp.controller('CategoryCtrl', function ($scope, $ionicModal, $http, $rootScop
       for (var i = 0; i < $scope.modalSubCategories.length; i++) {
         for (var j = 0; j < progressData.length; j++) {
           if ($scope.modalSubCategories[i].title === progressData[j].name) {
-            console.log("I GET HERE");
-            console.log("PROGRESS:" + progressData[j].progress);
             $scope.modalSubCategories[i].progress = progressData[j].progress;
-            console.log("SUBCAT:" + JSON.stringify($scope.modalSubCategories));
             break;
           }
         }
       }
+      console.log("SUBCAT:" + JSON.stringify($scope.modalSubCategories));
     });
     $scope.subCategoriesModal.show();
+    //TESTING SPACE
+
+    /**
+     * This Block Of Code Is For Updating Categories Within Application
+     * 
+     * TODO: Move this block to somewhere more acceptable. 
+     */
+    var categoryPromise = dbAccessor.getCategoryProgress();
+    categoryPromise.then(function (progressData) {
+      for (var i = 0; i < $scope.categories.length; i++) {
+        for (var j = 0; j < progressData.length; j++) {
+          if ($scope.categories[i].name === progressData[j].name) {
+            $scope.categories[i].progress = progressData[j].progress;
+            break;
+          }
+        }
+      }
+      console.log("Categories Being Updated Within Application");
+    });
+
+    //END TESTING SPACE
   }
 
   $scope.closeModal = function () {
@@ -58,23 +77,5 @@ fIApp.controller('CategoryCtrl', function ($scope, $ionicModal, $http, $rootScop
 
   $scope.log = function (name) {
     console.log(name);
-  }
-
-  $scope.checkCategoryProgress = function (name) {
-    var promise = dbAccessor.getCategoryProgress(name);
-    promise.then(function (response) {
-      var progress = response;
-      console.log("Cat progress=" + progress);
-      return progress;
-    });
-  }
-
-  $scope.checkSubCategoryProgress = function (name) {
-    var promise = dbAccessor.getSubCategoryProgress(name);
-    promise.then(function (response) {
-      var progress = response;
-      console.log("Sub Cat progress=" + progress);
-      return progress;
-    });
   }
 });
