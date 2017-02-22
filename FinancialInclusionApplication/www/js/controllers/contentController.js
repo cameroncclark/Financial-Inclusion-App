@@ -163,8 +163,16 @@ fIApp.controller('ContentCtrl', function ($scope, $http, $stateParams, $sce) {
     var parseVideoURLStart = content.indexOf("=")+1;
     var parseVideoURLEnd = content.indexOf("</video>");
     var videoURL = content.substring(parseVideoURLStart,parseVideoURLEnd);
-
+     
+    //If there is wifi return this one
+    if(navigator.onLine){
     return "<div class=\"video-container content-Box-Shadow\"><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/" + videoURL + "?rel=0&autohide=1&showinfo=0\" frameborder=\"0\" allowfullscreen></iframe></div>";
+    //else put in something prettier
+    }else{
+      return"<div class=\"noInternetWarning\"><div class\"offlineIcon\"><img src=\"img/youtube.png\" alt=\"Content & Quizes\" style=\"width:16vh;height:12vh; margin-top:1vh;\"></div><div class=\"offlineText\">"+
+      "Please check you internet connection in order to view the following video</div></div>"
+    }
+    
   }
 
   var parseTagImage = function(content){
