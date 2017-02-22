@@ -28,7 +28,7 @@ fIApp.controller('AnswersCtrl', function ($scope, $http, $stateParams, $ionicPop
         /**
          * This Block Of Code Is For Updating Categories
          */
-        var updateSubCategoryPromise = dbAccessor.updateSubCategoryProgress();
+        var updateSubCategoryPromise = dbAccessor.updateSubCategoryProgress();//This Needs To Know What Subcategory We Are In....
         updateSubCategoryPromise.then(function (output) {
             var updateCategoryPromise = dbAccessor.updateCategoryProgress();
             updateCategoryPromise.then(function (output) {
