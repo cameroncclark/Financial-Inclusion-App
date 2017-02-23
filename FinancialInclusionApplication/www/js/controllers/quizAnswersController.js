@@ -1,7 +1,7 @@
 fIApp.controller('AnswersCtrl', function ($scope, $http, $stateParams, $ionicPopup, $state, $location, dbAccessor) {
     $scope.data = $stateParams.quizData.data;
     $scope.name = "Quiz Results";
-    
+
     $http.get('content/quizzes/' + $stateParams.quizData.path)
         .then(function (response) {
             $scope.quizData = response.data;
@@ -28,21 +28,17 @@ fIApp.controller('AnswersCtrl', function ($scope, $http, $stateParams, $ionicPop
         /**
          * This Block Of Code Is For Updating Categories
          */
-        
-        var currentSubCat = dbAccessor.getSubCatID($stateParams.quizData.path);
-        console.log("HERES THAT CURRENTSUBCAT YOU ORDERED: " + JSON.stringify(currentSubCat));
-        currentSubCat.then(function(subCatoutput){
-            console.log("STRINGIFIED: " + JSON.stringify(subCatoutput));
-            console.log("NOT STRINGIFIED: " + subCatoutput);
-        })
 
-        var updateSubCategoryPromise = dbAccessor.updateSubCategoryProgress(1);//This Needs To Know What Subcategory We Are In....
-        updateSubCategoryPromise.then(function (output) {
-            var updateCategoryPromise = dbAccessor.updateCategoryProgress();
-            updateCategoryPromise.then(function (output) {
-                dbAccessor.checkOverallProgress();
+        var currentSubCat = dbAccessor.getSubCatName($stateParams.quizData.path);
+        currentSubCat.then(function (subCatOutput) {      
+            var updateSubCategoryPromise = dbAccessor.updateSubCategoryProgress(subCatOutput, $scope.correctDisplay);
+            updateSubCategoryPromise.then(function (output) {
+                var updateCategoryPromise = dbAccessor.updateCategoryProgress();
+                updateCategoryPromise.then(function (output) {
+                    dbAccessor.checkOverallProgress();
+                });
             });
-        });
+        })
     }
 
 });

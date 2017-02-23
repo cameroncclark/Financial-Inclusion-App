@@ -144,12 +144,7 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
           for (var i = 0; i < subcategories.data.length; i++) {
             var SCname;
             var SCcatID;
-            var SCquiz = [];
-            var len = subcategories.data.length;
-
-            for (var k = 0; k < subcategories.data.length; k++) {
-              SCquiz[k] = subcategories.data[k];
-            }
+            var SCquiz;
 
             $http.get("content/topics/" + subcategories.data[i])
               .then(function (subcategory) {
@@ -163,15 +158,9 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
                         $cordovaSQLite.execute(db, getNameQuery, []).then(function (result) {
                           SCcatID = result.rows.item(0).id;
                           SCname = subcategory.data.title;
+                          SCquiz = subcategory.data.quiz.url;
 
-
-                          
-
-                          for (var k = 0; k < len; k++) {
-                            console.log("Here is the quiz URL: " + SCquiz[j]);
-                          }
-
-                          $cordovaSQLite.execute(db, subCatQuery, [SCname, SCquiz, 100, SCcatID]).then(function (result) {
+                          $cordovaSQLite.execute(db, subCatQuery, [SCname, SCquiz, 0, SCcatID]).then(function (result) {
                             console.log("INSERT SUB CAT ID -> " + result.insertId);
                           }, function (error) {
                             console.error(JSON.stringify(error));
