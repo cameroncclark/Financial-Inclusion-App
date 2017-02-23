@@ -9,6 +9,7 @@ import java.util.Observer;
 import ContentObjects.Link;
 import ContentObjects.Number;
 import ContentObjects.Tip;
+import ContentObjects.Topic;
 
 public class Model extends Observable {
 	final String _PATH = "../../FinancialInclusionApplication/www/content/";
@@ -113,6 +114,23 @@ public class Model extends Observable {
 	
 	public Integer selectCategoryId(String categoryName){
 		return catModel.selectCategoriesId(categoryName);
+	}
+	
+	public String selectCategoryName(int id){
+		return catModel.selectCategoriesName(id);
+	}
+	
+	public void setTopics(){
+		contentModel.setTopicsMap();
+	}
+	
+	public Topic selectTopic(String fileName){
+		return contentModel.selectTopic(fileName);
+	}
+	
+	public void editTopic(String title, String content, String category){
+		
+		contentModel.editTopic(title, content, selectCategoryId(category));
 	}
 	
 	

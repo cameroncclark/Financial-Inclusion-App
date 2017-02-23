@@ -36,8 +36,8 @@ public class ContentPanel implements Panel, Observer{
 	}
 	
 	private void addContentButton(){
-		JButton button = new JButton("Add Content");
-		button.addActionListener(new ActionListener() {
+		JButton addTopicButton = new JButton("Add Content");
+		addTopicButton.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -45,10 +45,22 @@ public class ContentPanel implements Panel, Observer{
 				
 			}
 		});
-		button.setActionCommand("addContent");
+		addTopicButton.setBounds(2,2,200,20);
+		panel.add(addTopicButton);
 		
-		button.setBounds(2,2,200,20);
-		panel.add(button);
+		JButton editTopicButton = new JButton("Edit Content");
+		editTopicButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				activePanel = new EditContentPane(actionListener);
+				
+			}
+		});
+		editTopicButton.setBounds(2,100,200,20);
+		panel.add(editTopicButton);
+		
+		
 	}
 	
 	@Override

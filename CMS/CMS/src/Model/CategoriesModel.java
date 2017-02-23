@@ -53,6 +53,8 @@ public class CategoriesModel {
 		return new String[] {};
 	}
 	
+
+	
 	public Integer selectCategoriesId(String category){
 		for(Category c: categories){
 			if(c.getName().equals(category)){
@@ -60,6 +62,15 @@ public class CategoriesModel {
 			}
 		}
 		return -1;
+	}
+	
+	public String selectCategoriesName(int ID){
+		for(Category c: categories){
+			if(c.getId() == ID){
+				return c.getName();
+			}
+		}
+		return "No category found";
 	}
 
 	/**

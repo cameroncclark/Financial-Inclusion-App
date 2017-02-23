@@ -11,7 +11,7 @@ import javax.swing.JTextField;
 
 import Controller.ActionController;
 
-public class AddContentPane extends JDialog implements ActionListener {
+public class AddContentPane extends JDialog {
 	protected ActionController actionListener;
 	protected JTextField topicTitleText;
 	protected JComboBox categoriesDropdown;
@@ -58,11 +58,5 @@ public class AddContentPane extends JDialog implements ActionListener {
 	
 	public String getSelectedCategory(){
 		return categoriesDropdown.getSelectedItem().toString();
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		this.setVisible(false);
-		
 	}
 }

@@ -4,15 +4,26 @@ public class Topic {
 	protected String title;
 	protected Integer reference;
 	protected String content;
+	protected ContentQuizObject quiz;
 	
 	public Topic() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Topic(String title, Integer reference, String content){
+	public Topic(String title, Integer reference, String content, ContentQuizObject quiz){
 		this.title = title;
 		this.reference = reference;
 		this.content = content;
+		this.quiz = quiz;
+	}
+	
+
+	public ContentQuizObject getQuiz() {
+		return quiz;
+	}
+
+	public void setQuiz(ContentQuizObject quiz) {
+		this.quiz = quiz;
 	}
 
 	public String getTitle() {

@@ -3,7 +3,10 @@ package Controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import ContentObjects.Topic;
 import Model.Model;
+import View.ContentPanel;
+import View.EditContentPane;
 import View.MainContainer;
 
 public class ActionController implements ActionListener {
@@ -65,11 +68,13 @@ public class ActionController implements ActionListener {
 			break;
 		case "editNumberSelect":
 			EditNumberSelect editNumberSelect = new EditNumberSelect(model, view);
-			break;	
+			break;
 		case "addContentPage":
 			AddContentCtrl addContentCtrl = new AddContentCtrl(model, view);
 			break;
-
+		case "editContentPage":
+			EditContentCtrl editContentCtrl = new EditContentCtrl(model, view);
+			break;
 		}
 
 	}
@@ -85,9 +90,21 @@ public class ActionController implements ActionListener {
 	public String[] initaliseLinksTab() {
 		return model.selectLinks();
 	}
-	
+
 	public String[] initaliseNumbersTab() {
 		return model.selectNumbers();
+	}
+
+	public void setTopicsMap() {
+		model.setTopics();
+	}
+
+	public void loadSelectedFile(String fileName) {
+		ContentPanel panel = (ContentPanel) view.getActivePanel();
+		EditContentPane activePanel = (EditContentPane) panel.getActivePanel();
+		Topic selectedTopic = model.selectTopic(fileName);
+		activePanel.setTopic(selectedTopic.getTitle(), model.selectCategoryName(selectedTopic.getReference()),
+				selectedTopic.getContent());
 	}
 
 }

@@ -10,6 +10,8 @@ public class AddContentCtrl {
 		ContentPanel panel = (ContentPanel) view.getActivePanel();
 		AddContentPane activePanel = (AddContentPane) panel.getActivePanel();
 		model.addContentFile(activePanel.getTopicTitle(), model.selectCategoryId(activePanel.getSelectedCategory()), "Value");
+		activePanel.setVisible(false);
+		activePanel.dispose();
 	}
 
 }

@@ -1,0 +1,14 @@
+package View;
+
+import javax.swing.JDialog;
+
+import Controller.ActionController;
+
+public class EditContentPane extends JDialog {
+	protected ActionController actionListener;
+	
+	public EditContentPane(ActionController actionListener) {
+		this.actionListener = actionListener;
+	}
+
+}
