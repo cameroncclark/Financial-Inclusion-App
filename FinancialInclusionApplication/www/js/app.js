@@ -105,9 +105,9 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
       $cordovaSQLite.execute(db, query, ["Updated Your Name", "person", "You have successfully updated your name.", "Try updating your name.", 0]);
       $cordovaSQLite.execute(db, query, ["Updated Your Location", "location", "You have successfully updated your location.", "Try updating your location.", 0]);
       $cordovaSQLite.execute(db, query, ["Updated Your Picture", "person-stalker", "You have successfully updated your picture.", "Try updating your picture.", 0]);
-      $cordovaSQLite.execute(db, query, ["Flicked through 20 hints", "information", "You have managed to flick through 20 hints.", "Try flicking through more hints.", 1]);
-      $cordovaSQLite.execute(db, query, ["Flicked through 50 hints", "information", "You have managed to flick through 50 hints.", "Try flicking through more hints.", 1]);
-      $cordovaSQLite.execute(db, query, ["Flicked through 100 hints", "information", "You have managed to flick through 100 hints.", "Try flicking through more hints.", 1]);
+      $cordovaSQLite.execute(db, query, ["Flicked through 20 hints", "information", "You have managed to flick through 20 hints.", "Try flicking through more hints.", 0]);
+      $cordovaSQLite.execute(db, query, ["Flicked through 50 hints", "information", "You have managed to flick through 50 hints.", "Try flicking through more hints.", 0]);
+      $cordovaSQLite.execute(db, query, ["Flicked through 100 hints", "information", "You have managed to flick through 100 hints.", "Try flicking through more hints.", 0]);
       $cordovaSQLite.execute(db, query, ["Performed a calculation on a calculator", "calculator", "You performed a calculation on a calculator.", "Try using a calculator.", 0]);
       $cordovaSQLite.execute(db, query, ["Performed a calculation on all the calculators", "calculator", "You performed a calculation on all the calculators.", "Try using all calculators.", 0]);
       $cordovaSQLite.execute(db, query, ["Visit an external website", "edit", "You visited an external website.", "Try visiting a website.", 1]);
@@ -179,7 +179,7 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
        * Progress Table
        */
       var progressQuery = "INSERT INTO progress (objective, counter, valueChanged) VALUES (?,?,?)";
-      $cordovaSQLite.execute(db, progressQuery, ["Tip Counter", 18, null]);
+      $cordovaSQLite.execute(db, progressQuery, ["Tip Counter", 0, null]);
       $cordovaSQLite.execute(db, progressQuery, ["Perform calc 1", null, "false"]);
       $cordovaSQLite.execute(db, progressQuery, ["Perform calc 2", null, "false"]);
       $cordovaSQLite.execute(db, progressQuery, ["Perform calc 3", null, "false"]);
@@ -187,7 +187,7 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
       $cordovaSQLite.execute(db, progressQuery, ["Visit 5 websites", 0, null]);
       $cordovaSQLite.execute(db, progressQuery, ["Call number", null, "false"]);
       $cordovaSQLite.execute(db, progressQuery, ["Quiz Counter", 0, null]);
-      $cordovaSQLite.execute(db, progressQuery, ["100% Quiz Counter", 2, null]);
+      $cordovaSQLite.execute(db, progressQuery, ["100% Quiz Counter", 0, null]);
     }
 
     /**

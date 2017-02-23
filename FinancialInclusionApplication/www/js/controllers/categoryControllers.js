@@ -53,8 +53,4 @@ fIApp.controller('CategoryCtrl', function ($scope, $ionicModal, $http, $rootScop
     $scope.modalSubCategories = [];
     $scope.subCategoriesModal.hide();
   }
-
-  $scope.log = function (name) {
-    console.log(name);
-  }
 });

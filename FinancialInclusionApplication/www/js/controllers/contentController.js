@@ -125,7 +125,7 @@ fIApp.controller('ContentCtrl', function ($scope, $http, $stateParams, $sce) {
       if (i < $scope.sections.length - 1) {
         $scope.sections[i].content = $sce.trustAsHtml($scope.sections[i].content);
       } else {
-        $scope.sections[i].content = $scope.sections[i].content + "This is appended" + parseTagQuiz($scope.topic.quiz);
+        $scope.sections[i].content = $scope.sections[i].content + parseTagQuiz($scope.topic.quiz);
         $scope.sections[i].content = $sce.trustAsHtml($scope.sections[i].content);
       }
     }

@@ -392,31 +392,8 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q) {
     };
 
     /**
-     * This is to update the subcategories progress
+     * This gets the name of the subcategory from the quiz you are in
      */
-    this.updateSubCategoryProgressFAILED = function (subCatID) {
-        var q = $q.defer();
-        var executeCounter = subCatID;
-        var subCategoryQuery = "SELECT * FROM subcategories";
-        $cordovaSQLite.execute(db, subCategoryQuery, []).then(function (result) {
-            if (result.rows.length > 0) {
-                for (var i = 0; i < result.rows.length; i++) {
-                    console.log("subcategories -> " + result.rows.item(i).id + " - " + result.rows.item(i).name + " - " + result.rows.item(i).percentageComplete + " - " + result.rows.item(i).categoryID);
-                    if (executeCounter == result.rows.item(i).id) {
-                        console.log("Resolve Here!");
-                        q.resolve(executeCounter);
-                    }
-                    //executeCounter++;
-                }
-            } else {
-                console.error("ACCESSING PROGRESS FAILED AT updateSubCategoryProgress FUNCTION");
-            }
-        }, function (error) {
-            console.error(error);
-        });
-        return q.promise;
-    };
-
     this.getSubCatName = function (quizURL) {
         var q = $q.defer();
         var subCatName;
@@ -434,6 +411,9 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q) {
         return q.promise;
     }
 
+    /**
+     * This is to update the subcategories progress
+     */
     this.updateSubCategoryProgress = function (subCatName, quizScore) {
         var q = $q.defer();
         var name = subCatName;
