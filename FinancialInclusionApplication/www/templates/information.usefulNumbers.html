@@ -4,11 +4,11 @@
             <b class = "icon ion-ios-telephone"></b>
         </button>
   </ion-nav-buttons>
-  <ion-content class="padding">
+  <ion-content class="padding informationText">
     <div class="list">
-      <div ng-repeat="num in numbersList" class="item item-icon-right" ng-click="showDetails = ! showDetails">
-        <a ng-href="tel:{{num.number}}"><i class="icon ion-ios-telephone"></i></a> {{num.name}}
-        <div class="quiz-Answer-Display" ng-class="{'hidden':!showDetails}">
+      <div ng-repeat="num in numbersList" class="item item-icon-right informationText" ng-click="showDetails = ! showDetails">
+        <a ng-href="tel:{{num.number}}"><i class="icon ion-ios-telephone informationText"></i></a> {{num.name}}
+        <div class="quiz-Answer-Display informationText" ng-class="{'hidden':!showDetails}">
           <hr> {{num.blurb}}
         </div>
       </div>

@@ -62,3 +62,59 @@
 .userButtonPadding{
     padding: 0vw 5vw 0vw 5vw;
 }
+
+
+/************************************ MEDIA QUERIES ********************************/
+@media (min-width: 600px) {
+
+.userInput{
+    margin-bottom: 2vh;
+    padding: 0vw 10vw 0vw 10vw;
+}
+
+.userInputBox{
+margin-bottom: 3vh;
+padding: 1vh;
+}
+
+.tabletButtonText{
+    font-size: 1.4rem;
+    width: 30vw !important;
+    margin-left: 13vw;
+    border-radius: 1vh;
+}
+
+.userProfileIcon {
+    font-size: 3rem;
+}
+
+.userAvatars{
+    padding: 2vh 5vw 4vh 5vw;
+}
+
+
+.changeAvatarSize{
+    max-width: 15vh;
+    max-height:10vh;
+    margin: 1vh 0vw;
+
+}
+.userButtonPadding{
+    padding: 0vw 16vw 0vw 16vw;
+    
+}
+
+.tabletButtonText2{
+    border-radius: 1vh;
+    font-size: 1.4rem;
+}
+
+.settingFontSize{
+    font-size: 1.6rem;
+    padding: 3vh 6vw;
+    margin: 1vh 3vw 2vh 3vw;
+}
+
+}
+/****************************/
+

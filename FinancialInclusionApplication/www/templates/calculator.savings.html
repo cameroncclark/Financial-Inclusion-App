@@ -20,7 +20,7 @@
     <a class="calcBodyText">What is your savings goal?</a>
     </div>
  <div class="calcInput">
-            <input type="number" style = "font-size: 0.8em" placeholder="£" ng-model="savingsGoalValue" pattern="\d*">
+            <input type="number"  placeholder="£" ng-model="savingsGoalValue" pattern="\d*">
  </div>
 </div>
 
@@ -30,7 +30,7 @@
     <a class="calcBodyText">How much can you save per month?</a>
     </div>
     <div class="calcInput">
-            <input type="number" style = "font-size: 0.8em" placeholder="£" ng-model="perMonthValue" pattern="\d*" min="1">
+            <input type="number" placeholder="£" ng-model="perMonthValue" pattern="\d*" min="1">
        </div>
 </div>
 
@@ -39,7 +39,7 @@
     <a class="calcBodyText">How much have you already saved?</a>
     </div>
  <div class="calcInput">
-            <input type="number" style = "font-size: 0.8em" placeholder="£" ng-model="alreadySavedValue" pattern="\d*" min="0">
+            <input type="number" placeholder="£" ng-model="alreadySavedValue" pattern="\d*" min="0">
 
     </div>
 </div>
@@ -48,7 +48,7 @@
 
 
 
-<button class="button button-block button-positive" ng-click="openSavingsCalc()" ng-disabled="!perMonthValue || !savingsGoalValue || savingsGoalValue < perMonthValue || savingsGoalValue < alreadySavedValue">Calculate</button>
+<button class="button button-block button-positive calculatorButtonTablet" ng-click="openSavingsCalc()" ng-disabled="!perMonthValue || !savingsGoalValue || savingsGoalValue < perMonthValue || savingsGoalValue < alreadySavedValue">Calculate</button>
 
 
 
