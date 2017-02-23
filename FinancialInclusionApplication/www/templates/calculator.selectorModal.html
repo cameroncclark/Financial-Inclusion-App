@@ -1,0 +1,28 @@
+<ion-modal-view class="calcSelectorContainer">
+    <ion-header-bar class="calcSelectorHeading">
+        <h1 class="title tabletModal">Select a Calculator</h1>
+        <div class="buttons">
+            <i class = "icon icon ion-close-circled modalCloseButton" ng-click="closeSelector()"></i>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+        <div class="padding ">
+           <div ng-click="makeActive('savings')"  style="margin-top: 4vh;" ng-class="{true: 'col calculatorOptions2', false: 'col calculatorOptions'}[isActiveSavings]">
+    Savings
+    
+    </div>
+    <div ng-click="makeActive('interest')"  ng-class="{true: 'col calculatorOptions2', false: 'col calculatorOptions'}[isActiveInterest]">
+    Interest
+    
+    </div>
+    <div ng-click="makeActive('mortgage')"  ng-class="{true: 'col calculatorOptions2', false: 'col calculatorOptions'}[isActiveMortgage]">
+    Mortgage
+    
+    </div>
+    <div ng-class="{true: 'col calculatorOptions2', false: 'col calculatorOptions'}[isActiveCreditCard]" ng-click="makeActive('creditCard')">
+    Credit Card
+    
+    </div>
+        </div>
+    </ion-content>
+</ion-modal-view>

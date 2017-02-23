@@ -14,13 +14,17 @@ fIApp.component("savingsCalculator", {
             $scope.modalSavingAnswer = modal;
         });
 
-        $scope.closeHelp = function () {
+
+        $scope.closeHelp = function() {
+
             $scope.modalHelp.hide();
         };
 
-        $scope.openHelp = function () {
+        $scope.openHelp = function() {
             $scope.modalHelp.show();
         };
+
+
 
         $scope.closeSavingsCalc = function () {
             $scope.modalSavingAnswer.hide();
@@ -62,7 +66,10 @@ fIApp.component("savingsCalculator", {
 
         $scope.helpHint = "Handy hint: Take a screenshot of your result so that you can review it later!"
 
+        var saved;
+
         $scope.savingsGoalValue;
+        
         $scope.alreadySavedValue;
         $scope.perMonthValue;
 

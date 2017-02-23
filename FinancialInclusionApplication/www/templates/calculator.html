@@ -4,25 +4,20 @@
         <b class = "icon icon ion-calculator"></b>
       </button>
     </ion-nav-buttons>
-    <ion-content class="padding"
-    \>
-    <div class = "row" style="margin-bottom:2vh;">
+    <ion-content class="padding" \>
 
-        <button ng-click="makeActive('savings')" ng-class="{true: 'col calculatorButtons2', false: 'col calculatorButtons'}[isActiveSavings]">
-            <a   ng-class="{true: 'calculatorButtonsText2', false: 'calculatorButtonsText'}[isActiveSavings]">Savings</a></button>
-        
-        <button ng-click="makeActive('interest')" ng-class="{true: 'col calculatorButtons2', false: 'col calculatorButtons'}[isActiveInterest]">
-            <a   ng-class="{true: 'calculatorButtonsText2', false: 'calculatorButtonsText'}[isActiveInterest]">Interest</a></button>
-        
-        <button ng-click="makeActive('mortgage')" ng-class="{true: 'col calculatorButtons2', false: 'col calculatorButtons'}[isActiveMortgage]">
-            <a   ng-class="{true: 'calculatorButtonsText2', false: 'calculatorButtonsText'}[isActiveMortgage]">Mortgage</a></button>
+
+    <div class = "dropDownBox" ng-click="openSelector()">
+    Select a calculator
     
     </div>
+    
 
     <welcome-calculator ng-show="welcome"></welcome-calculator>
     <savings-calculator ng-show="savings"></savings-calculator>
     <interest-calculator ng-show="interest"></interest-calculator>
     <mortgage-calculator ng-show="mortgage"></mortgage-calculator>
+    <creditcard-calculator ng-show="creditCard"></creditcard-calculator>
         
 
     </ion-content>
