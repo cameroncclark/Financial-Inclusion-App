@@ -63,7 +63,7 @@ public class NumbersModel {
 		}
 	}
 	
-	public void editUsefulNumnber(String oldName, String newName, String newBlurb, String newNumber){
+	public void editUsefulNumber(String oldName, String newName, String newBlurb, String newNumber){
 		if(!duplicateName(newName)){
 			for(Number n: numbers){
 				if(n.getName().equals(oldName)){

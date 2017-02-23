@@ -47,4 +47,5 @@
 <fullyQualifiedTypeName name="javax.swing.JSeparator"/>
 <fullyQualifiedTypeName name="Model.Model"/>
 <fullyQualifiedTypeName name="Controller.EditTipSelect"/>
+<fullyQualifiedTypeName name="Controller.EditLinkSelect"/>
 </qualifiedTypeNameHistroy>

@@ -35,7 +35,7 @@ public class PanelCreator {
 	}
 	
 	public JComponent makeContentPanel(Model model, ActionController actionListener) {
-		contentPanel = new CategoriesPanel(actionListener);
+		contentPanel = new ContentPanel(actionListener);
 		model.setModelObserver((Observer) contentPanel);
 		return contentPanel.getPanel();
 	}
@@ -63,7 +63,7 @@ public class PanelCreator {
 		case 0:
 			return catPanel;
 		case 1:
-			return null;
+			return contentPanel;
 		case 2:
 			return tipsPanel;
 		case 3:

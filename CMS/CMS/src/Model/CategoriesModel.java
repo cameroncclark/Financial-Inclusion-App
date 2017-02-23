@@ -45,13 +45,21 @@ public class CategoriesModel {
 				categoryNames[count] = category.getName();
 				count++;
 			}
-			System.out.println(gson.toJson(categories));
 			return categoryNames;
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return new String[] {};
+	}
+	
+	public Integer selectCategoriesId(String category){
+		for(Category c: categories){
+			if(c.getName().equals(category)){
+				return c.getId();
+			}
+		}
+		return -1;
 	}
 
 	/**

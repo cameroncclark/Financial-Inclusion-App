@@ -1,0 +1,7 @@
+package ContentObjects;
+
+public class Topic {
+	protected String title;
+	protected Integer reference;
+	protected String content;
+}

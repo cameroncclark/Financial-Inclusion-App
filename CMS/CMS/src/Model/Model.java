@@ -13,12 +13,14 @@ import ContentObjects.Tip;
 public class Model extends Observable {
 	final String _PATH = "../../FinancialInclusionApplication/www/content/";
 	CategoriesModel catModel;
+	ContentModel contentModel;
 	NumbersModel numbersModel;
 	LinksModel linksModel;
 	TipsModel tipsModel;
 
 	public Model() {
 		catModel = new CategoriesModel(this);
+		contentModel = new ContentModel(this);
 		numbersModel = new NumbersModel(this);
 		linksModel = new LinksModel(this);
 		tipsModel = new TipsModel(this);
@@ -62,7 +64,7 @@ public class Model extends Observable {
 	}
 	
 	public void editNumber(String oldName, String newName, String newBlurb, String newNumber){
-		numbersModel.editUsefulNumnber(oldName, newName, newBlurb, newNumber);
+		numbersModel.editUsefulNumber(oldName, newName, newBlurb, newNumber);
 	}
 	
 	public void editLink(String oldName, String newName, String newBlurb, String newWebsite){
@@ -103,6 +105,14 @@ public class Model extends Observable {
 	
 	public Number selectNumber(String name){
 		return numbersModel.selectNumber(name);
+	}
+	
+	public void addContentFile(String title, Integer reference, String content){
+		contentModel.addNewContentFile(title, reference, content);
+	}
+	
+	public Integer selectCategoryId(String categoryName){
+		return catModel.selectCategoriesId(categoryName);
 	}
 	
 	

@@ -1,0 +1,40 @@
+package Model;
+
+import java.io.File;
+import java.util.ArrayList;
+
+import ContentObjects.Topic;
+
+public class ContentModel {
+	Model model;
+	final String _PATH = "../../FinancialInclusionApplication/www/content/";
+	
+	public ContentModel(Model model) {
+		this.model = model;
+	}
+	
+	public void addNewContentFile(String title, Integer reference, String content){
+		Topic newTopic = new Topic(title,reference,content);
+		getAllFileNames();
+		
+	}
+	
+	private String getFileName(String title){
+		
+		return "";
+	}
+	
+	private ArrayList<String> getAllFileNames(){
+		ArrayList<String> fileNames = new ArrayList<String>();
+		File tempFile = new File(_PATH+"topics/");
+		File[] listOfFiles = tempFile.listFiles();
+
+	    for (int i = 0; i < listOfFiles.length; i++) {
+	      fileNames.add(listOfFiles[i].getName());
+	    }
+		
+		
+		
+		return fileNames;
+	}
+}

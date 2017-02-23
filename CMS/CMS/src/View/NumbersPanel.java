@@ -42,7 +42,6 @@ public class NumbersPanel implements Panel, Observer {
 		createAddNumbersComponents();
 		creatEditNumbersComponents();
 		creatDeleteNumbersComponents();
-//		addSection();
 	}
 	
 	public void createAddNumbersComponents() {

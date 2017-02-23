@@ -10,7 +10,9 @@ import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import Controller.ActionController;
@@ -19,11 +21,11 @@ public class TipsPanel implements Panel,Observer{
 	ActionController actionListener;
 	JPanel panel;
 	JTextField addTipHeader;
-	JTextField addTipTip;
+	JTextArea addTipTip;
 	JComboBox editTipList;
 	JComboBox deleteTipList;
 	JTextField editTipHeader;
-	JTextField editTipTip;
+	JTextArea editTipTip;
 	String[] tips;
 	
 	public TipsPanel(ActionController actionListener) {
@@ -50,80 +52,89 @@ public class TipsPanel implements Panel,Observer{
 		addTipHeaderTF.setBounds(30, 50, 200, 20);
 		
 		addTipHeader = new JTextField();
-		addTipHeader.setBounds(130, 50, 150, 20);
+		addTipHeader.setBounds(200, 50, 150, 20);
 		
 		JLabel addTipTipTF = new JLabel("Tip Text (MAX 200 Chars):");
 		addTipTipTF.setBounds(30, 70, 200, 20);
 		
-		addTipTip = new JTextField();
-		addTipTip.setBounds(200, 70, 250, 20);
+		addTipTip = new JTextArea();
+		addTipTip.setLineWrap(true);
+		addTipTip.setWrapStyleWord(true);
+		addTipTip.setBounds(204, 72, 250, 20);
+		JScrollPane scrollTextArea = new JScrollPane(addTipTip);
+		scrollTextArea.setBounds(204, 72, 396, 96);
 		
 		JButton addTipBtn = new JButton("Add Tip");
-		addTipBtn.setBounds(525, 120, 125, 20);
+		addTipBtn.setBounds(525, 180, 125, 20);
 		addTipBtn.setActionCommand("addTip");
 		addTipBtn.addActionListener(actionListener);
 		
 		JSeparator separator = new JSeparator(JSeparator.HORIZONTAL);
-		separator.setBounds(2, 145, 675, 10);
+		separator.setBounds(2, 205, 675, 10);
 		
 		panel.add(addTipLbl);
 		panel.add(addTipHeaderTF);
 		panel.add(addTipHeader);
 		panel.add(addTipTipTF);
-		panel.add(addTipTip);
+		panel.add(scrollTextArea);
 		panel.add(addTipBtn);
 		panel.add(separator);
 	}
 	
 	private void creatEditTipsComponents(){
 		JLabel editTipLbl = new JLabel("Edit Tip:");
-		editTipLbl.setBounds(10, 160, 200, 20);
+		editTipLbl.setBounds(10, 220, 200, 20);
 		
 		editTipList = new JComboBox(tips);
 		editTipList.addActionListener(actionListener);
 		editTipList.setActionCommand("editTipSelect");
-		editTipList.setBounds(460, 160, 200, 25);
+		editTipList.setBounds(460, 220, 200, 25);
 		
 		JLabel editTipHeaderTF = new JLabel("Tip Header:");
-		editTipHeaderTF.setBounds(30, 200, 200, 20);
+		editTipHeaderTF.setBounds(30, 260, 200, 20);
 		
 		editTipHeader = new JTextField();
-		editTipHeader.setBounds(130, 200, 150, 20);
+		editTipHeader.setBounds(200, 260, 150, 20);
 		
 		JLabel editTipTipTF = new JLabel("Tip Text (MAX 200 Chars):");
-		editTipTipTF.setBounds(30, 220, 200, 20);
+		editTipTipTF.setBounds(30, 280, 200, 20);
 		
-		editTipTip = new JTextField();
-		editTipTip.setBounds(200, 220, 250, 20);
+		editTipTip = new JTextArea();
+		editTipTip.setLineWrap(true);
+		editTipTip.setWrapStyleWord(true);
+		editTipTip.setBounds(204, 282, 250, 20);
+		JScrollPane scrollTextArea = new JScrollPane(editTipTip);
+		scrollTextArea.setBounds(204, 282, 396, 96);
+		
 		
 		JButton editTipBtn = new JButton("Edit Tip");
-		editTipBtn.setBounds(525, 270, 125, 20);
+		editTipBtn.setBounds(525, 390, 125, 20);
 		editTipBtn.setActionCommand("editTip");
 		editTipBtn.addActionListener(actionListener);
 		
 		JSeparator separator = new JSeparator(JSeparator.HORIZONTAL);
-		separator.setBounds(2, 295, 675, 10);
+		separator.setBounds(2, 415, 675, 10);
 		
 		panel.add(editTipLbl);
 		panel.add(editTipList);
 		panel.add(editTipHeaderTF);
 		panel.add(editTipHeader);
 		panel.add(editTipTipTF);
-		panel.add(editTipTip);
+		panel.add(scrollTextArea);
 		panel.add(editTipBtn);
 		panel.add(separator);
 	}
 	
 	private void creatDeleteTipsComponents(){
 		JLabel deleteTipLbl = new JLabel("Delete Tip:");
-		deleteTipLbl.setBounds(10, 310, 200, 20);
+		deleteTipLbl.setBounds(10, 430, 200, 20);
 		
 		deleteTipList = new JComboBox(tips);
 		deleteTipList.addActionListener(actionListener);
-		deleteTipList.setBounds(460, 310, 200, 25);
+		deleteTipList.setBounds(460, 430, 200, 25);
 		
 		JButton deleteTipBtn = new JButton("Delete tip");
-		deleteTipBtn.setBounds(525, 360, 125, 20);;
+		deleteTipBtn.setBounds(525, 480, 125, 20);;
 		deleteTipBtn.setActionCommand("deleteTip");
 		deleteTipBtn.addActionListener(actionListener);
 		
@@ -209,12 +220,12 @@ public class TipsPanel implements Panel,Observer{
 		editTipList.setSelectedIndex(0);
 		editTipList.addActionListener(actionListener);
 		editTipList.setActionCommand("editTipSelect");
-		editTipList.setBounds(460, 160, 200, 25);
+		editTipList.setBounds(460, 220, 200, 25);
 		editTipList.setVisible(true);
 		
 		deleteTipList = new JComboBox(tips);
 		deleteTipList.addActionListener(actionListener);
-		deleteTipList.setBounds(460, 310, 200, 25);
+		deleteTipList.setBounds(460, 430, 200, 25);
 		
 		panel.add(editTipList);
 		panel.add(deleteTipList);

@@ -1,0 +1,51 @@
+package View;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+import Controller.ActionController;
+
+public class AddContentPane extends JDialog implements ActionListener {
+	protected ActionController actionListener;
+	protected JTextField topicTitleText;
+	protected JComboBox categoriesDropdown;
+
+	
+	
+	public AddContentPane(ActionController actionListener) {
+		this.actionListener = actionListener;
+		setModal(true);
+		setLayout(null);
+		setSize(600, 600);
+		createComponents();
+		setVisible(true);
+	}
+	
+	private void createComponents(){
+		JLabel topicTitle = new JLabel("Topic Title:");
+		topicTitle.setBounds(2,2,200,20);
+		add(topicTitle);
+		
+		JTextField topicTitleText = new JTextField();
+		topicTitleText.setBounds(90, 2, 200, 20);
+		add(topicTitleText);
+		
+		
+		
+		JButton closePopup = new JButton("Close");
+		closePopup.addActionListener(this);
+		add(closePopup);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		this.setVisible(false);
+		
+	}
+}

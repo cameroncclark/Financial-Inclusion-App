@@ -1,0 +1,14 @@
+package Model;
+
+public class ContentModel {
+	Model model;
+	final String _PATH = "../../FinancialInclusionApplication/www/content/";
+	
+	public ContentModel(Model model) {
+		this.model = model;
+	}
+	
+	public void addNewContentFile(String title, String reference, String content){
+		Topic newTopic = new Topic(title,reference,content)
+	}
+}

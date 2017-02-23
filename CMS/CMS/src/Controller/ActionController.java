@@ -66,6 +66,9 @@ public class ActionController implements ActionListener {
 		case "editNumberSelect":
 			EditNumberSelect editNumberSelect = new EditNumberSelect(model, view);
 			break;	
+		case "addContentPage":
+			AddContentCtrl addContentCtrl = new AddContentCtrl(model, view);
+			break;
 
 		}
 
