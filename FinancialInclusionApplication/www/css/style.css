@@ -152,6 +152,11 @@ left: 0;
 width: 100%;
 height: 100%;
 }
+@media (min-width: 600px) {
+.tabletModal{
+    font-size: 1.6rem !important;
+}
+}
 
 /*
 *{
