@@ -138,17 +138,22 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
       /**
        * Subcategories Table
        */
-      var subCatQuery = "INSERT INTO subcategories (name, percentageComplete, categoryID) VALUES (?,?,?)";
+      var subCatQuery = "INSERT INTO subcategories (name, quizURL, percentageComplete, categoryID) VALUES (?,?,?,?)";
       $http.get('content/topics.json')
         .then(function (subcategories) {
           for (var i = 0; i < subcategories.data.length; i++) {
             var SCname;
             var SCcatID;
+            var SCquiz = [];
+            var len = subcategories.data.length;
+
+            for (var k = 0; k < subcategories.data.length; k++) {
+              SCquiz[k] = subcategories.data[k];
+            }
 
             $http.get("content/topics/" + subcategories.data[i])
               .then(function (subcategory) {
                 var ref = subcategory.data.reference;
-
                 $http.get('content/categories.json')
                   .then(function (category) {
                     for (var j = 0; j < category.data.length; j++) {
@@ -159,7 +164,14 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
                           SCcatID = result.rows.item(0).id;
                           SCname = subcategory.data.title;
 
-                          $cordovaSQLite.execute(db, subCatQuery, [SCname, 100, SCcatID]).then(function (result) {
+
+                          
+
+                          for (var k = 0; k < len; k++) {
+                            console.log("Here is the quiz URL: " + SCquiz[j]);
+                          }
+
+                          $cordovaSQLite.execute(db, subCatQuery, [SCname, SCquiz, 100, SCcatID]).then(function (result) {
                             console.log("INSERT SUB CAT ID -> " + result.insertId);
                           }, function (error) {
                             console.error(JSON.stringify(error));
@@ -227,7 +239,7 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
       $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS userData (id INTEGER PRIMARY KEY, name TEXT, location TEXT, avatar TEXT)");
       $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS trophies (id INTEGER PRIMARY KEY, title TEXT, image TEXT, description TEXT, hint TEXT, acquired TINYINT)");
       $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS categories (id INTEGER PRIMARY KEY, name NVARCHAR(50), percentageComplete INTEGER)");
-      $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS subcategories (id INTEGER PRIMARY KEY, name NVARCHAR(50), percentageComplete INTEGER, categoryID INTEGER, FOREIGN KEY(categoryID) REFERENCES categories(id))");
+      $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS subcategories (id INTEGER PRIMARY KEY, name NVARCHAR(50), quizURL NVARCHAR(50), percentageComplete INTEGER, categoryID INTEGER, FOREIGN KEY(categoryID) REFERENCES categories(id))");
       $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS progress (objective NVARCHAR(50) PRIMARY KEY, counter INTEGER, valueChanged TINYINT)");
 
       //TO DO (CREATE A NEW TABLE FOR SETTINGS)

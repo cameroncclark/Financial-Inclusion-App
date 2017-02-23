@@ -394,19 +394,19 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q) {
     /**
      * This is to update the subcategories progress
      */
-    this.updateSubCategoryProgress = function () {
+    this.updateSubCategoryProgress = function (subCatID) {
         var q = $q.defer();
-        var executeCounter = 0;
+        var executeCounter = subCatID;
         var subCategoryQuery = "SELECT * FROM subcategories";
         $cordovaSQLite.execute(db, subCategoryQuery, []).then(function (result) {
             if (result.rows.length > 0) {
                 for (var i = 0; i < result.rows.length; i++) {
                     console.log("subcategories -> " + result.rows.item(i).id + " - " + result.rows.item(i).name + " - " + result.rows.item(i).percentageComplete + " - " + result.rows.item(i).categoryID);
-                    if (executeCounter == result.rows.length - 1) {
+                    if (executeCounter == result.rows.item(i).id) {
                         console.log("Resolve Here!");
                         q.resolve(executeCounter);
                     }
-                    executeCounter++;
+                    //executeCounter++;
                 }
             } else {
                 console.error("ACCESSING PROGRESS FAILED AT updateSubCategoryProgress FUNCTION");
@@ -416,6 +416,25 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q) {
         });
         return q.promise;
     };
+
+    this.getSubCatID = function (quizURL){
+        var q = $q.defer();
+        var subCatName;
+        var query = "SELECT name FROM subcategories WHERE quizUrL = '" + quizURL + "'";
+        $cordovaSQLite.execute(db, query, []).then(function(result){
+            if (result.rows.length > 0) {
+                   //console.log("SUBCAT SEARCH RESULTS:" + result.rows.item(0).name);
+                   subCatName = result.rows.item(0).name;
+                   //console.log("Here is the subcat name to be returned: " + subCatName);
+                   q.resolve(subCatName);
+            } else {
+                console.error("getSubCatID function failed");
+            }
+        }, function (error){
+            console.error(error);
+        });
+        return q.promise;
+    }
 
     /**
      * This is to find out the overall progress of the application
