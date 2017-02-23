@@ -6,8 +6,8 @@ fIApp.controller('ContentCtrl', function ($scope, $http, $stateParams, $sce) {
   /** 
    * The arrays below hold the cusomised tags the application can parse. 
   */
-  var tagMapOpen = ["<video>","<image>","<title>","<subtitle>","<link>","<quiz>"];
-  var tagMapClose = ["</video>","</image>","</title>","</subtitle>","</link>", "</quiz>"];
+  var tagMapOpen = ["<video>", "<image>", "<title>", "<subtitle>", "<link>"];
+  var tagMapClose = ["</video>", "</image>", "</title>", "</subtitle>", "</link>"];
 
   $scope.options = {
     loop: false,
@@ -37,9 +37,9 @@ fIApp.controller('ContentCtrl', function ($scope, $http, $stateParams, $sce) {
       $scope.parseIntoSections($scope.topic.content);
     });
 
-/**
- * This code parses all content <section> tags into an Array.
- */
+  /**
+   * This code parses all content <section> tags into an Array.
+   */
   $scope.parseIntoSections = function (content) {
     $scope.sections = [];
     var openCounter = null;
@@ -49,7 +49,7 @@ fIApp.controller('ContentCtrl', function ($scope, $http, $stateParams, $sce) {
       openCounter = content.match(new RegExp("<section>", "g") || []).length;
       closeCounter = content.match(new RegExp("</section>", "g") || []).length;
     } catch (error) {
-      $scope.sections[0] =  "Invalid File Representation.";
+      $scope.sections[0] = "Invalid File Representation.";
     }
 
     /**
@@ -82,7 +82,7 @@ fIApp.controller('ContentCtrl', function ($scope, $http, $stateParams, $sce) {
 
       parseEachSection();
     } else {
-      $scope.sections[0] =  "Invalid File Representation.";
+      $scope.sections[0] = "Invalid File Representation.";
     }
 
   }
@@ -90,7 +90,7 @@ fIApp.controller('ContentCtrl', function ($scope, $http, $stateParams, $sce) {
   /**
    * This function takes in the content of a section, creates and object with the title being the section title and returning it back to be parsed.
    */
-  var parseOutTitle = function(sectionContent){
+  var parseOutTitle = function (sectionContent) {
     var contentObject = {};
     var sectionTitleStartIndex = sectionContent.indexOf('<section-title>') + 15;
     var sectionTitleEndIndex = sectionContent.indexOf('</section-title>', sectionTitleStartIndex);
@@ -106,30 +106,35 @@ fIApp.controller('ContentCtrl', function ($scope, $http, $stateParams, $sce) {
    * 
    * The $sce service is used to tell the application that the HTML we return out is safe for users to view and interact with.
    */
-  var parseEachSection = function(){
-    for(var i = 0; i<$scope.sections.length; i++ ){
+  var parseEachSection = function () {
+    for (var i = 0; i < $scope.sections.length; i++) {
       var tagsExist = true;
       while (tagsExist) {
         tagsExist = false;
-        for(var j=0; j<tagMapOpen.length;j++){
-          if($scope.sections[i].content.indexOf(tagMapOpen[j]) != -1){
+        for (var j = 0; j < tagMapOpen.length; j++) {
+          if ($scope.sections[i].content.indexOf(tagMapOpen[j]) != -1) {
             tagsExist = true;
             var startTagIndex = $scope.sections[i].content.indexOf(tagMapOpen[j]);
-            var endTagIndex = $scope.sections[i].content.indexOf(tagMapClose[j])+tagMapOpen[j].length+1;
-            
-            var newTag = switchOnTag(tagMapOpen[j],$scope.sections[i].content.substring(startTagIndex,endTagIndex));
-            $scope.sections[i].content = $scope.sections[i].content.replace($scope.sections[i].content.substring(startTagIndex,endTagIndex),newTag);
+            var endTagIndex = $scope.sections[i].content.indexOf(tagMapClose[j]) + tagMapOpen[j].length + 1;
+
+            var newTag = switchOnTag(tagMapOpen[j], $scope.sections[i].content.substring(startTagIndex, endTagIndex));
+            $scope.sections[i].content = $scope.sections[i].content.replace($scope.sections[i].content.substring(startTagIndex, endTagIndex), newTag);
           }
         }
       }
-      $scope.sections[i].content = $sce.trustAsHtml($scope.sections[i].content);
+      if (i < $scope.sections.length - 1) {
+        $scope.sections[i].content = $sce.trustAsHtml($scope.sections[i].content);
+      } else {
+        $scope.sections[i].content = $scope.sections[i].content + "This is appended" + parseTagQuiz($scope.topic.quiz);
+        $scope.sections[i].content = $sce.trustAsHtml($scope.sections[i].content);
+      }
     }
   }
 
   /**
    * This function takes in the tag and the content, and passes the content to the correct function based on the customised tag.
    */
-  var switchOnTag = function(tag, content){
+  var switchOnTag = function (tag, content) {
     switch (tag) {
       case "<video>":
         return parseTagVideo(content);
@@ -146,10 +151,6 @@ fIApp.controller('ContentCtrl', function ($scope, $http, $stateParams, $sce) {
       case "<link>":
         return parseTagLink(content);
         break;
-      case "<quiz>":
-        return parseTagQuiz(content);
-        break;
-    
       default:
         break;
     }
@@ -159,66 +160,59 @@ fIApp.controller('ContentCtrl', function ($scope, $http, $stateParams, $sce) {
    * Below is the parse functions that turn the customised tags into the representation the application can understand.
    */
 
-  var parseTagVideo = function(content){
-    var parseVideoURLStart = content.indexOf("=")+1;
+  var parseTagVideo = function (content) {
+    var parseVideoURLStart = content.indexOf("=") + 1;
     var parseVideoURLEnd = content.indexOf("</video>");
-    var videoURL = content.substring(parseVideoURLStart,parseVideoURLEnd);
-     
+    var videoURL = content.substring(parseVideoURLStart, parseVideoURLEnd);
+
     //If there is wifi return this one
-    if(navigator.onLine){
-    return "<div class=\"video-container content-Box-Shadow\"><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/" + videoURL + "?rel=0&autohide=1&showinfo=0\" frameborder=\"0\" allowfullscreen></iframe></div>";
-    //else put in something prettier
-    }else{
-      return"<div class=\"noInternetWarning\"><div class\"offlineIcon\"><img src=\"img/youtube.png\" alt=\"Content & Quizes\" style=\"width:16vh;height:12vh; margin-top:1vh;\"></div><div class=\"offlineText\">"+
-      "Please check you internet connection in order to view the following video</div></div>"
+    if (navigator.onLine) {
+      return "<div class=\"video-container content-Box-Shadow\"><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/" + videoURL + "?rel=0&autohide=1&showinfo=0\" frameborder=\"0\" allowfullscreen></iframe></div>";
+      //else put in something prettier
+    } else {
+      return "<div class=\"noInternetWarning\"><div class\"offlineIcon\"><img src=\"img/youtube.png\" alt=\"Content & Quizes\" style=\"width:16vh;height:12vh; margin-top:1vh;\"></div><div class=\"offlineText\">" +
+        "Please check you internet connection in order to view the following video</div></div>"
     }
-    
+
   }
 
-  var parseTagImage = function(content){
-    var parseImageURLStart = content.indexOf("<image>")+7;
+  var parseTagImage = function (content) {
+    var parseImageURLStart = content.indexOf("<image>") + 7;
     var parseImageURLEnd = content.indexOf("</image>");
-    var imageURL = content.substring(parseImageURLStart,parseImageURLEnd);
-    
-    return "<div class=\"content-Image content-Box-Shadow\"><img src=\"content/images/" + imageURL + "\" alt=\""+ imageURL + "\"></div>";
+    var imageURL = content.substring(parseImageURLStart, parseImageURLEnd);
+
+    return "<div class=\"content-Image content-Box-Shadow\"><img src=\"content/images/" + imageURL + "\" alt=\"" + imageURL + "\"></div>";
   }
 
-  var parseTagTitle = function(content){
-    var parseTitleStart = content.indexOf("<title>")+7;
+  var parseTagTitle = function (content) {
+    var parseTitleStart = content.indexOf("<title>") + 7;
     var parseTitleEnd = content.indexOf("</title>");
-    var title = content.substring(parseTitleStart,parseTitleEnd);
-    
+    var title = content.substring(parseTitleStart, parseTitleEnd);
+
     return "<h4 class=\"content-Title\">" + title + "</h4><hr>";
   }
 
-  var parseTagSubtitle = function(content){
-    var parseTitleStart = content.indexOf("<subtitle>")+10;
+  var parseTagSubtitle = function (content) {
+    var parseTitleStart = content.indexOf("<subtitle>") + 10;
     var parseTitleEnd = content.indexOf("</subtitle>");
-    var subtitle = content.substring(parseTitleStart,parseTitleEnd);
-    
+    var subtitle = content.substring(parseTitleStart, parseTitleEnd);
+
     return "<h5 class=\"content-Subtitle\">" + subtitle + "</h5>";
   }
 
-  var parseTagLink = function(content){
-    var parseLinkStart = content.indexOf("<link>")+6;
+  var parseTagLink = function (content) {
+    var parseLinkStart = content.indexOf("<link>") + 6;
     var parseLinkEnd = content.indexOf(",");
-    var link = content.substring(parseLinkStart,parseLinkEnd);
-    var parseNameStart = content.indexOf(",")+1;
+    var link = content.substring(parseLinkStart, parseLinkEnd);
+    var parseNameStart = content.indexOf(",") + 1;
     var parseNameEnd = content.indexOf("</link>");
-    var name = content.substring(parseNameStart,parseNameEnd);
-    
-    return "<a class=\"content-Link\" onclick=\"window.open('"+ link +"', '_system', 'location=yes'); return false;\">" + name + "</a> ";
+    var name = content.substring(parseNameStart, parseNameEnd);
+
+    return "<a class=\"content-Link\" onclick=\"window.open('" + link + "', '_system', 'location=yes'); return false;\">" + name + "</a> ";
   }
 
-  var parseTagQuiz = function(content){
-    var parseQuizStart = content.indexOf("<quiz>")+6;
-    var parseQuizEnd = content.indexOf(",");
-    var link = content.substring(parseQuizStart,parseQuizEnd);
-    var parseNameStart = content.indexOf(",")+1;
-    var parseNameEnd = content.indexOf("</quiz>");
-    var name = content.substring(parseNameStart,parseNameEnd);
-    
-    return "<div class=\"centered padding\"><a href=\"#/quiz/"+link+"\" class=\"button content-Quiz-Button\">" + name + "</a></div>"
+  var parseTagQuiz = function (quiz) {
+    return "<div class=\"centered padding\"><a href=\"#/quiz/" + quiz.url + "\" class=\"button content-Quiz-Button\">" + quiz.title + "</a></div>"
   }
 
 });

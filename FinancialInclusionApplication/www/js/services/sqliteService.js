@@ -252,7 +252,7 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q) {
                             if (percentageInQuizCounter == 3) {
                                 dbService.updateTrophy("Get 100% in 3 quizzes");
                                 // Unlock trophy when user gets 100% in 5 quizzes
-                            } 
+                            }
 
                             $cordovaSQLite.execute(db, "UPDATE progress SET counter = " + percentageInQuizCounter + " WHERE objective LIKE '100% Quiz Counter'", []);
 
@@ -394,19 +394,19 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q) {
     /**
      * This is to update the subcategories progress
      */
-    this.updateSubCategoryProgress = function () {
+    this.updateSubCategoryProgressFAILED = function (subCatID) {
         var q = $q.defer();
-        var executeCounter = 0;
+        var executeCounter = subCatID;
         var subCategoryQuery = "SELECT * FROM subcategories";
         $cordovaSQLite.execute(db, subCategoryQuery, []).then(function (result) {
             if (result.rows.length > 0) {
                 for (var i = 0; i < result.rows.length; i++) {
                     console.log("subcategories -> " + result.rows.item(i).id + " - " + result.rows.item(i).name + " - " + result.rows.item(i).percentageComplete + " - " + result.rows.item(i).categoryID);
-                    if (executeCounter == result.rows.length - 1) {
+                    if (executeCounter == result.rows.item(i).id) {
                         console.log("Resolve Here!");
                         q.resolve(executeCounter);
                     }
-                    executeCounter++;
+                    //executeCounter++;
                 }
             } else {
                 console.error("ACCESSING PROGRESS FAILED AT updateSubCategoryProgress FUNCTION");
@@ -416,6 +416,48 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q) {
         });
         return q.promise;
     };
+
+    this.getSubCatName = function (quizURL) {
+        var q = $q.defer();
+        var subCatName;
+        var query = "SELECT name FROM subcategories WHERE quizUrL = '" + quizURL + "'";
+        $cordovaSQLite.execute(db, query, []).then(function (result) {
+            if (result.rows.length > 0) {
+                subCatName = result.rows.item(0).name;
+                q.resolve(subCatName);
+            } else {
+                console.error("getSubCatID function failed");
+            }
+        }, function (error) {
+            console.error(error);
+        });
+        return q.promise;
+    }
+
+    this.updateSubCategoryProgress = function (subCatName, quizScore) {
+        var q = $q.defer();
+        var name = subCatName;
+        var progress;
+        var newScore = quizScore;
+        var query = "SELECT * FROM subcategories WHERE name LIKE '" + name + "'";
+        $cordovaSQLite.execute(db, query, []).then(function (results) {
+            if (results.rows.length == 1) {
+                progress = results.rows.item(0).percentageComplete;
+                if (newScore > progress) {
+                    var updateQuery = "UPDATE subcategories SET percentageComplete = " + newScore + " WHERE name LIKE '" + name + "'";
+                    $cordovaSQLite.execute(db, updateQuery, []).then(function (results) {
+                        console.log("SCORE HAS BEEN UPDATED TO: " + newScore);
+                        q.resolve(progress);
+                    });
+                }
+            } else {
+                console.error("updateSubCategoryProgress FUNCTION FAILED");
+            }
+        }, function (error) {
+            console.error(error);
+        });
+        return q.promise;
+    }
 
     /**
      * This is to find out the overall progress of the application
