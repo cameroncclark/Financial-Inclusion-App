@@ -1,9 +1,0 @@
-package Model;
-
-public class NumbersModel {
-	Model model;
-	
-	public NumbersModel(Model model) {
-		this.model = model;
-	}
-}

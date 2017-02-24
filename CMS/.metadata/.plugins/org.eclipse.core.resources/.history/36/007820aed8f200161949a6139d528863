@@ -1,9 +1,0 @@
-package View;
-
-import javax.swing.JComponent;
-
-public interface Panel {
-	public Panel(Model model);
-	public JComponent getPanel();
-	public void createPanel();
-}

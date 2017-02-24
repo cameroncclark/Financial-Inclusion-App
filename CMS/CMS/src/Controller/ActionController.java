@@ -75,6 +75,9 @@ public class ActionController implements ActionListener {
 		case "editContentPage":
 			EditContentCtrl editContentCtrl = new EditContentCtrl(model, view);
 			break;
+		case "deleteContentPage":
+			DeleteContentCtrl deleteContentCtrl = new DeleteContentCtrl(model,view);
+			break;
 		}
 
 	}

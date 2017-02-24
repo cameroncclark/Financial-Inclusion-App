@@ -183,7 +183,8 @@ public class CategoriesPanel implements Panel, Observer {
 		deleteCatList.setSelectedIndex(0);
 		deleteCatList.addActionListener(actionListener);
 		deleteCatList.setActionCommand("deleteCategorySelect");
-		deleteCatList.setBounds(525, 370, 125, 20);
+		deleteCatList.setBounds(460, 320, 200, 25);
+		editCatList.setVisible(true);
 		
 		panel.add(editCatList);
 		panel.add(deleteCatList);

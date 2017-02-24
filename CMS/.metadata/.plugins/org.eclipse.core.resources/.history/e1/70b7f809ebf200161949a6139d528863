@@ -1,6 +1,0 @@
-package ContentObjects;
-
-public class Tip {
-	protected String header;
-	protected String tip;
-}

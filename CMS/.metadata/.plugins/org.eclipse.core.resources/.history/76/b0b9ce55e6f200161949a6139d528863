@@ -1,7 +1,0 @@
-package ContentObjects;
-
-public class Link {
-	protected String name;
-	protected String blurb;
-	protected String link;
-}

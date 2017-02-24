@@ -14,7 +14,6 @@
 <fullyQualifiedTypeName name="javax.swing.JComboBox"/>
 <fullyQualifiedTypeName name="java.io.Serializable"/>
 <fullyQualifiedTypeName name="javax.swing.JPanel"/>
-<fullyQualifiedTypeName name="Controller.ActionController"/>
 <fullyQualifiedTypeName name="View.CategoriesPanel"/>
 <fullyQualifiedTypeName name="Controller.AddCategoryController"/>
 <fullyQualifiedTypeName name="java.io.FileWriter"/>
@@ -22,8 +21,6 @@
 <fullyQualifiedTypeName name="java.nio.file.Paths"/>
 <fullyQualifiedTypeName name="Controller.EditCategoryDropDownCtrl"/>
 <fullyQualifiedTypeName name="java.util.Calendar"/>
-<fullyQualifiedTypeName name="javax.swing.JTextField"/>
-<fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
 <fullyQualifiedTypeName name="Controller.EditCategoryCtrl"/>
 <fullyQualifiedTypeName name="Controller.DeleteCategoryCtrl"/>
 <fullyQualifiedTypeName name="ContentObjects.Category"/>
@@ -32,7 +29,6 @@
 <fullyQualifiedTypeName name="java.util.Observer"/>
 <fullyQualifiedTypeName name="Model.NumbersModel"/>
 <fullyQualifiedTypeName name="ContentObjects.Tip"/>
-<fullyQualifiedTypeName name="View.MainContainer"/>
 <fullyQualifiedTypeName name="View.NumbersPanel"/>
 <fullyQualifiedTypeName name="Controller.AddNumberCtrl"/>
 <fullyQualifiedTypeName name="Controller.EditNumberCtrl"/>
@@ -48,4 +44,18 @@
 <fullyQualifiedTypeName name="Model.Model"/>
 <fullyQualifiedTypeName name="Controller.EditTipSelect"/>
 <fullyQualifiedTypeName name="Controller.EditLinkSelect"/>
+<fullyQualifiedTypeName name="javax.swing.JTextField"/>
+<fullyQualifiedTypeName name="Controller.ActionController"/>
+<fullyQualifiedTypeName name="View.AddContentPane"/>
+<fullyQualifiedTypeName name="Controller.AddContentCtrl"/>
+<fullyQualifiedTypeName name="View.ContentPanel"/>
+<fullyQualifiedTypeName name="javax.swing.JDialog"/>
+<fullyQualifiedTypeName name="Model.ContentModel"/>
+<fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
+<fullyQualifiedTypeName name="javax.swing.filechooser.FileNameExtensionFilter"/>
+<fullyQualifiedTypeName name="ContentObjects.Topic"/>
+<fullyQualifiedTypeName name="View.EditContentPane"/>
+<fullyQualifiedTypeName name="View.MainContainer"/>
+<fullyQualifiedTypeName name="Controller.EditContentCtrl"/>
+<fullyQualifiedTypeName name="ContentObjects.ContentQuizObject"/>
 </qualifiedTypeNameHistroy>

@@ -1,7 +1,0 @@
-package Model;
-
-public class TipsModel {
-	public TipsModel(Model model) {
-		this.model = model;
-	}
-}

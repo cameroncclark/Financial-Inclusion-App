@@ -60,6 +60,18 @@ public class ContentPanel implements Panel, Observer{
 		editTopicButton.setBounds(2,100,200,20);
 		panel.add(editTopicButton);
 		
+		JButton deleteTopicButton = new JButton("Delete Content");
+		deleteTopicButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				activePanel = new DeleteContentPane(actionListener);
+				
+			}
+		});
+		deleteTopicButton.setBounds(2,200,200,20);
+		panel.add(deleteTopicButton);
+		
 		
 	}
 	
