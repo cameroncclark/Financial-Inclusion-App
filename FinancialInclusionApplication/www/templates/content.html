@@ -1,4 +1,4 @@
-<ion-view view-title="{{name}}" cache-view="false">
+<ion-view view-title="{{name}}" class="contentHeader" cache-view="false">
   <ion-nav-buttons side="right">
     <button class="button" style="border: 0px !important;">
         <b class = "icon icon ion-university"></b>
@@ -9,8 +9,8 @@
     <ion-slides options="options" slider="data.slider">
       <ion-slide-page ng-repeat="page in sections">
         <ion-content class="padding justified" direction="y">
-          <h2 class="centered">{{page.title}}</h2>
-          <p ng-bind-html="page.content"></p>
+          <h2 class="centered contentHeader">{{page.title}}</h2>
+          <p ng-bind-html="page.content" class="contentFontSize"></p>
         </ion-content>
       </ion-slide-page>
     </ion-slides>

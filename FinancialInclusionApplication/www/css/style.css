@@ -163,3 +163,37 @@ height: 100%;
     font-family: 'Helvetica Neue', cursive;
 }
 */
+
+
+
+/*********************MEDIA QUERIES************************/
+
+@media (min-width: 600px) {
+
+.subcategoriesFont{
+    font-size: 1.6rem;
+    padding: 3vh 6vw;
+    margin: 1vh 3vw 2vh 3vw;
+}
+
+.contentHeader{
+    font-size: 2.5rem;
+    margin-bottom: 3vh;
+}
+
+.contentTitle{
+    font-size: 1.8rem;
+}
+
+.contentSubTitle{
+    font-size: 1.6rem;
+}
+
+.contentFontSize{
+    font-size: 1.4rem;
+    line-height: 2.5vh;
+}
+
+}
+
+/***********************************************************/

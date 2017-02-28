@@ -189,7 +189,7 @@ fIApp.controller('ContentCtrl', function ($scope, $http, $stateParams, $sce) {
     var parseTitleEnd = content.indexOf("</title>");
     var title = content.substring(parseTitleStart, parseTitleEnd);
 
-    return "<h4 class=\"content-Title\">" + title + "</h4><hr>";
+    return "<h4 class=\"content-Title contentTitle\">" + title + "</h4><hr>";
   }
 
   var parseTagSubtitle = function (content) {
@@ -197,7 +197,7 @@ fIApp.controller('ContentCtrl', function ($scope, $http, $stateParams, $sce) {
     var parseTitleEnd = content.indexOf("</subtitle>");
     var subtitle = content.substring(parseTitleStart, parseTitleEnd);
 
-    return "<h5 class=\"content-Subtitle\">" + subtitle + "</h5>";
+    return "<h5 class=\"content-Subtitle contentSubTitle\">" + subtitle + "</h5>";
   }
 
   var parseTagLink = function (content) {
