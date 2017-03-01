@@ -1,4 +1,4 @@
-fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope) {
+fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
     var name = "";
     var location = "";
     var avatar = "";
