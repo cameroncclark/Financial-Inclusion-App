@@ -1,18 +1,29 @@
 package Model;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.nio.file.DirectoryNotEmptyException;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import ContentObjects.ContentQuizObject;
-import ContentObjects.Tip;
 import ContentObjects.Topic;
 
+/**
+ * Need to put catch in here for activeFile != "".
+ *
+ */
 public class ContentModel {
 	Model model;
 	Gson gson;
@@ -70,6 +81,13 @@ public class ContentModel {
 		}
 	}
 	
+	public void removeTopic(){
+		if(activeFile != ""){
+			
+			deleteFile(activeFile);
+		}
+	}
+	
 	
 
 	private String getFileName(String title) {
@@ -99,10 +117,26 @@ public class ContentModel {
 	}
 
 	public void writeTopic(String fileName, Topic topic) {
-		try {
-			Files.write(Paths.get(_PATH + "topics/" + fileName), gson.toJson(topic).getBytes());
-		} catch (IOException e) {
+		try (Writer writer = new FileWriter(_PATH + "topics/" + fileName)) {
+		    Gson gson = new GsonBuilder().create();
+		    gson.toJson(topic, writer);
+		}catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+	
+	public void deleteFile(String file){
+		Path path = Paths.get(_PATH + "topics/" + file);
+		System.out.println(path.toString());
+		try {
+		    Files.delete(path);
+		} catch (NoSuchFileException x) {
+		    System.err.format("%s: no such" + " file or directory%n", path);
+		} catch (DirectoryNotEmptyException x) {
+		    System.err.format("%s not empty%n", path);
+		} catch (IOException x) {
+		    // File permission problems are caught here.
+		    System.err.println(x);
 		}
 	}
 
@@ -113,5 +147,10 @@ public class ContentModel {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public void clearActiveFile() {
+		activeFile = "";
+		
 	}
 }

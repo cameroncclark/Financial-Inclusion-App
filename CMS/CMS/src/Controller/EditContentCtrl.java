@@ -12,5 +12,6 @@ public class EditContentCtrl {
 		model.editTopic(activePanel.getTopicTitle(), activePanel.getContentText(), activePanel.getSelectedCategory());
 		activePanel.setVisible(false);
 		activePanel.dispose();
+		model.clearActiveFile();
 	}
 }

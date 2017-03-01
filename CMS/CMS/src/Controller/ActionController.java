@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import ContentObjects.Topic;
 import Model.Model;
 import View.ContentPanel;
+import View.DeleteContentPane;
 import View.EditContentPane;
 import View.MainContainer;
 
@@ -101,13 +102,25 @@ public class ActionController implements ActionListener {
 	public void setTopicsMap() {
 		model.setTopics();
 	}
+	
+	public void clearActiveFile(){
+		model.clearActiveFile();
+	}
 
-	public void loadSelectedFile(String fileName) {
+	public void loadSelectedFile(String fileName, boolean editPane ) {
 		ContentPanel panel = (ContentPanel) view.getActivePanel();
-		EditContentPane activePanel = (EditContentPane) panel.getActivePanel();
-		Topic selectedTopic = model.selectTopic(fileName);
-		activePanel.setTopic(selectedTopic.getTitle(), model.selectCategoryName(selectedTopic.getReference()),
-				selectedTopic.getContent());
+		if(editPane){
+			EditContentPane activePanel = (EditContentPane) panel.getActivePanel();
+			Topic selectedTopic = model.selectTopic(fileName);
+			activePanel.setTopic(selectedTopic.getTitle(), model.selectCategoryName(selectedTopic.getReference()),
+					selectedTopic.getContent());
+		}else{
+			DeleteContentPane activePanel = (DeleteContentPane) panel.getActivePanel();
+			Topic selectedTopic = model.selectTopic(fileName);
+			activePanel.setTopic(selectedTopic.getTitle(), model.selectCategoryName(selectedTopic.getReference()),
+					selectedTopic.getContent());
+		}
+		
 	}
 
 }

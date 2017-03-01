@@ -1,0 +1,97 @@
+package View;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+import Controller.ActionController;
+
+public class AddContentPane extends JDialog {
+	protected ActionController actionListener;
+	protected JTextField topicTitleText;
+	protected JComboBox categoriesDropdown;
+	protected String[] categories;
+	protected JTextArea contentArea;
+	
+	
+	public AddContentPane(ActionController actionListener) {
+		this.actionListener = actionListener;
+		categories = actionListener.initaliseCategoriesTab();
+		setLayout(null);
+		setSize(600, 600);
+		createComponents();
+		setVisible(true);
+		
+		addWindowListener(new WindowAdapter() {
+		    @Override
+		    public void windowClosing(WindowEvent e)
+		    {
+				actionListener.clearActiveFile();
+		    }
+		});
+	}
+	
+	private void createComponents(){
+		JLabel topicTitle = new JLabel("Topic Title:");
+		topicTitle.setBounds(2,30,200,20);
+		add(topicTitle);
+		
+		topicTitleText = new JTextField();
+		topicTitleText.setBounds(90, 30, 200, 20);
+		add(topicTitleText);
+		
+		categoriesDropdown = new JComboBox(categories);
+		categoriesDropdown.setBounds(400, 30, 200, 25);
+		add(categoriesDropdown);
+		
+		contentArea = new JTextArea();
+		contentArea.setLineWrap(true);
+		contentArea.setWrapStyleWord(true);
+		contentArea.setBounds(30, 100, 500, 400);
+		JScrollPane scrollTextArea = new JScrollPane(contentArea);
+		scrollTextArea.setBounds(30, 100, 550, 400);
+		add(scrollTextArea);
+
+		JButton sectionButton = new JButton("Section");
+		sectionButton.setBounds(2,50,100,20);
+		sectionButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				contentArea.insert("<section><section-title></section-title></section>", contentArea.getText().length());
+			}
+		});
+		add(sectionButton);
+		
+		JButton saveContent = new JButton("Save");
+		saveContent.addActionListener(actionListener);
+		saveContent.setActionCommand("addContentPage");
+		saveContent.setBounds(450, 525, 125,20);
+		add(saveContent);
+	}
+	
+	public String getTopicTitle(){
+		return topicTitleText.getText();
+	}
+	
+	public void setTopicTitle(String text){
+		topicTitleText.setText(text);
+	}
+	
+	public String getSelectedCategory(){
+		return categoriesDropdown.getSelectedItem().toString();
+	}
+	
+	public String getContent(){
+		return contentArea.getText();
+	}
+}

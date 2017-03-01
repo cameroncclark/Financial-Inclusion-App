@@ -134,7 +134,7 @@ public class Model extends Observable {
 	}
 	
 	public void deleteTopic(){
-//		contentModel.removeTopic();
+		contentModel.removeTopic();
 	}
 	
 	
@@ -165,5 +165,10 @@ public class Model extends Observable {
 	public void changed(){
 		setChanged();
 		notifyObservers();
+	}
+
+	public void clearActiveFile() {
+		contentModel.clearActiveFile();
+		
 	}
 }

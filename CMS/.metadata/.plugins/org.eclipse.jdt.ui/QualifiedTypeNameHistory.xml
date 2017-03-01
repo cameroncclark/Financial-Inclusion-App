@@ -58,4 +58,5 @@
 <fullyQualifiedTypeName name="View.MainContainer"/>
 <fullyQualifiedTypeName name="Controller.EditContentCtrl"/>
 <fullyQualifiedTypeName name="ContentObjects.ContentQuizObject"/>
+<fullyQualifiedTypeName name="Controller.DeleteContentCtrl"/>
 </qualifiedTypeNameHistroy>
