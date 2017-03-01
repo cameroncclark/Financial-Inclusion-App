@@ -140,8 +140,8 @@
 }
 
 .savingsGoalWrapper{
-text-align: center;
-padding: 2vh;
+    text-align: center;
+    padding: 2vh;
 }
 
 .savingsGoalAmount{
@@ -201,7 +201,7 @@ padding: 2vh;
 
 .calcIcon{
     text-align: center;
-        display: block;
+    display: block;
     border: solid 1px #696969;
     max-width: 30vw;
     margin: auto;
@@ -224,7 +224,6 @@ padding: 2vh;
     padding-top: 1vh;
     font-size: 0.8rem;
     text-align: center;
-
 }
 
 .welcomeText{
@@ -233,12 +232,10 @@ padding: 2vh;
 }
 
 .dropDownBox{
-
     border: 1px solid #90b4d2;
     border-radius: 1vh;
-
     width: 87.5vw;
-margin-left: 3vw;
+    margin-left: 3vw;
     text-align: center;
     padding: 1vh;
     box-shadow: 1px 1px 4px #EBEBEB;
@@ -252,9 +249,8 @@ margin-left: 3vw;
 .calculatorOptions{
     border: 1px solid #90b4d2;
     border-radius: 1vh;
-
     width: 50vw;
-margin-left: 12vw;
+    margin-left: 12vw;
     text-align: center;
     padding: 1vh;
     box-shadow: 1px 1px 4px #EBEBEB;
@@ -268,9 +264,8 @@ margin-left: 12vw;
 .calculatorOptions2{
     border: 1px solid #90b4d2;
     border-radius: 1vh;
-
     width: 50vw;
-margin-left: 12vw;
+    margin-left: 12vw;
     text-align: center;
     padding: 1vh;
     box-shadow: 1px 1px 4px #EBEBEB;
@@ -338,15 +333,15 @@ input[type="text"] {
       line-height: 3vh;
   }
   .headingText{
-      font-size: 2rem;
+    font-size: 2rem;
   }
   .calcIcon{
-      height: 17vh;
+    height: 17vh;
   }
   .savingImage{
-width:11vh;
-height:11vh; 
-margin-top:2vh;
+    width:11vh;
+    height:11vh; 
+    margin-top:2vh;
 }
 .interestImage{
     width:10vh;
@@ -369,8 +364,8 @@ margin-top:2vh;
 }
 .dropDownBox{
     width: 91.5vw;
-font-size: 1.6rem;
-margin-top: 1vh;
+    font-size: 1.6rem;
+    margin-top: 1vh;
 }
 
 .calculatorOptions{
@@ -418,15 +413,43 @@ input[type="text"] {
 
 
 .calculatorButtonTablet{
-        /* padding: 5vw; */
     margin-left: 20vw !important;
-    /* margin-right: 5vw; */
     font-size: 1.8rem !important;
     width: 50vw !important;
     border-radius: 1vw !important;
     padding: 1vh 0vh !important;
 }
   
+  .helpHeader{
+    font-size: 1.6rem; 
+    padding-bottom: 3vh; 
+}
+
+.helpContent{
+    font-size: 1.4rem;
+    line-height: 3vh;
+}
+
+.savingsGoalWrapper{
+    text-align: center;
+    padding: 2vh;
+    font-size: 1.2rem;
+}
+
+.savingsGoalAmount{
+    font-size: 1.5em;
+    padding: 1vh;
+    font-size: 2rem;
+}
+
+.savingsTextWrapper{
+    font-size: 1.2rem;
+    line-height: 3vh;
+}
+
+fontSizeIncrease{
+    font-size: 5rem !important;
+}
 }
 
 /*-------*************************************************--------*/
