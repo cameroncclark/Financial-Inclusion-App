@@ -38,10 +38,10 @@ fIApp.component("interestCalculator",{
             options: {
                 id: 'slider-id',
                 floor: 1,
-                ceil: 500,
+                ceil: 50,
                 step: 1,
                 minLimit: 1,
-                maxLimit: 500
+                maxLimit: 50
             }
         }; 
 
