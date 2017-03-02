@@ -551,7 +551,7 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
         $http.get('content/categories.json')
             .then(function (categories) {
                 for (var i = 0; i < categories.data.length; i++) {
-                    $cordovaSQLite.execute(db, catQuery, [categories.data[i].name, 0.5]);
+                    $cordovaSQLite.execute(db, catQuery, [categories.data[i].name, 0]);
                 }
             });
 
@@ -619,7 +619,7 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
             .then(function (categories) {
                 for (var i = 0; i < categories.data.length; i++) {
                     cat[i] = categories.data[i].name;
-                    console.log("CATEGORY TEST: " + cat[i]);
+                    //console.log("CATEGORY TEST: " + cat[i]);
                 }
                 q.resolve(cat);
             });
@@ -708,40 +708,70 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
     }
 
     this.updateTablesFromCMS = function () {
-        console.log("REACHED THE FUNCTION");
+
         // UPDATE CATEGORIES TABLE
+
         var catCount = dbService.getCatCount();
         catCount.then(function (catOutput) {
             var dataCatCount = dbService.getDataCatCount();
             dataCatCount.then(function (dataOutput) {
-                console.log("This is how many categories there is: " + catOutput.length);
-                console.log("This is how many categories are in the database: " + dataOutput.length);
-                var duplicateArray = catOutput.filter(function (val) {
+                console.log("NUMBER OF JSON CATEGORIES: " + catOutput.length);
+                console.log("NUMBER OF DATABASE CATEGORIES: " + dataOutput.length);
+                var duplicateAddArray = catOutput.filter(function (val) {
                     return dataOutput.indexOf(val) == -1;
                 })
-                console.log("Amount of CATEGORY duplicates: " + duplicateArray.length);
-                if (duplicateArray.length > 0) {
-                    console.log("SOMETHING HAS BEEN ADDED/REMOVED");
-                    for (var i = 0; i < duplicateArray.length; i++) {
+                var duplicateDeleteArray = dataOutput.filter(function (val) {
+                    return catOutput.indexOf(val) == -1;
+                })
+                console.log("NUMBER OF ADDED CATEGORIES: " + duplicateAddArray.length);
+                console.log("NUMBER OF DELETED CATEGORIES: " + duplicateDeleteArray.length);
+                if (duplicateAddArray.length > 0) {
+                    // SOMETHING HAS BEEN ADDED BY THE CONTENT MANAGEMENT SYSTEM
+                    for (var i = 0; i < duplicateAddArray.length; i++) {
                         var check = false;
                         for (var j = 0; j < dataOutput.length; j++) {
-                            if (duplicateArray[i] == dataOutput[j]) {
+                            if (duplicateAddArray[i] == dataOutput[j]) {
+                                // This has been removed by content management system
+                                check = true;
+                            }
+                        }
+                        if (check) {
+                            // THIS WILL NEVER BE THE CASE
+                        } else {
+                            // Add category from here
+                            //console.log("CATEGORY WAS ADDED: " + JSON.stringify(duplicateAddArray[i]));
+                            var addQuery = "INSERT INTO categories (name, percentageComplete) VALUES (?,?)";
+                            //console.log(JSON.stringify(duplicateAddArray[i]))
+                            $cordovaSQLite.execute(db, addQuery, [duplicateAddArray[i], 0]).then(function (result) {
+                                console.log("ADDED CATEGORY -> " + result.insertId);
+                            }, function (error) {
+                                console.error(JSON.stringify(error));
+                            });
+                            // PERCENTAGE COMPLETE IS NOT BEING ADDED CORRECTLY 
+                        }
+                    }
+                }
+                if (duplicateDeleteArray.length > 0) {
+                    // SOMETHING HAS BEEN DELETED BY THE CONTENT MANAGEMENT SYSTEM
+                    for (var i = 0; i < duplicateDeleteArray.length; i++) {
+                        var check = false;
+                        for (var j = 0; j < dataOutput.length; j++) {
+                            if (duplicateDeleteArray[i] == dataOutput[j]) {
                                 // This has been removed by content management system
                                 check = true;
                             }
                         }
                         if (check) {
                             // Remove category from here
-                            console.log("CATEGORY WAS DELETED: " + JSON.stringify(duplicateArray[i]));
-                            var deleteQuery = "DELETE FROM categories WHERE name LIKE '" + JSON.stringify(duplicateArray[i]) + "'";
-                            $cordovaSQLite.execute(db, deleteQuery, []);
+                            //console.log("CATEGORY WAS DELETED: " + JSON.stringify(duplicateDeleteArray[i]));
+                            var deleteQuery = "DELETE FROM categories WHERE name LIKE '" + duplicateDeleteArray[i] + "'";;
+                            $cordovaSQLite.execute(db, deleteQuery, []).then(function (result) {
+                                console.log("DELETED CATEGORY -> " + result.insertId);
+                            }, function (error) {
+                                console.error(JSON.stringify(error));
+                            });
                         } else {
-                            // Add category from here
-                            console.log("CATEGORY WAS ADDED: " + JSON.stringify(duplicateArray[i]));
-                            var addQuery = "INSERT INTO categories (name, percentageComplete) VALUES (?,?)";
-                            $cordovaSQLite.execute(db, addQuery, [JSON.stringify(duplicateArray[i]), 0.5]);
-                            // SOMETHING IS WRONG HERE.
-                            // PERCENTAGE COMPLETE IS NOT BEING ADDED CORRECTLY
+                            // THIS WILL NEVER BE THE CASE
                         }
                     }
                 }
@@ -749,35 +779,36 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
         });
 
         // UPDATE SUBCATEGORIES TABLE
+
         var subCatCount = dbService.getSubCatCount();
         subCatCount.then(function (subCatOutput) {
             var dataSubCatCount = dbService.getDataSubCatCount();
             dataSubCatCount.then(function (dataSubOutput) {
-                console.log("This is how many subcategories there are: " + subCatOutput.length); // WRONG LENGTH FOUND
-                console.log("This is how many subcategories are in the database: " + dataSubOutput.length);
-                var duplicateSubCatArray = subCatOutput.filter(function (val) {
+                console.log("NUMBER OF JSON SUBCATEGORIES: " + subCatOutput.length); // WRONG LENGTH FOUND
+                console.log("NUMBER OF DATABASE SUBCATEGORIES: " + dataSubOutput.length);
+                var duplicateSubCatAddArray = subCatOutput.filter(function (val) {
                     return dataSubOutput.indexOf(val) == -1;
                 })
-                console.log("Amount of SUBCATEGORY duplicates: " + duplicateSubCatArray.length);
-                if (duplicateSubCatArray.length > 0) {
-                    console.log("SOMETHING HAS BEEN ADDED/REMOVED");
-                    for (var i = 0; i < duplicateSubCatArray.length; i++) {
+                var duplicateSubCatDeleteArray = dataSubOutput.filter(function (val) {
+                    return subCatOutput.indexOf(val) == -1;
+                })
+                console.log("NUMBER OF ADDED SUBCATEGORIES: " + duplicateSubCatAddArray.length);
+                console.log("NUMBER OF DELETED SUBCATEGORIES: " + duplicateSubCatDeleteArray.length);
+                if (duplicateSubCatAddArray.length > 0) {
+                    // SOMETHING HAS BEEN ADDED BY THE CONTENT MANAGEMENT SYSTEM
+                    for (var i = 0; i < duplicateSubCatAddArray.length; i++) {
                         var check = false;
                         for (var j = 0; j < dataSubOutput.length; j++) {
-                            if (duplicateSubCatArray[i] == dataSubOutput[j]) {
+                            if (duplicateSubCatAddArray[i] == dataSubOutput[j]) {
                                 // This has been removed by content management system
                                 check = true;
                             }
                         }
                         if (check) {
-                            // Remove category from here
-                            console.log("SUBCATEGORY WAS DELETED: " + JSON.stringify(duplicateSubCatArray[i]));
-                            var deleteQuery = "DELETE FROM subcategories WHERE name LIKE '" + JSON.stringify(duplicateSubCatArray[i]) + "'";
-                            $cordovaSQLite.execute(db, deleteQuery, []);
+                            // THIS IS NEVER THE CASE
                         } else {
-                            // Add category from here
-
-                            var newSubCat = duplicateSubCatArray[i];
+                            // Add subcategory from here
+                            var newSubCat = duplicateSubCatAddArray[i];
                             console.log("SUBCATEGORY WAS ADDED: " + newSubCat);
 
 
@@ -792,13 +823,38 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
                                                         var SCcatID = subcategory.data.reference;
                                                         var SCquiz = subcategory.data.quiz.url;
                                                         var addQuery = "INSERT INTO subcategories (name, quizURL, percentageComplete, categoryID) VALUES (?,?,?,?)";
-                                                        $cordovaSQLite.execute(db, addQuery, [SCname, SCquiz, 0, SCcatID])
+                                                        $cordovaSQLite.execute(db, addQuery, [SCname, SCquiz, 0, SCcatID]).then(function (result) {
+                                                            console.log("ADDED SUBCATEGORY -> " + result.insertId);
+                                                        })
                                                     }
                                                 });
                                         }
                                     });
                             } (passSubCat(newSubCat));
-
+                        }
+                    }
+                }
+                if (duplicateSubCatDeleteArray.length > 0) {
+                    // SOMETHING HAS BEEN DELETED BY THE CONTENT MANAGEMENT SYSTEM
+                    for (var i = 0; i < duplicateSubCatDeleteArray.length; i++) {
+                        var check = false;
+                        for (var j = 0; j < dataSubOutput.length; j++) {
+                            if (duplicateSubCatDeleteArray[i] == dataSubOutput[j]) {
+                                // This has been removed by content management system
+                                check = true;
+                            }
+                        }
+                        if (check) {
+                            // Remove category from here
+                            //console.log("CATEGORY WAS DELETED: " + JSON.stringify(duplicateDeleteArray[i]));
+                            var deleteQuery = "DELETE FROM subcategories WHERE name LIKE '" + duplicateSubCatDeleteArray[i] + "'";;
+                            $cordovaSQLite.execute(db, deleteQuery, []).then(function (result) {
+                                console.log("DELETED SUBCATEGORY -> " + result.insertId);
+                            }, function (error) {
+                                console.error(JSON.stringify(error));
+                            });
+                        } else {
+                            // THIS WILL NEVER BE THE CASE
                         }
                     }
                 }
