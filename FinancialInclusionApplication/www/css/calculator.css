@@ -443,6 +443,15 @@ input[type="text"] {
     border-radius: 1vw !important;
     padding: 1vh 0vh !important;
 }
+
+.retryButtonTablet{
+    margin-left: 10vw !important;
+    font-size: 1.8rem !important;
+    width: 50vw !important;
+    border-radius: 1vw !important;
+    padding: 1vh 0vh !important;
+    margin-top: 2vh;
+}
   
   .helpHeader{
     font-size: 1.6rem; 
@@ -473,6 +482,14 @@ input[type="text"] {
 
 fontSizeIncrease{
     font-size: 5rem !important;
+}
+
+.calAnswerContainer {
+    bottom: 30vh;
+}
+
+.calAnswer2Container {
+    bottom: 30vh;
 }
 }
 
