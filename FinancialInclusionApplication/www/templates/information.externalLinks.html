@@ -22,7 +22,7 @@
 
             <div class="list">
       <div ng-repeat="link in externalLinksList" class="item item-icon-right informationText" ng-click="showDetails = ! showDetails">
-    <i class="icon ion-earth informationText" ng-click="navigateToWebsite(link)"> </i> {{link.name}}
+    <i class="icon ion-earth informationText" style="color:#377DF2" ng-click="navigateToWebsite(link)"> </i> {{link.name}}
         <div class="quiz-Answer-Display informationText" ng-class="{'hidden':!showDetails}" >
           <hr> {{link.blurb}}
           <br>

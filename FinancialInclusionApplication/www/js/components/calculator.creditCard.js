@@ -62,11 +62,12 @@ fIApp.component("creditcardCalculator", {
 
         $scope.visible = false;
 
-        $scope.helpIntro = "This calcualtor is used to calculate the amount of money you can save over a certain period of time. It does this by taking in your target goal, how much money you have saved per month as well as how much you have saved already.";
+        $scope.helpIntro = "This calcualtor is used to tell you how long it will take you to pay off your credit card, as well as the interest on it.";
 
-        $scope.helpContent = "Within the first text box, enter how much money you want to save. In the second, enter how much money you can afford to save per month. Finally, enter how much money you have already saved in the final text box then press the calcualte button to retrieve your answer!"
+        $scope.helpContent = "Within the first text box, enter how much money is on your credit card. In the second, enter you APR. APR is the interest rate charged" +
+        " to you. The higher the APR the more more you will owe. Finally, enter how much money you can pay into the credit card a month!"
 
-        $scope.helpHint = "Handy hint: Take a screenshot of your result so that you can review it later!"
+        $scope.helpHint = "Handy hint: Take a screenshot of your result so that you can review it later. You can also play around with the values to see how they differ!"
 
 
         $scope.oustandingBalance;
