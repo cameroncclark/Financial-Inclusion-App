@@ -25,7 +25,8 @@
     "cordova-plugin-camera@~2.3.1",
     "cordova-plugin-file@~4.3.1",
     "cordova-plugin-camera",
-    "cordova-plugin-splashscreen@2.0"
+    "cordova-plugin-splashscreen@2.0",
+    "cordova-plugin-inappbrowser"
   ],
   "cordovaPlatforms": []
 }
