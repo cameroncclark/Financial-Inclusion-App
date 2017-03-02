@@ -12,7 +12,7 @@ fIApp.controller('CategoryCtrl', function ($scope, $ionicModal, $http, $rootScop
         promise.then(function (progressData) {
           for (var i = 0; i < $scope.categories.length; i++) {
             for (var j = 0; j < progressData.length; j++) {
-              if ($scope.categories[i].name === progressData[j].name) {
+              if ($scope.categories[i].name == progressData[j].name) {
                 $scope.categories[i].progress = progressData[j].progress;
                 break;
               }
