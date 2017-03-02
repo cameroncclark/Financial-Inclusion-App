@@ -86,9 +86,11 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
     // Initialisation of databases for Android and iOS
     if (isAndroid || isIOS) {
       db = $cordovaSQLite.openDB({ name: 'my.db', location: 'default' });
-      
+
+
+
       // Drop all tables for testing
-      dbAccessor.dropAllTables();
+      //dbAccessor.dropAllTables();
 
       // Build all tables in the database
       dbAccessor.buildTables();
@@ -102,6 +104,14 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
           dbAccessor.setGlobalName();
         } else {
           dbAccessor.setGlobalName();
+
+          // THIS IS FOR TESTING
+          //var query = "DELETE FROM categories WHERE name LIKE 'Test Category'";
+          //$cordovaSQLite.execute(db, query, []);
+          var query = "DELETE FROM subcategories WHERE name LIKE 'firsttest'"
+          $cordovaSQLite.execute(db, query, []); 
+
+         dbAccessor.updateTablesFromCMS();
         }
       }, function (error) {
         console.error(error)

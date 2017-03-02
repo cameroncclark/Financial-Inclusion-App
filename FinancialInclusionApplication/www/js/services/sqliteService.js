@@ -129,7 +129,7 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
                     table[i] = row;
                     row = [];
                 }
-                q.resolve(table);  
+                q.resolve(table);
             } else {
                 console.error("NO ROWS EXIST IN TABLE - trophies");
             }
@@ -608,6 +608,202 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
         $cordovaSQLite.execute(db, progressQuery, ["Call number", null, "false"]);
         $cordovaSQLite.execute(db, progressQuery, ["Quiz Counter", 0, null]);
         $cordovaSQLite.execute(db, progressQuery, ["100% Quiz Counter", 0, null]);
+    }
+
+    // Returns all the categories from JSON file.
+    // This is used for Content Management System integration.
+    this.getCatCount = function () {
+        var q = $q.defer();
+        var cat = [];
+        $http.get('content/categories.json')
+            .then(function (categories) {
+                for (var i = 0; i < categories.data.length; i++) {
+                    cat[i] = categories.data[i].name;
+                    console.log("CATEGORY TEST: " + cat[i]);
+                }
+                q.resolve(cat);
+            });
+        return q.promise;
+    }
+
+    // Returns all the categories from the database.
+    // This is used for Content Management System integration.
+    this.getDataCatCount = function () {
+        var q = $q.defer();
+        var cat = [];
+        var query = "SELECT * FROM categories";
+        $cordovaSQLite.execute(db, query, []).then(function (result) {
+            count = result.rows.length;
+            for (var i = 0; i < result.rows.length; i++) {
+                cat[i] = result.rows.item(i).name;
+            }
+            q.resolve(cat);
+        }, function (error) {
+            console.error(error);
+        });
+        return q.promise;
+    }
+
+    // Returns all the subcategories from the database.
+    // This is used for Content Management System integration.
+    this.getSubCatCount = function () {
+        var q = $q.defer();
+        var subCat = [];
+        $http.get('content/topics.json')
+            .then(function (subcategories) {
+                for (var i = 0; i < subcategories.data.length; i++) {
+                    function getCount(i) {
+                        var SCname;
+                        $http.get("content/topics/" + subcategories.data[i])
+                            .then(function (subcategory) {
+                                var ref = subcategory.data.reference;
+                                $http.get('content/categories.json')
+                                    .then(function (category) {
+                                        for (var j = 0; j < category.data.length; j++) {
+                                            if (category.data[j].ID === ref) {
+                                                var getNameQuery = "SELECT id FROM categories WHERE name LIKE '" + category.data[j].name + "'";
+
+                                                $cordovaSQLite.execute(db, getNameQuery, []).then(function (result) {
+                                                    SCname = subcategory.data.title;
+                                                    subCat[i] = SCname
+                                                    //console.log("THIS IS WHAT getSubCatCount FOUND: " + SCname);
+                                                    //console.log("POSITION: " + i + " = " + subCat[i]);
+                                                    q.resolve(subCat);
+                                                }, function (error) {
+                                                    console.error(error);
+                                                });
+                                            }
+                                        }
+
+                                    });
+
+                            });
+
+                    } (getCount(i));
+
+                }
+
+            });
+
+        return q.promise;
+    }
+
+    // Returns all the subcategories from the database.
+    // This is used for Content Management System integration.
+    this.getDataSubCatCount = function () {
+        var q = $q.defer();
+        var subcat = [];
+        var query = "SELECT * FROM subcategories";
+        $cordovaSQLite.execute(db, query, []).then(function (result) {
+            count = result.rows.length;
+            for (var i = 0; i < result.rows.length; i++) {
+                subcat[i] = result.rows.item(i).name;
+                //console.log("THIS IS WHAT getDataSubCatCount FOUND: " + result.rows.item(i).name);
+            }
+            q.resolve(subcat);
+        }, function (error) {
+            console.error(error);
+        });
+        return q.promise;
+    }
+
+    this.updateTablesFromCMS = function () {
+        console.log("REACHED THE FUNCTION");
+        // UPDATE CATEGORIES TABLE
+        var catCount = dbService.getCatCount();
+        catCount.then(function (catOutput) {
+            var dataCatCount = dbService.getDataCatCount();
+            dataCatCount.then(function (dataOutput) {
+                console.log("This is how many categories there is: " + catOutput.length);
+                console.log("This is how many categories are in the database: " + dataOutput.length);
+                var duplicateArray = catOutput.filter(function (val) {
+                    return dataOutput.indexOf(val) == -1;
+                })
+                console.log("Amount of CATEGORY duplicates: " + duplicateArray.length);
+                if (duplicateArray.length > 0) {
+                    console.log("SOMETHING HAS BEEN ADDED/REMOVED");
+                    for (var i = 0; i < duplicateArray.length; i++) {
+                        var check = false;
+                        for (var j = 0; j < dataOutput.length; j++) {
+                            if (duplicateArray[i] == dataOutput[j]) {
+                                // This has been removed by content management system
+                                check = true;
+                            }
+                        }
+                        if (check) {
+                            // Remove category from here
+                            console.log("CATEGORY WAS DELETED: " + JSON.stringify(duplicateArray[i]));
+                            var deleteQuery = "DELETE FROM categories WHERE name LIKE '" + JSON.stringify(duplicateArray[i]) + "'";
+                            $cordovaSQLite.execute(db, deleteQuery, []);
+                        } else {
+                            // Add category from here
+                            console.log("CATEGORY WAS ADDED: " + JSON.stringify(duplicateArray[i]));
+                            var addQuery = "INSERT INTO categories (name, percentageComplete) VALUES (?,?)";
+                            $cordovaSQLite.execute(db, addQuery, [JSON.stringify(duplicateArray[i]), 0.5]);
+                            // SOMETHING IS WRONG HERE.
+                            // PERCENTAGE COMPLETE IS NOT BEING ADDED CORRECTLY
+                        }
+                    }
+                }
+            });
+        });
+
+        // UPDATE SUBCATEGORIES TABLE
+        var subCatCount = dbService.getSubCatCount();
+        subCatCount.then(function (subCatOutput) {
+            var dataSubCatCount = dbService.getDataSubCatCount();
+            dataSubCatCount.then(function (dataSubOutput) {
+                console.log("This is how many subcategories there are: " + subCatOutput.length); // WRONG LENGTH FOUND
+                console.log("This is how many subcategories are in the database: " + dataSubOutput.length);
+                var duplicateSubCatArray = subCatOutput.filter(function (val) {
+                    return dataSubOutput.indexOf(val) == -1;
+                })
+                console.log("Amount of SUBCATEGORY duplicates: " + duplicateSubCatArray.length);
+                if (duplicateSubCatArray.length > 0) {
+                    console.log("SOMETHING HAS BEEN ADDED/REMOVED");
+                    for (var i = 0; i < duplicateSubCatArray.length; i++) {
+                        var check = false;
+                        for (var j = 0; j < dataSubOutput.length; j++) {
+                            if (duplicateSubCatArray[i] == dataSubOutput[j]) {
+                                // This has been removed by content management system
+                                check = true;
+                            }
+                        }
+                        if (check) {
+                            // Remove category from here
+                            console.log("SUBCATEGORY WAS DELETED: " + JSON.stringify(duplicateSubCatArray[i]));
+                            var deleteQuery = "DELETE FROM subcategories WHERE name LIKE '" + JSON.stringify(duplicateSubCatArray[i]) + "'";
+                            $cordovaSQLite.execute(db, deleteQuery, []);
+                        } else {
+                            // Add category from here
+
+                            var newSubCat = duplicateSubCatArray[i];
+                            console.log("SUBCATEGORY WAS ADDED: " + newSubCat);
+
+
+                            function passSubCat(newSubCat) {
+                                $http.get('content/topics.json')
+                                    .then(function (subcategories) {
+                                        for (var j = 0; j < subcategories.data.length; j++) {
+                                            $http.get("content/topics/" + subcategories.data[j])
+                                                .then(function (subcategory) {
+                                                    if (subcategory.data.title === newSubCat) {
+                                                        var SCname = subcategory.data.title;
+                                                        var SCcatID = subcategory.data.reference;
+                                                        var SCquiz = subcategory.data.quiz.url;
+                                                        var addQuery = "INSERT INTO subcategories (name, quizURL, percentageComplete, categoryID) VALUES (?,?,?,?)";
+                                                        $cordovaSQLite.execute(db, addQuery, [SCname, SCquiz, 0, SCcatID])
+                                                    }
+                                                });
+                                        }
+                                    });
+                            } (passSubCat(newSubCat));
+
+                        }
+                    }
+                }
+            });
+        });
     }
 
 });

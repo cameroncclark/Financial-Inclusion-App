@@ -1,4 +1,4 @@
-fIApp.controller('ContentCtrl', function ($scope, $http, $stateParams, $sce) {
+fIApp.controller('ContentCtrl', function ($scope, $http, $stateParams, $sce, $cordovaNetwork) {
   $scope.name = $stateParams.pageTitle;
   $scope.content = "";
   $scope.sections = [];
@@ -166,7 +166,7 @@ fIApp.controller('ContentCtrl', function ($scope, $http, $stateParams, $sce) {
     var videoURL = content.substring(parseVideoURLStart, parseVideoURLEnd);
 
     //If there is wifi return this one
-    if (navigator.onLine) {
+    if ($cordovaNetwork.isOnline()) {
       return "<div class=\"video-container content-Box-Shadow\"><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/" + videoURL + "?rel=0&autohide=1&showinfo=0\" frameborder=\"0\" allowfullscreen></iframe></div>";
       //else put in something prettier
     } else {
