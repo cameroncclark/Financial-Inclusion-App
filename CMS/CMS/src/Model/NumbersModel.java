@@ -57,14 +57,14 @@ public class NumbersModel {
 	}
 	
 	public void addUsefulNumber(String name, String blurb, String number){
-		if(!duplicateName(name)){
+		if(!duplicateName("",name)){
 			numbers.add(new Number(name,blurb,number));
 			rewriteNumbersFile();
 		}
 	}
 	
 	public void editUsefulNumber(String oldName, String newName, String newBlurb, String newNumber){
-		if(!duplicateName(newName)){
+		if(!duplicateName(oldName,newName)){
 			for(Number n: numbers){
 				if(n.getName().equals(oldName)){
 					n.setName(newName);
@@ -95,7 +95,10 @@ public class NumbersModel {
 	 * @param name
 	 * @return true/false depending if the name exists
 	 */
-	private Boolean duplicateName(String name) {
+	private Boolean duplicateName(String oldName, String name) {
+		if (oldName.equals(name)) {
+			return false;
+		}
 		for (Number n : numbers) {
 			if (n.getName().equals(name)) {
 				return true;

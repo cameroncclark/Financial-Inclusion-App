@@ -79,6 +79,18 @@ public class ActionController implements ActionListener {
 		case "deleteContentPage":
 			DeleteContentCtrl deleteContentCtrl = new DeleteContentCtrl(model,view);
 			break;
+		case "addQuestion":
+			AddQuestionCtrl addQuestionCtrl = new AddQuestionCtrl(model,view);
+			break;
+		case "editQuestion":
+			EditQuestionCtrl editQuestionCtrl = new EditQuestionCtrl(model,view);
+			break;
+		case "deleteQuestion":
+			DeleteQuestionCtrl deleteQuestionCtrl = new DeleteQuestionCtrl(model,view);
+			break;
+		case "createQuiz":
+			CreateQuizController createQuizController = new CreateQuizController(model,view);
+			break;
 		}
 
 	}

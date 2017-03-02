@@ -23,7 +23,7 @@ public class LinksModel {
 		gson = new Gson();
 		selectLinks();
 	}
-	
+
 	public String[] selectLinks() {
 		try {
 			String fileText = model.getJSONString("externalLinks.JSON");
@@ -44,29 +44,31 @@ public class LinksModel {
 		}
 		return new String[] {};
 	}
-	
-	public Link selectLink(String name){
-		if(!name.equals("")){
-			for(Link l: links){
-				if(l.getName().equals(name)){
+
+	public Link selectLink(String name) {
+		if (!name.equals("")) {
+			for (Link l : links) {
+				if (l.getName().equals(name)) {
 					return l;
 				}
 			}
 		}
 		return new Link();
 	}
-	
-	public void addLink(String name, String blurb, String website){
-		if(!duplicateLink(name)){
-			links.add(new Link(name,blurb,website));
-			rewriteLinksFile();
+
+	public void addLink(String name, String blurb, String website) {
+		if (!name.equals("")) {
+			if (!duplicateLink("", name)) {
+				links.add(new Link(name, blurb, website));
+				rewriteLinksFile();
+			}
 		}
 	}
-	
-	public void editLink(String oldName, String newName, String newBlurb, String newWebsite){
-		if(!duplicateLink(newName)){
-			for(Link l: links){
-				if(l.getName().equals(oldName)){
+
+	public void editLink(String oldName, String newName, String newBlurb, String newWebsite) {
+		if (!duplicateLink(oldName, newName)) {
+			for (Link l : links) {
+				if (l.getName().equals(oldName)) {
 					l.setName(newName);
 					l.setBlurb(newBlurb);
 					l.setWebsite(newWebsite);
@@ -76,11 +78,11 @@ public class LinksModel {
 			rewriteLinksFile();
 		}
 	}
-	
-	public void deleteLink(String name){
+
+	public void deleteLink(String name) {
 		Link toBeRemoved = new Link();
-		for(Link l: links){
-			if(l.getName().equals(name)){
+		for (Link l : links) {
+			if (l.getName().equals(name)) {
 				toBeRemoved = l;
 				break;
 			}
@@ -88,14 +90,17 @@ public class LinksModel {
 		links.remove(toBeRemoved);
 		rewriteLinksFile();
 	}
-	
+
 	/**
 	 * Method to check to see if a link name already exists
 	 * 
 	 * @param name
 	 * @return true/false depending if the name exists
 	 */
-	private Boolean duplicateLink(String name) {
+	private Boolean duplicateLink(String oldName, String name) {
+		if (oldName.equals(name)) {
+			return false;
+		}
 		for (Link l : links) {
 			if (l.getName().equals(name)) {
 				return true;
@@ -103,7 +108,7 @@ public class LinksModel {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Method to rewrite the json files and tell the model to notify observers
 	 */
