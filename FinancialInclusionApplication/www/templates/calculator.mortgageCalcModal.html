@@ -1,4 +1,4 @@
-<ion-modal-view class="trophyContainer">
+<ion-modal-view class="calAnswer2Container">
     <ion-header-bar class="trophyHeading">
         <h1 class="title">Mortgage Result</h1>
         <div class="buttons">
@@ -17,6 +17,11 @@
                 which is monthly payments of:
             </div>
             <div class="savingsGoalTimeWrapper">£{{desiredAmount*(1+((interestRate/100)*slider2.value))/(12*slider2.value) | number : 2}}</div>
+            <div class = "retryButton">
+            <button class="button button-block button-positive tabletButtonText2 retryButtonTablet" ng-click="closeMortgageCalc()">
+                Retry
+            </button>
+            </div>
            
         </div>
     </ion-content>

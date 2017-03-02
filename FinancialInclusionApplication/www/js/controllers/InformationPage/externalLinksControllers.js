@@ -1,13 +1,23 @@
-fIApp.controller('ExternalLinksCtrl', function($scope){
+fIApp.controller('ExternalLinksCtrl', function($scope, $http) {
     $scope.name = 'External Links';
     $scope.content = 'External Links stored here';
 
-    $scope.externalLinksList = [
-        {name: 'Facebook', blurb:'', website: 'http://www.facebook.com'},
-        {name: 'YouTube', blurb:'', website: 'http://www.youtube.com'},
-        {name: 'Twitter', blurb:'', website: 'http://www.twitter.com'}];
+    $http.get('content/externalLinks.json')
+        .then(function(response) {
+            $scope.externalLinksList = response.data;
+            console.log($scope.externalLinksList);
+        });
 
-    $scope.getExternalLinks = function(){
+    $scope.getExternalLinks = function() {
         return $scope.externalLinksList;
     };
+
+    $scope.navigateToWebsite = function(urlObject) {
+        try {
+            var website = urlObject.website;
+            window.open(website, '_system', 'location=yes');
+        } catch (err) {
+            alert(err);
+        }
+    }
 });

@@ -11,8 +11,9 @@
   <access origin="*"/>
   <access origin="tel:*" launch-external="yes"/>
   <access origin="mailto:*" launch-external="yes"/>
+  <allow-intent href="http://*/*"/>
+  <allow-intent href="https://*/*"/>
   <allow-navigation href="*"/>
-  <allow-navigation href="http://130.159.226.199:8100"/>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>

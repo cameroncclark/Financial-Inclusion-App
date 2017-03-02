@@ -9,7 +9,7 @@
     <ion-content class="padding">
             <div class="list">
                 <a ng-repeat="cat in infoCategories"class="item item-icon-left item-icon-right settingFontSize" href="#/{{cat.url}}">
-                    <i class="icon ion-{{cat.icon}}"></i>
+                    <i class="icon ion-{{cat.icon}}" style="color: {{cat.colour}}"></i>
                     {{cat.name}}
                     <i class="icon ion-ios-arrow-right"></i>
                 </a>
