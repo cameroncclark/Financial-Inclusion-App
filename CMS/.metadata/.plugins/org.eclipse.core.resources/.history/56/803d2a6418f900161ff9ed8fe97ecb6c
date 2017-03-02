@@ -1,7 +1,0 @@
-package Model;
-
-public class ContentModel {
-	public ContentModel(Model model) {
-		// TODO Auto-generated constructor stub
-	}
-}

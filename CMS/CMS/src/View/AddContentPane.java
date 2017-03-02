@@ -25,6 +25,7 @@ public class AddContentPane extends JDialog {
 	protected String[] categories;
 	protected JTextArea contentArea;
 	
+	JDialog activePanel;
 	
 	public AddContentPane(ActionController actionListener) {
 		this.actionListener = actionListener;
@@ -74,7 +75,7 @@ public class AddContentPane extends JDialog {
 	
 	private void createButtons(){
 		JButton sectionButton = new JButton("Section");
-		sectionButton.setBounds(2,60,99,20);
+		sectionButton.setBounds(2,50,99,20);
 		sectionButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -83,6 +84,17 @@ public class AddContentPane extends JDialog {
 			}
 		});
 		add(sectionButton);
+		
+		JButton quizButton = new JButton("Quiz");
+		quizButton.setBounds(2,70,99,20);
+		quizButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				activePanel = new QuizPane(actionListener);
+			}
+		});
+		add(quizButton);
 		
 		JButton titleButton = new JButton("Title");
 		titleButton.setBounds(100,50,100,20);

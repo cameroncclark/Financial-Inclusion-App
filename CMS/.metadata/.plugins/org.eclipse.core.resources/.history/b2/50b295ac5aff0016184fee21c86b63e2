@@ -1,0 +1,88 @@
+package View;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+import Controller.ActionController;
+
+public class QuizAnswerPane extends JDialog{
+	protected ActionController actionListener;
+	protected JTextField quizAnswerTitleText;
+	protected JComboBox<String> questionType;
+	protected JComboBox<String> numQuestionAnswers;
+	protected JComboBox<String> correctAnswers;
+	
+	public QuizAnswerPane(ActionController actionListener) {
+		this.actionListener = actionListener;
+		setLayout(null);
+		setSize(450, 450);
+		createLayout();
+		setVisible(true);
+		
+		addWindowListener(new WindowAdapter() {
+		    @Override
+		    public void windowClosing(WindowEvent e)
+		    {
+//				System.out.println("I Get Here!");
+		    }
+		});
+	}
+	
+	private void createLayout(){
+		JLabel topicTitle = new JLabel("Question:");
+		topicTitle.setBounds(2,10,200,20);
+		add(topicTitle);
+		
+		quizAnswerTitleText = new JTextField();
+		quizAnswerTitleText.setBounds(90, 10, 200, 20);
+		add(quizAnswerTitleText);
+		
+		String[] listData = {"True/False","Multiple Choice", "Image Multiple Choice"};
+		questionType = new JComboBox<>(listData);
+		questionType.setBounds(300, 10, 100, 20);
+		questionType.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setupDropdowns(questionType.getSelectedIndex());
+			}
+		});
+		add(questionType);
+		
+		JLabel numAnswers = new JLabel("Num Answers:");
+		numAnswers.setBounds(300,40,100,20);
+		add(numAnswers);
+		
+		JLabel correct = new JLabel("Correct Answer:");
+		correct.setBounds(300,80,100,20);
+		add(correct);
+	}
+	
+	private void setupDropdowns(int index){
+		if(index != 0){
+			String[] listData = {"2","3","4","5","6"};
+			numQuestionAnswers = new JComboBox<>(listData);
+			numQuestionAnswers.setBounds(300, 60, 100, 20);
+			add(numQuestionAnswers);
+			String[] listData1 = {"1","2","3","4","5"};
+			correctAnswers = new JComboBox<>(listData1);
+			correctAnswers.setBounds(300, 100, 100, 20);
+		} else {
+			String[] listData = {"2"};
+			numQuestionAnswers = new JComboBox<>(listData);
+			numQuestionAnswers.setBounds(300, 60, 100, 20);
+			add(numQuestionAnswers);
+			String[] listData1 = {"1","2"};
+			correctAnswers = new JComboBox<>(listData1);
+			correctAnswers.setBounds(300, 100, 100, 20);
+		}
+	}
+}

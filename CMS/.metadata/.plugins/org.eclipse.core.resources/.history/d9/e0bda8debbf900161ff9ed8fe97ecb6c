@@ -1,7 +1,0 @@
-package View;
-
-import javax.swing.JDialog;
-
-public class EditContentPane extends JDialog {
-
-}
