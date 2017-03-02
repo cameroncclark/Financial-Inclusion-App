@@ -125,6 +125,7 @@ public class ActionController implements ActionListener {
 
 	public void copyImageFile(String name) {
 		model.copyImageToContent(name);
+		
 	}
 
 }

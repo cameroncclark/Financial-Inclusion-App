@@ -171,9 +171,4 @@ public class Model extends Observable {
 		contentModel.clearActiveFile();
 		
 	}
-
-	public void copyImageToContent(String name) {
-		contentModel.saveImageFile(name);
-		
-	}
 }

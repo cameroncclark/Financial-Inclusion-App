@@ -140,7 +140,9 @@ public class AddContentPane extends JDialog {
 				int returnVal = imageChooser.showOpenDialog(AddContentPane.this);
 				if (returnVal == imageChooser.APPROVE_OPTION) {
 					contentArea.insert("<image>" + imageChooser.getSelectedFile().getName() + "</image>", contentArea.getCaretPosition());
-					actionListener.copyImageFile(imageChooser.getSelectedFile().getPath());
+					actionListener.copyImageFile();
+					//Do this in model
+					imageChooser.getSelectedFile().renameTo(new File("../../FinancialInclusionApplication/www/content/images/" + imageChooser.getSelectedFile().getName()));
 				}
 			}
 		});

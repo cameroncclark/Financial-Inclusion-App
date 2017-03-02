@@ -155,11 +155,10 @@ public class ContentModel {
 	public void saveImageFile(String path) {
 		File file = new File(path);
 		String extension = "";
-		String oldFileName = "";
 
 		int i = file.getName().lastIndexOf('.');
 		if (i > 0) {
-			oldFileName = file.getName().substring(0, i); 
+			String oldFileName = file.getName().substring(0, i); 
 			extension = file.getName().substring(i);
 		}
 

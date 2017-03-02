@@ -91,14 +91,14 @@ public class ContentModel {
 	private String getFileName(String title, String folder, String fileType) {
 		String fileName = title.replaceAll("[^a-zA-Z]", "").toLowerCase();
 		ArrayList<String> allFileNames = getAllFileNames(folder);
-		if (!allFileNames.contains(fileName + fileType)) {
-			return fileName + fileType;
+		if (!allFileNames.contains(fileName + ".json")) {
+			return fileName + ".json";
 		} else {
 			int countAppender = 1;
 			while (allFileNames.contains(fileName + "-" + countAppender + fileType)) {
 				countAppender++;
 			}
-			return fileName + "-" + countAppender + fileType;
+			return fileName + "-" + countAppender + ".json";
 		}
 	}
 
@@ -155,15 +155,13 @@ public class ContentModel {
 	public void saveImageFile(String path) {
 		File file = new File(path);
 		String extension = "";
-		String oldFileName = "";
 
 		int i = file.getName().lastIndexOf('.');
 		if (i > 0) {
-			oldFileName = file.getName().substring(0, i); 
-			extension = file.getName().substring(i);
+			extension = file.getName().substring(i + 1);
 		}
 
-		String filename = getFileName(oldFileName, "images/", extension);
+		String filename = getFileName(file.getName(), "images/", extension);
 
 		try {
 			Files.write(Paths.get(_PATH + "images/" + filename), Files.readAllBytes(Paths.get(path)));
