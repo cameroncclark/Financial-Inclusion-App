@@ -7,8 +7,8 @@
         <div class="padding">
             <table class="trophyTable">
                 <tr data-ng-repeat="row in newTrophies">
-                    <td ng-if="column.acquired == 0" style="color:#A6A6A6" class="trophyTableIcons" data-ng-repeat="column in row"><i class = "icon icon ion-locked trophyIcon" ng-click="showTrophyAlert(column)"></i></td>
-                    <td ng-if="column.acquired == 1" style="color:#000" class="trophyTableIcons" data-ng-repeat="column in row"><i class = "icon icon ion-{{column.image}} trophyIcon" ng-click="showTrophyAlert(column)"></i></td>
+                    <td ng-if="column.acquired == 0" style="color:#A6A6A6" class="trophyTableIcons" data-ng-repeat="column in row"><img class = "trophyIcon trophyImages" ng-src="img/padlock.png" ng-click="showTrophyAlert(column)"></img></td>
+                    <td ng-if="column.acquired == 1" style="color:#000" class="trophyTableIcons" data-ng-repeat="column in row"><img class = "trophyIcon trophyImages" ng-src="{{column.image}}" ng-click="showTrophyAlert(column)"></img></td>
                 </tr>
             </table>
         </div>

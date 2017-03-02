@@ -522,27 +522,27 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
          * Trophies Table
          */
         var query = "INSERT INTO trophies (title, image, description, hint, acquired) VALUES (?,?,?,?,?)";
-        $cordovaSQLite.execute(db, query, ["Updated Your Name", "person", "You have successfully updated your name.", "Try updating your name.", 0]);
-        $cordovaSQLite.execute(db, query, ["Updated Your Location", "location", "You have successfully updated your location.", "Try updating your location.", 0]);
-        $cordovaSQLite.execute(db, query, ["Updated Your Picture", "person-stalker", "You have successfully updated your picture.", "Try updating your picture.", 0]);
-        $cordovaSQLite.execute(db, query, ["Flicked through 20 hints", "information", "You have managed to flick through 20 hints.", "Try flicking through more hints.", 0]);
-        $cordovaSQLite.execute(db, query, ["Flicked through 50 hints", "information", "You have managed to flick through 50 hints.", "Try flicking through more hints.", 0]);
-        $cordovaSQLite.execute(db, query, ["Flicked through 100 hints", "information", "You have managed to flick through 100 hints.", "Try flicking through more hints.", 0]);
-        $cordovaSQLite.execute(db, query, ["Performed a calculation on a calculator", "calculator", "You performed a calculation on a calculator.", "Try using a calculator.", 0]);
-        $cordovaSQLite.execute(db, query, ["Performed a calculation on all the calculators", "calculator", "You performed a calculation on all the calculators.", "Try using all calculators.", 0]);
-        $cordovaSQLite.execute(db, query, ["Visit an external website", "edit", "You visited an external website.", "Try visiting a website.", 1]);
-        $cordovaSQLite.execute(db, query, ["Visit 5 external websites", "edit", "You visited 5 external websites.", "Try visiting more websites.", 1]);
-        $cordovaSQLite.execute(db, query, ["Call a phone number", "edit", "You called a phone number.", "Try visiting a website.", 1]);
-        $cordovaSQLite.execute(db, query, ["Achieve 25% completion", "trophy", "You have completed 25% of a category.", "Try completing more of a category.", 0]);
-        $cordovaSQLite.execute(db, query, ["Achieve 50% completion", "trophy", "You have completed 50% of a category.", "Try completing more of a category.", 0]);
-        $cordovaSQLite.execute(db, query, ["Achieve 75% completion", "trophy", "You have completed 75% of a category.", "Try completing more of a category.", 0]);
-        $cordovaSQLite.execute(db, query, ["Achieve 100% completion", "trophy", "You have completed 100% of a category.", "Try completing all of a category.", 0]);
-        $cordovaSQLite.execute(db, query, ["Attempt a quiz", "checkmark-circled", "You have attempted a quiz.", "Try attempting a quiz.", 0]);
-        $cordovaSQLite.execute(db, query, ["Attempted 5 quizzes", "checkmark-circled", "You have attempted 5 quizzes.", "Try attempting more quizzes.", 0]);
-        $cordovaSQLite.execute(db, query, ["Attempted all quizzes", "checkmark-circled", "You have attempted all quizzes.", "Try attempting all the quizzes.", 0]);
-        $cordovaSQLite.execute(db, query, ["Get 100% in a quiz", "wifi", "You have achieved 100% in a quiz.", "Try getting full marks in a quiz.", 0]);
-        $cordovaSQLite.execute(db, query, ["Get 100% in 3 quizzes", "wifi", "You have achieved 100% in 3 quizzes.", "Try getting full marks in multiple quizzes.", 0]);
-        $cordovaSQLite.execute(db, query, ["Unlock all the trophies", "trophy", "You have unlocked every trophy, Congratulations!", "Try getting more trophies.", 0]);
+        $cordovaSQLite.execute(db, query, ["Updated Your Name", "img/trophy1.png", "You have successfully updated your name.", "Try updating your name.", 0]);
+        $cordovaSQLite.execute(db, query, ["Updated Your Location", "img/trophy2.png", "You have successfully updated your location.", "Try updating your location.", 0]);
+        $cordovaSQLite.execute(db, query, ["Updated Your Picture", "img/trophy3.png", "You have successfully updated your picture.", "Try updating your picture.", 0]);
+        $cordovaSQLite.execute(db, query, ["Flicked through 20 hints", "img/trophy4.png", "You have managed to flick through 20 hints.", "Try flicking through more hints.", 0]);
+        $cordovaSQLite.execute(db, query, ["Flicked through 50 hints", "img/trophy5.png", "You have managed to flick through 50 hints.", "Try flicking through more hints.", 0]);
+        $cordovaSQLite.execute(db, query, ["Flicked through 100 hints", "img/trophy6.png", "You have managed to flick through 100 hints.", "Try flicking through more hints.", 0]);
+        $cordovaSQLite.execute(db, query, ["Performed a calculation on a calculator", "img/trophy7.png", "You performed a calculation on a calculator.", "Try using a calculator.", 0]);
+        $cordovaSQLite.execute(db, query, ["Performed a calculation on all the calculators", "img/trophy8.png", "You performed a calculation on all the calculators.", "Try using all calculators.", 0]);
+        $cordovaSQLite.execute(db, query, ["Visit an external website", "img/trophy9.png", "You visited an external website.", "Try visiting a website.", 0]);
+        $cordovaSQLite.execute(db, query, ["Visit 5 external websites", "img/trophy10.png", "You visited 5 external websites.", "Try visiting more websites.", 0]);
+        $cordovaSQLite.execute(db, query, ["Call a phone number", "img/trophy11.png", "You called a phone number.", "Try visiting a website.", 0]);
+        $cordovaSQLite.execute(db, query, ["Achieve 25% completion", "img/trophy12.png", "You have completed 25% of a category.", "Try completing more of a category.", 0]);
+        $cordovaSQLite.execute(db, query, ["Achieve 50% completion", "img/trophy13.png", "You have completed 50% of a category.", "Try completing more of a category.", 0]);
+        $cordovaSQLite.execute(db, query, ["Achieve 75% completion", "img/trophy14.png", "You have completed 75% of a category.", "Try completing more of a category.", 0]);
+        $cordovaSQLite.execute(db, query, ["Achieve 100% completion", "img/trophy15.png", "You have completed 100% of a category.", "Try completing all of a category.", 0]);
+        $cordovaSQLite.execute(db, query, ["Attempt a quiz", "img/trophy16.png", "You have attempted a quiz.", "Try attempting a quiz.", 0]);
+        $cordovaSQLite.execute(db, query, ["Attempted 5 quizzes", "img/trophy17.png", "You have attempted 5 quizzes.", "Try attempting more quizzes.", 0]);
+        $cordovaSQLite.execute(db, query, ["Attempted all quizzes", "img/trophy18.png", "You have attempted all quizzes.", "Try attempting all the quizzes.", 0]);
+        $cordovaSQLite.execute(db, query, ["Get 100% in a quiz", "img/trophy19.png", "You have achieved 100% in a quiz.", "Try getting full marks in a quiz.", 0]);
+        $cordovaSQLite.execute(db, query, ["Get 100% in 3 quizzes", "img/trophy20.png", "You have achieved 100% in 3 quizzes.", "Try getting full marks in multiple quizzes.", 0]);
+        $cordovaSQLite.execute(db, query, ["Unlock all the trophies", "img/trophy21.png", "You have unlocked every trophy, Congratulations!", "Try getting more trophies.", 0]);
 
         /**
          * Categorys Table

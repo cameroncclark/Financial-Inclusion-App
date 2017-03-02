@@ -16,6 +16,11 @@
     font-size: xx-large;
 }
 
+.trophyImages{
+    width: auto;
+    height: 7vh;
+}
+
 .trophyTable {
     width: 100%;
     margin: auto;
