@@ -1,4 +1,4 @@
-<ion-modal-view class="trophyContainer">
+<ion-modal-view class="calAnswerContainer">
     <ion-header-bar class="trophyHeading">
         <h1 class="title tabletModal">CreditCard Result</h1>
         <div class="buttons">
@@ -15,6 +15,12 @@
             Total interest paid:
             <div class="savingsGoalAmount">£{{totalAmount | number : 2}}</div>
             </div>
+
+<div class = "retryButton">
+            <button class="button button-block button-positive tabletButtonText2 retryButton" ng-click="closeCreditCardCalc()">
+                Retry
+            </button>
+</div>
             
            
         </div>

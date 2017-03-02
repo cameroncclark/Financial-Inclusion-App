@@ -262,7 +262,7 @@
 }
 
 .calculatorOptions2{
-    border: 1px solid #90b4d2;
+    border: 1px solid #3269C5;
     border-radius: 1vh;
     width: 50vw;
     margin-left: 12vw;
@@ -273,7 +273,7 @@
     -webkit-box-shadow: 1px 1px 4px #EBEBEB;
     font-size: 0.8rem;
     margin-bottom: 2vh;
-    background-color: #8BB7F0;
+    background-color: #3269C5;
     color: white;
 }
 
@@ -320,6 +320,30 @@ input[type="number"] {
 
 input[type="text"] {
     font-size:0.8rem;
+}
+
+.retryButton{
+    padding: 0vh 5vw;
+}
+
+.calAnswerContainer {
+    width: 80vw; 
+    top: 20vh; 
+    left: 10vw; 
+    bottom: 20vh;
+    min-height: 0% !important;
+    box-shadow: 0 0 100px 10px rgba(0,0,0,0.9);
+    border-radius: 2vh;
+}
+
+.calAnswer2Container {
+    width: 80vw; 
+    top: 20vh; 
+    left: 10vw; 
+    bottom: 10vh;
+    min-height: 0% !important;
+    box-shadow: 0 0 100px 10px rgba(0,0,0,0.9);
+    border-radius: 2vh;
 }
 
 /************************************ MEDIA QUERIES ********************************/
