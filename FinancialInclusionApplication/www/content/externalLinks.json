@@ -1,5 +1,10 @@
 [
-        {"name": "YT", "blurb":"Boooo", "website": "http://www.facebook.com"},
-        {"name": "Facebook", "blurb":"Blahhhhh", "website": "http://www.facebook.com"}
+        {"name": "Youtube", "blurb":"This a link to the video sharing website youtube", "website": "https://www.youtube.com"},
+        {"name": "Facebook", "blurb":"This is a link to the social media site FaceBook", "website": "https://www.facebook.com"},
+        {"name": "Twitter", "blurb":"This a link to the micro blogging site Twitter", "website": "https://www.twitter.com"},
+        {"name": "Step Change", "blurb":"Experts in helping people manage and repay debts", "website": "https://www.stepchange.org"},
+         {"name": "Money Advice Service", "blurb":"Free and impartial money advice, set up by government", "website": "https://www.moneyadviceservice.org.uk/en"},
+         {"name": "NHS Greater Glasgow and Clyde", "blurb":"NHS webiste for Greater Glasgow and Clyde", "website": "http://www.nhsggc.org.uk/locations/hospitals/west-glasgow-ambulatory-care-hospital/"},
+         {"name": "Glasgow Children's Hospital Charity", "blurb":"FThe Royal Hospital for Children is a 256-bed hospital specialising in paediatric healthcare.", "website": "http://www.glasgowchildrenshospitalcharity.org/"}
         
 ]
