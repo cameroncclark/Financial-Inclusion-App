@@ -43,13 +43,6 @@ public class ContentPanel implements Panel, Observer{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				activePanel = new AddContentPane(actionListener);
-				activePanel.addWindowListener(new WindowAdapter() {
-				    @Override
-				    public void windowClosed(WindowEvent e) {
-				        
-				    }
-				});
-				
 			}
 		});
 		addTopicButton.setBounds(2,2,200,20);
@@ -61,12 +54,6 @@ public class ContentPanel implements Panel, Observer{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				activePanel = new EditContentPane(actionListener);
-				activePanel.addWindowListener(new WindowAdapter() {
-				    @Override
-				    public void windowClosed(WindowEvent e) {
-				        
-				    }
-				});
 			}
 		});
 		editTopicButton.setBounds(2,100,200,20);

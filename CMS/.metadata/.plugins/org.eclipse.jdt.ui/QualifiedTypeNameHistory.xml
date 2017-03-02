@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.util.Observable"/>
-<fullyQualifiedTypeName name="javax.swing.JMenuBar"/>
 <fullyQualifiedTypeName name="javax.swing.JMenu"/>
 <fullyQualifiedTypeName name="javax.swing.JMenuItem"/>
 <fullyQualifiedTypeName name="View.PanelCreator"/>
@@ -9,7 +7,6 @@
 <fullyQualifiedTypeName name="com.google.gson.Gson"/>
 <fullyQualifiedTypeName name="java.lang.String"/>
 <fullyQualifiedTypeName name="java.util.Arrays"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="javax.swing.JComboBox"/>
 <fullyQualifiedTypeName name="java.io.Serializable"/>
@@ -51,7 +48,6 @@
 <fullyQualifiedTypeName name="View.ContentPanel"/>
 <fullyQualifiedTypeName name="javax.swing.JDialog"/>
 <fullyQualifiedTypeName name="Model.ContentModel"/>
-<fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
 <fullyQualifiedTypeName name="javax.swing.filechooser.FileNameExtensionFilter"/>
 <fullyQualifiedTypeName name="ContentObjects.Topic"/>
 <fullyQualifiedTypeName name="View.EditContentPane"/>
@@ -59,4 +55,9 @@
 <fullyQualifiedTypeName name="Controller.EditContentCtrl"/>
 <fullyQualifiedTypeName name="ContentObjects.ContentQuizObject"/>
 <fullyQualifiedTypeName name="Controller.DeleteContentCtrl"/>
+<fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.io.BufferedReader"/>
+<fullyQualifiedTypeName name="java.io.InputStreamReader"/>
+<fullyQualifiedTypeName name="java.io.File"/>
 </qualifiedTypeNameHistroy>
