@@ -99,7 +99,7 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
 
 
       // Drop all tables for testing
-      dbAccessor.dropAllTables();
+      //dbAccessor.dropAllTables();
 
       // Build all tables in the database
       dbAccessor.buildTables();
