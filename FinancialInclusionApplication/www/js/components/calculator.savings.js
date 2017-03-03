@@ -36,14 +36,14 @@ fIApp.component("savingsCalculator", {
         };
 
         $scope.test = "Savings Calculator";
-        $scope.slider1 = {
+        $scope.savingSlider = {
             value: 10,
             options: {
                 floor: 0,
-                ceil: 250,
+                ceil: 500,
                 step: 1,
-                minLimit: 10,
-                maxLimit: 250
+                minLimit: 1,
+                maxLimit: 500
             }
         };
 
@@ -79,7 +79,7 @@ fIApp.component("savingsCalculator", {
         $scope.numDays;
 
         var workOutResult = function () {
-            $scope.result = (($scope.savingsGoalValue * 1) - ($scope.alreadySavedValue * 1)) / $scope.perMonthValue;
+            $scope.result = (($scope.savingsGoalValue * 1) - ($scope.alreadySavedValue * 1)) / $scope.savingSlider.value;
 
             var splitNumber =
                 [

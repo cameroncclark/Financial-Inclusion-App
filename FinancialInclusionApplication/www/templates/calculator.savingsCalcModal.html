@@ -15,8 +15,8 @@
                 If you have £{{alreadySavedValue}} already saved in your bank account,
                 and you set aside just £{{perMonthValue}} per month, you will reach your goal in:
             </div>
-            <div ng-if="numYears > 0" class="savingsGoalTimeWrapper"> {{numYears}} Years,<br>{{numMonths}} Months,<br>{{numDays}} Days.</div>
-            <div ng-if="numYears < 1" class="savingsGoalTimeWrapper">{{numMonths}} Months,<br>{{numDays}} Days.</div>
+            <div ng-if="numYears > 0" class="savingsGoalTimeWrapper"> {{numYears}} Years,<br>{{numMonths}} Months.</div>
+            <div ng-if="numYears < 1" class="savingsGoalTimeWrapper">{{numMonths}} Months.</div>
 
 <div class = "retryButton">
             <button class="button button-block button-positive tabletButtonText2 retryButtonTablet" ng-click="closeSavingsCalc()">

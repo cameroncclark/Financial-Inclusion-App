@@ -64,8 +64,8 @@ fIApp.component("creditcardCalculator", {
 
         $scope.helpIntro = "This calcualtor is used to tell you how long it will take you to pay off your credit card, as well as the interest on it.";
 
-        $scope.helpContent = "Within the first text box, enter how much money is on your credit card. In the second, enter you APR. APR is the interest rate charged" +
-        " to you. The higher the APR the more more you will owe. Finally, enter how much money you can pay into the credit card a month!"
+        $scope.helpContent = "Within the first text box, enter how much money is on your credit card. In the second, enter you APR, which is the interest rate charged" +
+        " to you. The higher the APR the more money you will owe. Finally, enter how much money you can pay into the credit card a month!"
 
         $scope.helpHint = "Handy hint: Take a screenshot of your result so that you can review it later. You can also play around with the values to see how they differ!"
 

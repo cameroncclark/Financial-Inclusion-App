@@ -152,6 +152,9 @@
 .savingsTextWrapper{
     margin: 1vh;
 }
+.justifyMe{
+    text-align: justify;
+}
 
 .savingsGoalTimeWrapper{
     text-align: center;
@@ -171,6 +174,7 @@
     color: black;
     font-size: 15px;
     font-family: 'Signika', sans-serif; 
+    text-align: justify;
 }
 
 .calcInput{
