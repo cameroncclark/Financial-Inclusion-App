@@ -31,6 +31,15 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
     if (window.StatusBar) {
       //StatusBar.styleDefault();
       StatusBar.hide();
+      ionic.Platform.fullScreen();
+    }
+
+    if (isAndroid) {
+      window.addEventListener("native.hidekeyboard", function () {
+        //show stuff on keyboard hide
+        StatusBar.hide();
+        window.AndroidFullScreen.immersiveMode(false, false);
+      });
     }
 
     //This is going to be a map that links category ID to both the titles under that category and the urls
@@ -90,7 +99,7 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
 
 
       // Drop all tables for testing
-      //dbAccessor.dropAllTables();
+      dbAccessor.dropAllTables();
 
       // Build all tables in the database
       dbAccessor.buildTables();
@@ -110,7 +119,7 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
           // An added category
           //var query = "DELETE FROM categories WHERE name LIKE 'Student Finance'";
           //$cordovaSQLite.execute(db, query, []);
-          
+
           // A deleted category
           //var query = "INSERT INTO categories (name, percentageComplete) VALUES (?,?)";
           //$cordovaSQLite.execute(db, query, ["fake category", 0.5]);
