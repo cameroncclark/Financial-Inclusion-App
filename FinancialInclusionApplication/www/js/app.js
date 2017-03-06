@@ -29,7 +29,6 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
     var isAndroid = ionic.Platform.isAndroid();
     var isIOS = ionic.Platform.isIOS();
     if (window.StatusBar) {
-      //StatusBar.styleDefault();
       StatusBar.hide();
       ionic.Platform.fullScreen();
     }
