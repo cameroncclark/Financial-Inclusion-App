@@ -1,0 +1,247 @@
+package View;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+import Controller.ActionController;
+
+public class QuizAnswerPane extends JDialog {
+	protected ActionController actionListener;
+	protected JTextField quizAnswerTitleText;
+	protected JComboBox<String> questionType;
+	protected JComboBox<String> numQuestionAnswers;
+	protected JComboBox<String> correctAnswers;
+	protected JPanel answersPanel;
+	protected JButton save;
+	protected ArrayList<JTextArea> answers = new ArrayList<JTextArea>();
+	protected ArrayList<JTextArea> reasons = new ArrayList<JTextArea>();
+
+	public QuizAnswerPane(ActionController actionListener) {
+		this.actionListener = actionListener;
+		setLayout(null);
+		setSize(600, 600);
+		createLayout();
+		setVisible(true);
+
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				// System.out.println("I Get Here!");
+			}
+		});
+	}
+
+	private void createLayout() {
+		JLabel topicTitle = new JLabel("Question:");
+		topicTitle.setBounds(2, 10, 200, 20);
+		add(topicTitle);
+
+		quizAnswerTitleText = new JTextField();
+		quizAnswerTitleText.setBounds(90, 10, 200, 20);
+		add(quizAnswerTitleText);
+
+		String[] listData = { "Please Select", "True/False", "Multiple Choice", "Image Multiple Choice" };
+		questionType = new JComboBox<>(listData);
+		questionType.setBounds(400, 10, 200, 20);
+		questionType.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setupNumQuestionDropdown(questionType.getSelectedIndex());
+			}
+		});
+		add(questionType);
+
+		JLabel numAnswers = new JLabel("Num Answers:");
+		numAnswers.setBounds(400, 45, 200, 20);
+		add(numAnswers);
+
+		JLabel correct = new JLabel("Correct Answer:");
+		correct.setBounds(400, 90, 200, 20);
+		add(correct);
+
+		numQuestionAnswers = new JComboBox<>();
+		numQuestionAnswers.setBounds(400, 65, 200, 20);
+		numQuestionAnswers.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setupCorrectDropdown(numQuestionAnswers.getSelectedIndex());
+				setupAnswers(numQuestionAnswers.getSelectedIndex());
+			}
+		});
+		add(numQuestionAnswers);
+
+		correctAnswers = new JComboBox<>();
+		correctAnswers.setBounds(400, 110, 200, 20);
+		add(correctAnswers);
+
+		answersPanel = new JPanel();
+		answersPanel.setLayout(null);
+		answersPanel.setBounds(10, 40, 380, 500);
+		add(answersPanel);
+
+		save = new JButton("Save");
+		save.setBounds(530, 550, 50, 20);
+		save.setActionCommand("saveQuizQuestion");
+		save.addActionListener(actionListener);
+		add(save);
+	}
+
+	private void setupNumQuestionDropdown(int index) {
+		if (index > 1) {
+			numQuestionAnswers.setEnabled(true);
+			numQuestionAnswers.removeAllItems();
+			numQuestionAnswers.addItem("Please Select");
+			numQuestionAnswers.addItem("2");
+			numQuestionAnswers.addItem("3");
+			numQuestionAnswers.addItem("4");
+			numQuestionAnswers.addItem("5");
+		} else if (index == 1) {
+			numQuestionAnswers.removeAllItems();
+			numQuestionAnswers.addItem("0");
+			numQuestionAnswers.addItem("2");
+			numQuestionAnswers.setSelectedIndex(1);
+			numQuestionAnswers.setEnabled(false);
+			correctAnswers.removeAllItems();
+			correctAnswers.addItem("1");
+			correctAnswers.addItem("2");
+		} else {
+			// If they pressed --Please Select--
+			numQuestionAnswers.removeAllItems();
+			correctAnswers.removeAllItems();
+		}
+		answers = new ArrayList<JTextArea>();
+		reasons = new ArrayList<JTextArea>();
+	}
+
+	private void setupCorrectDropdown(int index) {
+		if (index == 1) {
+			correctAnswers.removeAllItems();
+			correctAnswers.addItem("1");
+			correctAnswers.addItem("2");
+		} else if (index == 2) {
+			correctAnswers.removeAllItems();
+			correctAnswers.addItem("1");
+			correctAnswers.addItem("2");
+			correctAnswers.addItem("3");
+		} else if (index == 3) {
+			correctAnswers.removeAllItems();
+			correctAnswers.addItem("1");
+			correctAnswers.addItem("2");
+			correctAnswers.addItem("3");
+			correctAnswers.addItem("4");
+		} else if (index == 4) {
+			correctAnswers.removeAllItems();
+			correctAnswers.addItem("1");
+			correctAnswers.addItem("2");
+			correctAnswers.addItem("3");
+			correctAnswers.addItem("4");
+			correctAnswers.addItem("5");
+		} else {
+			// If they pressed --Please Select--
+			correctAnswers.removeAllItems();
+		}
+	}
+
+	private void setupAnswers(int numQuestions) {
+		if (numQuestions != 0) {
+			
+			answersPanel.removeAll();
+			if (numQuestions + 1 < answers.size()) {
+				System.out.println("removing");
+				System.out.println(answers.size());
+				System.out.println(numQuestions);
+				// Remove the difference
+				int numberOfAnswers = answers.size();
+				for (int i = numberOfAnswers; i > numQuestions+1; i--) {
+					answers.remove(i-1);
+					reasons.remove(i-1);
+					System.out.println(answers.size());
+				}
+				System.out.println(answers.size());
+			} else if (numQuestions + 1 > answers.size()) {
+				// Add the difference
+				for (int i = answers.size(); i < numQuestions + 1; i++) {
+					answers.add(getJTextArea());
+					reasons.add(getJTextArea());
+				}
+			}
+
+			int ypos = 2;
+			for (int i = 0; i < answers.size(); i++) {
+				JLabel ans = new JLabel("Answer #" + (i + 1) + ":");
+				ans.setBounds(2, ypos, 150, 20);
+				answersPanel.add(ans);
+				ypos += 20;
+
+				answers.get(i).setBounds(2, ypos, 150, 20);
+				answersPanel.add(answers.get(i));
+				ypos += 40;
+				
+				JLabel reason = new JLabel("Reason #" + (i + 1) + ":");
+				reason.setBounds(2, ypos, 150, 20);
+				answersPanel.add(reason);
+				ypos += 20;
+
+				reasons.get(i).setBounds(2, ypos, 150, 20);
+				answersPanel.add(reasons.get(i));
+				ypos += 40;
+			}
+			
+			answersPanel.revalidate();
+			answersPanel.validate();
+			answersPanel.repaint();
+
+		}
+
+	}
+	
+	private JTextArea getJTextArea(){
+		JTextArea textArea = new JTextArea();
+		textArea.setLineWrap(true);
+		textArea.setWrapStyleWord(true);
+		return new JTextArea();
+	}
+	
+	public ArrayList<String> getAnswers(){
+		ArrayList<String> answersStrings = new ArrayList<String>();
+		for(JTextArea answerArea: answers){
+			answersStrings.add(answerArea.getText());
+		}
+		return answersStrings;
+	}
+	
+	public ArrayList<String> getReasons(){
+		ArrayList<String> reasonsStrings = new ArrayList<String>();
+		for(JTextArea reasonArea: reasons){
+			reasonsStrings.add(reasonArea.getText());
+		}
+		return reasonsStrings;
+	}
+	
+	public String getQuestion(){
+		return quizAnswerTitleText.getText();
+	}
+	
+	public Integer getCorrectAnswer(){
+		return Integer.parseInt((String) correctAnswers.getSelectedItem());
+	}
+	
+	public String getQuestionType(){
+		return (String) questionType.getSelectedItem();
+	}
+}

@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -12,21 +14,24 @@ import javax.swing.JList;
 import javax.swing.JTextField;
 
 import Controller.ActionController;
+import Model.Model;
 
-public class QuizPane extends JDialog {
+public class QuizPane extends JDialog implements Observer{
 	protected ActionController actionListener;
 	protected JTextField quizTitleText;
 	protected JList<String> quizList;
 	protected JButton removeQuizQuestion;
 	protected JButton addQuizQuestion;
 	protected JButton saveQuiz;
-	
-	JDialog activePanel;
+	protected String[] questionText;
+	protected JDialog activePanel;
 	
 	public QuizPane(ActionController actionListener) {
 		this.actionListener = actionListener;
+		actionListener.intialiseQuiz();
 		setLayout(null);
 		setSize(500, 500);
+		questionText = actionListener.getQuestions();
 		createLayout();
 		setVisible(true);
 		
@@ -34,7 +39,7 @@ public class QuizPane extends JDialog {
 		    @Override
 		    public void windowClosing(WindowEvent e)
 		    {
-//				System.out.println("I Get Here!");
+		    	
 		    }
 		});
 	}
@@ -48,13 +53,14 @@ public class QuizPane extends JDialog {
 		quizTitleText.setBounds(90, 10, 200, 20);
 		add(quizTitleText);
 	
-		String[] listData = {"test1","test2"};
-		quizList = new JList<>(listData);
+		quizList = new JList<>(questionText);
 		quizList.setBounds(50, 40, 350, 350);
 		add(quizList);
 		
 		removeQuizQuestion = new JButton("Remove");
 		removeQuizQuestion.setBounds(150, 400, 100, 20);
+		removeQuizQuestion.addActionListener(actionListener);
+		removeQuizQuestion.setActionCommand("removeQuizQuestion");
 		add(removeQuizQuestion);
 		
 		addQuizQuestion = new JButton("Add");
@@ -71,7 +77,32 @@ public class QuizPane extends JDialog {
 		
 		saveQuiz = new JButton("Save");
 		saveQuiz.setBounds(200, 420, 100, 20);
+		saveQuiz.addActionListener(actionListener);
+		saveQuiz.setActionCommand("saveQuiz");
 		add(saveQuiz);
+	}
+	
+	public String getSelectedQuestion(){
+		return quizList.getSelectedValue();
+	}
+	
+	public String getQuizTitle(){
+		return quizTitleText.getText();
+	}
+	
+	public JDialog getActivePanel(){
+		return activePanel;
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		questionText = actionListener.getQuestions();
+		this.remove(quizList);
+		quizList = new JList<>(questionText);
+		quizList.setBounds(50, 40, 350, 350);
+		add(quizList);
+		repaint();
+		revalidate();
 	}
 
 }

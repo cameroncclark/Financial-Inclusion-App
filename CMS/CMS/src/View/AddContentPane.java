@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.File;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -17,6 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import Controller.ActionController;
+import Model.Model;
 
 public class AddContentPane extends JDialog {
 	protected ActionController actionListener;
@@ -24,10 +24,12 @@ public class AddContentPane extends JDialog {
 	protected JComboBox categoriesDropdown;
 	protected String[] categories;
 	protected JTextArea contentArea;
+	protected Model model;
 	
 	JDialog activePanel;
 	
-	public AddContentPane(ActionController actionListener) {
+	public AddContentPane(ActionController actionListener, Model model) {
+		this.model = model;
 		this.actionListener = actionListener;
 		categories = actionListener.initaliseCategoriesTab();
 		setLayout(null);
@@ -92,6 +94,7 @@ public class AddContentPane extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				activePanel = new QuizPane(actionListener);
+				model.setModelObserver((QuizPane) activePanel);
 			}
 		});
 		add(quizButton);
@@ -206,5 +209,9 @@ public class AddContentPane extends JDialog {
 	
 	public String getContent(){
 		return contentArea.getText();
+	}
+	
+	public JDialog getActivePanel(){
+		return activePanel;
 	}
 }

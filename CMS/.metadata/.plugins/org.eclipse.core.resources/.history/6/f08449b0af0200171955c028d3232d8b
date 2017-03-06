@@ -1,0 +1,11 @@
+package Controller;
+
+import Model.Model;
+import View.MainContainer;
+
+public class AddQuizQuestionCtrl {
+	public AddQuizQuestionCtrl(Model model, MainContainer view) {
+		// TODO Auto-generated constructor stub
+	}
+
+}

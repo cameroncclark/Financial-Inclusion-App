@@ -3,6 +3,8 @@ package Model;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -25,119 +27,131 @@ public class Model extends Observable {
 		numbersModel = new NumbersModel(this);
 		linksModel = new LinksModel(this);
 		tipsModel = new TipsModel(this);
-		
+
 	}
 
 	public String[] selectCategories() {
 		return catModel.selectCategories();
 	}
-	
-	public String[] selectNumbers(){
+
+	public String[] selectNumbers() {
 		return numbersModel.selectNumbers();
 	}
-	
-	public String[] selectLinks(){
+
+	public String[] selectLinks() {
 		return linksModel.selectLinks();
 	}
-	
-	public String[] selectTips(){
+
+	public String[] selectTips() {
 		return tipsModel.selectTips();
 	}
 
 	public void addCategory(String categoryName) {
 		catModel.addCategory(categoryName);
 	}
-	
-	public void addNumber(String name, String blurb, String number){
+
+	public void addNumber(String name, String blurb, String number) {
 		numbersModel.addUsefulNumber(name, blurb, number);
 	}
-	
-	public void addLink(String name, String blurb, String website){
+
+	public void addLink(String name, String blurb, String website) {
 		linksModel.addLink(name, blurb, website);
 	}
-	
-	public void addTip(String header, String tip){
+
+	public void addTip(String header, String tip) {
 		tipsModel.addTip(header, tip);
 	}
 
 	public void editCategory(String oldCat, String newCat) {
 		catModel.editCategory(oldCat, newCat);
 	}
-	
-	public void editNumber(String oldName, String newName, String newBlurb, String newNumber){
+
+	public void editNumber(String oldName, String newName, String newBlurb, String newNumber) {
 		numbersModel.editUsefulNumber(oldName, newName, newBlurb, newNumber);
 	}
-	
-	public void editLink(String oldName, String newName, String newBlurb, String newWebsite){
+
+	public void editLink(String oldName, String newName, String newBlurb, String newWebsite) {
 		linksModel.editLink(oldName, newName, newBlurb, newWebsite);
 	}
-	
-	public void editTip(String oldHeader, String newHeader, String newTip){
+
+	public void editTip(String oldHeader, String newHeader, String newTip) {
 		tipsModel.editTip(oldHeader, newHeader, newTip);
 	}
 
 	public void deleteCategory(String selectedCat) {
 		catModel.deleteCategory(selectedCat);
 	}
-	
-	public void deleteNumber(String name){
+
+	public void deleteNumber(String name) {
 		numbersModel.deleteUsefulNumber(name);
 	}
-	
-	public void deleteLink(String name){
+
+	public void deleteLink(String name) {
 		linksModel.deleteLink(name);
 	}
-	
-	public void deleteTip(String header){
+
+	public void deleteTip(String header) {
 		tipsModel.deleteTip(header);
 	}
 
 	public void setModelObserver(Observer o) {
 		this.addObserver(o);
 	}
-	
-	public Link selectLink(String name){
+
+	public Link selectLink(String name) {
 		return linksModel.selectLink(name);
 	}
-	
-	public Tip selectTip(String header){
+
+	public Tip selectTip(String header) {
 		return tipsModel.selectTip(header);
 	}
-	
-	public Number selectNumber(String name){
+
+	public Number selectNumber(String name) {
 		return numbersModel.selectNumber(name);
 	}
-	
-	public void addContentFile(String title, Integer reference, String content){
+
+	public void addContentFile(String title, Integer reference, String content) {
 		contentModel.addNewContentFile(title, reference, content);
 	}
-	
-	public Integer selectCategoryId(String categoryName){
+
+	public Integer selectCategoryId(String categoryName) {
 		return catModel.selectCategoriesId(categoryName);
 	}
-	
-	public String selectCategoryName(int id){
+
+	public String selectCategoryName(int id) {
 		return catModel.selectCategoriesName(id);
 	}
-	
-	public void setTopics(){
+
+	public void setTopics() {
 		contentModel.setTopicsMap();
 	}
-	
-	public Topic selectTopic(String fileName){
+
+	public Topic selectTopic(String fileName) {
 		return contentModel.selectTopic(fileName);
 	}
-	
-	public void editTopic(String title, String content, String category){
-		
+
+	public void editTopic(String title, String content, String category) {
+
 		contentModel.editTopic(title, content, selectCategoryId(category));
 	}
-	
-	public void deleteTopic(){
+
+	public void deleteTopic() {
 		contentModel.removeTopic();
 	}
-	
-	
+
+	public void initialiseQuiz() {
+		contentModel.initialiseQuiz();
+	}
+
+	public void saveQuiz(String title) {
+		contentModel.saveQuiz(title);
+	}
+
+	public void addQuestion(String questionType, String questionText, ArrayList<String> answers, Integer answer,
+			ArrayList<String> reasons) {
+		contentModel.addQuestion(questionType, questionText, answers, answer, reasons);
+	}
+
 	/**
 	 * This returns the JSON file as a string.
 	 * 
@@ -161,19 +175,29 @@ public class Model extends Observable {
 
 		return builder.toString();
 	}
-	
-	public void changed(){
+
+	public void changed() {
 		setChanged();
 		notifyObservers();
 	}
 
 	public void clearActiveFile() {
 		contentModel.clearActiveFile();
-		
+
 	}
 
 	public void copyImageToContent(String name) {
 		contentModel.saveImageFile(name);
+
+	}
+
+	public String[] getQuestionText() {
+		ArrayList<String> temp = contentModel.getQuestions();
+		return temp.toArray(new String[temp.size()]);
 		
+	}
+
+	public void removeQuizQuestion(String selectedQuestion) {
+		contentModel.deleteQuestion(selectedQuestion);
 	}
 }

@@ -1,9 +1,0 @@
-package ContentObjects;
-
-public class ContentQuizObject {
-	protected String url;
-	protected String title;
-	
-	
-
-}

@@ -35,7 +35,7 @@ public class PanelCreator {
 	}
 	
 	public JComponent makeContentPanel(Model model, ActionController actionListener) {
-		contentPanel = new ContentPanel(actionListener);
+		contentPanel = new ContentPanel(actionListener, model);
 		model.setModelObserver((Observer) contentPanel);
 		return contentPanel.getPanel();
 	}

@@ -68,14 +68,21 @@ public class ContentModel {
 	}
 
 	public void addNewContentFile(String title, Integer reference, String content) {
-		String fileName = getFileName(title, "topics/", ".json");
-		Topic newTopic = new Topic(title, reference, content, new ContentQuizObject(fileName, "title"));
-		createFile(fileName, newTopic);
+		if (!quiz.equals(null)) {
+			String fileName = getFileName(title, "topics/", ".json");
+			Topic newTopic = new Topic(title, reference, content, getContentQuizObject(fileName, quiz.getTitle()));
+			createFile(fileName, newTopic);
+		}
+	}
+
+	private ContentQuizObject getContentQuizObject(String filename, String title) {
+		return new ContentQuizObject(filename, title);
 	}
 
 	private void createFile(String filename, Topic topic) {
 		writeTopic(filename, topic);
-		rewriteTopicsFile(filename);
+		writeQuiz(filename, quiz);
+		rewriteTopicsFile();
 	}
 
 	public void editTopic(String title, String content, Integer category) {
@@ -86,8 +93,8 @@ public class ContentModel {
 
 	public void removeTopic() {
 		if (activeFile != "") {
-
 			deleteFile(activeFile);
+			rewriteTopicsFile();
 		}
 	}
 
@@ -121,9 +128,9 @@ public class ContentModel {
 	 * QUIZ STUFF
 	 */
 	public void initialiseQuiz() {
-		if (quiz.equals(null)) {
-			quiz = new QuizObject();
-		}
+		//If the quiz isn't null
+		quiz = new QuizObject();
+		questions = new ArrayList<QuestionObject>();
 	}
 
 	public void closeWithoutSaving() {
@@ -151,6 +158,7 @@ public class ContentModel {
 	public void addQuestion(String questionType, String questionText, ArrayList<String> answers, int answer,
 			ArrayList<String> reasons) {
 		questions.add(new QuestionObject(questionType, questionText, answers, answer, reasons));
+		model.changed();
 	}
 
 	public void deleteQuestion(String questionText) {
@@ -161,6 +169,7 @@ public class ContentModel {
 			}
 		}
 		questions.remove(toBeRemoved);
+		model.changed();
 	}
 
 	public void editQuestion(String oldQuestion, String questionType, String questionText, ArrayList<String> answers,
@@ -176,6 +185,11 @@ public class ContentModel {
 				}
 			}
 		}
+	}
+
+	public void saveQuiz(String quizTitle) {
+		quiz.setTitle(quizTitle);
+		quiz.setQuestions(questions);
 	}
 
 	private Boolean duplicateQuestion(String oldQuestion, String questionText) {
@@ -194,10 +208,19 @@ public class ContentModel {
 	 * END OF QUIZZ STUFF
 	 */
 
-	public void writeTopic(String fileName, Topic topic) {
+	private void writeTopic(String fileName, Topic topic) {
 		try (Writer writer = new FileWriter(_PATH + "topics/" + fileName)) {
 			Gson gson = new GsonBuilder().create();
 			gson.toJson(topic, writer);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void writeQuiz(String fileName, QuizObject quiz) {
+		try (Writer writer = new FileWriter(_PATH + "quizzes/" + fileName)) {
+			Gson gson = new GsonBuilder().create();
+			gson.toJson(quiz, writer);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -218,7 +241,7 @@ public class ContentModel {
 		}
 	}
 
-	public void rewriteTopicsFile(String newFile) {
+	public void rewriteTopicsFile() {
 		try {
 			ArrayList<String> jsonFiles = getAllFileNames("topics/");
 			Files.write(Paths.get(_PATH + "topics.json"), gson.toJson(jsonFiles).getBytes());

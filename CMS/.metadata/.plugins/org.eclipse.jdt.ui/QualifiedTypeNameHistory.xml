@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="javax.swing.JMenu"/>
-<fullyQualifiedTypeName name="javax.swing.JMenuItem"/>
-<fullyQualifiedTypeName name="View.PanelCreator"/>
-<fullyQualifiedTypeName name="java.awt.Dimension"/>
-<fullyQualifiedTypeName name="com.google.gson.Gson"/>
-<fullyQualifiedTypeName name="java.lang.String"/>
 <fullyQualifiedTypeName name="java.util.Arrays"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="javax.swing.JComboBox"/>
 <fullyQualifiedTypeName name="java.io.Serializable"/>
@@ -14,7 +9,6 @@
 <fullyQualifiedTypeName name="View.CategoriesPanel"/>
 <fullyQualifiedTypeName name="Controller.AddCategoryController"/>
 <fullyQualifiedTypeName name="java.io.FileWriter"/>
-<fullyQualifiedTypeName name="java.nio.file.Files"/>
 <fullyQualifiedTypeName name="java.nio.file.Paths"/>
 <fullyQualifiedTypeName name="Controller.EditCategoryDropDownCtrl"/>
 <fullyQualifiedTypeName name="java.util.Calendar"/>
@@ -55,9 +49,15 @@
 <fullyQualifiedTypeName name="Controller.EditContentCtrl"/>
 <fullyQualifiedTypeName name="ContentObjects.ContentQuizObject"/>
 <fullyQualifiedTypeName name="Controller.DeleteContentCtrl"/>
+<fullyQualifiedTypeName name="java.nio.file.Path"/>
+<fullyQualifiedTypeName name="java.io.OutputStreamWriter"/>
 <fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="java.io.BufferedReader"/>
-<fullyQualifiedTypeName name="java.io.InputStreamReader"/>
 <fullyQualifiedTypeName name="java.io.File"/>
+<fullyQualifiedTypeName name="java.nio.file.Files"/>
+<fullyQualifiedTypeName name="java.io.OutputStream"/>
+<fullyQualifiedTypeName name="ContentObjects.QuestionObject"/>
+<fullyQualifiedTypeName name="Controller.AddQuestionCtrl"/>
+<fullyQualifiedTypeName name="Controller.EditQuestionCtrl"/>
+<fullyQualifiedTypeName name="Controller.DeleteQuestionCtrl"/>
+<fullyQualifiedTypeName name="Controller.CreateQuizController"/>
 </qualifiedTypeNameHistroy>

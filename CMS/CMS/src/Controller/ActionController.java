@@ -91,6 +91,15 @@ public class ActionController implements ActionListener {
 		case "createQuiz":
 			CreateQuizController createQuizController = new CreateQuizController(model,view);
 			break;
+		case "saveQuiz":
+			SaveQuizController saveQuizController = new SaveQuizController(model,view);
+			break;
+		case "saveQuizQuestion":
+			AddQuizQuestionCtrl addQuizQuestionCtrl = new AddQuizQuestionCtrl(model, view);
+			break;
+		case "removeQuizQuestion":
+			RemoveQuizQuestionCtrl removeQuizQuestionCtrl = new RemoveQuizQuestionCtrl(model, view);
+			break;
 		}
 
 	}
@@ -118,6 +127,10 @@ public class ActionController implements ActionListener {
 	public void clearActiveFile(){
 		model.clearActiveFile();
 	}
+	
+	public void intialiseQuiz(){
+		model.initialiseQuiz();
+	}
 
 	public void loadSelectedFile(String fileName, boolean editPane ) {
 		ContentPanel panel = (ContentPanel) view.getActivePanel();
@@ -137,6 +150,10 @@ public class ActionController implements ActionListener {
 
 	public void copyImageFile(String name) {
 		model.copyImageToContent(name);
+	}
+	
+	public String[] getQuestions(){
+		return model.getQuestionText();
 	}
 
 }
