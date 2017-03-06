@@ -1,6 +1,6 @@
 fIApp.component("creditcardCalculator", {
     templateUrl: "templates/calculator.creditCard.html",
-    controller: function creditCardCalculatorCtrl($scope, $ionicModal) {
+    controller: function creditCardCalculatorCtrl($scope, $ionicModal,dbAccessor) {
 
         var vm = this;
 
@@ -31,6 +31,7 @@ fIApp.component("creditcardCalculator", {
         $scope.openCreditCardCalc = function() {
             workOutResult();
             $scope.modalCreditCardAnswer.show();
+            dbAccessor.updateCalculators(4);
         };
 
 

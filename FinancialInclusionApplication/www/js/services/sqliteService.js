@@ -292,6 +292,11 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
                 $cordovaSQLite.execute(db, "UPDATE progress SET valueChanged = 'True' WHERE objective LIKE 'Perform calc " + ID + "'", []);
                 dbService.checkAllCalculators();
                 break;
+            case 4:
+                dbService.updateTrophy("Performed a calculation on a calculator");
+                $cordovaSQLite.execute(db, "UPDATE progress SET valueChanged = 'True' WHERE objective LIKE 'Perform calc " + ID + "'", []);
+                dbService.checkAllCalculators();
+                break;
         }
     };
 
@@ -301,7 +306,7 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
     this.checkAllCalculators = function () {
         var checkQuery = "SELECT valueChanged FROM progress WHERE objective LIKE 'Perform calc%' AND valueChanged LIKE 'True'";
         $cordovaSQLite.execute(db, checkQuery, []).then(function (result) {
-            if (result.rows.length == 3) {
+            if (result.rows.length == 4) {
                 dbService.updateTrophy("Performed a calculation on all the calculators");
             }
         }, function (error) {
@@ -603,6 +608,7 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
         $cordovaSQLite.execute(db, progressQuery, ["Perform calc 1", null, "false"]);
         $cordovaSQLite.execute(db, progressQuery, ["Perform calc 2", null, "false"]);
         $cordovaSQLite.execute(db, progressQuery, ["Perform calc 3", null, "false"]);
+        $cordovaSQLite.execute(db, progressQuery, ["Perform calc 4", null, "false"]);
         $cordovaSQLite.execute(db, progressQuery, ["Visit a webpage", null, "false"]);
         $cordovaSQLite.execute(db, progressQuery, ["Visit 5 websites", 0, null]);
         $cordovaSQLite.execute(db, progressQuery, ["Call number", null, "false"]);
