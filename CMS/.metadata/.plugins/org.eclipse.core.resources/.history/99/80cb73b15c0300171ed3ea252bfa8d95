@@ -195,7 +195,9 @@ public class QuizAnswerPane extends JDialog {
 				selectedFile.remove(i - 1);
 				pictureLoaders.remove(i - 1);
 				reasons.remove(i - 1);
+				System.out.println(answers.size());
 			}
+			System.out.println(pictureLoaders.size());
 		} else if (numQuestions + 1 > pictureLoaders.size()) {
 			// Add the difference
 			for (int i = pictureLoaders.size(); i < numQuestions + 1; i++) {
