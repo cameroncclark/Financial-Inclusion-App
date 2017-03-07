@@ -536,9 +536,9 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
         $cordovaSQLite.execute(db, query, ["Flicked through 100 hints", "img/trophy6.png", "You have managed to flick through 100 hints.", "Try flicking through more hints.", 0]);
         $cordovaSQLite.execute(db, query, ["Performed a calculation on a calculator", "img/trophy7.png", "You performed a calculation on a calculator.", "Try using a calculator.", 0]);
         $cordovaSQLite.execute(db, query, ["Performed a calculation on all the calculators", "img/trophy8.png", "You performed a calculation on all the calculators.", "Try using all calculators.", 0]);
-        $cordovaSQLite.execute(db, query, ["Visit an external website", "img/trophy9.png", "You visited an external website.", "Try visiting a website.", 1]);
-        $cordovaSQLite.execute(db, query, ["Visit 5 external websites", "img/trophy10.png", "You visited 5 external websites.", "Try visiting more websites.", 1]);
-        $cordovaSQLite.execute(db, query, ["Call a phone number", "img/trophy11.png", "You called a phone number.", "Try calling someone.", 1]);
+        $cordovaSQLite.execute(db, query, ["Visit an external website", "img/trophy9.png", "You visited an external website.", "Try visiting a website.", 0]);
+        $cordovaSQLite.execute(db, query, ["Visit 5 external websites", "img/trophy10.png", "You visited 5 external websites.", "Try visiting more websites.", 0]);
+        $cordovaSQLite.execute(db, query, ["Call a phone number", "img/trophy11.png", "You called a phone number.", "Try calling someone.", 0]);
         $cordovaSQLite.execute(db, query, ["Achieve 25% completion", "img/trophy12.png", "You have completed 25% of the application.", "Try completing more of the application.", 0]);
         $cordovaSQLite.execute(db, query, ["Achieve 50% completion", "img/trophy13.png", "You have completed 50% of the application.", "Try completing more of the application.", 0]);
         $cordovaSQLite.execute(db, query, ["Achieve 75% completion", "img/trophy14.png", "You have completed 75% of the application.", "Try completing more of the application.", 0]);
