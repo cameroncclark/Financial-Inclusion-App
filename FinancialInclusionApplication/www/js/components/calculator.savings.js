@@ -75,8 +75,12 @@ fIApp.component("savingsCalculator", {
 
         $scope.result;
         $scope.numYears;
-        $scope.numMonths;
+        $scope.numMonths; 
         $scope.numDays;
+
+        if($scope.alreadySavedValue == null || $scope.alreadySavedValue == 0){
+            $scope.alreadySavedValue = 0;
+        }
 
         var workOutResult = function () {
             $scope.result = (($scope.savingsGoalValue * 1) - ($scope.alreadySavedValue * 1)) / $scope.savingSlider.value;

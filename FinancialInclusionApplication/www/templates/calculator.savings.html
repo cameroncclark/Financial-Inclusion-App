@@ -20,7 +20,7 @@
     <a class="calcBodyText">What is your savings goal?</a>
     </div>
  <div class="calcInput">
-            <input type="number"  placeholder="£" ng-model="savingsGoalValue" pattern="\d*">
+            <input type="number"  placeholder="£" ng-model="savingsGoalValue" min="1" pattern="\d*">
  </div>
 </div>
 
@@ -30,7 +30,7 @@
     <a class="calcBodyText">How much have you already saved?</a>
     </div>
      <div class="calcInput">
-            <input type="number" placeholder="£" ng-model="alreadySavedValue" min="1" pattern="\d*">
+            <input type="number" placeholder="£" ng-model="alreadySavedValue"  pattern="\d*">
       
     </div>
 </div>
@@ -48,7 +48,7 @@
 
 
 
-<button class="button button-block button-positive calculatorButtonTablet" ng-click="openSavingsCalc()" ng-disabled="!savingsGoalValue || !alreadySavedValue || savingsGoalValue < slider1.value || savingsGoalValue < alreadySavedValue">Calculate</button>
+<button class="button button-block button-positive calculatorButtonTablet" ng-click="openSavingsCalc()" ng-disabled="!savingsGoalValue || savingsGoalValue < slider1.value || savingsGoalValue < alreadySavedValue">Calculate</button>
 
 
 

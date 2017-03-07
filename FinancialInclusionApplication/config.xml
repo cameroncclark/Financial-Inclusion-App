@@ -14,6 +14,10 @@
   <allow-intent href="http://*/*"/>
   <allow-intent href="https://*/*"/>
   <allow-navigation href="*"/>
+  <allow-navigation href="http://130.159.227.223:8100"/>
+  <allow-navigation href="http://192.168.0.12:8100"/>
+  <allow-navigation href="http://130.159.226.29:8100"/>
+  <allow-navigation href="http://130.159.227.169:8100"/>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>

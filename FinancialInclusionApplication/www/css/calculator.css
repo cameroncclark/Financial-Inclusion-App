@@ -236,7 +236,7 @@
 }
 
 .dropDownBox{
-    border: 1px solid #90b4d2;
+    border: 1.5px solid #90b4d2;
     border-radius: 1vh;
     width: 87.5vw;
     margin-left: 3vw;
@@ -251,7 +251,7 @@
 }
 
 .calculatorOptions{
-    border: 1px solid #90b4d2;
+    border: 1.5px solid #90b4d2;
     border-radius: 1vh;
     width: 50vw;
     margin-left: 12vw;
@@ -266,7 +266,7 @@
 }
 
 .calculatorOptions2{
-    border: 1px solid #3269C5;
+    border: 1.5px solid #3269C5;
     border-radius: 1vh;
     width: 50vw;
     margin-left: 12vw;

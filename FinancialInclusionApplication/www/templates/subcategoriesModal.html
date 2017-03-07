@@ -5,9 +5,10 @@
   </ion-header-bar>
   <ion-content>
     <ul class="list">
-      <a class="subcategoriesLink" ng-href="#/content/{{subcategory.url}}/{{subcategory.title}}" ng-click="closeModal()"  ng-repeat="subcategory in modalSubCategories"> 
+      <a class="subcategoriesLink" ng-href="#/content/{{subcategory.url}}/{{subcategory.title}}" ng-click="closeModal()"  ng-repeat="subcategory in modalSubCategories | orderBy :'title'"> 
       <li class="item item-icon-right subcategoriesFont">
-        <i ng-if="subcategory.progress == 100" class="icon ion-checkmark-round"></i>
+        <i ng-if="subcategory.progress == 100" class="icon ion-checkmark-round greenColour"></i>
+        <i ng-if="subcategory.progress > 0 && subcategory.progress < 100" class="icon yellowColour">{{subcategory.progress}}%</i>
         {{subcategory.title}}
       </li>
       </a>
