@@ -185,6 +185,7 @@ public class ContentModel {
 				}
 			}
 		}
+		model.changed();
 	}
 
 	public void saveQuiz(String quizTitle) {

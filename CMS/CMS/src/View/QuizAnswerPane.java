@@ -28,6 +28,8 @@ public class QuizAnswerPane extends JDialog {
 	protected JButton save;
 	protected ArrayList<JTextArea> answers = new ArrayList<JTextArea>();
 	protected ArrayList<JTextArea> reasons = new ArrayList<JTextArea>();
+	protected boolean edit;
+	protected String oldQuestion;
 
 	public QuizAnswerPane(ActionController actionListener) {
 		this.actionListener = actionListener;
@@ -35,6 +37,7 @@ public class QuizAnswerPane extends JDialog {
 		setSize(600, 600);
 		createLayout();
 		setVisible(true);
+		edit = false;
 
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -222,10 +225,9 @@ public class QuizAnswerPane extends JDialog {
 	}
 
 	public ArrayList<String> getAnswers() {
-		System.out.println("I'm in here");
 		ArrayList<String> answersStrings = new ArrayList<String>();
 		for (JTextArea answerArea : answers) {
-			System.out.println("Answer " + answerArea.getText());
+//			System.out.println("Answer " + answerArea.getText());
 			answersStrings.add(answerArea.getText());
 		}
 		return answersStrings;
@@ -248,11 +250,49 @@ public class QuizAnswerPane extends JDialog {
 	}
 
 	public String getQuestionType() {
-		if(questionType.getSelectedItem().toString().equals("True/False") || questionType.getSelectedItem().toString().equals("True/False")){
+		if(questionType.getSelectedItem().toString().equals("True/False") || questionType.getSelectedItem().toString().equals("Multiple Choice")){
 			return "multipleChoice";
 		}else{
 			return "choosePicture";
 		}
+	}
+	
+	public void setQuestion(String question){
+		edit = true;
+		oldQuestion = question;
+		quizAnswerTitleText.setText(question);
+	}
+	
+	public void setAnswersAndReasons(ArrayList<String> ans, ArrayList<String> res){
+		numQuestionAnswers.setSelectedItem(Integer.toString(ans.size()));
 		
+		for(int i = 0; i < ans.size(); i++){
+			answers.get(i).setText(ans.get(i));
+		}
+		
+		for(int i = 0; i < res.size(); i++){
+			reasons.get(i).setText(res.get(i));
+		}
+	}
+	
+	public void setCorrectAnswer(Integer correct){
+		int item = correct + 1;
+		correctAnswers.setSelectedItem(Integer.toString(item));
+	}
+	
+	public void setQuestionType(String type){
+		if(type.equals("multipleChoice")){
+			questionType.setSelectedItem("Multiple Choice");
+		} else {
+			questionType.setSelectedItem("Image Multiple Choice");
+		}
+	}
+	
+	public boolean getEditCheck(){
+		return edit;
+	}
+	
+	public String getOldQuestion(){
+		return oldQuestion;
 	}
 }

@@ -4,12 +4,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Observable;
 import java.util.Observer;
 
 import ContentObjects.Link;
 import ContentObjects.Number;
+import ContentObjects.QuestionObject;
 import ContentObjects.Tip;
 import ContentObjects.Topic;
 
@@ -196,8 +196,17 @@ public class Model extends Observable {
 		return temp.toArray(new String[temp.size()]);
 		
 	}
+	
+	public QuestionObject getQuestion(String questionText){
+		return contentModel.getQuestion(questionText);
+	}
 
 	public void removeQuizQuestion(String selectedQuestion) {
 		contentModel.deleteQuestion(selectedQuestion);
+	}
+	
+	public void editQuestion(String oldQuestion, String questionType, String questionText, ArrayList<String> answers,
+			int answer, ArrayList<String> reasons){
+		contentModel.editQuestion(oldQuestion, questionType, questionText, answers, answer, reasons);
 	}
 }

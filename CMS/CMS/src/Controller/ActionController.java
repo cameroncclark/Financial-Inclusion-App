@@ -100,6 +100,9 @@ public class ActionController implements ActionListener {
 		case "removeQuizQuestion":
 			RemoveQuizQuestionCtrl removeQuizQuestionCtrl = new RemoveQuizQuestionCtrl(model, view);
 			break;
+		case "editQuizQuestion":
+			EditQuizQuestionCtrl editQuizQuestionCtrl = new EditQuizQuestionCtrl(model, view);
+			break;
 		}
 
 	}
