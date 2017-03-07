@@ -155,7 +155,7 @@ public class Model extends Observable {
 	
 	public void addQuestionPicture(String questionType, String questionText, ArrayList<Path> answers, Integer answer,
 			ArrayList<String> reasons) {
-		contentModel.addQuestionPicture(questionType, questionText, answers, answer, reasons);
+		contentModel.addQuestion(questionType, questionText, answers, answer, reasons);
 	}
 
 	/**

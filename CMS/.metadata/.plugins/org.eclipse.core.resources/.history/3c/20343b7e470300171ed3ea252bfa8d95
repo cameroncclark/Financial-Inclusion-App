@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -13,12 +12,10 @@ import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
-import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 import Controller.ActionController;
 
@@ -186,53 +183,6 @@ public class QuizAnswerPane extends JDialog {
 		}
 	}
 	
-	private void imageAns(Integer numQuestions){
-		if (numQuestions + 1 < pictureLoaders.size()) {
-			// Remove the difference
-			int numberOfAnswers = pictureLoaders.size();
-			for (int i = numberOfAnswers; i > numQuestions + 1; i--) {
-				picturePath.remove(i - 1);
-				selectedFile.remove(i - 1);
-				pictureLoaders.remove(i - 1);
-				reasons.remove(i - 1);
-				System.out.println(answers.size());
-			}
-			System.out.println(pictureLoaders.size());
-		} else if (numQuestions + 1 > pictureLoaders.size()) {
-			// Add the difference
-			for (int i = pictureLoaders.size(); i < numQuestions + 1; i++) {
-				picturePath.add(Paths.get(""));
-				selectedFile.add(new JLabel("No File Selected"));
-				pictureLoaders.add(getJButton(i));
-				reasons.add(getJTextArea());
-			}
-		}
-
-		int ypos = 2;
-		for (int i = 0; i < pictureLoaders.size(); i++) {
-			JLabel ans = new JLabel("Answer #" + (i + 1) + ":");
-			ans.setBounds(2, ypos, 150, 20);
-			answersPanel.add(ans);
-			ypos += 20;
-
-			selectedFile.get(i).setBounds(2, ypos, 150, 20);
-			answersPanel.add(selectedFile.get(i));
-			pictureLoaders.get(i).setBounds(170, ypos, 150, 20);
-			answersPanel.add(pictureLoaders.get(i));
-			ypos += 40;
-			
-
-			JLabel reason = new JLabel("Reason #" + (i + 1) + ":");
-			reason.setBounds(2, ypos, 150, 20);
-			answersPanel.add(reason);
-			ypos += 20;
-
-			reasons.get(i).setBounds(2, ypos, 150, 20);
-			answersPanel.add(reasons.get(i));
-			ypos += 40;
-		}
-	}
-	
 	private void textAns(Integer numQuestions){
 		if (numQuestions + 1 < answers.size()) {
 			// Remove the difference
@@ -278,40 +228,23 @@ public class QuizAnswerPane extends JDialog {
 			answersPanel.removeAll();
 			
 			if(imageInUse){
-				imageAns(numQuestions);
+				
 			} else {
 				textAns(numQuestions);
 			}
 			answersPanel.revalidate();
 			answersPanel.validate();
 			answersPanel.repaint();
+
 		}
+
 	}
 
 	private JTextArea getJTextArea() {
 		JTextArea textArea = new JTextArea();
 		textArea.setLineWrap(true);
 		textArea.setWrapStyleWord(true);
-		return textArea;
-	}
-	
-	private JButton getJButton(Integer index) {
-		JButton jButton = new JButton("Load Image");
-		jButton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JFileChooser imageChooser = new JFileChooser();
-				FileNameExtensionFilter filter = new FileNameExtensionFilter("Images", "jpeg","jpg","png","gif");
-				imageChooser.setFileFilter(filter);
-				int returnVal = imageChooser.showOpenDialog(QuizAnswerPane.this);
-				if (returnVal == imageChooser.APPROVE_OPTION) {
-					picturePath.set(index,Paths.get(imageChooser.getSelectedFile().getPath()));
-					selectedFile.get(index).setText(imageChooser.getSelectedFile().getName());
-				}
-			}
-		});
-		return jButton;
+		return new JTextArea();
 	}
 
 	public ArrayList<String> getAnswers() {
@@ -323,7 +256,6 @@ public class QuizAnswerPane extends JDialog {
 	}
 	
 	public ArrayList<Path> getPicturePaths(){
-		System.out.println(picturePath.size());
 		return picturePath;
 	}
 
@@ -388,9 +320,5 @@ public class QuizAnswerPane extends JDialog {
 	
 	public String getOldQuestion(){
 		return oldQuestion;
-	}
-	
-	public boolean getPictureCheck(){
-		return imageInUse;
 	}
 }

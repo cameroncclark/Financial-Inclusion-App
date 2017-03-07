@@ -306,7 +306,7 @@ public class QuizAnswerPane extends JDialog {
 				imageChooser.setFileFilter(filter);
 				int returnVal = imageChooser.showOpenDialog(QuizAnswerPane.this);
 				if (returnVal == imageChooser.APPROVE_OPTION) {
-					picturePath.set(index,Paths.get(imageChooser.getSelectedFile().getPath()));
+					picturePath.add(index,Paths.get(imageChooser.getSelectedFile().getPath()));
 					selectedFile.get(index).setText(imageChooser.getSelectedFile().getName());
 				}
 			}
@@ -323,7 +323,6 @@ public class QuizAnswerPane extends JDialog {
 	}
 	
 	public ArrayList<Path> getPicturePaths(){
-		System.out.println(picturePath.size());
 		return picturePath;
 	}
 

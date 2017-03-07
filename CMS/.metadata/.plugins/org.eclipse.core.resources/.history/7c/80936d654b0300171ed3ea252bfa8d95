@@ -17,11 +17,7 @@ public class AddQuizQuestionCtrl {
 		if(quizAnswerPane.getEditCheck()){
 			model.editQuestion(quizAnswerPane.getOldQuestion(), quizAnswerPane.getQuestionType(), quizAnswerPane.getQuestion(), quizAnswerPane.getAnswers(), quizAnswerPane.getCorrectAnswer(),quizAnswerPane.getReasons());
 		} else {
-			if(quizAnswerPane.getPictureCheck()){
-				model.addQuestionPicture(quizAnswerPane.getQuestionType(), quizAnswerPane.getQuestion(), quizAnswerPane.getPicturePaths(), quizAnswerPane.getCorrectAnswer(),quizAnswerPane.getReasons());
-			} else {
-				model.addQuestion(quizAnswerPane.getQuestionType(), quizAnswerPane.getQuestion(), quizAnswerPane.getAnswers(), quizAnswerPane.getCorrectAnswer(),quizAnswerPane.getReasons());
-			}
+			model.addQuestion(quizAnswerPane.getQuestionType(), quizAnswerPane.getQuestion(), quizAnswerPane.getAnswers(), quizAnswerPane.getCorrectAnswer(),quizAnswerPane.getReasons());
 		}
 		quizAnswerPane.dispose();
 	}

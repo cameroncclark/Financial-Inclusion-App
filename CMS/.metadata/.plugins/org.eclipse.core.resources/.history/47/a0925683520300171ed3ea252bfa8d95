@@ -39,7 +39,7 @@ public class ContentModel {
 	public ContentModel(Model model) {
 		this.model = model;
 		gson = new Gson();
-		
+
 	}
 
 	public void setTopicsMap() {
@@ -84,13 +84,6 @@ public class ContentModel {
 	private void createFile(String filename, Topic topic) {
 		writeTopic(filename, topic);
 		writeQuiz(filename, quiz);
-		for(int i = 0; i < quizImagePaths.size(); i++){
-			saveImageFileQuiz(quizImagePaths.get(i).toString(), quizImages.get(i));
-		}
-		quizImagePaths = new ArrayList<>();
-		quizImages = new ArrayList<>();
-		questions = new ArrayList<>();
-		quiz = new QuizObject();
 		rewriteTopicsFile();
 	}
 
@@ -108,7 +101,7 @@ public class ContentModel {
 	}
 
 	private String getFileName(String title, String folder, String fileType) {
-		String fileName = title.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+		String fileName = title.replaceAll("[^a-zA-Z]", "").toLowerCase();
 		ArrayList<String> allFileNames = getAllFileNames(folder);
 		if (!allFileNames.contains(fileName + fileType)) {
 			return fileName + fileType;
@@ -140,8 +133,6 @@ public class ContentModel {
 		//If the quiz isn't null
 		quiz = new QuizObject();
 		questions = new ArrayList<QuestionObject>();
-		quizImagePaths = new ArrayList<>();
-		quizImages = new ArrayList<>();
 	}
 
 	public void closeWithoutSaving() {
@@ -188,18 +179,16 @@ public class ContentModel {
 			}
 			String temp = getFileName(oldFileName, "quizImages/", extension);
 			int count = 1;
-			System.out.println("Count = " + count + " - Name = " + temp + " - Old = " + oldFileName + " - Ext = " + extension);
-//			while(quizImages.contains(temp)){
-//				File nF = new File(temp);
-//				int j = nF.getName().lastIndexOf('.');
-//				if (j > 0) {
-//					oldFileName = nF.getName().substring(0, j) + "-" + count;
-//					extension = nF.getName().substring(j);
-//				}
-//				temp = getFileName(oldFileName, "quizImages/", extension);
-//				count++;
-//				System.out.println("Count = " + count + " - Name = " + temp + " - Old = " + oldFileName + " - Ext = " + extension);
-//			}
+			while(quizImages.contains(temp)){
+				File nF = new File(temp);
+				int j = nF.getName().lastIndexOf('.');
+				if (j > 0) {
+					oldFileName = nF.getName().substring(0, j) + "-" + count;
+					extension = nF.getName().substring(j);
+				}
+				temp = getFileName(oldFileName, "quizImages/", extension);
+				count++;
+			}
 			quizImages.add(temp);
 			imgPath.add(temp);
 		}

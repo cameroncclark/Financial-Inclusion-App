@@ -33,13 +33,11 @@ public class ContentModel {
 	String activeFile = "";
 	QuizObject quiz = null;
 	ArrayList<QuestionObject> questions;
-	ArrayList<String> quizImages;
-	ArrayList<Path> quizImagePaths;
 
 	public ContentModel(Model model) {
 		this.model = model;
 		gson = new Gson();
-		
+
 	}
 
 	public void setTopicsMap() {
@@ -84,13 +82,6 @@ public class ContentModel {
 	private void createFile(String filename, Topic topic) {
 		writeTopic(filename, topic);
 		writeQuiz(filename, quiz);
-		for(int i = 0; i < quizImagePaths.size(); i++){
-			saveImageFileQuiz(quizImagePaths.get(i).toString(), quizImages.get(i));
-		}
-		quizImagePaths = new ArrayList<>();
-		quizImages = new ArrayList<>();
-		questions = new ArrayList<>();
-		quiz = new QuizObject();
 		rewriteTopicsFile();
 	}
 
@@ -108,7 +99,7 @@ public class ContentModel {
 	}
 
 	private String getFileName(String title, String folder, String fileType) {
-		String fileName = title.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+		String fileName = title.replaceAll("[^a-zA-Z]", "").toLowerCase();
 		ArrayList<String> allFileNames = getAllFileNames(folder);
 		if (!allFileNames.contains(fileName + fileType)) {
 			return fileName + fileType;
@@ -140,8 +131,6 @@ public class ContentModel {
 		//If the quiz isn't null
 		quiz = new QuizObject();
 		questions = new ArrayList<QuestionObject>();
-		quizImagePaths = new ArrayList<>();
-		quizImages = new ArrayList<>();
 	}
 
 	public void closeWithoutSaving() {
@@ -169,41 +158,6 @@ public class ContentModel {
 	public void addQuestion(String questionType, String questionText, ArrayList<String> answers, int answer,
 			ArrayList<String> reasons) {
 		questions.add(new QuestionObject(questionType, questionText, answers, answer, reasons));
-		model.changed();
-	}
-	
-	public void addQuestionPicture(String questionType, String questionText,
-			ArrayList<Path> answers, Integer answer, ArrayList<String> reasons) {
-		ArrayList<String> imgPath = new ArrayList<>();
-		for(Path p : answers){
-			quizImagePaths.add(p);
-			File file = new File(p.toString());
-			String extension = "";
-			String oldFileName = "";
-
-			int i = file.getName().lastIndexOf('.');
-			if (i > 0) {
-				oldFileName = file.getName().substring(0, i);
-				extension = file.getName().substring(i);
-			}
-			String temp = getFileName(oldFileName, "quizImages/", extension);
-			int count = 1;
-			System.out.println("Count = " + count + " - Name = " + temp + " - Old = " + oldFileName + " - Ext = " + extension);
-//			while(quizImages.contains(temp)){
-//				File nF = new File(temp);
-//				int j = nF.getName().lastIndexOf('.');
-//				if (j > 0) {
-//					oldFileName = nF.getName().substring(0, j) + "-" + count;
-//					extension = nF.getName().substring(j);
-//				}
-//				temp = getFileName(oldFileName, "quizImages/", extension);
-//				count++;
-//				System.out.println("Count = " + count + " - Name = " + temp + " - Old = " + oldFileName + " - Ext = " + extension);
-//			}
-			quizImages.add(temp);
-			imgPath.add(temp);
-		}
-		questions.add(new QuestionObject(questionType, questionText, imgPath, answer, reasons));
 		model.changed();
 	}
 
@@ -320,13 +274,6 @@ public class ContentModel {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-	
-	public void saveImageFileQuiz(String path, String filename) {
-		try {
-			Files.write(Paths.get(_PATH + "quizImages/" + filename), Files.readAllBytes(Paths.get(path)));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+
 	}
 }

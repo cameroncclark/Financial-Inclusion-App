@@ -3,7 +3,6 @@ package Model;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -151,11 +150,6 @@ public class Model extends Observable {
 	public void addQuestion(String questionType, String questionText, ArrayList<String> answers, Integer answer,
 			ArrayList<String> reasons) {
 		contentModel.addQuestion(questionType, questionText, answers, answer, reasons);
-	}
-	
-	public void addQuestionPicture(String questionType, String questionText, ArrayList<Path> answers, Integer answer,
-			ArrayList<String> reasons) {
-		contentModel.addQuestionPicture(questionType, questionText, answers, answer, reasons);
 	}
 
 	/**
