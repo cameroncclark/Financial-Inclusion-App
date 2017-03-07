@@ -398,6 +398,7 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
         var subCatName;
         var query = "SELECT name FROM subcategories WHERE quizUrL = '" + quizURL + "'";
         $cordovaSQLite.execute(db, query, []).then(function (result) {
+            console.log("This is the result: " + JSON.stringify(result));
             if (result.rows.length > 0) {
                 subCatName = result.rows.item(0).name;
                 q.resolve(subCatName);
