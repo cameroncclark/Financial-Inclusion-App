@@ -1,7 +1,5 @@
 package Controller;
 
-import javax.swing.JOptionPane;
-
 import ContentObjects.QuestionObject;
 import Model.Model;
 import View.AddContentPane;
@@ -24,8 +22,7 @@ public class EditQuizQuestionCtrl {
 			quizAnswerPane.setAnswersAndReasons(question.getAnswers(), question.getReasons());
 			quizAnswerPane.setCorrectAnswer(question.getAnswer());
 		} else {
-			quizAnswerPane.dispose();
-			JOptionPane.showMessageDialog(null, "Image Questions Cannot Be Edited!\nPlease Remove Question.","Non-Editable Content",JOptionPane.ERROR_MESSAGE);
+			System.out.println("BOO");
 		}
 	}
 }

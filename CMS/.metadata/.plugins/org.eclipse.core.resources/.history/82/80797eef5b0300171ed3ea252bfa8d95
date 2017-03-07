@@ -188,6 +188,7 @@ public class ContentModel {
 			}
 			String temp = getFileName(oldFileName, "quizImages/", extension);
 			int count = 1;
+			System.out.println("Count = " + count + " - Name = " + temp + " - Old = " + oldFileName + " - Ext = " + extension);
 			while(quizImages.contains(temp)){
 				File nF = new File(temp);
 				int j = nF.getName().lastIndexOf('.');
@@ -197,6 +198,7 @@ public class ContentModel {
 				}
 				temp = getFileName(oldFileName, "quizImages/", extension);
 				count++;
+				System.out.println("Count = " + count + " - Name = " + temp + " - Old = " + oldFileName + " - Ext = " + extension);
 			}
 			quizImages.add(temp);
 			imgPath.add(temp);
@@ -281,6 +283,7 @@ public class ContentModel {
 		} catch (DirectoryNotEmptyException x) {
 			System.err.format("%s not empty%n", path);
 		} catch (IOException x) {
+			// File permission problems are caught here.
 			System.err.println(x);
 		}
 	}
