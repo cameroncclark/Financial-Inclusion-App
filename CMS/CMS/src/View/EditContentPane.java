@@ -4,8 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.File;
-import java.nio.file.Files;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -18,6 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import Controller.ActionController;
+import Model.Model;
 
 public class EditContentPane extends JDialog {
 	protected ActionController actionListener;
@@ -25,8 +24,11 @@ public class EditContentPane extends JDialog {
 	protected JComboBox categoriesDropdown;
 	protected String[] categories;
 	protected JTextArea contentArea;
+	protected Model model;
+	protected JDialog activePanel;
 
-	public EditContentPane(ActionController actionListener) {
+	public EditContentPane(ActionController actionListener, Model model) {
+		this.model = model;
 		this.actionListener = actionListener;
 		categories = actionListener.initaliseCategoriesTab();
 		setLayout(null);
@@ -91,7 +93,7 @@ public class EditContentPane extends JDialog {
 	
 	private void createButtons(){
 		JButton sectionButton = new JButton("Section");
-		sectionButton.setBounds(2,80,99,20);
+		sectionButton.setBounds(2,70,99,20);
 		sectionButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -100,6 +102,18 @@ public class EditContentPane extends JDialog {
 			}
 		});
 		add(sectionButton);
+		
+		JButton quizButton = new JButton("Quiz");
+		quizButton.setBounds(2,90,99,20);
+		quizButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				activePanel = new QuizPane(actionListener);
+				model.setModelObserver((QuizPane) activePanel);
+			}
+		});
+		add(quizButton);
 		
 		JButton titleButton = new JButton("Title");
 		titleButton.setBounds(100,70,100,20);
@@ -195,6 +209,10 @@ public class EditContentPane extends JDialog {
 			}
 		});
 		add(italicButton);
+	}
+	
+	public JDialog getActivePanel(){
+		return activePanel;
 	}
 
 	public String getTopicTitle() {

@@ -7,19 +7,19 @@ public class QuestionObject {
 	protected String questionText;
 	protected ArrayList<String> answers;
 	protected int answer;
-	protected ArrayList<String> reasons;
+	protected ArrayList<String> reason;
 
 	public QuestionObject() {
 
 	}
 
 	public QuestionObject(String questionType, String questionText, ArrayList<String> answers, int answer,
-			ArrayList<String> reasons) {
+			ArrayList<String> reason) {
 		this.questionType = questionType;
 		this.questionText = questionText;
 		this.answers = answers;
 		this.answer = answer;
-		this.reasons = reasons;
+		this.reason = reason;
 	}
 
 	public String getQuestionType() {
@@ -54,12 +54,12 @@ public class QuestionObject {
 		this.answer = answer;
 	}
 
-	public ArrayList<String> getReasons() {
-		return reasons;
+	public ArrayList<String> getReason() {
+		return reason;
 	}
 
-	public void setReasons(ArrayList<String> reasons) {
-		this.reasons = reasons;
+	public void setReason(ArrayList<String> reason) {
+		this.reason = reason;
 	}
 
 }

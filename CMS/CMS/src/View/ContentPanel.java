@@ -17,6 +17,7 @@ public class ContentPanel implements Panel, Observer{
 	JPanel panel;
 	ActionController actionListener;
 	JDialog activePanel;
+	Boolean addActive;
 	Model model;
 	
 	public JDialog getActivePanel() {
@@ -26,6 +27,7 @@ public class ContentPanel implements Panel, Observer{
 	public ContentPanel(ActionController actionListener, Model model) {
 		this.model = model;
 		this.actionListener = actionListener;
+		addActive = false;
 		createPanel();
 	}
 	
@@ -43,6 +45,7 @@ public class ContentPanel implements Panel, Observer{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				addActive = true;
 				activePanel = new AddContentPane(actionListener,model);
 			}
 		});
@@ -54,7 +57,8 @@ public class ContentPanel implements Panel, Observer{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				activePanel = new EditContentPane(actionListener);
+				addActive = false;
+				activePanel = new EditContentPane(actionListener,model);
 			}
 		});
 		editTopicButton.setBounds(2,100,200,20);
@@ -72,6 +76,10 @@ public class ContentPanel implements Panel, Observer{
 		panel.add(deleteTopicButton);
 		
 		
+	}
+	
+	public Boolean isAddPaneActive(){
+		return addActive;
 	}
 	
 	@Override

@@ -76,20 +76,11 @@ public class ActionController implements ActionListener {
 		case "editContentPage":
 			EditContentCtrl editContentCtrl = new EditContentCtrl(model, view);
 			break;
+		case "editQuizQuestion":
+			EditQuizQuestionCtrl editQuizQuestionCtrl = new EditQuizQuestionCtrl(model,view);
+		break;
 		case "deleteContentPage":
 			DeleteContentCtrl deleteContentCtrl = new DeleteContentCtrl(model,view);
-			break;
-		case "addQuestion":
-			AddQuestionCtrl addQuestionCtrl = new AddQuestionCtrl(model,view);
-			break;
-		case "editQuestion":
-			EditQuestionCtrl editQuestionCtrl = new EditQuestionCtrl(model,view);
-			break;
-		case "deleteQuestion":
-			DeleteQuestionCtrl deleteQuestionCtrl = new DeleteQuestionCtrl(model,view);
-			break;
-		case "createQuiz":
-			CreateQuizController createQuizController = new CreateQuizController(model,view);
 			break;
 		case "saveQuiz":
 			SaveQuizController saveQuizController = new SaveQuizController(model,view);
@@ -99,9 +90,6 @@ public class ActionController implements ActionListener {
 			break;
 		case "removeQuizQuestion":
 			RemoveQuizQuestionCtrl removeQuizQuestionCtrl = new RemoveQuizQuestionCtrl(model, view);
-			break;
-		case "editQuizQuestion":
-			EditQuizQuestionCtrl editQuizQuestionCtrl = new EditQuizQuestionCtrl(model, view);
 			break;
 		}
 
@@ -157,6 +145,10 @@ public class ActionController implements ActionListener {
 	
 	public String[] getQuestions(){
 		return model.getQuestionText();
+	}
+	
+	public String getQuizTitle(){
+		return model.getQuizTitle();
 	}
 
 }

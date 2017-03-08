@@ -47,10 +47,12 @@ public class QuizPane extends JDialog implements Observer{
 	
 	private void createLayout(){
 		JLabel topicTitle = new JLabel("Quiz Title:");
+		
 		topicTitle.setBounds(2,10,200,20);
 		add(topicTitle);
 		
 		quizTitleText = new JTextField();
+		quizTitleText.setText(actionListener.getQuizTitle());
 		quizTitleText.setBounds(90, 10, 200, 20);
 		add(quizTitleText);
 	

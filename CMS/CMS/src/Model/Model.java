@@ -215,4 +215,8 @@ public class Model extends Observable {
 			int answer, ArrayList<String> reasons){
 		contentModel.editQuestion(oldQuestion, questionType, questionText, answers, answer, reasons);
 	}
+
+	public String getQuizTitle() {
+		return contentModel.getQuizTitle();
+	}
 }

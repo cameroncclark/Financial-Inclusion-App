@@ -25,8 +25,7 @@ public class AddContentPane extends JDialog {
 	protected String[] categories;
 	protected JTextArea contentArea;
 	protected Model model;
-	
-	JDialog activePanel;
+	protected JDialog activePanel;
 	
 	public AddContentPane(ActionController actionListener, Model model) {
 		this.model = model;
