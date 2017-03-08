@@ -181,6 +181,17 @@ fIApp.component("headerBar", {
 
         $scope.switchMode = function () {
             $scope.updateProfile = !$scope.updateProfile;
-        }
+        };
+
+        $scope.clearHistory = function () {
+            dbAccessor.clearAllProgress();
+            var alertPopup = $ionicPopup.alert({
+                title: "Clear History",
+                template: "All History Deleted!"
+            });
+            $rootScope.userName.avatar = "img/startImage.png";
+            $rootScope.userName.name = "Your Name Here";
+            $rootScope.userName.location = "Your Location Here";
+        };
     }
 });

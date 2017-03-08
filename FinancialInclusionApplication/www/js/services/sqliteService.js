@@ -190,6 +190,18 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
     };
 
     /**
+     * This is to reset all progress in the application
+     */
+    this.clearAllProgress = function (){
+        $cordovaSQLite.execute(db, "UPDATE trophies SET acquired = 0", []);
+        $cordovaSQLite.execute(db, "UPDATE progress SET counter = 0 WHERE valueChange IS NULL", []);
+        $cordovaSQLite.execute(db, "UPDATE progress SET valueChanged = 'false' WHERE counter IS NULL", []);
+        $cordovaSQLite.execute(db, "UPDATE categories SET percentageComplete = 0", []);
+        $cordovaSQLite.execute(db, "UPDATE subcategories SET percentageComplete = 0", []);
+        $cordovaSQLite.execute(db, "UPDATE userData SET name = 'Your Name Here', location = 'Your Location Here', avatar = 'img/startImage.png'", []);
+    };
+
+    /**
      * Whenever the user has reached the requirement of a new trophy, this function will unlock that trophy
      */
     this.updateTrophy = function (trophy) {
@@ -522,10 +534,6 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
         $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS categories (id INTEGER PRIMARY KEY, name NVARCHAR(50), percentageComplete INTEGER)");
         $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS subcategories (id INTEGER PRIMARY KEY, name NVARCHAR(50), quizURL NVARCHAR(50), percentageComplete INTEGER, categoryID INTEGER, FOREIGN KEY(categoryID) REFERENCES categories(id))");
         $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS progress (objective NVARCHAR(50) PRIMARY KEY, counter INTEGER, valueChanged TINYINT)");
-
-        //TO DO (CREATE A NEW TABLE FOR SETTINGS)
-        //$cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS settings ()");
-
     }
 
     this.setGlobalName = function () {
