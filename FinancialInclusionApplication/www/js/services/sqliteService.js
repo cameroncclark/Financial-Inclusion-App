@@ -217,6 +217,39 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
         });
     };
 
+
+    /**
+     * This is to update trophies based off websites being loaded
+     */
+    this.loadingWebsite = function () {
+        dbService.updateTrophy("Visit an external website");
+
+        var websiteCounter = 0;
+        $cordovaSQLite.execute(db, "SELECT counter FROM progress WHERE objective LIKE 'Visit 5 websites'", []).then(function (result) {
+            if (result.rows.length > 0) {
+                websiteCounter = result.rows.item(0).counter + 1;
+                console.log("Website Counter = " + websiteCounter);
+
+                if (websiteCounter == 5) {
+                    dbService.updateTrophy("Visit 5 external websites");
+                }
+                $cordovaSQLite.execute(db, "UPDATE progress SET counter = " + websiteCounter + " WHERE objective LIKE 'Visit 5 websites'", []);
+
+            } else {
+                console.error("ACCESSING PROGRESS FAILED AT FUNCTION - loadingWebsite");
+            }
+        }, function (error) {
+            console.error(error);
+        });
+    };
+
+    /**
+     * This is to update calling a phone number
+     */
+    this.callingPhone = function () {
+        dbService.updateTrophy("Call a phone number");
+    };
+
     /**
      * This is to update the quizzes
      */
@@ -610,9 +643,7 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
         $cordovaSQLite.execute(db, progressQuery, ["Perform calc 2", null, "false"]);
         $cordovaSQLite.execute(db, progressQuery, ["Perform calc 3", null, "false"]);
         $cordovaSQLite.execute(db, progressQuery, ["Perform calc 4", null, "false"]);
-        $cordovaSQLite.execute(db, progressQuery, ["Visit a webpage", null, "false"]);
         $cordovaSQLite.execute(db, progressQuery, ["Visit 5 websites", 0, null]);
-        $cordovaSQLite.execute(db, progressQuery, ["Call number", null, "false"]);
         $cordovaSQLite.execute(db, progressQuery, ["Quiz Counter", 0, null]);
         $cordovaSQLite.execute(db, progressQuery, ["100% Quiz Counter", 0, null]);
     }

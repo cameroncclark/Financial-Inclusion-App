@@ -1,4 +1,4 @@
-fIApp.controller('ExternalLinksCtrl', function($scope, $http) {
+fIApp.controller('ExternalLinksCtrl', function($scope, $http, dbAccessor) {
     $scope.name = 'External Links';
     $scope.content = 'External Links stored here';
 
@@ -16,6 +16,7 @@ fIApp.controller('ExternalLinksCtrl', function($scope, $http) {
         try {
             var website = urlObject.website;
             window.open(website, '_system', 'location=yes');
+            dbAccessor.loadingWebsite();
         } catch (err) {
             alert(err);
         }

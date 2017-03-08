@@ -7,7 +7,7 @@
   <ion-content class="padding informationText">
     <div class="list">
       <div ng-repeat="num in numbersList" class="item item-icon-right informationText" ng-click="showDetails = ! showDetails">
-        <a ng-href="tel:{{num.number}}"><i class="icon ion-ios-telephone informationText"></i></a> {{num.name}}
+        <a ng-href="tel:{{num.number}}" ng-click="callingNumber()"><i class="icon ion-ios-telephone informationText"></i></a> {{num.name}}
         <div class="quiz-Answer-Display informationText" ng-class="{'hidden':!showDetails}">
           <hr> {{num.blurb}}
         </div>

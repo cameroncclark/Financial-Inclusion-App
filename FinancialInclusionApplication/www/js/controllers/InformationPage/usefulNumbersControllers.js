@@ -1,4 +1,4 @@
-fIApp.controller('UsefulNumbersCtrl', function ($scope, $http) {
+fIApp.controller('UsefulNumbersCtrl', function ($scope, $http, dbAccessor) {
     $scope.name = 'Useful Numbers';
     $scope.content = 'Useful Numbers will be stored here';
 
@@ -12,5 +12,9 @@ fIApp.controller('UsefulNumbersCtrl', function ($scope, $http) {
 
     $scope.getInfoCategoryValues = function () {
         return $scope.numbersList;
+    };
+
+    $scope.callingNumber = function () {
+        dbAccessor.callingPhone();
     };
 });
