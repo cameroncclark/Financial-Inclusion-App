@@ -190,6 +190,18 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
     };
 
     /**
+     * This is to reset all progress in the application
+     */
+    this.clearAllProgress = function (){
+        $cordovaSQLite.execute(db, "UPDATE trophies SET acquired = 0", []);
+        $cordovaSQLite.execute(db, "UPDATE progress SET counter = 0 WHERE valueChange IS NULL", []);
+        $cordovaSQLite.execute(db, "UPDATE progress SET valueChanged = 'false' WHERE counter IS NULL", []);
+        $cordovaSQLite.execute(db, "UPDATE categories SET percentageComplete = 0", []);
+        $cordovaSQLite.execute(db, "UPDATE subcategories SET percentageComplete = 0", []);
+        $cordovaSQLite.execute(db, "UPDATE userData SET name = 'Your Name Here', location = 'Your Location Here', avatar = 'img/startImage.png'", []);
+    };
+
+    /**
      * Whenever the user has reached the requirement of a new trophy, this function will unlock that trophy
      */
     this.updateTrophy = function (trophy) {
@@ -215,6 +227,39 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
         }, function (error) {
             console.error(error);
         });
+    };
+
+
+    /**
+     * This is to update trophies based off websites being loaded
+     */
+    this.loadingWebsite = function () {
+        dbService.updateTrophy("Visit an external website");
+
+        var websiteCounter = 0;
+        $cordovaSQLite.execute(db, "SELECT counter FROM progress WHERE objective LIKE 'Visit 5 websites'", []).then(function (result) {
+            if (result.rows.length > 0) {
+                websiteCounter = result.rows.item(0).counter + 1;
+                console.log("Website Counter = " + websiteCounter);
+
+                if (websiteCounter == 5) {
+                    dbService.updateTrophy("Visit 5 external websites");
+                }
+                $cordovaSQLite.execute(db, "UPDATE progress SET counter = " + websiteCounter + " WHERE objective LIKE 'Visit 5 websites'", []);
+
+            } else {
+                console.error("ACCESSING PROGRESS FAILED AT FUNCTION - loadingWebsite");
+            }
+        }, function (error) {
+            console.error(error);
+        });
+    };
+
+    /**
+     * This is to update calling a phone number
+     */
+    this.callingPhone = function () {
+        dbService.updateTrophy("Call a phone number");
     };
 
     /**
@@ -489,10 +534,6 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
         $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS categories (id INTEGER PRIMARY KEY, name NVARCHAR(50), percentageComplete INTEGER)");
         $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS subcategories (id INTEGER PRIMARY KEY, name NVARCHAR(50), quizURL NVARCHAR(50), percentageComplete INTEGER, categoryID INTEGER, FOREIGN KEY(categoryID) REFERENCES categories(id))");
         $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS progress (objective NVARCHAR(50) PRIMARY KEY, counter INTEGER, valueChanged TINYINT)");
-
-        //TO DO (CREATE A NEW TABLE FOR SETTINGS)
-        //$cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS settings ()");
-
     }
 
     this.setGlobalName = function () {
@@ -610,9 +651,7 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
         $cordovaSQLite.execute(db, progressQuery, ["Perform calc 2", null, "false"]);
         $cordovaSQLite.execute(db, progressQuery, ["Perform calc 3", null, "false"]);
         $cordovaSQLite.execute(db, progressQuery, ["Perform calc 4", null, "false"]);
-        $cordovaSQLite.execute(db, progressQuery, ["Visit a webpage", null, "false"]);
         $cordovaSQLite.execute(db, progressQuery, ["Visit 5 websites", 0, null]);
-        $cordovaSQLite.execute(db, progressQuery, ["Call number", null, "false"]);
         $cordovaSQLite.execute(db, progressQuery, ["Quiz Counter", 0, null]);
         $cordovaSQLite.execute(db, progressQuery, ["100% Quiz Counter", 0, null]);
     }
