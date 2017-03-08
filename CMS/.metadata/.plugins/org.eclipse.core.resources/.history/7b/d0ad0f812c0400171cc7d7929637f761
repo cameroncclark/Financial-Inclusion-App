@@ -354,7 +354,6 @@ public class ContentModel {
 	public void saveImageFileQuiz(String path, String filename) {
 		try {
 			Files.write(Paths.get(_PATH + "quizImages/" + filename), Files.readAllBytes(Paths.get(path)));
-			//to add compression: https://www.tutorialspoint.com/java_dip/image_compression_technique.htm
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

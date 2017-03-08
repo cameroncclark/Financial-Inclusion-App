@@ -295,17 +295,7 @@ public class ContentModel {
 
 	public void deleteFile(String file) {
 		Path path = Paths.get(_PATH + "topics/" + file);
-		try {
-			Files.delete(path);
-		} catch (NoSuchFileException x) {
-			System.err.format("%s: no such" + " file or directory%n", path);
-		} catch (DirectoryNotEmptyException x) {
-			System.err.format("%s not empty%n", path);
-		} catch (IOException x) {
-			System.err.println(x);
-		}
-		
-		path = Paths.get(_PATH + "quizzes/" + file);
+		System.out.println(path.toString());
 		try {
 			Files.delete(path);
 		} catch (NoSuchFileException x) {
@@ -354,7 +344,6 @@ public class ContentModel {
 	public void saveImageFileQuiz(String path, String filename) {
 		try {
 			Files.write(Paths.get(_PATH + "quizImages/" + filename), Files.readAllBytes(Paths.get(path)));
-			//to add compression: https://www.tutorialspoint.com/java_dip/image_compression_technique.htm
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
