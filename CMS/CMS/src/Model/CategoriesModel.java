@@ -77,8 +77,9 @@ public class CategoriesModel {
 	 * Will add a category with a unique id, given the name is not a duplicate.
 	 * 
 	 * @param categoryName The name to be added
+	 * @return 
 	 */
-	public void addCategory(String categoryName) {
+	public Boolean addCategory(String categoryName) {
 		if (!duplicateName(categoryName)) {
 			int newCatId = random.nextInt(500) + 1;
 			while (getCategoryIDs().contains(newCatId)) {
@@ -86,6 +87,9 @@ public class CategoriesModel {
 			}
 			categories.add(new Category(categoryName, newCatId));
 			rewriteCategoriesFile();
+			return true;
+		}{
+			return false;
 		}
 	}
 
@@ -94,8 +98,9 @@ public class CategoriesModel {
 	 * 
 	 * @param oldCat Old category name
 	 * @param newCat New category name
+	 * @return 
 	 */
-	public void editCategory(String oldCat, String newCat) {
+	public Boolean editCategory(String oldCat, String newCat) {
 		if (!duplicateName(newCat)) {
 			for (Category c : categories) {
 				if (c.getName().equals(oldCat)) {
@@ -104,6 +109,9 @@ public class CategoriesModel {
 				}
 			}
 			rewriteCategoriesFile();
+			return true;
+		}else{
+			return false;
 		}
 	}
 

@@ -31,11 +31,15 @@ public class EditTipCtrl {
 							"Tip is too long, it exeeds maximum length of 200 characters.",
 							"Exceeds max length", JOptionPane.ERROR_MESSAGE);
 		} else {
-			model.editTip(panel.getSelectedEdit(), panel.getEditTipHeader(),
-					panel.getEditTipTip());
+			if(model.editTip(panel.getSelectedEdit(), panel.getEditTipHeader(),
+					panel.getEditTipTip())){
 			JOptionPane.showMessageDialog(null, "Tip '" + header
 					+ "' successfully edited.", "Tip edited",
 					JOptionPane.INFORMATION_MESSAGE);
+			}else{
+				JOptionPane.showMessageDialog(null, "Number '" + header + "' could not be changed as it is a duplicate name.",
+						"Edit failed", JOptionPane.WARNING_MESSAGE);
+			}
 		}
 	}
 }

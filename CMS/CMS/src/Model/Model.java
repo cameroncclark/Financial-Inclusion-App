@@ -47,36 +47,36 @@ public class Model extends Observable {
 		return tipsModel.selectTips();
 	}
 
-	public void addCategory(String categoryName) {
-		catModel.addCategory(categoryName);
+	public Boolean addCategory(String categoryName) {
+		return catModel.addCategory(categoryName);
 	}
 
-	public void addNumber(String name, String blurb, String number) {
-		numbersModel.addUsefulNumber(name, blurb, number);
+	public Boolean addNumber(String name, String blurb, String number) {
+		return numbersModel.addUsefulNumber(name, blurb, number);
 	}
 
-	public void addLink(String name, String blurb, String website) {
-		linksModel.addLink(name, blurb, website);
+	public Boolean addLink(String name, String blurb, String website) {
+		return linksModel.addLink(name, blurb, website);
 	}
 
-	public void addTip(String header, String tip) {
-		tipsModel.addTip(header, tip);
+	public Boolean addTip(String header, String tip) {
+		return tipsModel.addTip(header, tip);
 	}
 
-	public void editCategory(String oldCat, String newCat) {
-		catModel.editCategory(oldCat, newCat);
+	public Boolean editCategory(String oldCat, String newCat) {
+		return catModel.editCategory(oldCat, newCat);
 	}
 
-	public void editNumber(String oldName, String newName, String newBlurb, String newNumber) {
-		numbersModel.editUsefulNumber(oldName, newName, newBlurb, newNumber);
+	public Boolean editNumber(String oldName, String newName, String newBlurb, String newNumber) {
+		return numbersModel.editUsefulNumber(oldName, newName, newBlurb, newNumber);
 	}
 
-	public void editLink(String oldName, String newName, String newBlurb, String newWebsite) {
-		linksModel.editLink(oldName, newName, newBlurb, newWebsite);
+	public Boolean editLink(String oldName, String newName, String newBlurb, String newWebsite) {
+		return linksModel.editLink(oldName, newName, newBlurb, newWebsite);
 	}
 
-	public void editTip(String oldHeader, String newHeader, String newTip) {
-		tipsModel.editTip(oldHeader, newHeader, newTip);
+	public Boolean editTip(String oldHeader, String newHeader, String newTip) {
+		return tipsModel.editTip(oldHeader, newHeader, newTip);
 	}
 
 	public void deleteCategory(String selectedCat) {

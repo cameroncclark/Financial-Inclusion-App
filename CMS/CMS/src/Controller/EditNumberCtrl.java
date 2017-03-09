@@ -16,9 +16,13 @@ public class EditNumberCtrl {
 		} else {
 			String title = panel.getEditTitle();
 			if(panel.getEditTitle().length() < 20){
-				model.editNumber(panel.getSelectedEdit(), panel.getEditTitle(), panel.getEditBlurb(), panel.getEditNumber());
+				if(model.editNumber(panel.getSelectedEdit(), panel.getEditTitle(), panel.getEditBlurb(), panel.getEditNumber())){
 				JOptionPane.showMessageDialog(null,"'" + title + "' successfully updated!",
 						"Success", JOptionPane.INFORMATION_MESSAGE);
+				}else{
+					JOptionPane.showMessageDialog(null, "Number '" + title + "' could not be changed as it is a duplicate name.",
+							"Edit failed", JOptionPane.WARNING_MESSAGE);
+				}
 			} else {
 				JOptionPane.showMessageDialog(null, "Number '" + title + "' is too long - Max 20 Characters.",
 						"Too Long", JOptionPane.ERROR_MESSAGE);

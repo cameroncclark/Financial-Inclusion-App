@@ -18,8 +18,12 @@ public class EditCategoryCtrl {
 			if (panel.getEditCategoryText().length() > 20) {
 				JOptionPane.showMessageDialog(null, "Category '"+category+"' exceeds the maximum length of 20 characters.", "Category too long", JOptionPane.ERROR_MESSAGE);
 			} else {
-				model.editCategory(panel.getGetSelectedEditItem(), panel.getEditCategoryText());
+				if(model.editCategory(panel.getGetSelectedEditItem(), panel.getEditCategoryText())){
 				JOptionPane.showMessageDialog(null, "Category '"+old+"' has been changed to '"+category+"'.", "Category added", JOptionPane.INFORMATION_MESSAGE);
+				}else{
+					JOptionPane.showMessageDialog(null, "Category '" + category + "' could not be changed as it is a duplicate name.",
+							"Edit failed", JOptionPane.WARNING_MESSAGE);
+				}
 			}
 		}
 	}

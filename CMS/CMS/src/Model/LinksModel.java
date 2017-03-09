@@ -56,16 +56,20 @@ public class LinksModel {
 		return new Link();
 	}
 
-	public void addLink(String name, String blurb, String website) {
+	public Boolean addLink(String name, String blurb, String website) {
 		if (!name.equals("")) {
 			if (!duplicateLink("", name)) {
 				links.add(new Link(name, blurb, website));
 				rewriteLinksFile();
+				return true;
 			}
+			return false;
+		}else{
+			return false;
 		}
 	}
 
-	public void editLink(String oldName, String newName, String newBlurb, String newWebsite) {
+	public Boolean editLink(String oldName, String newName, String newBlurb, String newWebsite) {
 		if (!duplicateLink(oldName, newName)) {
 			for (Link l : links) {
 				if (l.getName().equals(oldName)) {
@@ -76,6 +80,9 @@ public class LinksModel {
 				}
 			}
 			rewriteLinksFile();
+			return true;
+		}else{
+			return false;
 		}
 	}
 

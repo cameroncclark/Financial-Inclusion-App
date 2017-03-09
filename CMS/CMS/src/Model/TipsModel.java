@@ -8,8 +8,6 @@ import java.util.Arrays;
 
 import com.google.gson.Gson;
 
-import ContentObjects.Link;
-import ContentObjects.Number;
 import ContentObjects.Tip;
 
 public class TipsModel {
@@ -56,31 +54,41 @@ public class TipsModel {
 		return new Tip();
 	}
 
-	public void addTip(String header, String tip) {
+	public Boolean addTip(String header, String tip) {
 		if (!header.equals("") && !tip.equals("")) {
 			if (!duplicateName("", header)) {
 				if (tip.length() < 199) {
 					tips.add(new Tip(header, tip));
 					rewriteTipsFile();
+					return true;
 				}
+				return false;
 			}
+			return false;
+		} else {
+			return false;
 		}
 	}
 
-	public void editTip(String oldHeader, String newHeader, String newTip) {
-		if(!newHeader.equals("") && !newTip.equals("")){
-		if (!duplicateName(oldHeader, newHeader)) {
-			if (newTip.length() < 199) {
-				for (Tip t : tips) {
-					if (t.getHeader().equals(oldHeader)) {
-						t.setHeader(newHeader);
-						t.setTip(newTip);
-						break;
+	public Boolean editTip(String oldHeader, String newHeader, String newTip) {
+		if (!newHeader.equals("") && !newTip.equals("")) {
+			if (!duplicateName(oldHeader, newHeader)) {
+				if (newTip.length() < 199) {
+					for (Tip t : tips) {
+						if (t.getHeader().equals(oldHeader)) {
+							t.setHeader(newHeader);
+							t.setTip(newTip);
+							break;
+						}
 					}
 				}
+				rewriteTipsFile();
+				return true;
+			} else {
+				return false;
 			}
-			rewriteTipsFile();
-		}
+		} else {
+			return false;
 		}
 	}
 

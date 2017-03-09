@@ -31,12 +31,16 @@ public class AddTipCtrl {
 							"Tip is too long, it exeeds maximum length of 200 characters.",
 							"Exceeds max length", JOptionPane.ERROR_MESSAGE);
 		} else {
-			model.addTip(panel.getAddTipHeader(), panel.getAddTipTip());
+			if(model.addTip(panel.getAddTipHeader(), panel.getAddTipTip())){
 			JOptionPane.showMessageDialog(null, "Tip '" + tip
 					+ "' successfully added.", "Tip added",
 					JOptionPane.INFORMATION_MESSAGE);
 			panel.setAddTipHeader("");
 			panel.setAddTipTip("");
+			}else{
+				JOptionPane.showMessageDialog(null, "Tip '" + header + "' could not be added as it is a duplicate.",
+						"Add failed", JOptionPane.WARNING_MESSAGE);
+			}
 		}
 	}
 }
