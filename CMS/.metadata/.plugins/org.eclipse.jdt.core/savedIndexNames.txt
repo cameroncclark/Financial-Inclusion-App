@@ -16,5 +16,4 @@ INDEX VERSION 1.127+/Users/Stuart/Documents/MastersProject/Financial-Inclusion-A
 4103544854.index
 4082578982.index
 1271342938.index
-477913835.index
 3199462873.index

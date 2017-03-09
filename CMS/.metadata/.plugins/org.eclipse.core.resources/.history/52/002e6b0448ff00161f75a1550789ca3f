@@ -1,7 +1,0 @@
-package ContentObjects;
-
-public class QuizObject {
-	protected String title;
-	protected ArrayList<QuestionObject> questions;
-
-}

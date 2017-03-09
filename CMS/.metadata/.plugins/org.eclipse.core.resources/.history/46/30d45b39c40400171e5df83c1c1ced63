@@ -1,0 +1,22 @@
+package Controller;
+
+import javax.swing.JOptionPane;
+
+import Model.Model;
+import View.CategoriesPanel;
+import View.MainContainer;
+
+public class EditCategoryCtrl {
+	public EditCategoryCtrl(Model model, MainContainer view) {
+		CategoriesPanel panel = (CategoriesPanel) view.getActivePanel();
+		if (panel.getAddCategoryText().replaceAll("\\s+", "").equals("")) {
+			JOptionPane.showMessageDialog(null, "empty.", "empty", JOptionPane.ERROR_MESSAGE);
+		} else if (panel.getAddCategoryText().length() > 20) {
+			JOptionPane.showMessageDialog(null, "Too long.", "Length", JOptionPane.ERROR_MESSAGE);
+		} else {
+		model.editCategory(panel.getGetSelectedEditItem(), panel.getEditCategoryText());
+		JOptionPane.showMessageDialog(null, "Yesss.", "Success", JOptionPane.INFORMATION_MESSAGE);
+		}
+	}
+
+}

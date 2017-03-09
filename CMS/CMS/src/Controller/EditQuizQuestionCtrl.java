@@ -20,7 +20,7 @@ public class EditQuizQuestionCtrl {
 			QuizAnswerPane quizAnswerPane = (QuizAnswerPane) quizPanel.getActivePanel();
 			QuestionObject question = model.getQuestion(quizPanel.getSelectedQuestion());
 
-			if (question.getQuestionType() != "choosePicture") {
+			if (!question.getQuestionType().equals("choosePicture")) {
 				quizAnswerPane.setQuestion(question.getQuestionText());
 				quizAnswerPane.setQuestionType(question.getQuestionType());
 				quizAnswerPane.setAnswersAndReasons(question.getAnswers(), question.getReason());
@@ -36,7 +36,7 @@ public class EditQuizQuestionCtrl {
 			QuizAnswerPane quizAnswerPane = (QuizAnswerPane) quizPanel.getActivePanel();
 			QuestionObject question = model.getQuestion(quizPanel.getSelectedQuestion());
 
-			if (question.getQuestionType() != "choosePicture") {
+			if (!question.getQuestionType().equals("choosePicture")) {
 				quizAnswerPane.setQuestion(question.getQuestionText());
 				quizAnswerPane.setQuestionType(question.getQuestionType());
 				quizAnswerPane.setAnswersAndReasons(question.getAnswers(), question.getReason());
