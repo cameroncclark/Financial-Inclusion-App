@@ -21,7 +21,7 @@
         <hr class="questionBar">
         <h3 class="questionTitle">{{activeQuestion.questionText}}</h3>
         <ion-list>
-            <ion-radio ng-repeat="answer in activeQuestion.answers" ng-model="userAnswers.currentAnswer" ng-value="$index"><div class="quizPictureMargin"><img class="quiz-Image quizPictureAnswer" ng-src="img/{{answer}}"></div></ion-radio>
+            <ion-radio ng-repeat="answer in activeQuestion.answers" ng-model="userAnswers.currentAnswer" ng-value="$index"><div class="quizPictureMargin"><img class="quiz-Image quizPictureAnswer" ng-src="quizImages/{{answer}}"></div></ion-radio>
         </ion-list>
     </div>
   </ion-content>
