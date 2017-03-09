@@ -15,7 +15,7 @@ public class EditNumberCtrl {
 					"Blank Fields", JOptionPane.ERROR_MESSAGE);
 		} else {
 			String title = panel.getEditTitle();
-			if(panel.getEditTitle().length() < 20){
+			if(panel.getEditTitle().length() < 70){
 				if(model.editNumber(panel.getSelectedEdit(), panel.getEditTitle(), panel.getEditBlurb(), panel.getEditNumber())){
 				JOptionPane.showMessageDialog(null,"'" + title + "' successfully updated!",
 						"Success", JOptionPane.INFORMATION_MESSAGE);
@@ -24,7 +24,7 @@ public class EditNumberCtrl {
 							"Edit failed", JOptionPane.WARNING_MESSAGE);
 				}
 			} else {
-				JOptionPane.showMessageDialog(null, "Number '" + title + "' is too long - Max 20 Characters.",
+				JOptionPane.showMessageDialog(null, "Number '" + title + "' is too long - Max 70 Characters.",
 						"Too Long", JOptionPane.ERROR_MESSAGE);
 			}
 		}

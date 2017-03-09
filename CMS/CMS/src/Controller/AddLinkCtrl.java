@@ -16,7 +16,7 @@ public class AddLinkCtrl {
 					"Blank Fields", JOptionPane.ERROR_MESSAGE);
 		} else {
 			
-			if(panel.getAddLinkTitle().length() < 20){
+			if(panel.getAddLinkTitle().length() < 70){
 				if(model.addLink(panel.getAddLinkTitle(), panel.getAddLinkBlurb(), panel.getAddLinkWebsite())){
 				panel.setAddLinkTitle("");
 				panel.setAddLinkBlurb("");
@@ -28,7 +28,7 @@ public class AddLinkCtrl {
 							"Add failed", JOptionPane.WARNING_MESSAGE);
 				}
 			} else {
-				JOptionPane.showMessageDialog(null, "Link '" + title + "' is too long - Max 20 Characters.",
+				JOptionPane.showMessageDialog(null, "Link '" + title + "' is too long - Max 70 Characters.",
 						"Too Long", JOptionPane.ERROR_MESSAGE);
 			}	
 		}

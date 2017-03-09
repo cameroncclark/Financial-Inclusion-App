@@ -15,8 +15,8 @@ public class EditCategoryCtrl {
 		if (panel.getEditCategoryText().replaceAll("\\s+", "").equals("")) {
 			JOptionPane.showMessageDialog(null, "Category cannot be empty.", "Empty field", JOptionPane.ERROR_MESSAGE);
 		} else {
-			if (panel.getEditCategoryText().length() > 20) {
-				JOptionPane.showMessageDialog(null, "Category '"+category+"' exceeds the maximum length of 20 characters.", "Category too long", JOptionPane.ERROR_MESSAGE);
+			if (panel.getEditCategoryText().length() > 70) {
+				JOptionPane.showMessageDialog(null, "Category '"+category+"' exceeds the maximum length of 70 characters.", "Category too long", JOptionPane.ERROR_MESSAGE);
 			} else {
 				if(model.editCategory(panel.getGetSelectedEditItem(), panel.getEditCategoryText())){
 				JOptionPane.showMessageDialog(null, "Category '"+old+"' has been changed to '"+category+"'.", "Category added", JOptionPane.INFORMATION_MESSAGE);

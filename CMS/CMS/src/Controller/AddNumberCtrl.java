@@ -14,7 +14,7 @@ public class AddNumberCtrl {
 			JOptionPane.showMessageDialog(null, "Neither Title, Blurb or Number can be empty!",
 					"Blank Fields", JOptionPane.ERROR_MESSAGE);
 		} else {
-			if(panel.getAddTitle().length() < 20){
+			if(panel.getAddTitle().length() < 70){
 				if(model.addNumber(panel.getAddTitle(), panel.getAddBlurb(), panel.getAddNumber())){
 				panel.setAddTitle("");
 				panel.setAddBlurb("");
@@ -26,7 +26,7 @@ public class AddNumberCtrl {
 							"Add failed", JOptionPane.WARNING_MESSAGE);
 				}
 			} else {
-				JOptionPane.showMessageDialog(null, "Number '" + title + "' is too long - Max 20 Characters.",
+				JOptionPane.showMessageDialog(null, "Number '" + title + "' is too long - Max 70 Characters.",
 						"Too Long", JOptionPane.ERROR_MESSAGE);
 			}
 		}

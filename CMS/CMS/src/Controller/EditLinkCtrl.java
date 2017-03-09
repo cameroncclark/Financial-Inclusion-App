@@ -15,7 +15,7 @@ public class EditLinkCtrl {
 					"Blank Fields", JOptionPane.ERROR_MESSAGE);
 		} else {
 			
-			if(panel.getEditLinkTitle().length() < 20){
+			if(panel.getEditLinkTitle().length() < 70){
 				if(model.editLink(panel.getSelectedEdit(), panel.getEditLinkTitle(), panel.getEditLinkBlurb(),
 						panel.getEditLinkWebsite())){
 				JOptionPane.showMessageDialog(null,"'" + title + " successfully updated!",
@@ -25,7 +25,7 @@ public class EditLinkCtrl {
 							"Edit failed", JOptionPane.WARNING_MESSAGE);
 				}
 			} else {
-				JOptionPane.showMessageDialog(null, "Link '" + title + "' is too long - Max 20 Characters.",
+				JOptionPane.showMessageDialog(null, "Link '" + title + "' is too long - Max 70 Characters.",
 						"Too Long", JOptionPane.ERROR_MESSAGE);
 			}
 		}

@@ -16,13 +16,13 @@ public class EditTipCtrl {
 			JOptionPane.showMessageDialog(null,
 					"Neither the tip header or the tip can be empty.",
 					"Blank fields", JOptionPane.ERROR_MESSAGE);
-		} else if (panel.getEditTipHeader().length() > 20) {
+		} else if (panel.getEditTipHeader().length() > 70) {
 			JOptionPane
 					.showMessageDialog(
 							null,
 							"Tip header '"
 									+ header
-									+ "' is too long, it exeeds maximum length of 20 characters.",
+									+ "' is too long, it exeeds maximum length of 70 characters.",
 							"Exceeds max length", JOptionPane.ERROR_MESSAGE);
 		} else if (panel.getEditTipTip().length() > 200) {
 			JOptionPane
