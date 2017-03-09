@@ -1,0 +1,30 @@
+package Controller;
+
+import javax.swing.JOptionPane;
+
+import Model.Model;
+import View.LinksPanel;
+import View.MainContainer;
+
+public class AddLinkCtrl {
+	public AddLinkCtrl(Model model, MainContainer view) {
+		LinksPanel panel = (LinksPanel) view.getActivePanel();
+		if (panel.getAddLinkTitle().replaceAll("\\s+", "").equals("") || panel.getAddLinkBlurb().replaceAll("\\s+", "").equals("")
+				|| panel.getAddLinkWebsite().replaceAll("\\s+", "").equals("")) {
+			JOptionPane.showMessageDialog(null, "Neither Title, Blurb or Website can be empty!",
+					"Blank Fields", JOptionPane.ERROR_MESSAGE);
+		} else {
+			if(panel.getAddLinkTitle().length() < 20){
+				model.addLink(panel.getAddLinkTitle(), panel.getAddLinkBlurb(), panel.getAddLinkWebsite());
+				panel.setAddLinkTitle("");
+				panel.setAddLinkBlurb("");
+				panel.setAddLinkWebsite("");
+				JOptionPane.showMessageDialog(null, "Success.",
+						"Success", JOptionPane.INFORMATION_MESSAGE);
+			} else {
+				JOptionPane.showMessageDialog(null, "Max 20 Characters.",
+						"Too Long", JOptionPane.ERROR_MESSAGE);
+			}	
+		}
+	}
+}

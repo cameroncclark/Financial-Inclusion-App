@@ -1,0 +1,27 @@
+package Controller;
+
+import javax.swing.JOptionPane;
+
+import Model.Model;
+import View.LinksPanel;
+import View.MainContainer;
+
+public class EditLinkCtrl {
+	public EditLinkCtrl(Model model, MainContainer view) {
+		LinksPanel panel = (LinksPanel) view.getActivePanel();		
+		if(panel.getEditLinkTitle().replaceAll("\\s+", "").equals("") || panel.getEditLinkBlurb().replaceAll("\\s+", "").equals("") || panel.getEditLinkWebsite().replaceAll("\\s+", "").equals("")){
+			JOptionPane.showMessageDialog(null, "Some Fields Are Blank!\nPlease Enter Data.",
+					"Blank Fields", JOptionPane.ERROR_MESSAGE);
+		} else {
+			if(panel.getEditLinkTitle().length() < 20){
+				model.editLink(panel.getSelectedEdit(), panel.getEditLinkTitle(), panel.getEditLinkBlurb(),
+						panel.getEditLinkWebsite());
+				JOptionPane.showMessageDialog(null, "Success.",
+						"Success", JOptionPane.INFORMATION_MESSAGE);
+			} else {
+				JOptionPane.showMessageDialog(null, "Max 20 Characters.",
+						"Too Long", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+	}
+}
