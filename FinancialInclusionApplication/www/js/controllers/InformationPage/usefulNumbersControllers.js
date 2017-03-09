@@ -1,22 +1,20 @@
-fIApp.controller('UsefulNumbersCtrl', function ($scope) {
+fIApp.controller('UsefulNumbersCtrl', function ($scope, $http, dbAccessor) {
     $scope.name = 'Useful Numbers';
     $scope.content = 'Useful Numbers will be stored here';
 
-    $scope.numbersList = [{
-        name: 'Samaritans',
-        blurb: 'Samaritans offer a confidential service to those whom need a kind ear. Their service is available 24/7, and allows you to converse with staff without fear of repercussions. Everyone is elidgible for this service, there are no waiting lists and no assessments. To talk to a member of the Samaritans for free, please call 116 123 or press the blue call button now.',
-        number: '116 123'
-    }, {
-        name: 'Breathing Space',
-        blurb: 'Breathing space is a confidential service for anyone in Scotland suffering from depression, anxiety or an ill mood. They offer a safe and supportive environment to convey your problems, and offer advice on how best to solve them. To talk to a member of Breathing Space for free, please call 0800 838587 or press the blue call button now.',
-        number: '0800 838587'
-    }, {
-        name: 'NHS 24',
-        blurb: 'NHS 24 is a service which provides comprehensive health information to callers throughout Scotland. This number should be called in the case that you are unwell and your doctor\'s office is closed. To obtain advice on a medical issue from a prefessional, please call 111 or press the blue call button now. ',
-        number: '111'
-    }];
+    
+
+    $http.get('content/usefulNumbers.json')
+        .then(function(response) {
+            $scope.numbersList = response.data;
+            console.log($scope.numbersList);
+        });
 
     $scope.getInfoCategoryValues = function () {
         return $scope.numbersList;
+    };
+
+    $scope.callingNumber = function () {
+        dbAccessor.callingPhone();
     };
 });

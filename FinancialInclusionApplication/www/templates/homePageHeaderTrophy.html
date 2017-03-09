@@ -1,13 +1,14 @@
-<ion-modal-view class="trophyContainer">
+<ion-modal-view class="trophyContainer" cache-view="false">
     <ion-header-bar class="trophyHeading">
-        <h1 class="title">Trophies</h1>
+        <h1 class="title tabletModal">Trophies</h1>
             <i class = "icon icon ion-close-circled modalCloseButton closeButton" ng-click="closeTrophy()"></i>
     </ion-header-bar>
     <ion-content>
         <div class="padding">
             <table class="trophyTable">
-                <tr data-ng-repeat="row in trophies">
-                    <td class="trophyTableIcons" data-ng-repeat="column in row"><i class = "icon icon ion-{{column.icon}} trophyIcon" ng-style="{{column.colour}}" ng-click="showTrophyAlert(column)"></i></td>
+                <tr data-ng-repeat="row in newTrophies">
+                    <td ng-if="column.acquired == 0" style="color:#A6A6A6" class="trophyTableIcons" data-ng-repeat="column in row"><img class = "trophyIcon trophyImages" ng-src="img/padlock.png" ng-click="showTrophyAlert(column)"></img></td>
+                    <td ng-if="column.acquired == 1" style="color:#000" class="trophyTableIcons" data-ng-repeat="column in row"><img class = "trophyIcon trophyImages" ng-src="{{column.image}}" ng-click="showTrophyAlert(column)"></img></td>
                 </tr>
             </table>
         </div>

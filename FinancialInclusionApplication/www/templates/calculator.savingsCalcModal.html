@@ -1,6 +1,6 @@
-<ion-modal-view class="trophyContainer">
+<ion-modal-view class="calAnswer2Container">
     <ion-header-bar class="trophyHeading">
-        <h1 class="title">Saving Result</h1>
+        <h1 class="title tabletModal">Saving Result</h1>
         <div class="buttons">
             <i class = "icon icon ion-close-circled modalCloseButton" ng-click="closeSavingsCalc()"></i>
         </div>
@@ -15,8 +15,14 @@
                 If you have £{{alreadySavedValue}} already saved in your bank account,
                 and you set aside just £{{perMonthValue}} per month, you will reach your goal in:
             </div>
-            <div ng-if="numYears > 0" class="savingsGoalTimeWrapper">{{numYears}} Years,<br>{{numMonths}} Months,<br>{{numDays}} Days.</div>
-            <div ng-if="numYears < 1" class="savingsGoalTimeWrapper">{{numMonths}} Months,<br>{{numDays}} Days.</div>
+            <div ng-if="numYears > 0" class="savingsGoalTimeWrapper"> {{numYears}} Years,<br>{{numMonths}} Months.</div>
+            <div ng-if="numYears < 1" class="savingsGoalTimeWrapper">{{numMonths}} Months.</div>
+
+<div class = "retryButton">
+            <button class="button button-block button-positive tabletButtonText2 retryButtonTablet" ng-click="closeSavingsCalc()">
+                Retry
+            </button>
+</div>
         </div>
     </ion-content>
 </ion-modal-view>

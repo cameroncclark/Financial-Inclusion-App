@@ -8,11 +8,11 @@ var db = null;
 
 var fIApp = angular.module('financialInclusionApp', ['ionic', 'ngCordova', 'rzModule', 'ngSanitize']);
 
-fIApp.config(function($ionicConfigProvider){
+fIApp.config(function ($ionicConfigProvider) {
   $ionicConfigProvider.views.swipeBackEnabled(false);
 });
 
-fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccessor) {
+fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccessor, $q) {
 
   $ionicPlatform.ready(function () {
     if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -29,8 +29,16 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
     var isAndroid = ionic.Platform.isAndroid();
     var isIOS = ionic.Platform.isIOS();
     if (window.StatusBar) {
-      //StatusBar.styleDefault();
       StatusBar.hide();
+      ionic.Platform.fullScreen();
+    }
+
+    if (isAndroid) {
+      window.addEventListener("native.hidekeyboard", function () {
+        //show stuff on keyboard hide
+        StatusBar.hide();
+        window.AndroidFullScreen.immersiveMode(false, false);
+      });
     }
 
     //This is going to be a map that links category ID to both the titles under that category and the urls
@@ -78,85 +86,62 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
               titleURLObject.title = topics.data.title;
               titleURLObject.url = currentTopic;
               $rootScope.topicMaps[allCategoryCodes[j]].push(titleURLObject);
-              // console.log($rootScope.topicMaps);
             }
           }
         });
     }
 
-    // For when the user first launches the app
-    var fillTables = function () {
-
-        // User Data
-        var query = "INSERT INTO userData (name, location, avatar) VALUES (?,?,?)";
-        $cordovaSQLite.execute(db, query, ["Your Name Here", "Your Location Here", "img/startImage.png"]).then(function (result) {
-            console.log("INSERT ID -> " + result.insertId);
-        }, function (error) {
-            console.error(error);
-        });
-    }
-    
-    var setGlobalName = function () {
-    // Check if data has been added correctly
-         var searchQuery = "SELECT * FROM userData";
-         var userName = {name:"",location:"",avatar:"img/startImage.png"}
-         $cordovaSQLite.execute(db, searchQuery, []).then(function (result) {
-             if (result.rows.length > 0) {
-                userName.name = result.rows.item(0).name;
-                userName.location = result.rows.item(0).location;
-                userName.avatar = result.rows.item(0).avatar;
-                console.log("About to print everything");
-                console.log("SELECTED -> " + result.rows.item(0).name + " " + result.rows.item(0).location + " " + result.rows.item(0).avatar);
-                console.log(result.rows.item(0).avatar);
-                 $rootScope.userName = userName;
-                 console.log("Initial username: " + $rootScope.userName.avatar);
-             } else {
-                 console.log("NO ROWS EXIST");
-             }
-         }, function (error) {
-             console.error(error);
-         });
-    }
-
-
     // Initialisation of databases for Android and iOS
     if (isAndroid || isIOS) {
-      console.log("entered if");
       db = $cordovaSQLite.openDB({ name: 'my.db', location: 'default' });
 
-      // Drop Tables
-      //$cordovaSQLite.execute(db, "DROP TABLE userData");
 
-      // Initialise all tables
-      $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS userData (id INTEGER PRIMARY KEY, name TEXT, location TEXT, avatar TEXT)");
-      $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS trophies (id INTEGER PRIMARY KEY, title TEXT, image TEXT, description TEXT, hint TEXT, acquired TINYINT)");
-      $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS categories (id INTEGER PRIMARY KEY, name NVARCHAR(50), percentageComplete INTEGER)");
-      $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS subcategories (url NVARCHAR(50) PRIMARY KEY, name NVARCHAR(50), percentageComplete INTEGER, categoryID INTEGER, FOREIGN KEY(categoryID) REFERENCES categories(id)");
-      $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS progress (objective NVARCHAR(50) PRIMARY KEY, counter INTEGER, valueChanged TINYINT");
-      
-      //TO DO (CREATE A NEW TABLE FOR SETTINGS)
-      //$cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS settings ()");
+
+      // Drop all tables for testing
+      //dbAccessor.dropAllTables();
+
+      // Build all tables in the database
+      dbAccessor.buildTables();
 
       var query = "SELECT id FROM userData";
       $cordovaSQLite.execute(db, query, []).then(function (result) {
-        console.log("Number of rows in table " + result.rows.length);
+
+        // If tables are empty, fill them
         if (result.rows.length == 0) {
-          fillTables();
-          setGlobalName();
-        }else{
-          setGlobalName();
+          dbAccessor.fillTables();
+          dbAccessor.setGlobalName();
+        } else {
+          dbAccessor.setGlobalName();
+
+          // THIS IS FOR TESTING \/ \/ \/ \/
+
+          // An added category
+          //var query = "DELETE FROM categories WHERE name LIKE 'Student Finance'";
+          //$cordovaSQLite.execute(db, query, []);
+
+          // A deleted category
+          //var query = "INSERT INTO categories (name, percentageComplete) VALUES (?,?)";
+          //$cordovaSQLite.execute(db, query, ["fake category", 0.5]);
+
+          // An added subcategory
+          //var query = "DELETE FROM subcategories WHERE name LIKE 'firsttest'"
+          //$cordovaSQLite.execute(db, query, []);
+
+          // A deleted subcategory
+          //var query = "INSERT INTO subcategories (name, quizURL, percentageComplete, categoryID) VALUES (?,?,?,?)";
+          //$cordovaSQLite.execute(db, query, ["fake category", "fake.json",  25, 1]);
+
+          dbAccessor.updateTablesFromCMS();
         }
       }, function (error) {
-        console.log(error)
-        console.log("Select function hasnt worked");
+        console.error(error)
       });
-    
-       
-      console.log("You're a phone");
+      console.log("THIS DEVICE IS A PHONE");
     } else {
-      console.log("not a phone");
+      console.log("THIS DEVICE IS NOT A PHONE.");
+      console.log("SQLITE FUNCTIONALITY WILL NOT WORK");
     }
-    
+
 
   });
 });

@@ -30,7 +30,7 @@
     <a class="calcBodyText">Interest rate</a>
     </div>
     <div class="calcInput">
-            <input type="text" placeholder="%" ng-model="interestRate" min="0.01">
+            <input type="number" placeholder="%" ng-model="interestRate" min="0.01">
 
     </div>
 </div>
@@ -44,4 +44,4 @@
         rz-slider-options="slider2.options"></rzslider>
 </div>
 
-<button class="button button-block button-positive" ng-click="openMortgageCalc()" ng-disabled="!interestRate || !desiredAmount">Calculate</button>
+<button class="button button-block button-positive calculatorButtonTablet" ng-click="openMortgageCalc()" ng-disabled="!interestRate || !desiredAmount">Calculate</button>

@@ -1,8 +1,24 @@
 fIApp.component("welcomeCalculator",{
     templateUrl:"templates/calculator.welcome.html",
-    controller: function welcomeCalculatorCtrl($scope){
+    controller: function welcomeCalculatorCtrl($scope, $ionicModal){
 
-        $scope.test = "Welcome";
+
+        $ionicModal.fromTemplateUrl('templates/calculator.welcomeHelpModal.html', {
+            scope: $scope
+        }).then(function (modal) {
+            $scope.modalHelp = modal;
+        });
+
+$scope.closeHelp = function () {
+            $scope.modalHelp.hide();
+        };
+
+        $scope.openHelp = function () {
+            $scope.modalHelp.show();
+        };
+ $scope.test = "Calculators";
+ $scope.helpHeader = "Calculators help";
+ $scope.helpIntro = "Use the bar at the top to select which calculator you wish to use";
         $scope.slider1 = {
             value: 10,
             options: {

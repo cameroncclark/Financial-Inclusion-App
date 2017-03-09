@@ -1,13 +1,14 @@
 <ion-modal-view class="subCategoriesModal">
   <ion-header-bar class="subCategoriesModalHeading">
-    <h1 class="title">Subcategories</h1>
+    <h1 class="title tabletModal">Subcategories</h1>
       <i class="icon icon ion-close-circled modalCloseButton closeButton" ng-click="closeModal()"></i>
   </ion-header-bar>
   <ion-content>
     <ul class="list">
-      <a class="subcategoriesLink" ng-href="#/content/{{subcategory.url}}/{{subcategory.title}}" ng-click="closeModal()"  ng-repeat="subcategory in modalSubCategories"> 
-      <li class="item item-icon-right">
-        <i class="icon ion-checkmark-round"></i>
+      <a class="subcategoriesLink" ng-href="#/content/{{subcategory.url}}/{{subcategory.title}}" ng-click="closeModal()"  ng-repeat="subcategory in modalSubCategories | orderBy :'title'"> 
+      <li class="item item-icon-right subcategoriesFont">
+        <i ng-if="subcategory.progress == 100" class="icon ion-checkmark-round greenColour"></i>
+        <i ng-if="subcategory.progress > 0 && subcategory.progress < 100" class="icon yellowColour">{{subcategory.progress}}%</i>
         {{subcategory.title}}
       </li>
       </a>

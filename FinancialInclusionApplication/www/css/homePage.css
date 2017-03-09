@@ -1,3 +1,4 @@
+
 .homePageHeaderBar {
      height: 15vh;
      background:#444;
@@ -59,6 +60,7 @@
     max-width: 20vw;
     max-height: 10vh;
     border: 2px solid ghostwhite;
+    
 }
 
 .homePageHeaderContents {
@@ -73,10 +75,53 @@
 .tipTitle{
     padding: 2vh 0vh;
     margin: 0vw 2vh 1vh 2vh;
-    font-size: 1.2rem;
+    font-size: 1.5em;
     border-bottom: 1px solid #C2C2C2;;
 }
 
 .tipInfo{
     padding: 0vw 4vw;
 }
+
+.swipeMe{
+    font-size: 1.2rem;
+    color: #696969;
+    padding-top: 12vh; 
+    font-family: 'arial';
+}
+
+/*MEDIA QUERIES*/
+@media (min-width: 600px) {
+  .tipInfo {
+    font-size: 1.6rem;
+    line-height: 4vh;
+  }
+  .tipTitle{
+      font-size: 2rem;
+  }
+.swipeMe{
+    font-size: 3rem;
+}
+
+.homePageHeaderContents {
+    font-size:1.4rem;
+    line-height: 4vh;
+}
+
+.homePageHeaderPicture{
+    margin: 3vh 0vw;
+}
+
+.userInput{
+    margin-bottom: 2vh;
+}
+
+.userInputBox{
+margin-bottom: 2vh;
+}
+
+
+}
+
+
+/*---------------*/

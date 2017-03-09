@@ -16,6 +16,20 @@ progress {
   padding: 0vw 5vw;
 }
 
+.greenColour{
+  color: limegreen;
+}
+
+.yellowColour{
+  color: darkorange;
+  font-size: 1rem !important;
+  font-family: 'Open Sans';
+  -webkit-text-stroke: 0.1px #696969;
+
+}
+
+
+
 progress::-webkit-progress-value {
  background-image:
 	   -webkit-linear-gradient(-45deg, 
@@ -30,4 +44,19 @@ progress::-webkit-progress-value {
     background-size: 35px 20px, 100% 100%, 100% 100%;
     
     
+}
+
+/*MEDIA QUERIES*/
+@media (min-width: 600px) {
+.categoryTitle{
+  margin: 2vh 5vh 5vh 5vh;
+  padding-bottom: 1vh;
+  font-size: 1.8rem;
+}
+
+progress {
+
+  border: 0;
+  padding: 0vw 8vw;
+}
 }

@@ -1,3 +1,5 @@
+
+
 .buttonsWrapper{
     border: 0.2vh solid lightsteelblue;
     width: 100%;
@@ -36,16 +38,21 @@
     font-size: 1rem;
     color: black;
     font-weight: bold;
+
+    font-family: 'Helvetica', cursive;
+
 }
 
 .calcBodyText{
     font-size: 0.8rem;
     color: #696969;
+
 }
 
 .savingsSlider{
     margin-bottom:2vh; 
     padding:0vh;
+    text-align: justify;
 }
 
 .savingsCalcWrapper{
@@ -133,8 +140,8 @@
 }
 
 .savingsGoalWrapper{
-text-align: center;
-padding: 2vh;
+    text-align: center;
+    padding: 2vh;
 }
 
 .savingsGoalAmount{
@@ -144,6 +151,9 @@ padding: 2vh;
 
 .savingsTextWrapper{
     margin: 1vh;
+}
+.justifyMe{
+    text-align: justify;
 }
 
 .savingsGoalTimeWrapper{
@@ -164,6 +174,7 @@ padding: 2vh;
     color: black;
     font-size: 15px;
     font-family: 'Signika', sans-serif; 
+    text-align: justify;
 }
 
 .calcInput{
@@ -184,3 +195,306 @@ padding: 2vh;
 .calcTextAbove{
     margin-bottom: 2vh;
 }
+
+.calcIconWrapper{
+    padding: 1vh;
+    float:left;
+    width: 26vw;
+    padding-bottom: 3vh;
+}
+
+.calcIcon{
+    text-align: center;
+    display: block;
+    border: solid 1px #696969;
+    max-width: 30vw;
+    margin: auto;
+    height: 13vh;
+    /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+    border-radius: 50%;
+    background: white;
+}
+
+.calcText{
+    margin: auto;
+    padding-top: 1vh;
+    font-size: 0.8rem;
+    text-align: center;
+
+}
+
+.calcText2{
+    margin: auto;
+    padding-top: 1vh;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.welcomeText{
+    padding: 2vh;
+    color: black;
+}
+
+.dropDownBox{
+    border: 1.5px solid #90b4d2;
+    border-radius: 1vh;
+    width: 87.5vw;
+    margin-left: 3vw;
+    text-align: center;
+    padding: 1vh;
+    box-shadow: 1px 1px 4px #EBEBEB;
+    -moz-box-shadow: 1px 1px 4px #EBEBEB;
+    -webkit-box-shadow: 1px 1px 4px #EBEBEB;
+    font-size: 0.8rem;
+
+
+}
+
+.calculatorOptions{
+    border: 1.5px solid #90b4d2;
+    border-radius: 1vh;
+    width: 50vw;
+    margin-left: 12vw;
+    text-align: center;
+    padding: 1vh;
+    box-shadow: 1px 1px 4px #EBEBEB;
+    -moz-box-shadow: 1px 1px 4px #EBEBEB;
+    -webkit-box-shadow: 1px 1px 4px #EBEBEB;
+    font-size: 0.8rem;
+    margin-bottom: 2vh;
+    background-color: white
+}
+
+.calculatorOptions2{
+    border: 1.5px solid #3269C5;
+    border-radius: 1vh;
+    width: 50vw;
+    margin-left: 12vw;
+    text-align: center;
+    padding: 1vh;
+    box-shadow: 1px 1px 4px #EBEBEB;
+    -moz-box-shadow: 1px 1px 4px #EBEBEB;
+    -webkit-box-shadow: 1px 1px 4px #EBEBEB;
+    font-size: 0.8rem;
+    margin-bottom: 2vh;
+    background-color: #3269C5;
+    color: white;
+}
+
+.calcSelectorContainer {
+    width: 80vw; 
+    top: 20vh; 
+    left: 10vw; 
+    bottom: 8vh;
+    min-height: 0% !important;
+    box-shadow: 0 0 100px 10px rgba(0,0,0,0.9);
+    border-radius: 2vh;
+    height: 50vh;
+}
+
+.calcSelectorHeading {
+    background: #90b4d2;
+}
+
+.savingImage{
+    width:10vh;
+    height:10vh; 
+    margin-top:1vh;
+}
+
+.interestImage{
+    width:9vh;
+    height:9vh; 
+    margin-top:1.5vh;
+
+}
+.mortgageImage{
+    width:9vh;
+    height:9vh; 
+    margin-top:2vh;
+}
+
+.placeholderFont{
+    font-size: 0.8rem;
+}
+
+input[type="number"] {
+    font-size:0.8rem;
+}
+
+input[type="text"] {
+    font-size:0.8rem;
+}
+
+.retryButton{
+    padding: 0vh 5vw;
+}
+
+.calAnswerContainer {
+    width: 80vw; 
+    top: 20vh; 
+    left: 10vw; 
+    bottom: 20vh;
+    min-height: 0% !important;
+    box-shadow: 0 0 100px 10px rgba(0,0,0,0.9);
+    border-radius: 2vh;
+}
+
+.calAnswer2Container {
+    width: 80vw; 
+    top: 20vh; 
+    left: 10vw; 
+    bottom: 10vh;
+    min-height: 0% !important;
+    box-shadow: 0 0 100px 10px rgba(0,0,0,0.9);
+    border-radius: 2vh;
+}
+
+/************************************ MEDIA QUERIES ********************************/
+@media (min-width: 600px) {
+.calcIconWrapper{
+    width: 28vw;
+  }
+
+  .calcBodyText{
+      font-size: 1.6rem;
+      line-height: 3vh;
+  }
+  .headingText{
+    font-size: 2rem;
+  }
+  .calcIcon{
+    height: 17vh;
+  }
+  .savingImage{
+    width:11vh;
+    height:11vh; 
+    margin-top:2vh;
+}
+.interestImage{
+    width:10vh;
+    height:10vh; 
+    margin-top:2.5vh;
+
+}
+.mortgageImage{
+    width:10vh;
+    height:10vh; 
+    margin-top:3vh;
+}
+.calcText{
+    font-size: 1.6rem;
+    line-height: 2.8vh;
+}
+.calcText2{
+    font-size: 1.6rem;
+    line-height: 2.8vh;
+}
+.dropDownBox{
+    width: 91.5vw;
+    font-size: 1.6rem;
+    margin-top: 1vh;
+}
+
+.calculatorOptions{
+    font-size: 1.4rem;
+    padding: 2vh;
+}
+
+.calculatorOptions2{
+    font-size: 1.4rem;
+    padding: 2vh;
+}
+
+.placeholderFont{
+    font-size: 1.4rem;
+}
+
+.titleModal{
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 0;
+    overflow: hidden;
+    margin: 0 10px;
+    min-width: 30px;
+    height: 43px;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 44px; 
+}
+
+input[type="number"] {
+    padding-top: 2vh;
+    font-size:1.6rem;
+}
+
+input[type="text"] {
+    padding-top: 2vh;
+    font-size:1.6rem;
+}
+
+
+.calculatorButtonTablet{
+    margin-left: 20vw !important;
+    font-size: 1.8rem !important;
+    width: 50vw !important;
+    border-radius: 1vw !important;
+    padding: 1vh 0vh !important;
+}
+
+.retryButtonTablet{
+    margin-left: 10vw !important;
+    font-size: 1.8rem !important;
+    width: 50vw !important;
+    border-radius: 1vw !important;
+    padding: 1vh 0vh !important;
+    margin-top: 2vh;
+}
+  
+  .helpHeader{
+    font-size: 1.6rem; 
+    padding-bottom: 3vh; 
+}
+
+.helpContent{
+    font-size: 1.4rem;
+    line-height: 3vh;
+}
+
+.savingsGoalWrapper{
+    text-align: center;
+    padding: 2vh;
+    font-size: 1.2rem;
+}
+
+.savingsGoalAmount{
+    font-size: 1.5em;
+    padding: 1vh;
+    font-size: 2rem;
+}
+
+.savingsTextWrapper{
+    font-size: 1.2rem;
+    line-height: 3vh;
+}
+
+fontSizeIncrease{
+    font-size: 5rem !important;
+}
+
+.calAnswerContainer {
+    bottom: 30vh;
+}
+
+.calAnswer2Container {
+    bottom: 30vh;
+}
+}
+
+/*-------*************************************************--------*/

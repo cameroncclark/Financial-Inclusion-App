@@ -1,6 +1,6 @@
 fIApp.component("interestCalculator",{
     templateUrl:"templates/calculator.interest.html",
-    controller: function interestCalculatorCtrl($scope, $ionicModal){
+    controller: function interestCalculatorCtrl($scope, $ionicModal, dbAccessor){
 
         $ionicModal.fromTemplateUrl('templates/calculator.helpModal.html', {
             scope: $scope
@@ -28,6 +28,7 @@ fIApp.component("interestCalculator",{
 
         $scope.openInterestCalc = function() {
             $scope.modalInterestAnswer.show();
+            dbAccessor.updateCalculators(3);
         };
 
 
@@ -37,10 +38,10 @@ fIApp.component("interestCalculator",{
             options: {
                 id: 'slider-id',
                 floor: 1,
-                ceil: 25,
+                ceil: 50,
                 step: 1,
                 minLimit: 1,
-                maxLimit: 25
+                maxLimit: 50
             }
         }; 
 

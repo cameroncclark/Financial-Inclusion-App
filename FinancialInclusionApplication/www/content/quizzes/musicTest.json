@@ -1,0 +1,36 @@
+{
+    "title": "Music Quiz",
+    "questions": [
+        {
+           "questionType":"multipleChoice",
+           "questionText":"How may songs did Justin Bieber have in the charts at once?",
+           "answers":["1","3","4"],
+           "answer":1,
+           "reason":["Incorrect, It was more than 1, it was 3!","Correct! It was 3","Incorrect, it wasn't this many"]
+        },
+        {
+           "questionType":"choosePicture",
+           "questionText":"Which one is Zara Larsson?",
+           "answers":["zl.jpg","annie.jpg","50cent.jpg"],
+           "answer":0,
+           "reason":["Correct!","Nope! This is Annie Lennox","Nope! This is 50 Cent!"]
+        },
+         {
+           "questionType":"multipleChoice",
+           "questionText":"Who took a year out to work on their album?",
+           "answers":["Ed Sheeran","Adele","Drake", "Coldplay"],
+           "answer":0,
+           "reason":["Correct!","Incorrect, it was not Adele","Incorrect, it was not Drake", "Incorrect, it was not Coldplay"]
+        },
+        {
+           "questionType":"multipleChoice",
+           "questionText":"90s was the year of?",
+           "answers":["Rock and Roll","Disco","Electonic", "Boy Bands"],
+           "answer":3,
+           "reason":["Incorrect, this was the 70s","Incorrect, this was the 80s","Incorrect, this was the 80s", "Correct! It was Boy Bands"]
+        }
+
+
+    ]
+
+}

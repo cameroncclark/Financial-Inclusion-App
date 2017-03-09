@@ -5,7 +5,7 @@
     bottom: 8vh;
     min-height: 0% !important;
     box-shadow: 0 0 100px 10px rgba(0,0,0,0.9);
-    border-radius: 1vh;
+    border-radius: 2vh;
 }
 
 .trophyHeading {
@@ -16,6 +16,11 @@
     font-size: xx-large;
 }
 
+.trophyImages{
+    width: auto;
+    height: 7vh;
+}
+
 .trophyTable {
     width: 100%;
     margin: auto;
@@ -24,4 +29,21 @@
 
 .trophyTableIcons {
     padding: 2vh;
+}
+
+.trophyHeadingText{
+    font-size: 1.4rem;
+    text-align: center;
+    color: black;
+}
+
+/************************************ MEDIA QUERIES ********************************/
+@media (min-width: 600px) {
+    .trophyTableIcons{
+
+    }
+    .trophyIcon {
+    font-size: 2.5rem;
+}
+
 }
