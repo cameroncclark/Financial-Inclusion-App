@@ -219,4 +219,8 @@ public class Model extends Observable {
 	public String getQuizTitle() {
 		return contentModel.getQuizTitle();
 	}
+
+	public void closeContentPane() {
+		contentModel.closeQuiz();		
+	}
 }

@@ -166,9 +166,11 @@ public class ContentModel {
 		}
 	}
 
-	public void closeWithoutSaving() {
+	public void closeQuiz() {
 		questions = new ArrayList<QuestionObject>();
 		quiz = null;
+		quizImagePaths = new ArrayList<>();
+		quizImages = new ArrayList<>();
 	}
 
 	public ArrayList<String> getQuestions() {

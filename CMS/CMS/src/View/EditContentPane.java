@@ -41,6 +41,7 @@ public class EditContentPane extends JDialog {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				actionListener.clearActiveFile();
+				actionListener.closeContentPane();
 			}
 		});
 	}
