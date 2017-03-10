@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename method &apos;View.QuizAnswerPane.setupDropdowns(...)&apos; to &apos;setupNumQuestionDropdown&apos;&#x0A;- Original project: &apos;CMS&apos;&#x0A;- Original element: &apos;View.QuizAnswerPane.setupDropdowns(...)&apos;&#x0A;- Renamed element: &apos;View.QuizAnswerPane.setupNumQuestionDropdown(...)&apos;&#x0A;- Update references to refactored element" delegate="false" deprecate="false" description="Rename method &apos;setupDropdowns&apos;" flags="589826" id="org.eclipse.jdt.ui.rename.method" input="/src&lt;View{QuizAnswerPane.java[QuizAnswerPane~setupDropdowns~I" name="setupNumQuestionDropdown" references="true" stamp="1488468724706" version="1.0"/>
+</session>

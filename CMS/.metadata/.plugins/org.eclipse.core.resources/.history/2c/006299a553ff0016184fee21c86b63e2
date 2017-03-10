@@ -1,0 +1,43 @@
+package View;
+
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+import Controller.ActionController;
+
+public class QuizAnswerPane extends JDialog{
+	protected ActionController actionListener;
+	protected JTextField quizAnswerTitleText;
+	
+	
+	public QuizAnswerPane(ActionController actionListener) {
+		this.actionListener = actionListener;
+		setLayout(null);
+		setSize(500, 500);
+		createLayout();
+		setVisible(true);
+		
+		addWindowListener(new WindowAdapter() {
+		    @Override
+		    public void windowClosing(WindowEvent e)
+		    {
+				System.out.println("I Get Here!");
+		    }
+		});
+	}
+	
+	private void createLayout(){
+		JLabel topicTitle = new JLabel("Question:");
+		topicTitle.setBounds(2,10,200,20);
+		add(topicTitle);
+		
+		quizAnswerTitleText = new JTextField();
+		quizAnswerTitleText.setBounds(90, 10, 200, 20);
+		add(quizAnswerTitleText);
+	}
+}
