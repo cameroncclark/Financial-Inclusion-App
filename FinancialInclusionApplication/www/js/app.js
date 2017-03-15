@@ -116,16 +116,35 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
           // THIS IS FOR TESTING \/ \/ \/ \/
 
           // An added category
-          //var query = "DELETE FROM categories WHERE name LIKE 'Student Finance'";
-          //$cordovaSQLite.execute(db, query, []);
+          // var query = "DELETE FROM categories WHERE name LIKE 'Student Finance'";
+          // $cordovaSQLite.execute(db, query, []).then(function (result) {
+          //   var query = "DELETE FROM subcategories WHERE name LIKE 'Student Loans'"
+          //   $cordovaSQLite.execute(db, query, []).then(function (result) {
+
+          //     console.log("--BEFORE--");
+          //     dbAccessor.printCategoriesTable();
+          //     dbAccessor.printSubCategoriesTable();
+
+          //     dbAccessor.updateTablesFromCMS();
+
+          //     setTimeout(function () {
+          //         console.log("--AFTER--");
+          //         dbAccessor.printCategoriesTable();
+          //         dbAccessor.printSubCategoriesTable();
+          //     }, 5000);
+          //   }, function (error) {
+          //     console.error(error)
+          //   });
+          // }, function (error) {
+          //   console.error(error)
+          // });
 
           // A deleted category
           //var query = "INSERT INTO categories (name, percentageComplete) VALUES (?,?)";
           //$cordovaSQLite.execute(db, query, ["fake category", 0.5]);
 
           // An added subcategory
-          //var query = "DELETE FROM subcategories WHERE name LIKE 'firsttest'"
-          //$cordovaSQLite.execute(db, query, []);
+
 
           // A deleted subcategory
           //var query = "INSERT INTO subcategories (name, quizURL, percentageComplete, categoryID) VALUES (?,?,?,?)";
