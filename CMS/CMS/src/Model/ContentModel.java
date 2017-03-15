@@ -376,4 +376,11 @@ public class ContentModel {
 		}
 		return false;
 	}
+
+	public Boolean isFileLoaded() {
+		if(!activeFile.equals("")){
+			return true;
+		}
+		return false;
+	}
 }

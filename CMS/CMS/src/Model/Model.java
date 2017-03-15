@@ -228,4 +228,8 @@ public class Model extends Observable {
 	public void closeContentPane() {
 		contentModel.closeQuiz();		
 	}
+	
+	public Boolean isFileLoaded(){
+		return contentModel.isFileLoaded();
+	}
 }
