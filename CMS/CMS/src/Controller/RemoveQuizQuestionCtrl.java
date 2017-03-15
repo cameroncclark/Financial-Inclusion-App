@@ -1,5 +1,7 @@
 package Controller;
 
+import javax.swing.JOptionPane;
+
 import Model.Model;
 import View.AddContentPane;
 import View.ContentPanel;
@@ -13,11 +15,29 @@ public class RemoveQuizQuestionCtrl {
 		if (panel.isAddPaneActive()) {
 			AddContentPane activePanel = (AddContentPane) panel.getActivePanel();
 			QuizPane quizPanel = (QuizPane) activePanel.getActivePanel();
-			model.removeQuizQuestion(quizPanel.getSelectedQuestion());
+			if (quizPanel.getSelectedQuestion() == null) {
+				JOptionPane.showMessageDialog(null, "You must select a question to delete.", "Please select question",
+						JOptionPane.ERROR_MESSAGE);
+			} else {
+				int sure = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this question?",
+						"Are You Sure?", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+				if (sure == JOptionPane.YES_OPTION) {
+					model.removeQuizQuestion(quizPanel.getSelectedQuestion());
+				}
+			}
 		} else {
 			EditContentPane activePanel = (EditContentPane) panel.getActivePanel();
 			QuizPane quizPanel = (QuizPane) activePanel.getActivePanel();
-			model.removeQuizQuestion(quizPanel.getSelectedQuestion());
+			if (quizPanel.getSelectedQuestion() == null) {
+				JOptionPane.showMessageDialog(null, "You must select a question to delete.", "Please select question",
+						JOptionPane.ERROR_MESSAGE);
+			} else {
+				int sure = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this question?",
+						"Are You Sure?", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+				if (sure == JOptionPane.YES_OPTION) {
+					model.removeQuizQuestion(quizPanel.getSelectedQuestion());
+				}
+			}
 		}
 	}
 }
