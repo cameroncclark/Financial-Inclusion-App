@@ -32,7 +32,7 @@ public class EditContentPane extends JDialog {
 		this.actionListener = actionListener;
 		categories = actionListener.initaliseCategoriesTab();
 		setLayout(null);
-		setSize(600, 600);
+		setSize(1000, 600);
 		createComponents();
 		createButtons();
 		setVisible(true);
@@ -48,15 +48,15 @@ public class EditContentPane extends JDialog {
 
 	private void createComponents() {
 		JLabel topicTitle = new JLabel("Topic Title:");
-		topicTitle.setBounds(2, 42, 200, 20);
+		topicTitle.setBounds(5,10,200,20);
 		add(topicTitle);
 
 		topicTitleText = new JTextField();
-		topicTitleText.setBounds(90, 42, 200, 20);
+		topicTitleText.setBounds(5, 30, 300, 20);
 		add(topicTitleText);
 
 		JButton selectTopic = new JButton("Load Topic");
-		selectTopic.setBounds(450, 10, 125, 20);
+		selectTopic.setBounds(890, 10, 100,20);
 		selectTopic.addActionListener(new ActionListener() {
 
 			@Override
@@ -74,27 +74,42 @@ public class EditContentPane extends JDialog {
 		add(selectTopic);
 
 		categoriesDropdown = new JComboBox(categories);
-		categoriesDropdown.setBounds(400, 42, 200, 25);
+		categoriesDropdown.setBounds(800, 40, 200, 20);
 		add(categoriesDropdown);
 
 		contentArea = new JTextArea();
 		contentArea.setLineWrap(true);
 		contentArea.setWrapStyleWord(true);
-		contentArea.setBounds(10, 70, 500, 300);
+		contentArea.setBounds(5, 100, 990, 440);
 		JScrollPane scrollTextArea = new JScrollPane(contentArea);
-		scrollTextArea.setBounds(10, 120, 550, 350);
+		scrollTextArea.setBounds(5, 100, 990, 440);
 		add(scrollTextArea);
+		
+		JButton cancelButton = new JButton("Cancel");
+		cancelButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				actionListener.clearActiveFile();
+				actionListener.closeContentPane();
+				dispose();
+				
+			}
+		});
+		
+		cancelButton.setBounds(770, 550, 100,20);
+		add(cancelButton);
 
 		JButton saveContent = new JButton("Save");
 		saveContent.addActionListener(actionListener);
 		saveContent.setActionCommand("editContentPage");
-		saveContent.setBounds(450, 525, 125, 20);
+		saveContent.setBounds(890, 550, 100,20);
 		add(saveContent);
 	}
 	
 	private void createButtons(){
 		JButton sectionButton = new JButton("Section");
-		sectionButton.setBounds(2,70,99,20);
+		sectionButton.setBounds(5,70,99,20);
 		sectionButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -105,7 +120,7 @@ public class EditContentPane extends JDialog {
 		add(sectionButton);
 		
 		JButton quizButton = new JButton("Quiz");
-		quizButton.setBounds(2,90,99,20);
+		quizButton.setBounds(320,30,100,20);
 		quizButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -117,7 +132,7 @@ public class EditContentPane extends JDialog {
 		add(quizButton);
 		
 		JButton titleButton = new JButton("Title");
-		titleButton.setBounds(100,70,100,20);
+		titleButton.setBounds(103,70,100,20);
 		titleButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -128,7 +143,7 @@ public class EditContentPane extends JDialog {
 		add(titleButton);
 		
 		JButton subtitleButton = new JButton("Sub title");
-		subtitleButton.setBounds(200,70,100,20);
+		subtitleButton.setBounds(203,70,100,20);
 		subtitleButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -139,7 +154,7 @@ public class EditContentPane extends JDialog {
 		add(subtitleButton);
 		
 		JButton linkButton = new JButton("Link");
-		linkButton.setBounds(300,70,100,20);
+		linkButton.setBounds(303,70,100,20);
 		linkButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -150,7 +165,7 @@ public class EditContentPane extends JDialog {
 		add(linkButton);
 		
 		JButton videoButton = new JButton("Video");
-		videoButton.setBounds(400,70,100,20);
+		videoButton.setBounds(403,70,100,20);
 		videoButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -161,7 +176,7 @@ public class EditContentPane extends JDialog {
 		add(videoButton);
 		
 		JButton imageButton = new JButton("Image");
-		imageButton.setBounds(500,70,100,20);
+		imageButton.setBounds(503,70,100,20);
 		imageButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -179,7 +194,7 @@ public class EditContentPane extends JDialog {
 		add(imageButton);
 		
 		JButton boldButton = new JButton("Bold");
-		boldButton.setBounds(100,90,100,20);
+		boldButton.setBounds(603,70,100,20);
 		boldButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -190,7 +205,7 @@ public class EditContentPane extends JDialog {
 		add(boldButton);
 		
 		JButton underlineButton = new JButton("Underline");
-		underlineButton.setBounds(200,90,100,20);
+		underlineButton.setBounds(703,70,100,20);
 		underlineButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -201,7 +216,7 @@ public class EditContentPane extends JDialog {
 		add(underlineButton);
 		
 		JButton italicButton = new JButton("Italic");
-		italicButton.setBounds(300,90,100,20);
+		italicButton.setBounds(803,70,100,20);
 		italicButton.addActionListener(new ActionListener() {
 			
 			@Override
