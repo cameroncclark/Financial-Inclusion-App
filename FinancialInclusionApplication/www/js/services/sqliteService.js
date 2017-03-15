@@ -194,8 +194,8 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
      */
     this.clearAllProgress = function () {
         $cordovaSQLite.execute(db, "UPDATE trophies SET acquired = 0", []);
-        $cordovaSQLite.execute(db, "UPDATE progress SET counter = 0 WHERE valueChange IS NULL", []);
-        $cordovaSQLite.execute(db, "UPDATE progress SET valueChanged = 'false' WHERE counter IS NULL", []);
+        $cordovaSQLite.execute(db, "UPDATE progress SET counter = 0", []);
+        $cordovaSQLite.execute(db, "UPDATE progress SET valueChanged = 'false'", []);
         $cordovaSQLite.execute(db, "UPDATE categories SET percentageComplete = 0", []);
         $cordovaSQLite.execute(db, "UPDATE subcategories SET percentageComplete = 0", []);
         $cordovaSQLite.execute(db, "UPDATE userData SET name = 'Your Name Here', location = 'Your Location Here', avatar = 'img/startImage.png'", []);
@@ -274,13 +274,16 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
                 quizCounter = result.rows.item(0).counter + 1;
                 console.log("Quiz Counter = " + quizCounter);
 
-                if (quizCounter == 5) {
-                    dbService.updateTrophy("Attempted 5 quizzes");
-                    // Unlock trophy when user attempts 5 quizzes
-                } else if (quizCounter == 50) { //TODO: Find value for this....
-                    dbService.updateTrophy("Attempted all quizzes");
-                    // Unlock trophy when user attempts all quizzes
-                }
+                var returnQuizCountPromise = dbService.returnQuizCount();
+                returnQuizCountPromise.then(function (quizCount) {
+                    if (quizCounter == 5) {
+                        dbService.updateTrophy("Attempted 5 quizzes");
+                        // Unlock trophy when user attempts 5 quizzes
+                    } else if (quizCounter == quizCount) {
+                        dbService.updateTrophy("Attempted all quizzes");
+                        // Unlock trophy when user attempts all quizzes
+                    }
+                });
 
                 if (percentageInQuiz == 100) {
                     dbService.updateTrophy("Get 100% in a quiz");
@@ -302,7 +305,6 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
                     }, function (error) {
                         console.error(error);
                     });
-
                 } else {
                     $cordovaSQLite.execute(db, "UPDATE progress SET counter = 0 WHERE objective LIKE '100% Quiz Counter'", []);
                 }
@@ -871,7 +873,6 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
                             var newSubCat = duplicateSubCatAddArray[i];
                             console.log("SUBCATEGORY WAS ADDED: " + newSubCat);
 
-
                             function passSubCat(newSubCat) {
                                 $http.get('content/topics.json')
                                     .then(function (subcategories) {
@@ -885,6 +886,7 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
                                                         var addQuery = "INSERT INTO subcategories (name, quizURL, percentageComplete, categoryID) VALUES (?,?,?,?)";
                                                         $cordovaSQLite.execute(db, addQuery, [SCname, SCquiz, 0, SCcatID]).then(function (result) {
                                                             console.log("ADDED SUBCATEGORY -> " + result.insertId);
+                                                            dbService.updateCategoryProgress();
                                                         })
                                                     }
                                                 });
@@ -906,10 +908,11 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
                         }
                         if (check) {
                             // Remove category from here
-                            //console.log("CATEGORY WAS DELETED: " + JSON.stringify(duplicateDeleteArray[i]));
+                            console.log("CATEGORY WAS DELETED: " + JSON.stringify(duplicateSubCatDeleteArray[i]));
                             var deleteQuery = "DELETE FROM subcategories WHERE name LIKE '" + duplicateSubCatDeleteArray[i] + "'";;
                             $cordovaSQLite.execute(db, deleteQuery, []).then(function (result) {
                                 console.log("DELETED SUBCATEGORY -> " + result.insertId);
+                                dbService.updateCategoryProgress();
                             }, function (error) {
                                 console.error(JSON.stringify(error));
                             });
@@ -960,11 +963,24 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
             .then(function (categories) {
                 for (var i = 0; i < categories.data.length; i++) {
                     if (categories.data[i].name == name) {
-                        console.log("I GET HERE - " + categories.data[i].ID);
                         q.resolve(categories.data[i].ID);
                     }
                 }
             });
+        return q.promise;
+    };
+
+    this.returnQuizCount = function () {
+        var q = $q.defer();
+        var printQuery = "SELECT * FROM subcategories";
+        $cordovaSQLite.execute(db, printQuery, []).then(function (result) {
+            if (result.rows.length > 0) {
+                console.log("Number of Subcategories = " + result.rows.length);
+                q.resolve(result.rows.length);
+            }
+        }, function (error) {
+            console.error(JSON.stringify(error));
+        });
         return q.promise;
     };
 
