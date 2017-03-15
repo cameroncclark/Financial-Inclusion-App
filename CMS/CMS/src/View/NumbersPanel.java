@@ -62,7 +62,7 @@ public class NumbersPanel implements Panel, Observer {
 		addNumberBlurb.setWrapStyleWord(true);
 		addNumberBlurb.setBounds(134, 72, 396, 96);
 		JScrollPane scrollTextArea = new JScrollPane(addNumberBlurb);
-		scrollTextArea.setBounds(134, 72, 396, 96);
+		scrollTextArea.setBounds(130, 72, 396, 96);
 
 		JLabel addNumberTF = new JLabel("Phone Number:");
 		addNumberTF.setBounds(30, 170, 200, 20);
@@ -112,7 +112,7 @@ public class NumbersPanel implements Panel, Observer {
 		editNumberBlurb.setWrapStyleWord(true);
 		editNumberBlurb.setBounds(134, 282, 396, 96);
 		JScrollPane scrollTextArea = new JScrollPane(editNumberBlurb);
-		scrollTextArea.setBounds(134, 282, 396, 96);
+		scrollTextArea.setBounds(130, 282, 396, 96);
 
 		JLabel editLinkWebsiteTF = new JLabel("Phone Number:");
 		editLinkWebsiteTF.setBounds(30, 380, 200, 20);

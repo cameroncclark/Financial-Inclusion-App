@@ -49,7 +49,7 @@ public class ContentPanel implements Panel, Observer{
 				activePanel = new AddContentPane(actionListener,model);
 			}
 		});
-		addTopicButton.setBounds(2,2,200,20);
+		addTopicButton.setBounds(226,100,250,80);
 		panel.add(addTopicButton);
 		
 		JButton editTopicButton = new JButton("Edit Content");
@@ -61,7 +61,7 @@ public class ContentPanel implements Panel, Observer{
 				activePanel = new EditContentPane(actionListener,model);
 			}
 		});
-		editTopicButton.setBounds(2,100,200,20);
+		editTopicButton.setBounds(226,220,250,80);
 		panel.add(editTopicButton);
 		
 		JButton deleteTopicButton = new JButton("Delete Content");
@@ -72,7 +72,7 @@ public class ContentPanel implements Panel, Observer{
 				activePanel = new DeleteContentPane(actionListener);
 			}
 		});
-		deleteTopicButton.setBounds(2,200,200,20);
+		deleteTopicButton.setBounds(226,340,250,80);
 		panel.add(deleteTopicButton);
 		
 		

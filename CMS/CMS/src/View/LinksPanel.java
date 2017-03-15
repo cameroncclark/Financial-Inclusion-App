@@ -62,7 +62,7 @@ public class LinksPanel implements Panel, Observer {
 		addLinkBlurb.setWrapStyleWord(true);
 		addLinkBlurb.setBounds(134, 72, 396, 96);
 		JScrollPane scrollTextArea = new JScrollPane(addLinkBlurb);
-		scrollTextArea.setBounds(134, 72, 396, 96);
+		scrollTextArea.setBounds(130, 72, 396, 96);
 
 		JLabel addLinkWebsiteTF = new JLabel("Link Website:");
 		addLinkWebsiteTF.setBounds(30, 170, 200, 20);
@@ -112,7 +112,7 @@ public class LinksPanel implements Panel, Observer {
 		editLinkBlurb.setWrapStyleWord(true);
 		editLinkBlurb.setBounds(134, 282, 396, 96);
 		JScrollPane scrollTextArea = new JScrollPane(editLinkBlurb);
-		scrollTextArea.setBounds(134, 282, 396, 96);
+		scrollTextArea.setBounds(130, 282, 396, 96);
 
 		JLabel editLinkWebsiteTF = new JLabel("Link Website:");
 		editLinkWebsiteTF.setBounds(30, 380, 200, 20);

@@ -43,24 +43,24 @@ public class MainContainer {
 		jFrame.requestFocusInWindow();
 		jFrame.getContentPane().setLayout(new BorderLayout());
 		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		jFrame.setSize(700, 700);
+		jFrame.setSize(700, 600);
 	}
 	
 	//http://docs.oracle.com/javase/tutorial/uiswing/components/menu.html
 	private void createMenus(){
-		jMenuBar = new JMenuBar();
-		
-		fileMenu = new JMenu("File");
-		settingsMenu = new JMenu("Build");
-		
-		fileMenu.add(new JMenuItem("Test"));
-		fileMenu.addSeparator();
-		fileMenu.add(new JMenuItem("Another"));
-		
-		jMenuBar.add(fileMenu);
-		jMenuBar.add(settingsMenu);
-		
-		jFrame.setJMenuBar(jMenuBar);
+//		jMenuBar = new JMenuBar();
+//		
+//		fileMenu = new JMenu("File");
+//		settingsMenu = new JMenu("Build");
+//		
+//		fileMenu.add(new JMenuItem("Test"));
+//		fileMenu.addSeparator();
+//		fileMenu.add(new JMenuItem("Another"));
+//		
+//		jMenuBar.add(fileMenu);
+//		jMenuBar.add(settingsMenu);
+//		
+//		jFrame.setJMenuBar(jMenuBar);
 	}
 	
 	private void createTabbedPane(){
