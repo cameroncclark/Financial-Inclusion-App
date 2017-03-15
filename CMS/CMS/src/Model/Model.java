@@ -219,4 +219,8 @@ public class Model extends Observable {
 	public String getQuizTitle() {
 		return contentModel.getQuizTitle();
 	}
+	
+	public Boolean isQuizActive(){
+		return contentModel.isQuizActive();
+	}
 }

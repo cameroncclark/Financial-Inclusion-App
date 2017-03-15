@@ -367,4 +367,11 @@ public class ContentModel {
 			return quiz.getTitle();
 		}
 	}
+
+	public Boolean isQuizActive() {
+		if(quiz != null && questions.size() > 0){
+			return true;
+		}
+		return false;
+	}
 }
