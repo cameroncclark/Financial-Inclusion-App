@@ -183,8 +183,8 @@ public class QuizAnswerPane extends JDialog {
 			correctAnswers.removeAllItems();
 		}
 	}
-	
-	private void imageAns(Integer numQuestions){
+
+	private void imageAns(Integer numQuestions) {
 		if (numQuestions + 1 < pictureLoaders.size()) {
 			// Remove the difference
 			int numberOfAnswers = pictureLoaders.size();
@@ -216,7 +216,6 @@ public class QuizAnswerPane extends JDialog {
 			pictureLoaders.get(i).setBounds(170, ypos, 150, 20);
 			answersPanel.add(pictureLoaders.get(i));
 			ypos += 40;
-			
 
 			JLabel reason = new JLabel("Reason #" + (i + 1) + ":");
 			reason.setBounds(2, ypos, 150, 20);
@@ -228,8 +227,8 @@ public class QuizAnswerPane extends JDialog {
 			ypos += 40;
 		}
 	}
-	
-	private void textAns(Integer numQuestions){
+
+	private void textAns(Integer numQuestions) {
 		if (numQuestions + 1 < answers.size()) {
 			// Remove the difference
 			int numberOfAnswers = answers.size();
@@ -272,8 +271,8 @@ public class QuizAnswerPane extends JDialog {
 	private void setupAnswers(int numQuestions) {
 		if (numQuestions != 0) {
 			answersPanel.removeAll();
-			
-			if(imageInUse){
+
+			if (imageInUse) {
 				imageAns(numQuestions);
 			} else {
 				textAns(numQuestions);
@@ -290,19 +289,19 @@ public class QuizAnswerPane extends JDialog {
 		textArea.setWrapStyleWord(true);
 		return textArea;
 	}
-	
+
 	private JButton getJButton(Integer index) {
 		JButton jButton = new JButton("Load Image");
 		jButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser imageChooser = new JFileChooser();
-				FileNameExtensionFilter filter = new FileNameExtensionFilter("Images", "jpeg","jpg","png","gif");
+				FileNameExtensionFilter filter = new FileNameExtensionFilter("Images", "jpeg", "jpg", "png", "gif");
 				imageChooser.setFileFilter(filter);
 				int returnVal = imageChooser.showOpenDialog(QuizAnswerPane.this);
 				if (returnVal == imageChooser.APPROVE_OPTION) {
-					picturePath.set(index,Paths.get(imageChooser.getSelectedFile().getPath()));
+					picturePath.set(index, Paths.get(imageChooser.getSelectedFile().getPath()));
 					selectedFile.get(index).setText(imageChooser.getSelectedFile().getName());
 				}
 			}
@@ -317,8 +316,8 @@ public class QuizAnswerPane extends JDialog {
 		}
 		return answersStrings;
 	}
-	
-	public ArrayList<Path> getPicturePaths(){
+
+	public ArrayList<Path> getPicturePaths() {
 		System.out.println(picturePath.size());
 		return picturePath;
 	}
@@ -340,53 +339,83 @@ public class QuizAnswerPane extends JDialog {
 	}
 
 	public String getQuestionType() {
-		if(questionType.getSelectedItem().toString().equals("True/False") || questionType.getSelectedItem().toString().equals("Multiple Choice")){
+		if (questionType.getSelectedItem().toString().equals("True/False")
+				|| questionType.getSelectedItem().toString().equals("Multiple Choice")) {
 			return "multipleChoice";
-		}else{
+		} else {
 			return "choosePicture";
 		}
 	}
-	
-	public void setQuestion(String question){
+
+	public void setQuestion(String question) {
 		edit = true;
 		oldQuestion = question;
 		quizAnswerTitleText.setText(question);
 	}
-	
-	public void setAnswersAndReasons(ArrayList<String> ans, ArrayList<String> res){
+
+	public void setAnswersAndReasons(ArrayList<String> ans, ArrayList<String> res) {
 		numQuestionAnswers.setSelectedItem(Integer.toString(ans.size()));
-		
-		for(int i = 0; i < ans.size(); i++){
+
+		for (int i = 0; i < ans.size(); i++) {
 			answers.get(i).setText(ans.get(i));
 		}
-		
-		for(int i = 0; i < res.size(); i++){
+
+		for (int i = 0; i < res.size(); i++) {
 			reasons.get(i).setText(res.get(i));
 		}
 	}
-	
-	public void setCorrectAnswer(Integer correct){
+
+	public void setCorrectAnswer(Integer correct) {
 		int item = correct + 1;
 		correctAnswers.setSelectedItem(Integer.toString(item));
 	}
-	
-	public void setQuestionType(String type){
-		if(type.equals("multipleChoice")){
+
+	public void setQuestionType(String type) {
+		if (type.equals("multipleChoice")) {
 			questionType.setSelectedItem("Multiple Choice");
 		} else {
 			questionType.setSelectedItem("Image Multiple Choice");
 		}
 	}
-	
-	public boolean getEditCheck(){
+
+	public boolean getEditCheck() {
 		return edit;
 	}
-	
-	public String getOldQuestion(){
+
+	public boolean anyFieldsBlankOrNotUnique() {
+		ArrayList<String> duplicates = new ArrayList<String>();
+		for (String reason : getReasons()) {
+			if (reason.replaceAll("\\s+", "").equals("") || duplicates.contains(reason)) {
+				return true;
+			}
+			duplicates.add(reason);
+		}
+		if (getPictureCheck()) {
+			duplicates = new ArrayList<String>();
+			for (Path picture : picturePath) {
+				if (picture.toString().replaceAll("\\s+", "").equals("")|| duplicates.contains(picture.toString())) {
+					return true;
+				}
+				duplicates.add(picture.toString());
+			}
+		} else {
+			duplicates = new ArrayList<String>();
+			for (String answer : getAnswers()) {
+				if (answer.toString().replaceAll("\\s+", "").equals("")|| duplicates.contains(answer)) {
+					return true;
+				}
+				duplicates.add(answer);
+			}
+		}
+
+		return false;
+	}
+
+	public String getOldQuestion() {
 		return oldQuestion;
 	}
-	
-	public boolean getPictureCheck(){
+
+	public boolean getPictureCheck() {
 		return imageInUse;
 	}
 }
