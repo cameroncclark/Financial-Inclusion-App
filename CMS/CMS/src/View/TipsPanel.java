@@ -60,9 +60,9 @@ public class TipsPanel implements Panel,Observer{
 		addTipTip = new JTextArea();
 		addTipTip.setLineWrap(true);
 		addTipTip.setWrapStyleWord(true);
-		addTipTip.setBounds(204, 72, 250, 20);
+		addTipTip.setBounds(200, 72, 250, 20);
 		JScrollPane scrollTextArea = new JScrollPane(addTipTip);
-		scrollTextArea.setBounds(204, 72, 396, 96);
+		scrollTextArea.setBounds(200, 72, 396, 96);
 		
 		JButton addTipBtn = new JButton("Add Tip");
 		addTipBtn.setBounds(525, 180, 125, 20);
@@ -102,9 +102,9 @@ public class TipsPanel implements Panel,Observer{
 		editTipTip = new JTextArea();
 		editTipTip.setLineWrap(true);
 		editTipTip.setWrapStyleWord(true);
-		editTipTip.setBounds(204, 282, 250, 20);
+		editTipTip.setBounds(200, 282, 250, 20);
 		JScrollPane scrollTextArea = new JScrollPane(editTipTip);
-		scrollTextArea.setBounds(204, 282, 396, 96);
+		scrollTextArea.setBounds(200, 282, 396, 96);
 		
 		
 		JButton editTipBtn = new JButton("Edit Tip");
@@ -134,34 +134,17 @@ public class TipsPanel implements Panel,Observer{
 		deleteTipList.setBounds(460, 430, 200, 25);
 		
 		JButton deleteTipBtn = new JButton("Delete tip");
-		deleteTipBtn.setBounds(525, 480, 125, 20);;
+		deleteTipBtn.setBounds(525, 480, 125, 20);
 		deleteTipBtn.setActionCommand("deleteTip");
 		deleteTipBtn.addActionListener(actionListener);
+		
+		JSeparator separator = new JSeparator(JSeparator.HORIZONTAL);
+		separator.setBounds(2, 505, 675, 10);
 		
 		panel.add(deleteTipLbl);
 		panel.add(deleteTipList);
 		panel.add(deleteTipBtn);
-	}
-	
-	public void addSection(){
-		JButton addTipBtn = new JButton("Test add");
-		addTipBtn.setBounds(2, 2, 125, 20);
-		addTipBtn.setActionCommand("addTip");
-		addTipBtn.addActionListener(actionListener);
-		
-		JButton editTipBtn = new JButton("Test edit");
-		editTipBtn.setBounds(200, 2, 125, 20);
-		editTipBtn.setActionCommand("editTip");
-		editTipBtn.addActionListener(actionListener);
-		
-		JButton deleteTipBtn = new JButton("Test delete");
-		deleteTipBtn.setBounds(400, 2, 125, 20);
-		deleteTipBtn.setActionCommand("deleteTip");
-		deleteTipBtn.addActionListener(actionListener);
-		
-		panel.add(addTipBtn);
-		panel.add(editTipBtn);
-		panel.add(deleteTipBtn);
+		panel.add(separator);
 	}
 	
 	public String getAddTipHeader(){
