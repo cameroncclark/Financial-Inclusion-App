@@ -151,4 +151,7 @@ public class ActionController implements ActionListener {
 		return model.getQuizTitle();
 	}
 
+	public void closeContentPane(){
+		model.closeContentPane();
+	}
 }

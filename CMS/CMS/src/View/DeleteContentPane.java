@@ -31,8 +31,8 @@ public class DeleteContentPane extends JDialog {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				System.out.println("I've been closed");
 				actionListener.clearActiveFile();
+				actionListener.closeContentPane();
 			}
 		});
 	}
