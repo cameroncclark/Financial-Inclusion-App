@@ -24,7 +24,7 @@ public class DeleteContentPane extends JDialog {
 	public DeleteContentPane(ActionController actionListener) {
 		this.actionListener = actionListener;
 		setLayout(null);
-		setSize(600, 600);
+		setSize(1000, 600);
 		createComponents();
 		setVisible(true);
 
@@ -40,7 +40,7 @@ public class DeleteContentPane extends JDialog {
 	private void createComponents() {
 
 		JButton selectTopic = new JButton("Load Topic");
-		selectTopic.setBounds(450, 10, 125, 20);
+		selectTopic.setBounds(870, 10, 125, 20);
 		selectTopic.addActionListener(new ActionListener() {
 
 			@Override
@@ -58,30 +58,49 @@ public class DeleteContentPane extends JDialog {
 		add(selectTopic);
 
 		JLabel topicTitle = new JLabel("Topic title:");
-		topicTitle.setBounds(2, 40, 100, 20);
+		topicTitle.setBounds(5, 40, 100, 20);
 		add(topicTitle);
 
-		topicTitleText = new JLabel("This is the topic title");
-		topicTitleText.setBounds(80, 40, 200, 20);
+		topicTitleText = new JLabel("");
+		topicTitleText.setBounds(100, 40, 200, 20);
 		add(topicTitleText);
 
-		categoryText = new JLabel("Category 12323223343343");
-		categoryText.setBounds(400, 40, 200, 20);
+		JLabel categoryTitle = new JLabel("Category title:");
+		categoryTitle.setBounds(5, 70, 100, 20);
+		add(categoryTitle);
+		
+		categoryText = new JLabel("");
+		categoryText.setBounds(100, 70, 200, 20);
 		add(categoryText);
 
 		contentArea = new JTextArea();
 		contentArea.setLineWrap(true);
 		contentArea.setWrapStyleWord(true);
 		contentArea.setEditable(false);
-		contentArea.setBounds(30, 70, 500, 400);
+		contentArea.setBounds(5, 100, 990, 440);
 		JScrollPane scrollTextArea = new JScrollPane(contentArea);
-		scrollTextArea.setBounds(30, 70, 550, 400);
+		scrollTextArea.setBounds(5, 100, 990, 440);
 		add(scrollTextArea);
+		
+		JButton cancelButton = new JButton("Cancel");
+		cancelButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				actionListener.clearActiveFile();
+				actionListener.closeContentPane();
+				dispose();
+				
+			}
+		});
+		
+		cancelButton.setBounds(770, 550, 100,20);
+		add(cancelButton);
 
 		JButton deleteContent = new JButton("Delete");
 		deleteContent.addActionListener(actionListener);
 		deleteContent.setActionCommand("deleteContentPage");
-		deleteContent.setBounds(450, 525, 125, 20);
+		deleteContent.setBounds(890, 550, 100,20);
 		add(deleteContent);
 	}
 	

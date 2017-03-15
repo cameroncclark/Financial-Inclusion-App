@@ -14,6 +14,8 @@ import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -40,7 +42,7 @@ public class QuizAnswerPane extends JDialog {
 	public QuizAnswerPane(ActionController actionListener) {
 		this.actionListener = actionListener;
 		setLayout(null);
-		setSize(600, 600);
+		setSize(600, 650);
 		createLayout();
 		setVisible(true);
 		edit = false;
@@ -48,23 +50,26 @@ public class QuizAnswerPane extends JDialog {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				// System.out.println("I Get Here!");
 			}
 		});
 	}
 
 	private void createLayout() {
-		JLabel topicTitle = new JLabel("Question:");
-		topicTitle.setBounds(2, 10, 200, 20);
+		JLabel topicTitle = new JLabel("Quiz Question:");
+		topicTitle.setBounds(5, 10, 200, 20);
 		add(topicTitle);
 
 		quizAnswerTitleText = new JTextField();
-		quizAnswerTitleText.setBounds(90, 10, 200, 20);
+		quizAnswerTitleText.setBounds(5, 30, 580, 20);
 		add(quizAnswerTitleText);
 
+		JLabel questionTypeText = new JLabel("Question type:");
+		questionTypeText.setBounds(5, 60, 200, 20);
+		add(questionTypeText);
+		
 		String[] listData = { "Please Select", "True/False", "Multiple Choice", "Image Multiple Choice" };
 		questionType = new JComboBox<>(listData);
-		questionType.setBounds(400, 10, 200, 20);
+		questionType.setBounds(5, 80, 200, 20);
 		questionType.addActionListener(new ActionListener() {
 
 			@Override
@@ -75,15 +80,15 @@ public class QuizAnswerPane extends JDialog {
 		add(questionType);
 
 		JLabel numAnswers = new JLabel("Num Answers:");
-		numAnswers.setBounds(400, 45, 200, 20);
+		numAnswers.setBounds(205, 60, 200, 20);
 		add(numAnswers);
 
 		JLabel correct = new JLabel("Correct Answer:");
-		correct.setBounds(400, 90, 200, 20);
+		correct.setBounds(405, 60, 200, 20);
 		add(correct);
 
 		numQuestionAnswers = new JComboBox<>();
-		numQuestionAnswers.setBounds(400, 65, 200, 20);
+		numQuestionAnswers.setBounds(205, 80, 170, 20);
 		numQuestionAnswers.addActionListener(new ActionListener() {
 
 			@Override
@@ -95,16 +100,17 @@ public class QuizAnswerPane extends JDialog {
 		add(numQuestionAnswers);
 
 		correctAnswers = new JComboBox<>();
-		correctAnswers.setBounds(400, 110, 200, 20);
+		correctAnswers.setBounds(405, 80, 170, 20);
 		add(correctAnswers);
 
+		
 		answersPanel = new JPanel();
 		answersPanel.setLayout(null);
-		answersPanel.setBounds(10, 40, 380, 500);
+		answersPanel.setBounds(10, 110, 580, 450);
 		add(answersPanel);
 
 		save = new JButton("Save");
-		save.setBounds(530, 550, 50, 20);
+		save.setBounds(530, 600, 50, 20);
 		save.setActionCommand("saveQuizQuestion");
 		save.addActionListener(actionListener);
 		add(save);
@@ -206,6 +212,10 @@ public class QuizAnswerPane extends JDialog {
 
 		int ypos = 2;
 		for (int i = 0; i < pictureLoaders.size(); i++) {
+			JSeparator separator = new JSeparator(JSeparator.HORIZONTAL);
+			separator.setBounds(2, ypos-2, 550, 10);
+			answersPanel.add(separator);
+			
 			JLabel ans = new JLabel("Answer #" + (i + 1) + ":");
 			ans.setBounds(2, ypos, 150, 20);
 			answersPanel.add(ans);
@@ -213,18 +223,18 @@ public class QuizAnswerPane extends JDialog {
 
 			selectedFile.get(i).setBounds(2, ypos, 150, 20);
 			answersPanel.add(selectedFile.get(i));
-			pictureLoaders.get(i).setBounds(170, ypos, 150, 20);
+			pictureLoaders.get(i).setBounds(400, ypos, 150, 20);
 			answersPanel.add(pictureLoaders.get(i));
-			ypos += 40;
+			ypos += 25;
 
 			JLabel reason = new JLabel("Reason #" + (i + 1) + ":");
 			reason.setBounds(2, ypos, 150, 20);
 			answersPanel.add(reason);
 			ypos += 20;
 
-			reasons.get(i).setBounds(2, ypos, 150, 20);
+			reasons.get(i).setBounds(2, ypos, 550, 20);
 			answersPanel.add(reasons.get(i));
-			ypos += 40;
+			ypos += 25;
 		}
 	}
 
@@ -235,9 +245,7 @@ public class QuizAnswerPane extends JDialog {
 			for (int i = numberOfAnswers; i > numQuestions + 1; i--) {
 				answers.remove(i - 1);
 				reasons.remove(i - 1);
-				System.out.println(answers.size());
 			}
-			System.out.println(answers.size());
 		} else if (numQuestions + 1 > answers.size()) {
 			// Add the difference
 			for (int i = answers.size(); i < numQuestions + 1; i++) {
@@ -248,23 +256,27 @@ public class QuizAnswerPane extends JDialog {
 
 		int ypos = 2;
 		for (int i = 0; i < answers.size(); i++) {
+			JSeparator separator = new JSeparator(JSeparator.HORIZONTAL);
+			separator.setBounds(2, ypos-2, 550, 10);
+			answersPanel.add(separator);
+			
 			JLabel ans = new JLabel("Answer #" + (i + 1) + ":");
 			ans.setBounds(2, ypos, 150, 20);
 			answersPanel.add(ans);
 			ypos += 20;
 
-			answers.get(i).setBounds(2, ypos, 150, 20);
+			answers.get(i).setBounds(2, ypos, 550, 20);
 			answersPanel.add(answers.get(i));
-			ypos += 40;
+			ypos += 25;
 
 			JLabel reason = new JLabel("Reason #" + (i + 1) + ":");
 			reason.setBounds(2, ypos, 150, 20);
 			answersPanel.add(reason);
 			ypos += 20;
 
-			reasons.get(i).setBounds(2, ypos, 150, 20);
+			reasons.get(i).setBounds(2, ypos, 550, 20);
 			answersPanel.add(reasons.get(i));
-			ypos += 40;
+			ypos += 25;
 		}
 	}
 
@@ -318,7 +330,6 @@ public class QuizAnswerPane extends JDialog {
 	}
 
 	public ArrayList<Path> getPicturePaths() {
-		System.out.println(picturePath.size());
 		return picturePath;
 	}
 

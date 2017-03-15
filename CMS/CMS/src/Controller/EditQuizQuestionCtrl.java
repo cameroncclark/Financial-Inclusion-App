@@ -25,7 +25,7 @@ public class EditQuizQuestionCtrl {
 			} else {
 				QuestionObject question = model.getQuestion(quizPanel.getSelectedQuestion());
 
-				if (question.getQuestionType() != "choosePicture") {
+				if (!question.getQuestionType().equals("choosePicture")) {
 					quizAnswerPane.setQuestion(question.getQuestionText());
 					quizAnswerPane.setQuestionType(question.getQuestionType());
 					quizAnswerPane.setAnswersAndReasons(question.getAnswers(), question.getReason());
@@ -40,12 +40,14 @@ public class EditQuizQuestionCtrl {
 			EditContentPane activePanel = (EditContentPane) panel.getActivePanel();
 			QuizPane quizPanel = (QuizPane) activePanel.getActivePanel();
 			QuizAnswerPane quizAnswerPane = (QuizAnswerPane) quizPanel.getActivePanel();
-			QuestionObject question = model.getQuestion(quizPanel.getSelectedQuestion());
+			
 			if (quizPanel.getSelectedQuestion() == null) {
 				JOptionPane.showMessageDialog(null, "You must select a question to edit.", "Please select question",
 						JOptionPane.ERROR_MESSAGE);
 			} else {
-				if (question.getQuestionType() != "choosePicture") {
+				QuestionObject question = model.getQuestion(quizPanel.getSelectedQuestion());
+				
+				if (!question.getQuestionType().equals("choosePicture")) {
 					quizAnswerPane.setQuestion(question.getQuestionText());
 					quizAnswerPane.setQuestionType(question.getQuestionType());
 					quizAnswerPane.setAnswersAndReasons(question.getAnswers(), question.getReason());
