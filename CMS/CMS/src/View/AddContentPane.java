@@ -97,7 +97,7 @@ public class AddContentPane extends JDialog {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				contentArea.insert("<section><section-title>SectionTitle</section-title>ContentHere</section>", contentArea.getText().length());
+				contentArea.insert("<section><section-title>SectionTitle</section-title>ContentHere</section>\n\n", contentArea.getText().length());
 			}
 		});
 		add(sectionButton);

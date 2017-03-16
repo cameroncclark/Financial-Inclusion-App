@@ -606,7 +606,11 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
         $http.get('content/categories.json')
             .then(function (categories) {
                 for (var i = 0; i < categories.data.length; i++) {
-                    $cordovaSQLite.execute(db, catQuery, [categories.data[i].ID, categories.data[i].name, 0]);
+                    $cordovaSQLite.execute(db, catQuery, [categories.data[i].ID, categories.data[i].name, 0]).then(function (result) {
+                        console.log("INSERT CAT ID -> " + result.insertId);
+                    }, function (error) {
+                        console.error("ERROR INSERTING CAT:" + JSON.stringify(error));
+                    });
                 }
             });
 
@@ -638,7 +642,7 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
                                                 $cordovaSQLite.execute(db, subCatQuery, [SCname, SCquiz, 0, SCcatID]).then(function (result) {
                                                     console.log("INSERT SUB CAT ID -> " + result.insertId);
                                                 }, function (error) {
-                                                    console.error(JSON.stringify(error));
+                                                    console.error("ERROR INSERTING SUB CAT:" + JSON.stringify(error));
                                                 });
                                             }, function (error) {
                                                 console.error(error);
@@ -673,7 +677,6 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
             .then(function (categories) {
                 for (var i = 0; i < categories.data.length; i++) {
                     cat[i] = categories.data[i].name;
-                    //console.log("CATEGORY TEST: " + cat[i]);
                 }
                 q.resolve(cat);
             });
@@ -720,8 +723,6 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
                                                 $cordovaSQLite.execute(db, getNameQuery, []).then(function (result) {
                                                     SCname = subcategory.data.title;
                                                     subCat[i] = SCname
-                                                    //console.log("THIS IS WHAT getSubCatCount FOUND: " + SCname);
-                                                    //console.log("POSITION: " + i + " = " + subCat[i]);
                                                     q.resolve(subCat);
                                                 }, function (error) {
                                                     console.error(error);
@@ -752,7 +753,6 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
             count = result.rows.length;
             for (var i = 0; i < result.rows.length; i++) {
                 subcat[i] = result.rows.item(i).name;
-                //console.log("THIS IS WHAT getDataSubCatCount FOUND: " + result.rows.item(i).name);
             }
             q.resolve(subcat);
         }, function (error) {
@@ -802,7 +802,7 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
                                     $cordovaSQLite.execute(db, addQuery, [catID, catName, 0]).then(function (result) {
                                         console.log("ADDED CATEGORY -> " + result.insertId);
                                     }, function (error) {
-                                        console.error(JSON.stringify(error));
+                                        console.error("ERROR INSERTING CAT BY CMS:" + JSON.stringify(error));
                                     });
                                 });
                             } (passCatName(duplicateAddArray[i]))
@@ -830,7 +830,7 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
                             $cordovaSQLite.execute(db, deleteQuery, []).then(function (result) {
                                 console.log("DELETED CATEGORY -> " + result.insertId);
                             }, function (error) {
-                                console.error(JSON.stringify(error));
+                                console.error("ERROR DELETEING CAT BY CMS:" + JSON.stringify(error));
                             });
                         } else {
                             // THIS WILL NEVER BE THE CASE
@@ -887,7 +887,9 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
                                                         $cordovaSQLite.execute(db, addQuery, [SCname, SCquiz, 0, SCcatID]).then(function (result) {
                                                             console.log("ADDED SUBCATEGORY -> " + result.insertId);
                                                             dbService.updateCategoryProgress();
-                                                        })
+                                                        }, function (error) {
+                                                            console.error("ERROR INSERTING SUB CAT BY CMS:" + JSON.stringify(error));
+                                                        });
                                                     }
                                                 });
                                         }
@@ -914,7 +916,7 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
                                 console.log("DELETED SUBCATEGORY -> " + result.insertId);
                                 dbService.updateCategoryProgress();
                             }, function (error) {
-                                console.error(JSON.stringify(error));
+                                console.error("ERROR DELETING SUB CAT BY CMS:" + JSON.stringify(error));
                             });
                         } else {
                             // THIS WILL NEVER BE THE CASE

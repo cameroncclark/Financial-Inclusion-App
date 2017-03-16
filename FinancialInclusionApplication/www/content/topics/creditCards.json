@@ -1,6 +1,0 @@
-{
-    "title": "Credit Cards",
-    "reference": 4,
-     "content": "<section><section-title>Credit Cards</section-title></section>",
-     "quiz":{"url":"creditCardsQuiz.json", "title":"Credit Cards"}
-}

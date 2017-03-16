@@ -150,7 +150,17 @@ fIApp.run(function ($ionicPlatform, $http, $rootScope, $cordovaSQLite, dbAccesso
           //var query = "INSERT INTO subcategories (name, quizURL, percentageComplete, categoryID) VALUES (?,?,?,?)";
           //$cordovaSQLite.execute(db, query, ["fake category", "fake.json",  25, 1]);
 
+          console.log("--BEFORE--");
+          dbAccessor.printCategoriesTable();
+          dbAccessor.printSubCategoriesTable();
+
           dbAccessor.updateTablesFromCMS();
+
+          setTimeout(function () {
+            console.log("--AFTER--");
+            dbAccessor.printCategoriesTable();
+            dbAccessor.printSubCategoriesTable();
+          }, 3000);
         }
       }, function (error) {
         console.error(error)
