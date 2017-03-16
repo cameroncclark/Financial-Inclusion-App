@@ -42,7 +42,7 @@ public class QuizAnswerPane extends JDialog {
 	public QuizAnswerPane(ActionController actionListener) {
 		this.actionListener = actionListener;
 		setLayout(null);
-		setSize(600, 650);
+		setSize(610, 660);
 		createLayout();
 		setVisible(true);
 		edit = false;
@@ -64,12 +64,12 @@ public class QuizAnswerPane extends JDialog {
 		add(quizAnswerTitleText);
 
 		JLabel questionTypeText = new JLabel("Question type:");
-		questionTypeText.setBounds(5, 60, 200, 20);
+		questionTypeText.setBounds(5, 60, 170, 20);
 		add(questionTypeText);
 		
 		String[] listData = { "Please Select", "True/False", "Multiple Choice", "Image Multiple Choice" };
 		questionType = new JComboBox<>(listData);
-		questionType.setBounds(5, 80, 200, 20);
+		questionType.setBounds(5, 80, 170, 20);
 		questionType.addActionListener(new ActionListener() {
 
 			@Override
@@ -110,10 +110,21 @@ public class QuizAnswerPane extends JDialog {
 		add(answersPanel);
 
 		save = new JButton("Save");
-		save.setBounds(530, 600, 50, 20);
+		save.setBounds(480, 600, 115, 20);
 		save.setActionCommand("saveQuizQuestion");
 		save.addActionListener(actionListener);
 		add(save);
+		
+		JButton cancel = new JButton("Cancel");
+		cancel.setBounds(480, 570, 115, 20);
+		cancel.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();				
+			}
+		});
+		add(cancel);
 	}
 
 	private void setupNumQuestionDropdown(int index) {

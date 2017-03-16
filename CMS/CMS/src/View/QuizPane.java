@@ -31,7 +31,7 @@ public class QuizPane extends JDialog implements Observer {
 		this.actionListener = actionListener;
 		actionListener.intialiseQuiz();
 		setLayout(null);
-		setSize(490, 450);
+		setSize(500, 460);
 		questionText = actionListener.getQuestions();
 		createLayout();
 		setVisible(true);
@@ -97,6 +97,17 @@ public class QuizPane extends JDialog implements Observer {
 		saveQuiz.addActionListener(actionListener);
 		saveQuiz.setActionCommand("saveQuiz");
 		add(saveQuiz);
+		
+		JButton cancel = new JButton("Cancel");
+		cancel.setBounds(365, 360, 115, 20);
+		cancel.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();				
+			}
+		});
+		add(cancel);
 	}
 
 	public String getSelectedQuestion() {

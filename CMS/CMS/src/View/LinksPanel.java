@@ -55,7 +55,7 @@ public class LinksPanel implements Panel, Observer {
 		addLinkTitle.setBounds(130, 50, 200, 20);
 
 		JLabel addLinkBlurbTF = new JLabel("Link Blurb:");
-		addLinkBlurbTF.setBounds(30, 70, 200, 20);
+		addLinkBlurbTF.setBounds(34, 70, 200, 20);
 
 		addLinkBlurb = new JTextArea();
 		addLinkBlurb.setLineWrap(true);
@@ -105,7 +105,7 @@ public class LinksPanel implements Panel, Observer {
 		editLinkTitle.setBounds(130, 260, 200, 20);
 
 		JLabel editLinkBlurbTF = new JLabel("Link Blurb:");
-		editLinkBlurbTF.setBounds(30, 280, 200, 20);
+		editLinkBlurbTF.setBounds(34, 280, 200, 20);
 
 		editLinkBlurb = new JTextArea();
 		editLinkBlurb.setLineWrap(true);

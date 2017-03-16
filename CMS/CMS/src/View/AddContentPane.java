@@ -32,7 +32,7 @@ public class AddContentPane extends JDialog {
 		this.actionListener = actionListener;
 		categories = actionListener.initaliseCategoriesTab();
 		setLayout(null);
-		setSize(1000, 600);
+		setSize(1010, 610);
 		createComponents();
 		createButtons();
 		setVisible(true);

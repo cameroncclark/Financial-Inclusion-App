@@ -24,7 +24,7 @@ public class DeleteContentPane extends JDialog {
 	public DeleteContentPane(ActionController actionListener) {
 		this.actionListener = actionListener;
 		setLayout(null);
-		setSize(1000, 600);
+		setSize(1010, 610);
 		createComponents();
 		setVisible(true);
 

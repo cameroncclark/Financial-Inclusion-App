@@ -55,7 +55,7 @@ public class TipsPanel implements Panel,Observer{
 		addTipHeader.setBounds(200, 50, 150, 20);
 		
 		JLabel addTipTipTF = new JLabel("Tip Text (MAX 200 Chars):");
-		addTipTipTF.setBounds(30, 70, 200, 20);
+		addTipTipTF.setBounds(34, 70, 200, 20);
 		
 		addTipTip = new JTextArea();
 		addTipTip.setLineWrap(true);
@@ -97,7 +97,7 @@ public class TipsPanel implements Panel,Observer{
 		editTipHeader.setBounds(200, 260, 150, 20);
 		
 		JLabel editTipTipTF = new JLabel("Tip Text (MAX 200 Chars):");
-		editTipTipTF.setBounds(30, 280, 200, 20);
+		editTipTipTF.setBounds(34, 280, 200, 20);
 		
 		editTipTip = new JTextArea();
 		editTipTip.setLineWrap(true);

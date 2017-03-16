@@ -55,7 +55,7 @@ public class NumbersPanel implements Panel, Observer {
 		addNumberTitle.setBounds(130, 50, 200, 20);
 
 		JLabel addLinkBlurbTF = new JLabel("Number Blurb:");
-		addLinkBlurbTF.setBounds(30, 70, 200, 20);
+		addLinkBlurbTF.setBounds(34, 70, 200, 20);
 
 		addNumberBlurb = new JTextArea();
 		addNumberBlurb.setLineWrap(true);
@@ -105,7 +105,7 @@ public class NumbersPanel implements Panel, Observer {
 		editNumberTitle.setBounds(130, 260, 200, 20);
 
 		JLabel editLinkBlurbTF = new JLabel("Number Blurb:");
-		editLinkBlurbTF.setBounds(30, 280, 200, 20);
+		editLinkBlurbTF.setBounds(34, 280, 200, 20);
 
 		editNumberBlurb = new JTextArea();
 		editNumberBlurb.setLineWrap(true);

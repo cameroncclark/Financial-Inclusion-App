@@ -168,7 +168,7 @@ public class CategoriesPanel implements Panel, Observer {
 		editCatList.setSelectedIndex(0);
 		editCatList.addActionListener(actionListener);
 		editCatList.setActionCommand("editCategorySelect");
-		editCatList.setBounds(460, 160, 200, 25);
+		editCatList.setBounds(460, 220, 200, 25);
 		editCatList.setVisible(true);
 		editCatList.addActionListener(new ActionListener() {
 
@@ -183,7 +183,7 @@ public class CategoriesPanel implements Panel, Observer {
 		deleteCatList.setSelectedIndex(0);
 		deleteCatList.addActionListener(actionListener);
 		deleteCatList.setActionCommand("deleteCategorySelect");
-		deleteCatList.setBounds(460, 320, 200, 25);
+		deleteCatList.setBounds(460, 430, 200, 25);
 		editCatList.setVisible(true);
 		
 		panel.add(editCatList);
