@@ -24,6 +24,7 @@ public class DeleteContentCtrl {
 				JOptionPane.showMessageDialog(null, "Topic has been successfully deleted.", "Topic deleted",
 						JOptionPane.INFORMATION_MESSAGE);
 				model.clearActiveFile();
+				model.closeContentPane();
 			}
 		}
 	}

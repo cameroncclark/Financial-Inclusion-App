@@ -330,7 +330,6 @@ public class ContentModel {
 
 	public void clearActiveFile() {
 		activeFile = "";
-
 	}
 
 	public void saveImageFile(String path) {
