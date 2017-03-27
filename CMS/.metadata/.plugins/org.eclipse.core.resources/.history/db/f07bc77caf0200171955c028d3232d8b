@@ -1,8 +1,0 @@
-package Controller;
-
-public class AddQuizQuestionCtrl {
-	public AddQuizQuestionCtrl(Model model, MainContainer view) {
-		// TODO Auto-generated constructor stub
-	}
-
-}
