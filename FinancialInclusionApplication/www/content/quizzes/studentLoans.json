@@ -21,6 +21,13 @@
            "answers":["True","False"],
            "answer":0,
            "reason":["Exactly! SAAS are very helpful in the fact there is a waiting period before returning your loan!","No, remember SAAS don't require the loan to be paid back immediately!"]
+        },
+        {
+           "questionType":"multipleChoice",
+           "questionText":"What is the travel allowance for those studying Nursing or Midwifery?",
+           "answers":["£3 per day","£5 per day", "£7 per day", "£9 per day"],
+           "answer":1,
+           "reason":["No, it's more than that!","Correct! It's £5 per day.","No, it's just less than that!","Unfortunatly not! It's a lot less than £9 per day."]
         }
 
     ]
