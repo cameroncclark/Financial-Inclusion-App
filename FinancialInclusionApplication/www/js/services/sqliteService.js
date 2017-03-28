@@ -192,10 +192,10 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
     /**
      * This is to reset all progress in the application
      */
-    this.clearAllProgress = function (){
+    this.clearAllProgress = function () {
         $cordovaSQLite.execute(db, "UPDATE trophies SET acquired = 0", []);
-        $cordovaSQLite.execute(db, "UPDATE progress SET counter = 0 WHERE valueChange IS NULL", []);
-        $cordovaSQLite.execute(db, "UPDATE progress SET valueChanged = 'false' WHERE counter IS NULL", []);
+        $cordovaSQLite.execute(db, "UPDATE progress SET counter = 0", []);
+        $cordovaSQLite.execute(db, "UPDATE progress SET valueChanged = 'false'", []);
         $cordovaSQLite.execute(db, "UPDATE categories SET percentageComplete = 0", []);
         $cordovaSQLite.execute(db, "UPDATE subcategories SET percentageComplete = 0", []);
         $cordovaSQLite.execute(db, "UPDATE userData SET name = 'Your Name Here', location = 'Your Location Here', avatar = 'img/startImage.png'", []);
@@ -274,13 +274,16 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
                 quizCounter = result.rows.item(0).counter + 1;
                 console.log("Quiz Counter = " + quizCounter);
 
-                if (quizCounter == 5) {
-                    dbService.updateTrophy("Attempted 5 quizzes");
-                    // Unlock trophy when user attempts 5 quizzes
-                } else if (quizCounter == 50) { //TODO: Find value for this....
-                    dbService.updateTrophy("Attempted all quizzes");
-                    // Unlock trophy when user attempts all quizzes
-                }
+                var returnQuizCountPromise = dbService.returnQuizCount();
+                returnQuizCountPromise.then(function (quizCount) {
+                    if (quizCounter == 5) {
+                        dbService.updateTrophy("Attempted 5 quizzes");
+                        // Unlock trophy when user attempts 5 quizzes
+                    } else if (quizCounter == quizCount) {
+                        dbService.updateTrophy("Attempted all quizzes");
+                        // Unlock trophy when user attempts all quizzes
+                    }
+                });
 
                 if (percentageInQuiz == 100) {
                     dbService.updateTrophy("Get 100% in a quiz");
@@ -302,7 +305,6 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
                     }, function (error) {
                         console.error(error);
                     });
-
                 } else {
                     $cordovaSQLite.execute(db, "UPDATE progress SET counter = 0 WHERE objective LIKE '100% Quiz Counter'", []);
                 }
@@ -502,12 +504,18 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
                     dbService.updateTrophy("Achieve 25% completion");
                     // Unlock trophy when user reaches 25% completion
                 } else if (progressCount >= 50 && progressCount < 75) {
+                    dbService.updateTrophy("Achieve 25% completion");
                     dbService.updateTrophy("Achieve 50% completion");
                     // Unlock trophy when user reaches 50% completion
                 } else if (progressCount >= 75 && progressCount < 100) {
+                    dbService.updateTrophy("Achieve 25% completion");
+                    dbService.updateTrophy("Achieve 50% completion");
                     dbService.updateTrophy("Achieve 75% completion");
                     // Unlock trophy when user reaches 75% completion
                 } else if (progressCount == 100) {
+                    dbService.updateTrophy("Achieve 25% completion");
+                    dbService.updateTrophy("Achieve 50% completion");
+                    dbService.updateTrophy("Achieve 75% completion");
                     dbService.updateTrophy("Achieve 100% completion");
                     // Unlock trophy when user reaches 100% completion
                 }
@@ -531,7 +539,7 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
     this.buildTables = function () {
         $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS userData (id INTEGER PRIMARY KEY, name TEXT, location TEXT, avatar TEXT)");
         $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS trophies (id INTEGER PRIMARY KEY, title TEXT, image TEXT, description TEXT, hint TEXT, acquired TINYINT)");
-        $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS categories (id INTEGER PRIMARY KEY, name NVARCHAR(50), percentageComplete INTEGER)");
+        $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS categories (id INTEGER, name NVARCHAR(50), percentageComplete INTEGER)");
         $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS subcategories (id INTEGER PRIMARY KEY, name NVARCHAR(50), quizURL NVARCHAR(50), percentageComplete INTEGER, categoryID INTEGER, FOREIGN KEY(categoryID) REFERENCES categories(id))");
         $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS progress (objective NVARCHAR(50) PRIMARY KEY, counter INTEGER, valueChanged TINYINT)");
     }
@@ -594,11 +602,15 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
         /**
          * Categorys Table
          */
-        var catQuery = "INSERT INTO categories (name, percentageComplete) VALUES (?,?)";
+        var catQuery = "INSERT INTO categories (id, name, percentageComplete) VALUES (?,?,?)";
         $http.get('content/categories.json')
             .then(function (categories) {
                 for (var i = 0; i < categories.data.length; i++) {
-                    $cordovaSQLite.execute(db, catQuery, [categories.data[i].name, 0]);
+                    $cordovaSQLite.execute(db, catQuery, [categories.data[i].ID, categories.data[i].name, 0]).then(function (result) {
+                        console.log("INSERT CAT ID -> " + result.insertId);
+                    }, function (error) {
+                        console.error("ERROR INSERTING CAT:" + JSON.stringify(error));
+                    });
                 }
             });
 
@@ -630,7 +642,7 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
                                                 $cordovaSQLite.execute(db, subCatQuery, [SCname, SCquiz, 0, SCcatID]).then(function (result) {
                                                     console.log("INSERT SUB CAT ID -> " + result.insertId);
                                                 }, function (error) {
-                                                    console.error(JSON.stringify(error));
+                                                    console.error("ERROR INSERTING SUB CAT:" + JSON.stringify(error));
                                                 });
                                             }, function (error) {
                                                 console.error(error);
@@ -665,7 +677,6 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
             .then(function (categories) {
                 for (var i = 0; i < categories.data.length; i++) {
                     cat[i] = categories.data[i].name;
-                    //console.log("CATEGORY TEST: " + cat[i]);
                 }
                 q.resolve(cat);
             });
@@ -712,8 +723,6 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
                                                 $cordovaSQLite.execute(db, getNameQuery, []).then(function (result) {
                                                     SCname = subcategory.data.title;
                                                     subCat[i] = SCname
-                                                    //console.log("THIS IS WHAT getSubCatCount FOUND: " + SCname);
-                                                    //console.log("POSITION: " + i + " = " + subCat[i]);
                                                     q.resolve(subCat);
                                                 }, function (error) {
                                                     console.error(error);
@@ -744,7 +753,6 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
             count = result.rows.length;
             for (var i = 0; i < result.rows.length; i++) {
                 subcat[i] = result.rows.item(i).name;
-                //console.log("THIS IS WHAT getDataSubCatCount FOUND: " + result.rows.item(i).name);
             }
             q.resolve(subcat);
         }, function (error) {
@@ -785,14 +793,22 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
                             // THIS WILL NEVER BE THE CASE
                         } else {
                             // Add category from here
-                            //console.log("CATEGORY WAS ADDED: " + JSON.stringify(duplicateAddArray[i]));
-                            var addQuery = "INSERT INTO categories (name, percentageComplete) VALUES (?,?)";
+                            console.log("CATEGORY WAS ADDED: " + JSON.stringify(duplicateAddArray[i]));
+                            var addQuery = "INSERT INTO categories (id, name, percentageComplete) VALUES (?,?,?)";
                             //console.log(JSON.stringify(duplicateAddArray[i]))
-                            $cordovaSQLite.execute(db, addQuery, [duplicateAddArray[i], 0]).then(function (result) {
-                                console.log("ADDED CATEGORY -> " + result.insertId);
-                            }, function (error) {
-                                console.error(JSON.stringify(error));
-                            });
+                            function passCatName(catName) {
+                                var catIDPromise = dbService.returnIDFromName(duplicateAddArray[i]);
+                                catIDPromise.then(function (catID) {
+                                    $cordovaSQLite.execute(db, addQuery, [catID, catName, 0]).then(function (result) {
+                                        console.log("ADDED CATEGORY -> " + result.insertId);
+                                    }, function (error) {
+                                        console.error("ERROR INSERTING CAT BY CMS:" + JSON.stringify(error));
+                                    });
+                                });
+                            } (passCatName(duplicateAddArray[i]))
+
+
+
                             // PERCENTAGE COMPLETE IS NOT BEING ADDED CORRECTLY 
                         }
                     }
@@ -814,7 +830,7 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
                             $cordovaSQLite.execute(db, deleteQuery, []).then(function (result) {
                                 console.log("DELETED CATEGORY -> " + result.insertId);
                             }, function (error) {
-                                console.error(JSON.stringify(error));
+                                console.error("ERROR DELETEING CAT BY CMS:" + JSON.stringify(error));
                             });
                         } else {
                             // THIS WILL NEVER BE THE CASE
@@ -857,7 +873,6 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
                             var newSubCat = duplicateSubCatAddArray[i];
                             console.log("SUBCATEGORY WAS ADDED: " + newSubCat);
 
-
                             function passSubCat(newSubCat) {
                                 $http.get('content/topics.json')
                                     .then(function (subcategories) {
@@ -871,7 +886,10 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
                                                         var addQuery = "INSERT INTO subcategories (name, quizURL, percentageComplete, categoryID) VALUES (?,?,?,?)";
                                                         $cordovaSQLite.execute(db, addQuery, [SCname, SCquiz, 0, SCcatID]).then(function (result) {
                                                             console.log("ADDED SUBCATEGORY -> " + result.insertId);
-                                                        })
+                                                            dbService.updateCategoryProgress();
+                                                        }, function (error) {
+                                                            console.error("ERROR INSERTING SUB CAT BY CMS:" + JSON.stringify(error));
+                                                        });
                                                     }
                                                 });
                                         }
@@ -892,12 +910,13 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
                         }
                         if (check) {
                             // Remove category from here
-                            //console.log("CATEGORY WAS DELETED: " + JSON.stringify(duplicateDeleteArray[i]));
+                            console.log("CATEGORY WAS DELETED: " + JSON.stringify(duplicateSubCatDeleteArray[i]));
                             var deleteQuery = "DELETE FROM subcategories WHERE name LIKE '" + duplicateSubCatDeleteArray[i] + "'";;
                             $cordovaSQLite.execute(db, deleteQuery, []).then(function (result) {
                                 console.log("DELETED SUBCATEGORY -> " + result.insertId);
+                                dbService.updateCategoryProgress();
                             }, function (error) {
-                                console.error(JSON.stringify(error));
+                                console.error("ERROR DELETING SUB CAT BY CMS:" + JSON.stringify(error));
                             });
                         } else {
                             // THIS WILL NEVER BE THE CASE
@@ -906,6 +925,65 @@ fIApp.service("dbAccessor", function ($cordovaSQLite, $q, $rootScope, $http) {
                 }
             });
         });
-    }
+    };
+
+    this.printCategoriesTable = function () {
+        var printQuery = "SELECT * FROM categories ORDER BY id";
+        $cordovaSQLite.execute(db, printQuery, []).then(function (result) {
+            if (result.rows.length > 0) {
+                console.log("");
+                console.log("Number of Categories = " + result.rows.length);
+                for (var i = 0; i < result.rows.length; i++) {
+                    console.log("");
+                    console.log("Category ID = " + result.rows.item(i).id + " - name = " + result.rows.item(i).name + " - percentageComplete = " + result.rows.item(i).percentageComplete);
+                }
+            }
+        }, function (error) {
+            console.error(JSON.stringify(error));
+        });
+    };
+
+    this.printSubCategoriesTable = function () {
+        var printQuery = "SELECT * FROM subcategories ORDER BY id";
+        $cordovaSQLite.execute(db, printQuery, []).then(function (result) {
+            if (result.rows.length > 0) {
+                console.log("");
+                console.log("Number of Subcategories = " + result.rows.length);
+                for (var i = 0; i < result.rows.length; i++) {
+                    console.log("");
+                    console.log("Sub Category ID = " + result.rows.item(i).id + " - name = " + result.rows.item(i).name + " - percentageComplete = " + result.rows.item(i).percentageComplete + " - quizURL = " + result.rows.item(i).quizURL + " - CategoryID = " + result.rows.item(i).categoryID);
+                }
+            }
+        }, function (error) {
+            console.error(JSON.stringify(error));
+        });
+    };
+
+    this.returnIDFromName = function (name) {
+        var q = $q.defer();
+        $http.get('content/categories.json')
+            .then(function (categories) {
+                for (var i = 0; i < categories.data.length; i++) {
+                    if (categories.data[i].name == name) {
+                        q.resolve(categories.data[i].ID);
+                    }
+                }
+            });
+        return q.promise;
+    };
+
+    this.returnQuizCount = function () {
+        var q = $q.defer();
+        var printQuery = "SELECT * FROM subcategories";
+        $cordovaSQLite.execute(db, printQuery, []).then(function (result) {
+            if (result.rows.length > 0) {
+                console.log("Number of Subcategories = " + result.rows.length);
+                q.resolve(result.rows.length);
+            }
+        }, function (error) {
+            console.error(JSON.stringify(error));
+        });
+        return q.promise;
+    };
 
 });
