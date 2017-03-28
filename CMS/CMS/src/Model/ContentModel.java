@@ -332,7 +332,7 @@ public class ContentModel {
 		activeFile = "";
 	}
 
-	public void saveImageFile(String path) {
+	public String saveImageFile(String path) {
 		File file = new File(path);
 		String extension = "";
 		String oldFileName = "";
@@ -347,9 +347,11 @@ public class ContentModel {
 
 		try {
 			Files.write(Paths.get(_PATH + "images/" + filename), Files.readAllBytes(Paths.get(path)));
+			return filename;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return "CouldntWriteFile";
 	}
 
 	public void saveImageFileQuiz(String path, String filename) {

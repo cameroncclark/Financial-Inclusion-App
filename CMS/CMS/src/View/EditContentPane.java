@@ -186,8 +186,8 @@ public class EditContentPane extends JDialog {
 				imageChooser.setFileFilter(filter);
 				int returnVal = imageChooser.showOpenDialog(EditContentPane.this);
 				if (returnVal == imageChooser.APPROVE_OPTION) {
-					contentArea.insert("<image>" + imageChooser.getSelectedFile().getName() + "</image>", contentArea.getCaretPosition());
-					actionListener.copyImageFile(imageChooser.getSelectedFile().getPath());
+					String filename = actionListener.copyImageFile(imageChooser.getSelectedFile().getPath());
+					contentArea.insert("<image>" + filename + "</image>", contentArea.getCaretPosition());
 				}
 			}
 		});

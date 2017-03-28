@@ -192,9 +192,8 @@ public class Model extends Observable {
 
 	}
 
-	public void copyImageToContent(String name) {
-		contentModel.saveImageFile(name);
-
+	public String copyImageToContent(String name) {
+		return contentModel.saveImageFile(name);
 	}
 
 	public String[] getQuestionText() {
