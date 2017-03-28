@@ -123,10 +123,10 @@ fIApp.controller('ContentCtrl', function ($scope, $http, $stateParams, $sce, $co
         }
       }
       if (i < $scope.sections.length - 1) {
-        $scope.sections[i].content.replace(/\n/g , "<br>");
+        $scope.sections[i].content = $scope.sections[i].content.replace(/\n/g , "<br>");
         $scope.sections[i].content = $sce.trustAsHtml($scope.sections[i].content);
       } else {
-        $scope.sections[i].content.replace(/\n/g , "<br>");
+        $scope.sections[i].content = $scope.sections[i].content.replace(/\n/g , "<br>");
         $scope.sections[i].content = $scope.sections[i].content + parseTagQuiz($scope.topic.quiz);
         $scope.sections[i].content = $sce.trustAsHtml($scope.sections[i].content);
       }
