@@ -24,6 +24,11 @@ public class LinksModel {
 		selectLinks();
 	}
 
+	/**
+	 * Selects all link names from the links file
+	 * 
+	 * @return list of link names
+	 */
 	public String[] selectLinks() {
 		try {
 			String fileText = model.getJSONString("externalLinks.JSON");
@@ -45,6 +50,12 @@ public class LinksModel {
 		return new String[] {};
 	}
 
+	/**
+	 * Select a link object given a link name
+	 * 
+	 * @param name The link name
+	 * @return The link
+	 */
 	public Link selectLink(String name) {
 		if (!name.equals("")) {
 			for (Link l : links) {
@@ -56,6 +67,15 @@ public class LinksModel {
 		return new Link();
 	}
 
+	/**
+	 * Add a link to the list of all links
+	 * 
+	 * @param name Link name
+	 * @param blurb Link blurb
+	 * @param website Link URL
+	 * 
+	 * @return true if success
+	 */
 	public Boolean addLink(String name, String blurb, String website) {
 		if (!name.equals("")) {
 			if (!duplicateLink("", name)) {
@@ -69,6 +89,16 @@ public class LinksModel {
 		}
 	}
 
+	/**
+	 * Edits a link object 
+	 * 
+	 * @param oldName The old name
+	 * @param newName The new name
+	 * @param newBlurb The new blurb
+	 * @param newWebsite The new website
+	 * 
+	 * @return True if success
+	 */
 	public Boolean editLink(String oldName, String newName, String newBlurb, String newWebsite) {
 		if (!duplicateLink(oldName, newName)) {
 			for (Link l : links) {
@@ -86,6 +116,11 @@ public class LinksModel {
 		}
 	}
 
+	/**
+	 * Deletes a link
+	 * 
+	 * @param name The name of the link to be deleted
+	 */
 	public void deleteLink(String name) {
 		Link toBeRemoved = new Link();
 		for (Link l : links) {

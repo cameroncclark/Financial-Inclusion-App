@@ -54,7 +54,12 @@ public class CategoriesModel {
 	}
 	
 
-	
+	/**
+	 * Get a category ID based off the category name
+	 * 
+	 * @param category The category name
+	 * @return
+	 */
 	public Integer selectCategoriesId(String category){
 		for(Category c: categories){
 			if(c.getName().equals(category)){
@@ -135,8 +140,9 @@ public class CategoriesModel {
 	}
 
 	/**
+	 * Returns all category ids
 	 * 
-	 * @return
+	 * @return the list of category ids
 	 */
 	public ArrayList<Integer> getCategoryIDs() {
 		ArrayList<Integer> categoryIDs = new ArrayList<Integer>();

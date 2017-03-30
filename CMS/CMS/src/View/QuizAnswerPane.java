@@ -54,6 +54,9 @@ public class QuizAnswerPane extends JDialog {
 		});
 	}
 
+	/**
+	 * Builds all components within the pane
+	 */
 	private void createLayout() {
 		JLabel topicTitle = new JLabel("Quiz Question:");
 		topicTitle.setBounds(5, 10, 200, 20);
@@ -66,7 +69,7 @@ public class QuizAnswerPane extends JDialog {
 		JLabel questionTypeText = new JLabel("Question type:");
 		questionTypeText.setBounds(5, 60, 170, 20);
 		add(questionTypeText);
-		
+
 		String[] listData = { "Please Select", "True/False", "Multiple Choice", "Image Multiple Choice" };
 		questionType = new JComboBox<>(listData);
 		questionType.setBounds(5, 80, 170, 20);
@@ -103,7 +106,6 @@ public class QuizAnswerPane extends JDialog {
 		correctAnswers.setBounds(405, 80, 170, 20);
 		add(correctAnswers);
 
-		
 		answersPanel = new JPanel();
 		answersPanel.setLayout(null);
 		answersPanel.setBounds(10, 110, 580, 450);
@@ -114,19 +116,25 @@ public class QuizAnswerPane extends JDialog {
 		save.setActionCommand("saveQuizQuestion");
 		save.addActionListener(actionListener);
 		add(save);
-		
+
 		JButton cancel = new JButton("Cancel");
 		cancel.setBounds(480, 570, 115, 20);
 		cancel.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				dispose();				
+				dispose();
 			}
 		});
 		add(cancel);
 	}
 
+	/**
+	 * Sets up the number of questions dropdown based off the type of questions
+	 * required.
+	 * 
+	 * @param index
+	 */
 	private void setupNumQuestionDropdown(int index) {
 		if (index == 3) {
 			answers = new ArrayList<JTextArea>();
@@ -172,6 +180,11 @@ public class QuizAnswerPane extends JDialog {
 		}
 	}
 
+	/**
+	 * Sets up dropdowns based off system state
+	 * 
+	 * @param index
+	 */
 	private void setupCorrectDropdown(int index) {
 		if (index == 1) {
 			correctAnswers.removeAllItems();
@@ -201,6 +214,13 @@ public class QuizAnswerPane extends JDialog {
 		}
 	}
 
+	/**
+	 * Creates picture loaders and text boxes based off the number of answers
+	 * required
+	 * 
+	 * @param numQuestions
+	 *            The number of answers required
+	 */
 	private void imageAns(Integer numQuestions) {
 		if (numQuestions + 1 < pictureLoaders.size()) {
 			// Remove the difference
@@ -224,9 +244,9 @@ public class QuizAnswerPane extends JDialog {
 		int ypos = 2;
 		for (int i = 0; i < pictureLoaders.size(); i++) {
 			JSeparator separator = new JSeparator(JSeparator.HORIZONTAL);
-			separator.setBounds(2, ypos-2, 550, 10);
+			separator.setBounds(2, ypos - 2, 550, 10);
 			answersPanel.add(separator);
-			
+
 			JLabel ans = new JLabel("Answer #" + (i + 1) + ":");
 			ans.setBounds(2, ypos, 150, 20);
 			answersPanel.add(ans);
@@ -249,6 +269,13 @@ public class QuizAnswerPane extends JDialog {
 		}
 	}
 
+	/**
+	 * Dynamically adds/removes textfields based off of the number of answers
+	 * required
+	 * 
+	 * @param numQuestions
+	 *            the number of answers required
+	 */
 	private void textAns(Integer numQuestions) {
 		if (numQuestions + 1 < answers.size()) {
 			// Remove the difference
@@ -268,9 +295,9 @@ public class QuizAnswerPane extends JDialog {
 		int ypos = 2;
 		for (int i = 0; i < answers.size(); i++) {
 			JSeparator separator = new JSeparator(JSeparator.HORIZONTAL);
-			separator.setBounds(2, ypos-2, 550, 10);
+			separator.setBounds(2, ypos - 2, 550, 10);
 			answersPanel.add(separator);
-			
+
 			JLabel ans = new JLabel("Answer #" + (i + 1) + ":");
 			ans.setBounds(2, ypos, 150, 20);
 			answersPanel.add(ans);
@@ -291,6 +318,12 @@ public class QuizAnswerPane extends JDialog {
 		}
 	}
 
+	/**
+	 * Sets up the answers fields given the number of answers
+	 * 
+	 * @param numQuestions
+	 *            the number of answers required
+	 */
 	private void setupAnswers(int numQuestions) {
 		if (numQuestions != 0) {
 			answersPanel.removeAll();
@@ -313,6 +346,13 @@ public class QuizAnswerPane extends JDialog {
 		return textArea;
 	}
 
+	/**
+	 * Creates a button with a file loader attached
+	 * 
+	 * @param index
+	 *            the number of the button in the arraylist
+	 * @return
+	 */
 	private JButton getJButton(Integer index) {
 		JButton jButton = new JButton("Load Image");
 		jButton.addActionListener(new ActionListener() {
@@ -369,12 +409,26 @@ public class QuizAnswerPane extends JDialog {
 		}
 	}
 
+	/**
+	 * Sets the question
+	 * 
+	 * @param question
+	 *            Question to be set
+	 */
 	public void setQuestion(String question) {
 		edit = true;
 		oldQuestion = question;
 		quizAnswerTitleText.setText(question);
 	}
 
+	/**
+	 * For editing - sets all answers and reasons
+	 * 
+	 * @param ans
+	 *            Textual list of answers
+	 * @param res
+	 *            Textual list of reasons
+	 */
 	public void setAnswersAndReasons(ArrayList<String> ans, ArrayList<String> res) {
 		numQuestionAnswers.setSelectedItem(Integer.toString(ans.size()));
 
@@ -387,11 +441,24 @@ public class QuizAnswerPane extends JDialog {
 		}
 	}
 
+	/**
+	 * Sets the correct answer.
+	 * 
+	 * @param correct
+	 *            The correct answer integer
+	 */
 	public void setCorrectAnswer(Integer correct) {
 		int item = correct + 1;
 		correctAnswers.setSelectedItem(Integer.toString(item));
 	}
 
+	/**
+	 * Sets the question type to be either multiple choice or image multiple
+	 * choice
+	 * 
+	 * @param type
+	 *            the question type
+	 */
 	public void setQuestionType(String type) {
 		if (type.equals("multipleChoice")) {
 			questionType.setSelectedItem("Multiple Choice");
@@ -404,6 +471,11 @@ public class QuizAnswerPane extends JDialog {
 		return edit;
 	}
 
+	/**
+	 * This method checks all fields to see if any are blank or non-unique
+	 * 
+	 * @return True if fields are blank or not unique
+	 */
 	public boolean anyFieldsBlankOrNotUnique() {
 		ArrayList<String> duplicates = new ArrayList<String>();
 		for (String reason : getReasons()) {
@@ -415,7 +487,7 @@ public class QuizAnswerPane extends JDialog {
 		if (getPictureCheck()) {
 			duplicates = new ArrayList<String>();
 			for (Path picture : picturePath) {
-				if (picture.toString().replaceAll("\\s+", "").equals("")|| duplicates.contains(picture.toString())) {
+				if (picture.toString().replaceAll("\\s+", "").equals("") || duplicates.contains(picture.toString())) {
 					return true;
 				}
 				duplicates.add(picture.toString());
@@ -423,7 +495,7 @@ public class QuizAnswerPane extends JDialog {
 		} else {
 			duplicates = new ArrayList<String>();
 			for (String answer : getAnswers()) {
-				if (answer.toString().replaceAll("\\s+", "").equals("")|| duplicates.contains(answer)) {
+				if (answer.toString().replaceAll("\\s+", "").equals("") || duplicates.contains(answer)) {
 					return true;
 				}
 				duplicates.add(answer);

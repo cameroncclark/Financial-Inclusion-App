@@ -22,6 +22,11 @@ public class TipsModel {
 		selectTips();
 	}
 
+	/**
+	 * This method selects all tips from the JSON file
+	 * 
+	 * @return String of all tip headers
+	 */
 	public String[] selectTips() {
 		try {
 			String fileText = model.getJSONString("tips.JSON");
@@ -43,6 +48,12 @@ public class TipsModel {
 		return new String[] {};
 	}
 
+	/**
+	 * Selects the tip given the header
+	 * 
+	 * @param header The tip header
+	 * @return the tip
+	 */
 	public Tip selectTip(String header) {
 		if (!header.equals("")) {
 			for (Tip t : tips) {
@@ -54,6 +65,13 @@ public class TipsModel {
 		return new Tip();
 	}
 
+	/**
+	 * Adds a tip to the JSON file
+	 * 
+	 * @param header The tip header
+	 * @param tip The tip
+	 * @return true if success
+	 */
 	public Boolean addTip(String header, String tip) {
 		if (!header.equals("") && !tip.equals("")) {
 			if (!duplicateName("", header)) {
@@ -70,6 +88,14 @@ public class TipsModel {
 		}
 	}
 
+	/**
+	 * Edits tip in the JSON file
+	 * 
+	 * @param oldHeader Old tip header
+	 * @param newHeader New tip header
+	 * @param newTip New tip
+	 * @return true if success
+	 */
 	public Boolean editTip(String oldHeader, String newHeader, String newTip) {
 		if (!newHeader.equals("") && !newTip.equals("")) {
 			if (!duplicateName(oldHeader, newHeader)) {
@@ -92,6 +118,10 @@ public class TipsModel {
 		}
 	}
 
+	/**
+	 * Deletes tip from the JSON file
+	 * @param header
+	 */
 	public void deleteTip(String header) {
 		Tip toBeRemoved = new Tip();
 		for (Tip t : tips) {

@@ -31,18 +31,35 @@ public class Model extends Observable {
 
 	}
 
+	/**
+	 * Selects all categories from the file system
+	 * 
+	 * @return String of all categories
+	 */
 	public String[] selectCategories() {
 		return catModel.selectCategories();
 	}
 
+	/**
+	 * Selects all numbers from the file system
+	 * @return String of all numbers
+	 */
 	public String[] selectNumbers() {
 		return numbersModel.selectNumbers();
 	}
 
+	/**
+	 * Selects all links from the file system
+	 * @return String of all links
+	 */
 	public String[] selectLinks() {
 		return linksModel.selectLinks();
 	}
 
+	/**
+	 * Selects all tips from the file system
+	 * @return String of all tips
+	 */
 	public String[] selectTips() {
 		return tipsModel.selectTips();
 	}
@@ -182,6 +199,9 @@ public class Model extends Observable {
 		return builder.toString();
 	}
 
+	/**
+	 * This method is used in conjunction with the observer pattern to update the view
+	 */
 	public void changed() {
 		setChanged();
 		notifyObservers();

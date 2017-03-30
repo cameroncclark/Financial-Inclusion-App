@@ -24,6 +24,11 @@ public class NumbersModel {
 		selectNumbers();
 	}
 	
+	/**
+	 * Select all numbers from the JSON files and brings them into application context
+	 * 
+	 * @return All number strings
+	 */
 	public String[] selectNumbers() {
 		try {
 			String fileText = model.getJSONString("usefulNumbers.JSON");
@@ -45,6 +50,12 @@ public class NumbersModel {
 		return new String[] {};
 	}
 	
+	/**
+	 * Selects a number object given a name
+	 * 
+	 * @param name The number name
+	 * @return the number identified
+	 */
 	public Number selectNumber(String name){
 		if(!name.equals("")){
 			for(Number n: numbers){
@@ -56,6 +67,15 @@ public class NumbersModel {
 		return new Number();
 	}
 	
+	/**
+	 * Adds a number object to the arraylist
+	 * 
+	 * @param name the number name
+	 * @param blurb the number blurb
+	 * @param number The number
+	 * 
+	 * @return True if successful, false if not
+	 */
 	public Boolean addUsefulNumber(String name, String blurb, String number){
 		if(!duplicateName("",name)){
 			numbers.add(new Number(name,blurb,number));
@@ -66,6 +86,15 @@ public class NumbersModel {
 		}
 	}
 	
+	/**
+	 * Modifies a number
+	 * 
+	 * @param oldName The old number name
+	 * @param newName The new number name
+	 * @param newBlurb The new blurb
+	 * @param newNumber The new number
+	 * @return True if successful
+	 */
 	public Boolean editUsefulNumber(String oldName, String newName, String newBlurb, String newNumber){
 		if(!duplicateName(oldName,newName)){
 			for(Number n: numbers){
@@ -83,6 +112,11 @@ public class NumbersModel {
 		}
 	}
 	
+	/**
+	 * Delete a useful number given the number name
+	 * 
+	 * @param name
+	 */
 	public void deleteUsefulNumber(String name){
 		Number toBeRemoved = new Number();
 		for(Number n: numbers){

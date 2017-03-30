@@ -39,6 +39,9 @@ public class ContentPanel implements Panel, Observer{
 		addContentButton();
 	}
 	
+	/**
+	 * This method creates three buttons, each launching a new JDialog on click
+	 */
 	private void addContentButton(){
 		JButton addTopicButton = new JButton("Add Content");
 		addTopicButton.addActionListener(new ActionListener() {

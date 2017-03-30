@@ -47,6 +47,10 @@ public class AddContentPane extends JDialog {
 		});
 	}
 	
+
+	/**
+	 * This method creates components for the application
+	 */
 	private void createComponents(){
 		JLabel topicTitle = new JLabel("Topic Title:");
 		topicTitle.setBounds(5,10,200,20);
@@ -90,6 +94,9 @@ public class AddContentPane extends JDialog {
 		add(saveContent);
 	}
 	
+	/**
+	 * This method creates buttons for the application
+	 */
 	private void createButtons(){
 		JButton sectionButton = new JButton("Section");
 		sectionButton.setBounds(5,70,99,20);

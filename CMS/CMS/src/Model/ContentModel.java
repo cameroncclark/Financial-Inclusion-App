@@ -41,6 +41,10 @@ public class ContentModel {
 
 	}
 
+	/**
+	 * Don't think this method ever gets called, maps all files to the Topic
+	 * object though.
+	 */
 	public void setTopicsMap() {
 		topicsMap = new HashMap<String, Topic>();
 		for (String fileName : getAllFileNames("topics/")) {
@@ -56,6 +60,12 @@ public class ContentModel {
 
 	}
 
+	/**
+	 * Loads a Topic into memory given the file name
+	 * 
+	 * @param fileName File to be loaded
+	 * @return Topic loaded
+	 */
 	public Topic selectTopic(String fileName) {
 		String fileText;
 		try {
@@ -69,6 +79,11 @@ public class ContentModel {
 		return new Topic();
 	}
 
+	/**
+	 * Loads a quiz into memory given a filename
+	 * 
+	 * @param filename Quiz to be loaded
+	 */
 	private void loadQuizFile(String filename) {
 		String fileText;
 		try {
@@ -81,6 +96,13 @@ public class ContentModel {
 
 	}
 
+	/**
+	 * Add a new topic file into the JSON
+	 * 
+	 * @param title Topic title
+	 * @param reference The category id the topic links to
+	 * @param content The content within the topic
+	 */
 	public void addNewContentFile(String title, Integer reference, String content) {
 		if (!quiz.equals(null)) {
 			String fileName = getFileName(title, "topics/", ".json");
@@ -89,10 +111,23 @@ public class ContentModel {
 		}
 	}
 
+	/**
+	 * Get a content quiz object
+	 * 
+	 * @param filename The quiz file name
+	 * @param title The quiz title
+	 * @return
+	 */
 	private ContentQuizObject getContentQuizObject(String filename, String title) {
 		return new ContentQuizObject(filename, title);
 	}
 
+	/**
+	 * Write out topic and quiz files into JSON
+	 * 
+	 * @param filename The file name to write out as
+	 * @param topic The topic to write
+	 */
 	private void createFile(String filename, Topic topic) {
 		writeTopic(filename, topic);
 		writeQuiz(filename, quiz);
@@ -106,9 +141,17 @@ public class ContentModel {
 		rewriteTopicsFile();
 	}
 
+	/**
+	 * Write out the editted topic and quiz to JSON
+	 *  
+	 * @param title The topic title
+	 * @param content the content
+	 * @param category the category ID
+	 */
 	public void editTopic(String title, String content, Integer category) {
 		if (!title.equals("") && !content.equals("")) {
-			writeTopic(activeFile, new Topic(title, category, content, new ContentQuizObject(activeFile, quiz.getTitle())));
+			writeTopic(activeFile,
+					new Topic(title, category, content, new ContentQuizObject(activeFile, quiz.getTitle())));
 			writeQuiz(activeFile, quiz);
 			for (int i = 0; i < quizImagePaths.size(); i++) {
 				saveImageFileQuiz(quizImagePaths.get(i).toString(), quizImages.get(i));
@@ -120,6 +163,10 @@ public class ContentModel {
 		}
 	}
 
+	/**
+	 * This removes the topic file from the JSON file structure
+	 * 
+	 */
 	public void removeTopic() {
 		if (activeFile != "") {
 			deleteFile(activeFile);
@@ -127,6 +174,14 @@ public class ContentModel {
 		}
 	}
 
+	/**
+	 * Returns a unique file name given the original name, the folder and the file type
+	 * 
+	 * @param title The file title
+	 * @param folder The folder to check
+	 * @param fileType The file extension
+	 * @return The unique file name
+	 */
 	private String getFileName(String title, String folder, String fileType) {
 		String fileName = title.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
 		ArrayList<String> allFileNames = getAllFileNames(folder);
@@ -141,6 +196,12 @@ public class ContentModel {
 		}
 	}
 
+	/**
+	 * Returns a list of all file names in a given folder
+	 * 
+	 * @param folder The folder of the FIS to check
+	 * @return all file names
+	 */
 	private ArrayList<String> getAllFileNames(String folder) {
 		ArrayList<String> fileNames = new ArrayList<String>();
 		File tempFile = new File(_PATH + folder);
@@ -166,6 +227,9 @@ public class ContentModel {
 		}
 	}
 
+	/**
+	 * Sets all quiz objects back to null
+	 */
 	public void closeQuiz() {
 		questions = new ArrayList<QuestionObject>();
 		quiz = null;
@@ -173,6 +237,10 @@ public class ContentModel {
 		quizImages = new ArrayList<>();
 	}
 
+	/**
+	 * Gets all questions in a quiz
+	 * @return The list of all questions in string form
+	 */
 	public ArrayList<String> getQuestions() {
 		ArrayList<String> questionText = new ArrayList<String>();
 		for (QuestionObject question : questions) {
@@ -181,6 +249,12 @@ public class ContentModel {
 		return questionText;
 	}
 
+	/**
+	 * Returns a Question object given the question
+	 * 
+	 * @param questionText The question
+	 * @return The question object
+	 */
 	public QuestionObject getQuestion(String questionText) {
 		for (QuestionObject question : questions) {
 			if (question.getQuestionText().equals(questionText)) {
@@ -190,12 +264,30 @@ public class ContentModel {
 		return new QuestionObject();
 	}
 
+	/**
+	 * Add a question to the list of all questions
+	 * 
+	 * @param questionType The type of question
+	 * @param questionText The question text
+	 * @param answers The list of answers
+	 * @param answer The correct answer
+	 * @param reasons The list of reasosn
+	 */
 	public void addQuestion(String questionType, String questionText, ArrayList<String> answers, int answer,
 			ArrayList<String> reasons) {
 		questions.add(new QuestionObject(questionType, questionText, answers, answer, reasons));
 		model.changed();
 	}
 
+	/**
+	 * Adds a question picture to the list of all questions
+	 * 
+	 * @param questionType The type of questions
+	 * @param questionText The question itself
+	 * @param answers The list of all image paths
+	 * @param answer The answer index
+	 * @param reasons The list of string reasons
+	 */
 	public void addQuestionPicture(String questionType, String questionText, ArrayList<Path> answers, Integer answer,
 			ArrayList<String> reasons) {
 		ArrayList<String> imgPath = new ArrayList<>();
@@ -229,6 +321,11 @@ public class ContentModel {
 		model.changed();
 	}
 
+	/**
+	 * Deletes the question from the quiz
+	 * 
+	 * @param questionText The question to delete
+	 */
 	public void deleteQuestion(String questionText) {
 		QuestionObject toBeRemoved = new QuestionObject();
 		for (QuestionObject question : questions) {
@@ -240,6 +337,16 @@ public class ContentModel {
 		model.changed();
 	}
 
+	/**
+	 * Edit a question text
+	 * 
+	 * @param oldQuestion The old question text
+	 * @param questionType The new question type
+	 * @param questionText The new text
+	 * @param answers The new answers
+	 * @param answer The new answer index
+	 * @param reasons The new reasons
+	 */
 	public void editQuestion(String oldQuestion, String questionType, String questionText, ArrayList<String> answers,
 			int answer, ArrayList<String> reasons) {
 		if (!duplicateQuestion(oldQuestion, questionText)) {
@@ -256,11 +363,23 @@ public class ContentModel {
 		model.changed();
 	}
 
+	/**
+	 * Set the quiz questions and quiz title
+	 * 
+	 * @param quizTitle
+	 */
 	public void saveQuiz(String quizTitle) {
 		quiz.setTitle(quizTitle);
 		quiz.setQuestions(questions);
 	}
 
+	/**
+	 * Checks to see if a quiz question is a duplicate
+	 * 
+	 * @param oldQuestion The old question
+	 * @param questionText The new question text
+	 * @return
+	 */
 	private Boolean duplicateQuestion(String oldQuestion, String questionText) {
 		if (oldQuestion.equals(questionText)) {
 			return false;
@@ -277,6 +396,12 @@ public class ContentModel {
 	 * END OF QUIZZ STUFF
 	 */
 
+	/**
+	 * Write the topic to a file given a specific file name
+	 * 
+	 * @param fileName The file name to write to
+	 * @param topic The topic to write out
+	 */
 	private void writeTopic(String fileName, Topic topic) {
 		try (Writer writer = new FileWriter(_PATH + "topics/" + fileName)) {
 			Gson gson = new GsonBuilder().create();
@@ -286,6 +411,12 @@ public class ContentModel {
 		}
 	}
 
+	/**
+	 * Write out a quiz to a file path
+	 * 
+	 * @param fileName The file name to create
+	 * @param quiz The quiz to write
+	 */
 	private void writeQuiz(String fileName, QuizObject quiz) {
 		try (Writer writer = new FileWriter(_PATH + "quizzes/" + fileName)) {
 			Gson gson = new GsonBuilder().create();
@@ -295,6 +426,11 @@ public class ContentModel {
 		}
 	}
 
+	/**
+	 * Delete a file given a specific path
+	 * 
+	 * @param file The path of the file
+	 */
 	public void deleteFile(String file) {
 		Path path = Paths.get(_PATH + "topics/" + file);
 		try {
@@ -306,7 +442,7 @@ public class ContentModel {
 		} catch (IOException x) {
 			System.err.println(x);
 		}
-		
+
 		path = Paths.get(_PATH + "quizzes/" + file);
 		try {
 			Files.delete(path);
@@ -319,6 +455,9 @@ public class ContentModel {
 		}
 	}
 
+	/**
+	 * Rewrites the topic file with all the URL's of topics
+	 */
 	public void rewriteTopicsFile() {
 		try {
 			ArrayList<String> jsonFiles = getAllFileNames("topics/");
@@ -327,11 +466,19 @@ public class ContentModel {
 			e.printStackTrace();
 		}
 	}
-
+/**
+ * Clears the active file path
+ */
 	public void clearActiveFile() {
 		activeFile = "";
 	}
 
+	/**
+	 * Saves an image to the FIS directory given the file path
+	 * 
+	 * @param path The path to take the image from
+	 * @return The file name created
+	 */
 	public String saveImageFile(String path) {
 		File file = new File(path);
 		String extension = "";
@@ -354,15 +501,27 @@ public class ContentModel {
 		return "CouldntWriteFile";
 	}
 
+	/**
+	 * Save all quiz images to the FIS path
+	 * 
+	 * @param path The path to save the file 
+	 * @param filename The file name to save the quiz as
+	 */
 	public void saveImageFileQuiz(String path, String filename) {
 		try {
 			Files.write(Paths.get(_PATH + "quizImages/" + filename), Files.readAllBytes(Paths.get(path)));
-			//to add compression: https://www.tutorialspoint.com/java_dip/image_compression_technique.htm
+			// to add compression:
+			// https://www.tutorialspoint.com/java_dip/image_compression_technique.htm
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
+	/**
+	 * Get the title of the quiz
+	 * 
+	 * @return The quiz title
+	 */
 	public String getQuizTitle() {
 		if (quiz == null) {
 			return "";
@@ -371,15 +530,25 @@ public class ContentModel {
 		}
 	}
 
+	/**
+	 * Returns true if a quiz has been created
+	 * 
+	 * @return True is quiz has been created
+	 */
 	public Boolean isQuizActive() {
-		if(quiz != null && questions.size() > 0){
+		if (quiz != null && questions.size() > 0) {
 			return true;
 		}
 		return false;
 	}
 
+	/**
+	 * Returns true if active file is loaded
+	 * 
+	 * @return True if file is loaded
+	 */
 	public Boolean isFileLoaded() {
-		if(!activeFile.equals("")){
+		if (!activeFile.equals("")) {
 			return true;
 		}
 		return false;

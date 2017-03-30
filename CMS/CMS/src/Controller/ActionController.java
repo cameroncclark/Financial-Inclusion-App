@@ -22,6 +22,10 @@ public class ActionController implements ActionListener {
 		this.view = view;
 	}
 
+	/**
+	 * This method switches on the event coming in from the view, calling the
+	 * correct controller based on the command received.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
@@ -77,13 +81,13 @@ public class ActionController implements ActionListener {
 			EditContentCtrl editContentCtrl = new EditContentCtrl(model, view);
 			break;
 		case "editQuizQuestion":
-			EditQuizQuestionCtrl editQuizQuestionCtrl = new EditQuizQuestionCtrl(model,view);
-		break;
+			EditQuizQuestionCtrl editQuizQuestionCtrl = new EditQuizQuestionCtrl(model, view);
+			break;
 		case "deleteContentPage":
-			DeleteContentCtrl deleteContentCtrl = new DeleteContentCtrl(model,view);
+			DeleteContentCtrl deleteContentCtrl = new DeleteContentCtrl(model, view);
 			break;
 		case "saveQuiz":
-			SaveQuizController saveQuizController = new SaveQuizController(model,view);
+			SaveQuizController saveQuizController = new SaveQuizController(model, view);
 			break;
 		case "saveQuizQuestion":
 			AddQuizQuestionCtrl addQuizQuestionCtrl = new AddQuizQuestionCtrl(model, view);
@@ -95,63 +99,110 @@ public class ActionController implements ActionListener {
 
 	}
 
+	/**
+	 * Return all categories from back to front end
+	 * @return
+	 */
 	public String[] initaliseCategoriesTab() {
 		return model.selectCategories();
 	}
 
+	/**
+	 * Return all tips from back to the front end
+	 * @return
+	 */
 	public String[] initaliseTipsTab() {
 		return model.selectTips();
 	}
 
+	/**
+	 * Return all links from back to the front end
+	 * @return
+	 */
 	public String[] initaliseLinksTab() {
 		return model.selectLinks();
 	}
 
+	/**
+	 * Return all numbers from back to the front end
+	 * @return
+	 */
 	public String[] initaliseNumbersTab() {
 		return model.selectNumbers();
 	}
 
+	
 	public void setTopicsMap() {
 		model.setTopics();
 	}
-	
-	public void clearActiveFile(){
+
+	/**
+	 * Clears the active file
+	 * @return
+	 */
+	public void clearActiveFile() {
 		model.clearActiveFile();
 	}
-	
-	public void intialiseQuiz(){
+
+	/**
+	 * Initialises a blank quiz object 
+	 * @return
+	 */
+	public void intialiseQuiz() {
 		model.initialiseQuiz();
 	}
 
-	public void loadSelectedFile(String fileName, boolean editPane ) {
+	/**
+	 * Load the file selected into the content 
+	 * 
+	 * @param fileName The filename selected
+	 * @param editPane A boolean whether the application is in edit mode or not
+	 */
+	public void loadSelectedFile(String fileName, boolean editPane) {
 		ContentPanel panel = (ContentPanel) view.getActivePanel();
-		if(editPane){
+		if (editPane) {
 			EditContentPane activePanel = (EditContentPane) panel.getActivePanel();
 			Topic selectedTopic = model.selectTopic(fileName);
 			activePanel.setTopic(selectedTopic.getTitle(), model.selectCategoryName(selectedTopic.getReference()),
 					selectedTopic.getContent());
-		}else{
+		} else {
 			DeleteContentPane activePanel = (DeleteContentPane) panel.getActivePanel();
 			Topic selectedTopic = model.selectTopic(fileName);
 			activePanel.setTopic(selectedTopic.getTitle(), model.selectCategoryName(selectedTopic.getReference()),
 					selectedTopic.getContent());
 		}
-		
+
 	}
 
+	/**
+	 * Copies an image from a path to the FIS
+	 * @param name
+	 * @return
+	 */
 	public String copyImageFile(String name) {
 		return model.copyImageToContent(name);
 	}
-	
-	public String[] getQuestions(){
+
+	/**
+	 * Gets all questions which are active in the backend
+	 * @return
+	 */
+	public String[] getQuestions() {
 		return model.getQuestionText();
 	}
-	
-	public String getQuizTitle(){
+
+	/**
+	 * Returns a quiz title
+	 * @return
+	 */
+	public String getQuizTitle() {
 		return model.getQuizTitle();
 	}
 
-	public void closeContentPane(){
+	/**
+	 * Sets the backend to be cleaned once the pane is closed.
+	 */
+	public void closeContentPane() {
 		model.closeContentPane();
 	}
 }
