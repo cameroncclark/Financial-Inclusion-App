@@ -28,6 +28,13 @@ public class PanelCreator {
 		return panel;
 	}
 
+	/**
+	 * This series of methods make the appropriate panels to populate the tabs
+	 * 
+	 * @param model The model of the system
+	 * @param actionListener The controller of the system
+	 * @return
+	 */
 	public JComponent makeCategoriesPanel(Model model, ActionController actionListener) {
 		catPanel = new CategoriesPanel(actionListener);
 		model.setModelObserver((Observer) catPanel);
@@ -58,6 +65,12 @@ public class PanelCreator {
 		return tipsPanel.getPanel();
 	}
 
+	/**
+	 * Returns the appropriate panel based off the ID given
+	 * 
+	 * @param ID The tab id
+	 * @return The active panel
+	 */
 	public Panel getActivePanel(int ID) {
 		switch (ID) {
 		case 0:

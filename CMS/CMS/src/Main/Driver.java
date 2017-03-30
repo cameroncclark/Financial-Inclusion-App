@@ -6,6 +6,11 @@ import View.MainContainer;
 
 public class Driver {
 
+	/**
+	 * This is the main driver class of the application
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		//Create Model
